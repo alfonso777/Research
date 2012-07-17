@@ -1,0 +1,12 @@
+==  Eu ==
+-> Transformar o texto que está no google docs em uma sessão de motivação para sua dissertação e me envie a dissertação com essa sessão.
+
+-> Enviar um diagrama explicando o que vc está fazendo no simulador (quais são as coisas novas que vc está adicionando) e me diga o que de novo já está funcionando em relação à versão anterior e deixando claro quais blocos / partes do simulador está diretamente relacionando com sua dissertação.
+
+-> Todos os cenários daqui pra frente da  pesquisa terão que ser os cenários relatados no artigo "The Benefits of Service Choreography for Data-Intensive Computing".
+
+-> Tentar passar como entrada para o simulador um BPMN. Teria que buscar parsers de BPMN.
+
+== Daniel ==
+
+-> Eu vou ler o artigo "The Benefits of Service Choreography for Data-Intensive Computing"
