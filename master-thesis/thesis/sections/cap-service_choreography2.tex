@@ -1,0 +1,534 @@
+\chapter{Coreografias de Serviços Web}
+\label{cap:service_choreography}
+
+\begin{comment}
+  Uma coreografia de serviços é um tipo de composição de serviços que possui muitas vantagens ,  tais como: escalabilidade, eficiência,
+  descentralização , distribuição, entre outras \cite{Barker2009b}.   Essas características são  as que  possibilitam uma
+  integração de sistemas em larga escala
+  respeito a outros tipos de composição como a orquestração de serviços \cite{Farcas2010}. Larga escala envolve múltiplas dimensões \cite{Vincent2010}, tais
+  como o número de serviços a serem coordenados, ser completamente distribuído, a alta heterogeneidade de sistemas,o alto dinamismo do entorno e a alta carga.  Em
+  consequência, é  importante conhecer a pesquisa e desenvolvimento atual  em coreografias de serviços Web, antes de aprofundar no monitoramento de QoS.
+
+  O capítulo está estruturado como segue. Primeiro, apresenta-se as definições de coreografias de serviços.
+  % e o papel  das coreografias em SOA.
+  Em seguida,  mostram-se os modelos e linguagens( tanto da industria quanto acadêmicas ) de coreografias. Após, são apresentadas as ferramentas e arcabouço
+  existentes para modelar, definir e até rodar (\textit{enactment}) coreografias.  Por fim, apresentam-se  umas conclusões na ultima seção.
+\end{comment}
+
+%Maduradidade, evolcion, adopcion d El aindustria,  herramientas
+%---------------------------------------------%
+\section{Definição}
+\label{sec:choreography_basic_concepts}
+  %\subsection{Definição}
+
+Como resumido no Capítulo 2, orquestração e coreografia são dois tipos de composição de serviços.
+%Atualmente os termos coreografia e orquestração,  referem-se ao problema de acordos em um processo comum \cite{Aalst2005}.
+ Não existe um consenso acerca da definição formal de uma coreografia de serviços Web \cite{Ross-talbot2005}. O conceito,
+junto com os padrões, ferramentas e a  tecnologia que a suportam, têm evoluído junto com a maturidade da SOA e dos serviços Web \cite{Cambronero2009}.
+%Além disso,  as definições existentes não são consistentes respeito a vários domínios \cite{Cambronero2009}.
+
+Em \cite{Liegener2010}, são apresentadas várias definições de  ``coreografia de serviços''  agrupadas segundo camadas de domínios. Na camada
+ de ``Composição de serviços e coordenação''  uma coreografia de serviços  é definida como uma forma de composição de serviços na qual o
+protocolo de interação entre os diversos serviços participantes  é definida de uma perspectiva global. Em \cite{Barros2005},
+apresenta-se  uma definição genérica (independente do domínio), na qual uma coreografia de serviços é um processo colaborativo que envolve múltiplos
+serviços e em que a interação entre eles é vista de uma perspectiva global.
+
+A definição informal de coreografia de serviços pode ser resumida como \cite{Carbone2007}:
+
+  \begin{quote}
+  ``Os dançarinos dançam seguindo  um cenário global, sem um único ponto de controle''.
+  \end{quote}
+
+  %%porque cada um deles sabe o papel que tem desempenhar para   conseguir o objetivo comum.    
+Isto é, em tempo de execução,  cada participante em uma coreografia  executa sua parte (chamada de papel), de acordo com o comportamento dos
+ outros participantes. O papel da coreografia especifica o comportamento esperado na troca de  mensagens
+ dos participantes, em termos do sequenciamento  e tempo  das mensagens que eles consomem e produzem \cite{Su2007a}.
+
+
+Em ~\cite{Aalst2005} é apresentada uma definição de  uma ``coreografia real''  sem fazer uma distinção entre uma coreografia e uma
+orquestração, porque ambos os termos são utilizados para se referir ao problema de acordo de um processo comum. Em \cite{Aalst2005}, assume-se
+  que uma coreografia  define colaborações entre participantes que interagem, isto é, que no processo de coordenação dos
+ serviços Web interconectados, todos os participantes precisam estar de acordo.  A Figura \ref{fig:ChoreographyNotion} mostra
+ essa noção de coreografia, onde os participantes interagem entre si sem um ponto de controle único. O acordo do ponto de vista global da coreografia
+está baseado no comportamento observável dos participantes, e o comportamento interno de cada um deles está especificado por meio
+ de uma orquestração (BPEL).
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=.80\textwidth]{figures/ChoreographyNotion_.png}
+      \caption{A coreografia define colaborações entre participantes que interagem entre si \cite{Aalst2005}}
+      \label{fig:ChoreographyNotion}
+  \end{figure}
+
+%Diversas propostas para definir e especificar coreografias tem aparecido, propostas tais como o
+%WSCI %\footnote{WSCI:  \url{www.w3.org/TR/wsci/} }(Web Services Choreography Interaction ),
+%WS-CDL \footnote{WS-CDL: \url{www.w3.org/TR/2004/WD-ws-cdl-10-20041217/}}(Web Service Choreography Description Language  ),
+%ebXML %\footnote{ebXML:  \url{www.ebxml.org/} }(Electronic Business using eXtensible Markup Language ),
+%BPMN \footnote{BPMN2:  \url{www.bpmn.org/}}(Business Process Model And Notation Version 2.0  ),
+%Let's Dance \cite{letsDance},
+%BPEL4Chor \footnote{BPEL4Chor:  \url{www.bpel4chor.org}}(WS-BPEl extended ),
+
+\begin{comment}
+Diversas propostas para definir e especificar coreografias têm surgido. A seguir mostra-se as definições de coreografia de serviços  segundo
+alguns dos padrões mais utilizados.
+
+
+  \begin{itemize}
+    \item \textbf{WSCI}\footnote{WSCI (Web Services Choreography Interaction ):  \url{www.w3.org/TR/wsci/} }:  A sua especificação não tem uma
+definição explicita de coreografia de serviços, mas a palavra
+ coreografia(e as palavras derivadas )  aparece no documento,  no glossário define o que uma ``coreografia''  (mas o
+ descreve como elemento da linguagem  WSCI) descreve dependências temporais e/ou lógicas entre atividades; define
+também o que é ``coreografia de mensagens'' (message choreography) como  a ordem na qual as mensagens  podem ser
+ enviados ou recebidos em uma dada troca de mensagens, as regras que governam tal ordem e os limites da troca
+de mensagens(quando começam  e quando terminam).
+
+    \item \textbf{WS-CDL}:   Em ~\cite{WSDL2005} define a coreografia como um contrato  multi-participante desde uma perspectiva Global. Na sua
+ especificação, também não faz uma  definição explicita de coreografia de serviços web, mas descreve por exemplo
+ a camada de coreografia(choreography layer)   como o componente que descreve colaborações entre participantes, definindo
+desde um ponto de vista global seus comportamentos observáveis  comuns e complementários, onde a troca de informação
+ acontece, quando as regras ordenadas e acordada    em conjunto são satisfeitas.
+
+  \item \textbf{BPMN}: No documento da  especificação  de BPMN 2.0 \footnote{ BPMN 2.0: \url{http://www.bpmn.org/} }  define uma
+ coreografia como uma seqüência ordenada de troca de
+ mensagens B2B (Negócio a Negócio) entre dois ou mais participantes. Uma coreografia não possui um controlador central,
+ nem  uma entidade responsável  e   nem um observador do processo.
+
+  \item \textbf{BPEL4Chor}\cite{Decker2007}: Uma coreografia descreve a troca de mensagens entre serviços desde a perspectiva de um observador quem é
+ capaz de ver as interações todas e o fluxo de dependências .
+
+  \item \textbf{Let's Dance}\cite{Zaha2006a}: Em uma perspectiva global ( coreografia), as interações são descritas desde a perspectiva de uma coleção
+ de serviços(abstraídos como papéis ), isto é útil quando acontece a comunicação acerca de como os serviços devem se
+ comportar para corretamente interagir uns  com os outros.
+
+\end{itemize}
+
+
+Finalmente, existem estudos nos quais se define formalmente uma coreografia de serviços Web, por exemplo em \cite{Zhao2010a}, \cite{Su2007a}, \cite{Lohmann2009}
+entre outros.
+\end{comment}
+
+
+%por exemplo para validá-la, por exemplo  em \cite{Lohmann2009} apresenta uma definição formal de uma coreografia de serviços.
+
+
+%Definition 1 (Conversation, choreography). A conversation ? is a finite
+
+
+
+%%%%%%%%%%%
+%deprecated%  \subsection{Workflow, Orquestração  e Coreografia}
+\begin{comment}
+\subsection{ Orquestração e Coreografia de serviços}
+
+Ambas as abordagens fundamentam a área geral da engenharia de software orientada a serviços, e assim, representam
+diferentes escolhas de desenho na hora implementar sistemas orientados a serviços \cite{Rosenberg2009}.
+Depende do cenário concreto, para determinar, se usar uma abordagem explícita de ``cima para baixo'' \textit{top-down} para uma coreografias e derivar
+orquestrações participantes, ou se utilizar uma abordagem \textit{bottom-up} é suficiente.
+
+%%Workflow é
+Os fluxos de trabalho (\textit{workflows}) podem ser descritos usando WS-BPEL (ou outra linguagem de orquestração) ou podem ser descritos por uma linguagem de
+coreografia de serviços como o WS-CDL, mas a escolha depende do que se quer conseguir. É frequente o caso em que as duas abordagens
+ são necessárias. Por exemplo, um fluxo de trabalho pode ser descrito como uma coreografia, e este
+ pode se realizar como um conjunto de  fluxos de trabalho executáveis, que são
+enlaçados por  desenho. Neste cenário os serviços podem ser orquestrados ( usando por exemplo WS-BPEL  ), de modo que
+o comportamento externo observável é definido (e gerado) a partir de uma coreografia acordada (usando por exemplo WS-CDL). Assim, a coreografia
+é uma guia para o sistema todo, e a orquestração é uma maneira para realizar o sistema sem a introdução de um intermediário de
+ serviços geral \cite{Ross-talbot2005}.  %overall broker-service.
+%Poderia se pensar como ilhas de orquestração que interagem baseados em um blueprint.
+\end{comment}
+
+
+
+A composição de serviços possui três pontos de vista \cite{Barros2006}: %, mas que se sobrepõem ~\cite{Barros2006}:
+
+\begin{itemize}%%(\emph{Behavioral Interface})
+ \item \textbf{Interface de Comportamento}:  Chamada também de processos abstratos em BPEL e
+ ``Perfil do Protocolo de Colaboração''  em ebXML \cite{OASISebXML2005}. Este ponto
+ de vista captura  as dependências de comportamento entre as interações, nas quais um serviço individual pode cumprir o que se espera que ele
+cumpra. Em \cite{Barros2006},
+    distinguem-se dois tipos de ``Interfaces de Comportamento'': ``Interfaces Fornecidas''(isto é, ``como está'') que informam
+ o que os serviços fornecem atualmente e as
+   ``Interfaces Esperadas'' (isto é, ``para ser'') que informam o que  espera-se que os serviços forneçam em uma dada configuração.
+
+ \item \textbf{Orquestração}: Chamada também de processos executáveis em BPEL. Trata com a descrição de interações as quais um serviço dado
+ pode se comunicar com outros serviços, assim como os passos internos entre essas interações.
+
+ \item \textbf{Coreografia}: Chamada também de modelo global em WSCI e WS-CDL\footnote{WS-CDL: Web Service Choreography Description Language},
+ e colaboração multi-participante em ebXML ~\cite{OASISebXML2005}. Captura processos colaborativos
+  envolvendo múltiplos serviços, especialmente suas interações vistas de um  ponto de vista global.
+
+\end{itemize}
+
+
+%% Coroegrafia vs Orquestração
+%% Relacionamento entre os tres conceitos
+%% -- com SOA
+%% -- orquestração e coreografia vistos como processos, coregrafia é um processo colaborativos
+
+
+
+%Os termos orquestração e coreografia descrevem dois aspectos para a criação de processos de negócios usando composição de serviços \cite{Peltz2003a}.
+%Esses dois termos se sobrepõem, e essa sobreposição pode ser explorada no escopo das metodologias de composição de serviços, para desempenhar
+%as revisões de consistência entre esses pontos de vista ou para a geração de código.
+
+%Os termos orquestração e coreografia descrevem dois aspectos para a criação de processos de negócios usando composição de serviços \cite{Peltz2003a}.
+%Estes dois termos se sobrepõem de certa forma,
+A Figura \ref{fig:ChoreographyVsOrchestration} mostra a relação em alto nível que existe  entre orquestração e coreografia. Orquestração
+  se refere a um processo de negócio executável que interage com serviços Web internos e externos. As interações
+acontecem no nível de mensagens. Elas incluem lógica de negócios e a ordem da execução de tarefas, e podem estender as aplicações e as organizações
+para definir um modelo de processos de longa duração, transacional e de várias etapas. A orquestração sempre representa o controle da
+perspectiva de um participante. A coreografia é mais colaborativa e permite
+que vários participantes estejam envolvidos para que descrevam sua parte na interação. A coreografia acompanha a sequência de mensagens de
+ múltiplos participantes e fontes, ao invés de apenas um processo de negócio específico.
+
+
+Como o objetivo desta pesquisa é propor mecanismos relacionados com coreografia de serviços Web, a partir deste ponto este texto focará neste tipo
+ de composição.
+
+%Para mais informações sobre orquestrações de serviços Web recomenda-se a leitura de \cite{Daniel2006}, \cite{Barros2006} e \cite{Baryannis2008}.
+
+
+
+
+%se sobrepoem a por sua vez também são confusos
+
+%comparison
+
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=1.0\textwidth]{figures/choreography_Vs_orchestration.png}
+      \caption{Orquestração Vs. Coreografia \cite{Peltz2003a}}
+      \label{fig:ChoreographyVsOrchestration}
+  \end{figure}	
+
+
+%%fazendo a comparação com orquestração:
+  %%\begin{quote}
+  %%Na orquestração  , há alguém  (o condutor) quem ordena para todos na orquestra o que fazer e garante que todos se desempenhem
+  %%sincronizados. Na coreografia,  todo dançarino segue um plano predefinido , independente dos outros
+  %%\end{quote}
+
+  %%\subsection{Categorização }
+  %%\subsection{Ciclo de Vida }
+
+
+
+%---------------------------------------------%
+%%\section{Ciclo de Vida}
+%%\label{sec:choreography_life-cycle}
+
+
+
+%---------------------------------------------%
+%%\section{Padrões e Linguagens}
+%%\label{sec:choreography_standards}
+%Uma das primeras linguagens para especificar coregrafias fue WSCI -- pela W3C
+%WS-CDL que substituiu o WSCI dado que este apresentava muitas limitações ... -ref-
+%contudo o WS-CDL também teve limitações que foram apresentadas em \cite{Barros2005}
+
+
+%---------------------------------------------%
+%%\section{Basic Concepts}% background
+%%\label{sec:choreography_basic_concepts}
+%%\subsection{Overview of WS-CDL}
+%%\subsection{Overview of WS-BPEL}
+
+
+
+%--------------------------------------------------------%
+%--------Elementos de um modelo de Coreografia-----------%
+%--------------------------------------------------------%
+\section{Elementos de um Modelo de Coreografia}
+\label{sec:choreography_models}
+
+%  \begin{figure}[!h]
+ %     \centering
+  %    \includegraphics[width=.60\textwidth]{figures/ChoreographyTaxonomy.png}
+   %   \caption{Taxonomia de coreografia de serviços \cite{Daniel2006}}
+    %  \label{fig:ChoreographyTaxonomy}
+%  \end{figure}	
+
+
+%Segundo \cite{Decker2007} ainda não se pesquisa acerca de quais abordagens (Modelo de interação e modelo de interação)
+%é mais apropriado para modeladores humanos.
+
+
+
+%%Elementos de uma creografia
+%\subsection{Elementos de um modelo de Coreografia}
+
+
+%Uma especificação de comportamentos globais é chamado de coreografia, e a representação de um servi
+Segundo \cite{Su2007a}, uma linguagem de modelagem de coreografias fornece os meios para definir um modelo de coreografia, isto é, coreografias,
+ implementação de serviços e semântica, incluindo mecanismos para comparar a coreografia com o comportamento global das implementações dos seus
+ serviços. Assim, pode-se entender informalmente
+uma linguagem de modelagem de coreografias $L$ como uma coleção de modelos de coreografias:
+ $$L=\{(C,I)\ | \textit{C é uma coreografia e  I a  implementação  mediante  serviços} \}$$
+
+ Onde $C$ é a coleção de coreografias e $I$ é a coleção de implementações de serviços. Em tempo de execução, cada participante é responsável
+ pela correta execução do seu papel na coreografia, isto é, seu comportamento esperado na troca
+de mensagens em relação ao comportamento dos outros participantes. Quando os participantes realizam ou executam seus papéis segundo o acordo comum
+ entre eles, isto é chamado de
+\textit{enactment} da coreografia \cite{Mancioppi2010}, \cite{Bultan2008}.% em lugar de executar a coreografia ~\cite{Mancioppi2010},~\cite{Bultan2008}.
+
+Uma coreografia pode ser definida utilizando dois tipos básicos de elementos \cite{Su2007a}:
+\begin{enumerate}
+  \item Um conjunto de ações observáveis que acontecem nos serviços  individuais (localmente).
+  \item Conjunto de restrições (globais) de sequência de atividades em (1).
+\end{enumerate}
+
+As ações observáveis tipicamente são de dois tipos: Ações por meio de mensagens para se comunicar com outros serviços, e
+as ações (``atividades'') locais, que são realizadas nos serviços individuais independentemente de outros serviços. As restrições de sequência restringem
+ a ordem das ações dos participantes ou serviços. Além disso, os serviços devem utilizar um modelo de mensagens para se comunicar, que tipicamente são os modelos
+síncrono e assíncrono. No caso do modelo assíncrono, é comum utilizar uma fila \textit{FIFO}\footnote{FIFO: Acrônimo em inglês para Primeiro em Entrar Primeiro em  Sair.  }
+(de tamanho finito ou ilimitado) no receptor para armazenar por ordem de chegada as mensagens que ainda não foram consumidas \cite{Mancioppi2010}. Dadas estas definições,
+ os modelos de coreografia de serviços têm que lidar com os seguintes problemas \cite{Bultan2008}, \cite{Mancioppi2010}:
+
+  \begin{itemize}
+      \item \textbf{Ausência de \textit{deadlock}}:
+      Um \textit{deadlock} ocorre quando o \textit{enactment} de uma coreografia atinge um estado que, (1) não é o final e que (2) não pode deixar sem violar
+      a ordem das mensagens na coreografia. As análises de coreografias para a ausência de \textit{deadlocks} geralmente são
+      construídas  sobre técnicas de verificação de modelos \cite{Mancioppi2010}. %(\textit{model checking})
+
+      \item \textbf{Conformidade}:
+      %\item \textbf{Verificação da Conformidade \textit{Conformance Checking}}
+      %Também referido como análise de conformidade, visa realizar uma deteção de inconsistências e
+      Um participante está em conformidade com uma  coreografia se seu protocolo de negócio, isto é, o atual comportamento da troca de mensagens do participante como é
+      percebido pelos outros, é equivalente ao papel especificado por esse participante na coreografia \cite{Mancioppi2010}. %%validar a palavra espeificado!
+
+
+      \item \textbf{\textit{Realizability}}: %\item \textbf{Realizabilidade}:
+      \textit{Realizability} indica se \textit{peers} podem ser gerados a partir de uma especificação de coreografia, de maneira que as interações dos
+      \textit{peers} gerados encaixem exatamente com a especificação da coreografia \cite{Bultan2009}. Em outras palavras, \textit{realizability} é a possibilidade de
+      que  uma  especificação de coreografia possa ser implementada (realizada) pelos serviços ou participantes \cite{Su2007a}.
+
+      \item \textbf{Síntese}:
+      A síntese de uma coreografia denota a derivação de  processos de orquestração executáveis  a partir de uma
+      especificação de coreografia \cite{Zhao2010a}. Uma síntese ideal pode tomar um documento WS-CDL válido para derivar um conjunto de processos de orquestração,
+      os quais são semanticamente equivalentes à coreografia original dada. Portanto, o problema da síntese é decidir se uma coreografia pode ser
+      realizada por algumas orquestrações (referidas como implementáveis)  e sintetizar uma combinação de orquestrações se for possível \cite{Sun2010}.
+
+
+      %\subsection{\textit{Controlability}}
+      %\subsubsection*{Verificação e Validação }
+      \item \textbf{Sincronização}: %\item \textbf{Sincronizability}:
+         A análise da sincronização visa avaliar os efeitos da comunicação síncrona e assíncrona para melhorar a eficiência da interação. Assim, um conjunto
+      de \textit{peers} que se comunicam assincronamente são sincronizáveis, se seu conjunto de mensagens não muda quando a comunicação assíncrona é substituída por uma
+      comunicação síncrona \cite{Mancioppi2010}. %Esta substituição habilita uma mais eficiente análise por meio da remoção dos canais de comunicação do espaço de estados do sistema.
+
+      \item \textbf{Compatibilidade}:
+       A compatibilidade de uma coreografia de serviços é a capacidade de um conjunto de serviços Web interagir por meio de troca de mensagens de uma forma
+      confiável. O conjunto de serviços compatíveis não somente dependem da sequência de mensagens, mas também dependem de propriedades quantitativas
+      como o tempo \cite{Guermouche2011}.
+
+      \item \textbf{Reconfiguração Dinâmica}:
+      Tais reconfigurações correspondem à adição ou remoção de algumas interações em tempo de execução por conta de eventos como perda
+ do serviço, extensão de funcionalidades, substituição de um serviço, entre outros \cite{Salaun2009}. Assim, é importante formalizar a reconfiguração %reconfigurabilidade
+ para verificar se um conjunto de \textit{peers}, %que têm sido obtidos desde uma coreografia,
+ podem ser reconfigurados com relação a uma segunda especificação de coreografia, a qual consiste de uma extensão (adição
+      de algumas interações) ou uma simplificação (remoção de algumas interações) da coreografia  original. Se essas reconfigurações são possíveis, novos \textit{peers}
+      são gerados. % e substituem os outros.
+%Mais detalhes acerca da formalização da reconfigurabilidade se encontram em ~\cite{Salaun2009}.
+
+
+    \end{itemize}
+
+
+\begin{comment}
+As linguagens de coreografia, segundo \cite{Su2007a}, podem ser divididas em três categorias baseadas em seus arcabouços
+ associados: autômatos de estado finito, redes de \textit{Petri} e álgebra de processos.
+
+   \subsection{Modelos baseados em Autômatos}
+
+    Os modelos baseado em autômatos representam a coreografia e a implementação de serviços como uma maquina de estado finito, isto é, especificam uma
+     coreografia por meio de estados e transições. Desta maneira, capturam explicitamente uma instantânea da execução do serviço composto como um estado, e os
+    comportamentos(locais e globais) podem ser capturados como uma sequência de estados, nos quais cada estado de transição está associada
+    a uma mensagem ou uma atividade \cite{Su2007a}.
+
+    Este grupo de linguagens de modelagem de coreografias incluem: protocolos de conversação, serviços \textit{Mealy} ~\cite{Bultan2003} , diagramas de colaboração UML ~\cite{Bultan2008a}, e o modelo de
+    composição de serviços Colombo ~\cite{Berardi2005}. A linguagem \textit{Let's Dance} \cite{Zaha2006a} também pertence a este grupo, e fornece de um conjunto de primitivas de restrição de sequências
+    para permitir especificar uma coreografia com uma notação gráfica.
+    %%Em \cite{Wieczorek2008}, aqui faz uma diferenciação com activity-based e state-based
+
+   \subsection{Modelos baseados em Redes de Petri}
+    São amplamente utilizados para modelar, entre outras coisas, fluxos de controle, e por conta disso, são candidatos adequados para linguagens de modelado
+    de coreografias. Por exemplo, IPN (\textit{Interaction Petri Net}), uma linguagem de modelado de coreografias baseada em Petri, trata uma
+    troca de mensagem como um disparo de uma transição. O uso de redes de Petri permite que conversações concorrentes sejam explicitamente separadas, ao
+    contrário do que permitiria um diagrama de colaboração UML ~\cite{Su2007a}. Os serviços ou participantes são representados por ``interfaces de comportamento'', que são
+    redes de Petri  com lugares de entrada e saída. Os serviços ou participantes se comunicam com outros no modelo de mensagens síncronos,
+    em lugar de uma fila FIFO, que utilizam as linguagens baseadas em autômatos.
+
+
+   \subsection{Modelos baseados em Álgebra de Processos}
+    São menos intuitivos e não possuem representação gráfica , e assim como os modelos baseados em redes de Petri, fornecem de  um formalismo para a
+  verificação das propriedades de uma especificação. Recentemente, existem várias propostas no
+    desenvolvimento de linguagens de modelado de coreografias baseadas em álgebra de processos \cite{Su2007a},
+muitas dessas propostas estão baseada em cálculo Pi. O cálculo Pi é uma álgebra de processos que tem como intuito ser uma teoria formal para modelado de
+processos. Utilizam o modelo de mensagens síncronos na comunicação dos participantes. Exemplos de linguagens deste tipo são XLANG, WS-CDL (e as baseadas nela,
+ tais como CDL ~\cite{Pu2007} e \textit{Chor}~\cite{Zongyan2007} ),
+ o modelo ``Bologna'' ~\cite{Su2007a}, entre outras.
+\end{comment}
+
+
+
+%%outras abordagens tais como State CHarts, Activity-based; de quais tipos sao WSCI, BPMN, BPSS ebXML
+%------------------------------------------------------------%
+%-------------Linguagens de Coreografias de Serviços---------%
+%------------------------------------------------------------%
+\section{Linguagens de Coreografias de Serviços}
+
+As linguagens de coreografia de serviços podem ser categorizadas utilizando dois critérios \cite{Decker2008a}: as independentes de implementação e as
+ específicas de implementação. As linguagens independentes de implementação são utilizadas principalmente para descrever %e comunicar
+processos
+da perspectiva de negócios. A definição de formatos de mensagens concretas ou protocolos de comunicação é realizada no escopo das
+ linguagens específicas de implementação.
+
+Basicamente existem duas abordagens de modelagem para linguagens de coreografia de serviços \cite{Barker2009}:
+  modelos de interação e os  modelos de interconexão.
+Os modelos de interação usam interações atômicas como blocos de construção  básicos (a troca de mensagens entre os participantes) e,  os fluxos de dados
+ e de controle estão baseados nas dependências entre essas interações de uma perspectiva global. Os modelos de interconexão definem o fluxo de controle
+ por participante ou por papel do participante, e as respectivas atividades de envio e recepção são conectadas usando fluxos de mensagens, representando deste
+ modo as interações.
+ %Os problemas que podem surgir nos  \emph{modelos de interconexão} estão relacionados à \textit{compatibilidade}, na qual uma típica situação é o
+ %impasse (\textit{deadlock}) ~\cite{Decker2008a}.
+A Figura \ref{fig:ChoreographyCategorization} mostra a categorização das linguagens de coreografia segundo os critérios e as abordagens citados. A seguir,
+essas linguagens são descritas resumidamente.
+
+
+\begin{figure}[!h]
+      \centering
+      \includegraphics[width=.70\textwidth]{figures/ChoreographyCategorization.png}
+      \caption{Categorização de linguagens  de coreografias de serviços Web (baseada em \cite{Engler2009}) }
+      \label{fig:ChoreographyCategorization}
+\end{figure}	
+
+%\begin{itemize}
+ %\item BPMN
+%\end{itemize}
+
+
+O BPMN  é uma linguagem de modelagem gráfica e é o padrão OMG \footnote{OMG: Object Management Group} para modelar processos. Esta
+linguagem realiza a distinção explícita entre o fluxo de controle e o fluxo de mensagens. Todas as atividades conectadas por meio
+ de fluxos de controle pertencem ao mesmo processo e o fluxo de mensagens é utilizado para interconectar processos diferentes. %Tem como principal desvantagem, o
+%fato de que todo participante tem que ser representado por um \textit{pool} ou \textit{swimlane}, o que limita a especificação para poucos cenários,
+%assim como o seu predecessor  BPML.
+O MSC (Tabela de Sequência de Mensagens) é uma linguagem mais adequada para modelar sequências de
+ interações simples ao invés de
+ coreografias complexas, já que não suporta ramos condicionais, ramos paralelos e nem iterações \cite{Decker2008a}.
+
+O protocolo BPSS \footnote{BPSS: \textit{Business Process Specification Schema}} pode definir coreografia e
+comunicação entre serviços baseadas em XML, e pertence ao grupo de especificações do \textit{ebXML} da OASIS. Sua principal desvantagem é suportar somente coreografias
+entre dois participantes. \textit{Let's Dance} é uma linguagem de modelagem gráfica e, assim como BPMN,  está focado na análise de negócios e captura de requisitos,
+em lugar de detalhes de implementação. \textit{Let's Dance} suporta mais cenários de coreografias do que BPMN ~\cite{Zaha2006a} e suporta também todos os
+padrões de coreografia comuns \cite{Barros2005a}. BPMN 2.0 \footnote{BPMN 2.0: \url{http://www.omg.org/spec/BPMN/2.0/}} é a versão atual
+do BPMN e ela introduz dois novos tipos de diagrama: diagramas de coreografia e diagramas de colaboração. O primeiro permite modelar fluxos
+entre distintas interações, enquanto que o segundo fornece uma visão geral em cenários complexos com diversos participantes.
+
+
+O WSFL é uma linguagem baseada em XML que consiste de várias vistas locais
+(também chamados de
+modelos de fluxo) para especificar processos de negócio executáveis, e um modelo global para especificar colaborações e interações entre os participantes de negócio.
+O BPEL4Chor \cite{Decker2007} é uma proposta que adiciona uma camada sobre o BPEL para mudar de uma linguagem de orquestração para uma linguagem de coreografia completa. No BPEL4Chor
+os processos BPEL abstratos são utilizados para descrições de comportamento entre participantes, as quais são unidas %usando ligações
+ por meio de mensagens formando uma
+ topologia de participantes. Assim como Let's Dance, o BPEL4Chor suporta todos os padrões de coreografia comuns \cite{Decker2008a}.% e são propostas acadêmicas.
+%O BPEL4Chor é uma proposta que adiciona uma camada sobre o BPEL para mudar de uma linguagem de orquestração para uma linguagem de coreografia completa
+
+O WS-CDL é uma recomendação candidata pela W3C para se tornar a linguagem  padrão para coreografias de serviços Web. Ela é
+baseada em \textit{Pi-calculus}, uma linguagem formal que permite a descrição de algoritmos de programação concorrente. As
+ dependências entre as interações são definidas por meio de um conjunto de construções de fluxo de controle que são difíceis de mapear para processos BPEL, sendo
+este ponto um dos aspectos mais criticados desta linguagem \cite{Barros2005}. %, e por isso deveria ser utilizada nas últimas etapas do processo de definição de
+%coreografias, dado que está fortemente acoplado com tecnologias de serviços Web (\textit{WS-*}).
+ A WS-CDL  é muito utilizada em vários trabalhos sobre coreografias de serviços Web, e inclusive foram propostas linguagens derivadas dela, tais como
+\textit{Chor} \cite{Zongyan2007} e  %( subconjunto do WS-CDL),
+ WSCDL+ \cite{Kang2007}.%, entre outros. O \textit{BPEL gold} \cite{Engler2009}
+%é definida como uma nova linguagem de modelagem de interação baseada no BPEL, desse modo pode ser classificado como uma linguagem de coreografias
+% dentro do ``modelo de interação'' e ``especifica da implementação''.
+
+%Além das linguagens de coreografias descritas segundo a categorização acima, há também  XLANG\footnote{XLANG: \url{www.ebpml.org/xlang.htm}},
+%WSCL\footnote{WSCL: \textit{Web Service Conversation Language}, \url{http://www.w3.org/TR/wscl10/}} e
+%WSCI
+ %como predecessores do WS-CDL. WSFL, WSCL e WSCI já não são mais suportadas por nenhuma organização de padrões ou empresas, e foram substituídas por WS-CDL .
+
+
+%Existem  também
+ %outras propostas e abordagens para especificar coreografias de serviços, tais como: coreografias baseadas em ontologias (por exemplo, utilizando WSMO  \cite{Roman2008}
+%ou usando  OWL-S) , a linguagem ligeira e executável de coreografias  LCC ~\cite{Besana2009}, simulações de coreografias utilizando \textit{Occam-Pi}, a abordagem dinâmica
+%de coreografia de serviços  baseada em sistemas Multi-Agente \cite{Charif2008}, entre outros.
+
+
+
+%%pendientes> OWL-S choreographies, magent-A, outras que talvez esquecí
+
+
+%---------------------------------------------%
+%\section{Tópicos de pesquisa}
+
+%---------------------------------------------%
+\section{Ferramentas e Arcabouços}
+\label{sec:choreography_tools_frameworks}
+  %%\subsection{Motores de Coreografia}
+  %%\subsection{Ferramentas e Frameworks}
+
+Existem várias ferramentas e arcabouços que têm sido desenvolvidos para apoiar em diversos aspectos da coreografia de
+serviços, tais como modelagem, verificação e validação, simulação, síntese e realização, mapeamento para processos executáveis
+ (como BPEL) e \emph{enactment}. Alguns arcabouços abrangem muitos desses aspectos dentro de uma metodologia de
+ desenvolvimento, por exemplo, o projeto Savara \cite{Savara2009} do JBoss. A seguir, são resumidas algumas dessas ferramentas
+  e arcabouços.
+
+%Ferramenta para WSCI
+
+LTSA-WS \cite{Foster2006}, \textit{WS-CDL Eclipse} \cite{Douglas2005} e Pi4SOA \cite{Zhou2006} foram algumas das primeiras implementações
+para suportar  modelagem, simulação e verificação de coreografias de serviços Web baseadas em WS-CDL. Estas três ferramentas
+são indicadas na especificação WS-CDL \cite{WSCDLv12005}.
+
+\textit{WS-CDL Eclipse} é uma ferramenta baseada em Eclipse para produzir, visualizar e simular coreografias de serviços Web a partir de um documento WS-CDL. Pi4SOA
+ fornece uma ferramenta baseada em Eclipse para modelar coreografias, além de possibilitar a geração de serviços
+ a partir de um documento WS-CDL. Atualmente, o desenvolvimento de Pi4SOA está descontinuado, e nesse contexto apareceu o projeto Savara \cite{Savara2009}.
+ %para continuar o desenvolvido por Pi4SOA.
+  O Savara faz parte da comunidade do JBoss e propõe uma nova metodologia de desenvolvimento chamada de arquitetura testável \cite{Kumar2009}.
+%escrever mais de Savara
+
+
+%Em \cite{Decker2007},  é proposta a linguagem BPLEL4Chor  como uma extensão de BPEL para modelar coreografias de serviços
+%utilizando o modelo de comportamento de interfaces interconectadas.
+ Em \cite{Lohmann2008} é apresentado um conjunto de ferramentas
+para suportar modelagem, verificação, validação e transformação para processos executáveis BPEL dentro do contexto do BPEL4Chor.
+
+%Magent-A
+
+
+\textit{OpenKnowledge} \cite{Besana2009} é uma plataforma baseada em uma arquitetura ponto a ponto (P2P)
+ para especificar e executar \footnote{Neste caso, o termo executar é válido, já que o LCC é uma linguagem executável de coreografias .} coreografias
+ de serviços. Cada \emph{peer} representa um participante da coreografia. Esse \emph{peer} é uma \emph{wrapper} que separa o comportamento
+ observável de um participante da sua implementação, a qual pode ser um serviço Web, um serviço composto,
+entre outros.  Esta plataforma utiliza o LCC (\textit{Lightweight Coordination Calculus}) \cite{Robertson2005} como a linguagem executável baseada
+no \textit{Process-Calculus} para especificar e executar as coreografias. A sua arquitetura é capaz de tratar com a heterogeneidade
+ semântica dos seus participantes e  a  descoberta deles.
+
+
+%WS-CDL+
+%WS-Diamond
+
+%Meteor-S
+
+%VRESCo
+
+%---------------------------------------------%
+%---------------------------------------------%
+\begin{comment}
+  \section{Conclusões}
+  \label{sec:choreography_conclusions}
+
+  Neste capítulo se apresentaram aspectos chave  em coreografia de serviços Web. Dado que as coreografias para serem realizadas, devem ser mapeadas para processos
+  de negócio executáveis (tais como BPEL), então o \emph{enactment} das coreografias depende
+  do motor de processos executáveis, mas que não têm consciência de coreografia. Em consequência, deveriam existir motores
+  com consciência dos aspectos envolvidos nas coreografias de serviços Web. Assim, as atuais implementações de ESB (abordagem utilizada pelos motores de BPEL) não
+  oferecem características especificas das coreografias (\cite{Kopp2008}),  por exemplo,
+  as implementações de ESB não revisam se as mensagens trafegam ou transitam de acordo à descrição da coreografia, isto é, monitoramento.
+  A linguagem \emph{BPEL gold} em \cite{Kopp2010} visa superar  as desvantagens mencionadas, e aborda o problema da necessidade de um
+  ESB com consciência de coreografias. WS-CDL+ \cite{Kang2007} é outro trabalho que visa ser um motor de execução de coreografias.
+
+  Porém, dado que os atuais motores não têm consciência de coreografias, neste trabalho utilizarão tecnologias tais como, WS-CDL, BPEL e WSDL, com um motor BPEL.
+\end{comment} 

@@ -1,0 +1,301 @@
+\chapter{Proposta}
+\label{cap:purpose}
+
+No capítulo anterior foram descritos os trabalhos que possuem alguma relação com o monitoramento de atributos de QoS em coreografias de serviços Web. Pode-se
+notar que há poucos trabalhos sobre modelos de QoS em coreografias, e ainda menos aqueles que agem
+ de maneira integrada com orquestrações e serviços Web. Também são
+poucos os trabalhos relacionados ao monitoramento de coreografias de serviços Web baseado em atributos de QoS além do tempo de resposta. %, como em \cite{Rosenberg2009}.
+ Também são poucas as abordagens que propõem um monitoramento baseado em SLAs probabilísticos.
+ %contratos SLA de atributos de QoS de maneira probabilística.
+%, chamados de  contratos não rígidos (\textit{soft contracts}) como em \cite{Rosario2009}.
+
+A maioria dos trabalhos relacionados focam no atributo de tempo de resposta, entretanto, no contexto de coreografias de serviços, tornam-se importantes
+ os atributos de rede tais como o atraso e a largura de banda, já que
+uma coreografia envolve vários participantes que podem possuir arquiteturas e infraestruturas de rede heterogêneas e pertencentes a domínios diferentes, fazendo
+da rede um item fundamental para que a comunicação entre os serviços seja possível.
+
+
+A dissertação de mestrado proposta neste documento tem como objetivo o monitoramento não intrusivo e a detecção de violações de SLAs baseadas
+ em restrições probabilísticas de QoS em coreografias de serviços Web. %(resume o objetivo aqui).
+ %As seções a seguir apresentam ...  (explica a organização do capítulo sobre a proposta aqui)
+
+
+
+\section{Visão Geral}
+
+\begin{center}
+  \begin{figure}[!h]
+    \includegraphics[width=1.0\textwidth]{figures/MonitoringOverview_.png}
+    % MonitoringOverview.png: 1756x1462 pixel, 250dpi, 17.84x14.85 cm, bb=0 0 506 421
+    \caption{Arquitetura do monitoramento de coreografias baseado em SLAs probabilísticos}
+    \label{fig:MonitoringOverview}
+  \end{figure}
+\end{center}
+
+
+A Figura \ref{fig:MonitoringOverview} ilustra a arquitetura da proposta. Apresenta-se uma coreografia de três participantes (A, B e C) que interagem entre si. Cada um 
+dos participantes
+ possui uma implementação local por meio de orquestrações de serviços, que por sua vez ``realizam'' a coreografia. Um SLA pode ser definido por cada dupla
+de participantes que interagem. Por exemplo, na interação dos participantes A e B pode ser definido um SLA (SLA 1) composto pelas restrições de QoS (rótulo 1
+ da Figura \ref{fig:MonitoringOverview}) do
+ tempo de resposta no fornecimento das operações que acontecem nessas interações. Tais restrições são definidas de maneira probabilística utilizando uma
+distribuição de probabilidade. Desta maneira, podem-se definir SLAs probabilísticos para cada dupla de participantes que interagem (SLA 2 e SLA 3). Cabe ressaltar
+que as restrições de QoS definidas nos SLAs são o resultado de agregação de QoS dos serviços oferecidos pelos participantes.
+ %segundo os padrões de interação de coreografias.
+
+O monitoramento da coreografia (rótulo 2 da Figura \ref{fig:MonitoringOverview}) e a detecção de violações de SLAs são realizados uma
+vez que os SLAs probabilísticos tenham sido definidos. O monitor deve realizar as medições dos atributos de QoS dos serviços Web, estimar suas distribuições
+de probabilidade, realizar a agregação de QoS mediante as distribuições de probabilidade e comparar a distribuição agregada com a distribuição de
+probabilidade especificada no SLA. Dessa maneira, o monitor realiza a detecção de violações de SLA.
+
+
+
+%\section{Detecção de violações de SLA}
+
+\section{Especificação de SLAs Probabilísticos}
+
+%Tipicamente os contratos de QoS são estabelecidos como restrições rígidas (\emph{hard constraints}) dos parâmetros de QoS ~\cite{Rosario2008}, por exemplo,
+ %tempo de resposta menor a 10 ms,
+%que tem que se cumprir para todos os casos. Mesmo com alguma tolerância (tempo de resposta menos a 10 ms, 95\% dos casos) não refletem o comportamento dinâmico
+%e não determinístico dos
+%parâmetros de QoS, dessa maneira as distribuições de probabilidade são melhores ferramentas  ~\cite{Zheng2010}.
+
+Nesta pesquisa, para cada relacionamento existente entre os participantes de uma coreografia serão especificadas restrições de QoS de maneira probabilística.
+%, isto é, restrição não rígidas.
+Tais restrições de QoS comporão um SLA probabilístico. %, por conta disso, chama-se de SLA probabilístico e é um contrato não rígido (\emph{soft contract}).
+%Os SLA probabilísticos consistem em acordos de algumas distribuições de probabilidade para os parâmetros de QoS que se levam em consideração. Assim, utilizando estes
+%as restrições probabilísticas dos parâmetros de QoS requeridos, e junto com estimativas de valores de  métricas de QoS baseadas em medições, pretende-se
+% sintetizar os contratos  probabilísticos.
+
+As restrições serão especificadas por meio de funções de distribuição de probabilidade $F(x) = P_r( \delta \leq x) $, onde $P_r$ é a probabilidade
+ correspondente a uma restrição, $\delta$ é um parâmetro de QoS (por exemplo, a largura de banda efetiva), e $x \geq 0$. Tais restrições serão estabelecidas
+ como um conjunto finito  de \textit{quantis}  dos parâmetros de QoS. %, que definem uma distribuição de probabilidade desses parâmetros de QoS.
+ A forma de definir essas restrições utilizando quantis será baseada no trabalho apresentado em \cite{Rosario2008}, o qual propõe uma técnica para especificar
+ SLAs probabilísticos entre serviços utilizados em uma orquestração.
+%Por exemplo, quantis de  25\%, 50\%, 90\%, 95\% e 98\% correspondem a tempos de resposta máximos de
+%2.5ms, 4.5ms, 6.4ms, 13.8ms, e 23.5ms respectivamente.
+
+Esta pesquisa  realizará a agregação dos quantis dos parâmetros de QoS de acordo com os padrões de interação de coreografia, de modo que a restrição agregada
+ dos quantis fique estabelecida no SLA de uma dupla de participantes da coreografia. Para estimar os quantis
+a utilizar nas restrições de QoS nos SLAs dos participantes, precisa-se compor a lista de quantis das restrições individuais
+dos serviços atômicos de algum parâmetro de QoS.
+
+
+Pretende-se modificar o procedimento  do método de Monte-Carlo para orquestrações proposto
+em \cite{Rosario2009}, para suportar também os padrões de interação das coreografias além de orquestrações. %%definir quais padrões de interação
+
+O conjunto de restrições de QoS por meio de quantis, comporão um SLA, os quais
+serão descritos utilizando o padrão WSLA \cite{Keller2003}, introduzindo nele um conjunto de quantis por cada restrição de QoS que for acordada.
+
+
+
+
+\section{Monitoramento e Detecção de Violações de SLA}
+
+O monitor proposto nesta pesquisa deverá continuamente detectar possíveis violações de SLA. O objetivo do monitor é atingir o menor número
+de alarmes falsos e detectar o maior número de violações de SLA. O monitoramento usará métodos estatísticos para
+verificar se o desempenho observado se desvia do desempenho acordado no SLA.
+
+O objetivo será medir os valores das métricas de QoS de um serviço $S$ de um participante. Depois os valores serão comparados com a restrição
+de QoS $F_s$ definida no SLA não rígido. $F_s$ é a distribuição mediante quantis do parâmetro de QoS $p$ de $S$. Seja $\Delta$ um conjunto finito
+de amostras dos valores medidos de algum parâmetro de $S$. As seguintes equações de \cite{Rosario2009} são utilizadas para ilustrar o que se pretende fazer:
+
+\begin{equation}
+ F'_{s,\Delta}(x) = \frac{ | \{\delta, \delta \in \Delta \leq x  \}|}{|\Delta|}
+\end{equation}
+
+
+É a função distribuição de probabilidade empírica, que define a proporção das amostras dos valores medidos do parâmetro $p$ que são menores que $x$ dentro do conjunto $\Delta$.
+Daí, informalmente a restrição é cumprida se:
+
+\begin{equation}
+ \forall x \in R^{+} : F'_{s,\Delta}(x) \geq F_s(x)
+\end{equation}
+
+Onde $R^+$ é o conjunto de números reais positivos. De forma equivalente, a violação de uma restrição de QoS acontece se:
+
+\begin{equation}
+ \exists x \in R^{+} : F'_{s,\Delta}(x) < F_s(x)
+\end{equation}
+
+Dado que em (2) e (3), $F'_{s,\Delta}(x)$  pode variar aleatoriamente ao redor de  $F_s(x)$, especialmente quando $\Delta$ é bem pequeno, precisa-se 
+ de uma zona de tolerância para tais desvios. Desta maneira a condição de violação pode ser formulada como:
+
+\begin{equation}
+  sup_{x \in R^+}  (F'_{s,\Delta}(x) - F_s(x) ) \geq \lambda
+\end{equation}
+
+Onde $\lambda$ é um parâmetro positivo que define a zona de tolerância. Um valor  pequeno de $\lambda$ melhora a precisão do monitoramento na detecção
+de violações, mas acrescenta o risco de alarmes falsos.
+
+Nesses pontos descritos acima, precisa-se calibrar alguns parâmetros tais como o tamanho de $\Delta$ e o valor adequado de $\lambda$. Antes de utilizar
+ essas fórmulas, precisa-se também de um método para agregar os quantis dos valores medidos dos parâmetros de QoS dos serviços individuais até achar
+ os valores acumulados da coreografia. Para tanto, esta pesquisa levará em consideração  padrões de interação de coreografias \cite{Barros2005a}.
+ %%Além do tempo de resposta, esta pesquisa pretende abranger parâmetros de rede  como o atraso  e a largura de banda, que são importantes porque
+%%os participantes podem possuir diferentes infraestruturas de aplicação e de rede.
+ %Também é preciso levar em consideração os relacionamentos e dependências existentes
+%entre o tempo de resposta, latência de rede e a largura de banda nos cálculos.
+
+%%Isto é, a probabilidade empírica observada do  valor do parâmetro $p$
+
+%\subsubsection*{ Configuração do Monitoramento}
+
+%\subsubsection*{ Monitoramento propriamente dito}
+
+
+%%---------- Desenvolvimento do monitor -----------------
+%%-------------------------------------------------------
+%\subsection{Desenvolvimento do monitor}
+
+O monitor terá que medir os valores dos atributos de QoS %não determinísticos
+ dos serviços Web. O monitor utilizará as abordagens
+de \textit{probe request} e técnicas de \textit{sniffing} para estimar os valores dos atributos. %de QoS, tais como o tempo de resposta,
+ %latência de rede e largura de banda.
+ Dado que o monitor deve ser não intrusivo, 
+ a estimativa do tempo de resposta será realizada baseando-se no valor do atraso, tal como é realizado em \cite{Rosenberg2006} e \cite{Tse-Au2000}.
+ Caso o monitor detecte violações de algum SLA, será realizada a respectiva notificação aos participantes.  A Figura \ref{fig:QoS_SLA_Monitoring_Architecture} mostra
+ a arquitetura proposta do monitor de coreografias baseado em SLA e QoS. %A plataforma VReSCO ~\cite{Hummer2010} será utilizada para o suporte
+%de processamento de eventos e o armazenamento dos valores de QoS dos serviços, já que é uma plataforma disponível que fornece de um modelo de QoS para serviços Web e
+% um motor de eventos focado em composição de serviços.
+
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=1.0\textwidth]{figures/Architecture1.png}
+      \caption{Arquitetura do monitor de SLA e QoS}
+      \label{fig:QoS_SLA_Monitoring_Architecture}
+  \end{figure}	
+
+%%
+A coreografia e a integração com SLA será desenvolvida de ``cima para baixo'' (\textit{top-down}) como é descrito em \cite{Rosenberg2009}. Isto será realizado
+integrando os SLAs na especificação da coreografia. A partir da especificação da coreografia serão derivados \textit{stubs} das orquestrações que realizam a coreografia,
+e nesse processo  serão derivadas também  as políticas de QoS a partir dos SLAs. Para cada participante na coreografia também serão gerados documentos WSDL. É
+importante entender que estes artefatos %(processos BPEL e documentos WSDL)
+são \textit{stubs} que servem como ponto de partida na implementação de cada participante,  e que  serão executados em um motor BPEL.
+Esses mapeamentos e transformações são ilustrados na Figura \ref{fig:QoST_SLA_Mapping_Transformation}.
+
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=.90\textwidth]{figures/MappingAndTransformation1_.png}
+      \caption{Mapeamento e transformação de uma coreografia com integração de QoS e SLA (traduzida de ~\cite{Rosenberg2009})}
+      \label{fig:QoST_SLA_Mapping_Transformation}
+  \end{figure}	
+
+
+
+%%Suporte: eventos, invocação dinâmica de service VReSCO
+%%Engine, JBoss ESB
+%%suporte de verificar politicas QoS com o Qos da composição e dos serviços, para a detecção de violações deve ser integrado na engine
+%%Viedame é a chave pra isso
+
+%Estudo de Caso: simples ...
+
+%Avaliações: medição dos atributos,
+%Avaliação do Monitor: por abordagem
+%no estudo de caso
+
+
+
+%O modelo de monitoramento a ser implementado inclui o acompanhamento e verificação do cumprimento do contratos QoS na coreografia e
+%a reação quando acontecer uma violação de qualquer desses contratos, que consiste em uma forma básica de adaptação. Por tanto o escopo
+% do trabalho não inclui a reconfiguração da coreografias
+%caso acontecer uma falha.
+
+%Também não inclui predição de QoS baseado no histórico, mas isto será
+%levado em conta em trabalhos futuros assim como o foco na reconfiguração dinâmica de coreografias. Os atributos de QoS a serem utilizados incluem principalmente
+%métricas de desempenho tais como tempo de resposta, largura de banda, disponibilidade entre outras. Finalmente o estudo de caso estará baseado no \textit{testbed}
+%para SOA WorldTravel \cite{Budny2008} e para realizar os experimentos serão utilizados PlanetLab\cite{PlanetLab} ou OpenCirrus\cite{OpenCirrus}.
+
+
+%------------------------------------------------------%
+%------------------  Estudo de Caso  ------------------%
+%------------------------------------------------------%
+%\section{Estudo de Caso}
+\section{Avaliação da Proposta}
+
+Para avaliar as decisões e o desempenho da proposta de monitoramento de atributos de QoS e detecção de violações de SLAs, será desenvolvido
+um protótipo para monitorar uma coreografia que implementa um cenário de compra sob encomenda (BTO -- Build to Order) de um computador. Este cenário
+foi proposto em \cite{Rosenberg2009}.
+%O estudo de caso a seguir é um cenário de compra sob encomenda (BTO \footnote{BTO: Build-to-Order}) de um computador que foi proposto em \cite{Rosenberg2009}.
+O caso de uso consiste de um Cliente, um Fabricante, e fornecedores de CPUs, placas mãe e discos rígidos. O Fabricante oferece montagem de equipamentos
+de hardware de TI para seus clientes. Para este efeito, o fabricante tem implementado um modelo de negócio BTO. Ele é responsável por uma parte dos componentes
+ de hardware individuais que estão em estoque e ordena a compra dos componentes faltantes. Neste cenário, o Cliente envia um pedido
+ de orçamento com detalhes acerca  do equipamento de hardware que precisa ao fabricante. Este envia uma resposta com a estimativa dos custos para o cliente.
+ Enquanto o Cliente e o Fabricante não concordarem com o orçamento, este processo será repetido. Se um acordo for alcançado, o Cliente envia uma ordem de compra
+para o fabricante. Dependendo do  hardware disponível no estoque, o fabricante pode pedir componentes de hardware para os seus fornecedores. Assim, se o Fabricante
+ precisa obter componentes de hardware para cumprir a ordem de compra do Cliente,  ele envia uma ordem de compra do hardware adequado para o respectivo fornecedor.
+Por sua vez, os Fornecedores enviam uma resposta ao Fabricante. Finalmente, o Fabricante envia de volta uma ordem de compra como resposta ao cliente. As interações
+dos participantes nesse cenário BTO são ilustradas no diagrama de sequência e colaboração da Figura \ref{fig:CaseStudyBTO}.
+
+  \begin{figure}[!h]
+      \centering
+      %\includegraphics[width=.90\textwidth]{Choreography_CaseStudy.png}
+      \includegraphics[width=1.0\textwidth]{figures/Choreography_CaseStudy.png}
+      \caption{Caso de estudo de BTO para a coreografia de serviços \cite{Rosenberg2009}}
+      \label{fig:CaseStudyBTO}
+  \end{figure}	
+
+%Neste cenário existem e seis diferentes tipos de invocações de serviços Web, cujas operações são: \texttt{requestForQuote}, \texttt{updateQuote},
+ %\texttt{sendPurchaseOrder}, \texttt{orderCPU}, \texttt{orderMB}, \texttt{orderHD}.
+%cada operação descreve um cenário de envio e resposta de mensagens de maneira síncrona. Por exemplo, o Cliente invoca a operação
+% \texttt{requestForQuote} do Fabricante
+%por meio de envio da mensagem \texttt{QuoteRequest}. O Fabricante recebe a mensagem e executa o serviço e responde retornando a mensagem
+%\texttt{QuoteResponse}. No caso de cenários com mensagens assíncronos requerem operações de adicionais de \textit{callback}. Por exemplo,
+ %o Fabricante invoca uma operação \texttt{requestForQuoteCallback}
+%do Cliente, quando envia a mensagem como \texttt{QuoteResponse} resposta.
+
+%A definição de SLA e QoS desempenha um papel crucial em processos de negócios inter-organizacionais. Cada participante oferece serviços a outros parceiros através
+ %da Internet para rodar suas aplicações. Para cada relação dos participantes, um SLA  é definido entre os parceiros para garantir o QoS requerido e oferecido.
+Este caso de estudo foi escolhido para avaliar a técnica proposta, porque possui diversos tipos de interações, ordens, e outros padrões de interação de
+ coreografia. Cenários artificiais também serão criados a fim de testar a proposta em situações onde haja uma utilização intensa da rede,
+como por exemplo através da transferência de centenas de MB ou mesmo unidades de GB entre os vários serviços da coreografia. Coreografias que exigem
+ a interação com o usuário, em que o atraso representa um atributo crítico, também serão criadas.
+
+
+
+%---------------------------------------------%
+%\section{Resultados Preliminares}
+%\label{sec:PreliminaryResults}
+
+\begin{comment}
+  \section{Trabalhos Futuros}
+  \label{sec:FutureWorks}
+
+  O modelo multi-camada utiliza WS-CDL como linguagem de especificação de coreografias, e WS-BPEL para a implementação do processo interno do participantes.
+  Poderia ser interessante estender esse modelo de QoS e SLA para ser integrado com BPMN 2.0, que suporta especificação de coreografias e que também tem a capacidade de especificar processo de negócio executáveis.
+
+  Esta pesquisa está focada em atributos QoS não determinísticos de desempenho e confiabilidade. Futuros trabalhos podem adicionar outros tipos tais como o custo,
+  pagamento, segurança, reputação, entre outras. Além disso, o monitoramento poderia incluir predição de QoS baseado no histórico dos valores medidos anteriormente,
+  isto serve de base para realizar, por exemplo,  auto-cura(\textit{self-healing}) em vários níveis (serviços, orquestração e coreografia), melhorar a adaptação, entre outras.
+
+  Dado que o monitoramento baseado em QoS e SLA é a um fator chave para alavancar a adaptação, então trabalhos futuros podem considerar usar o monitoramento como base
+  para uma ferramenta que forneça de adaptação dinâmica, reconfiguração e autocura baseada em QoS para coreografias de serviços Web.
+
+  %implementações em uma engine comercial, etc
+  %integração no SAVARA, etc
+\end{comment}
+
+
+%\vspace{2cm}
+\section{Cronograma}
+\label{sec:scheluding}
+
+A seguir, mostram-se as atividades que já foram e serão realizadas na presente pesquisa:
+
+\begin{itemize}
+  \item \textbf{Revisão adicional de bibliografia:} Analisar artigos de monitoramento de coreografias baseado em eventos, de comparação de distribuições de probabilidade e
+	de aplicações do método Monte-Carlo em serviços Web.
+  \item \textbf{Implementação das coreografias dos estudos de caso:} Implementar as coreografias de serviços Web.
+  \item \textbf{Integração do modelo multi-camada de QoS e SLA:} Integrar o modelo multi-camada de QoS e SLA na coreografia implementada.
+  \item \textbf{Implementação do monitor de serviços Web:} Desenvolver o monitor de serviços Web com as abordagens do lado do cliente.
+  \item \textbf{Técnica de definição de SLAs probabilísticos:} Desenvolver a técnica para definir SLAs probabilísticos em coreografias de serviços. A técnica inclui o algoritmo de
+  agregação probabilística de QoS e uso do método Monte-Carlo para estimar as restrições probabilísticas que compõem um SLA.
+  \item \textbf{Técnica de monitoramento de coreografias: } Desenvolver a técnica de monitoramento para a medição, agregação e detecção de violações de SLA.
+  \item \textbf{Implementação do monitor de coreografias:} Implementar as duas técnicas anteriores.
+  \item \textbf{Avaliações:} Avaliar as técnicas usando a coreografias implementadas.
+  \item \textbf{Texto da dissertação:} Escrever o texto da dissertação.
+\end{itemize}
+
+
+

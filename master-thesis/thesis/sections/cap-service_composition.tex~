@@ -1,0 +1,399 @@
+\chapter{Composição de Serviços Web}
+\label{cap:service_composition}
+
+%%Um dois princípios chave  na \textit{orientação a serviços} é a ideia de compor redes de serviços disponíveis pela descoberta e invocação
+%%dinâmica desse serviços em lugar de criar aplicações desde 0 ou reutilizar outras aplicações \cite{Rosenberg2009}
+%%O processo de construção de aplicações a partir de serviços existentes é conhecido como  composição de serviços e o resultado da composição é
+%% chamado de  serviço composto
+A composição de serviços Web em um novo serviço mais complexo e mais útil, é  um grande desafio. Atualmente, existem algumas técnicas para compor serviços Web, no
+ entanto, existem ainda algumas limitações. Neste capítulo são descritas as normas, técnicas, modelos e linguagens presentes nas diferentes plataformas de composição de serviços Web propostas.
+
+ \begin{comment}
+  O resto do capitulo
+ está organizado da seguinte forma: a Seção \ref{sec:generic_architecture} apresenta uma arquitetura genérica para a composição automática de serviços Web  \cite{Espinoza2006},
+ que permite definir os requerimentos
+ mínimos para cobrir todo o ciclo de um sistema de composição de serviços: descrição e modelagem de serviços, desenho e definição da composição, geração do modelo
+de processo, a avaliação do serviço composto e a execução e controle da composição. Diferentes técnicas, modelos e linguagens (utilizado em diferentes propostas para
+a composição de serviços) são analisadas nas seções \ref{sec:service_modeling_description}, \ref{sec:service_composition_design_definition},
+\ref{sec:composition_generation},\ref{sec:composition_evaluation} e \ref{sec:composition_execution} .
+\end{comment}
+
+%---------------------------------------------%
+\section{Arquitetura Genérica}
+\label{sec:generic_architecture}
+
+Nesta seção, apresenta-se uma arquitetura genérica  \cite{Espinoza2006} para a composição automática de serviços Web. Esta estrutura não se destina a refletir a utilização de uma
+ linguagem particular, plataforma ou algoritmo de composição. O objetivo dessa arquitetura é apresentar os requisitos mínimos necessários para cobrir todo
+ o ciclo de um sistema de composição de serviços. Para iniciar um processo de composição de serviços Web, segundo um provedor de serviços, deve-se descrever
+e publicar um serviço (etapa 1 da Figura \ref{fig:genericArchitecture_WScomposition}), aparte alguém deve fazer uma solicitação para iniciar o processo
+ de composição. O processo de definição e composição
+ dos serviços (2) pode apoiar a tradução de uma linguagem de desenho para uma linguagem mais formal, que é usado pelo gerador do processo de composição (3). Já que
+ alguns serviços podem ter funcionalidades similares, pode gerar-se mais de um modelo de serviço de composição que atenda aos requisitos. Neste caso, os serviços
+ compostos são avaliados (4) com informações fornecidas pelos atributos não-funcionais, e finalmente o serviço composto escolhido é executado e controlado ou monitorado(5).
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=.70\textwidth]{figures/genericArchitecture_WScomposition2.png}
+      \caption{Arquitetura Genérica para um sistema de composição de serviços Web \cite{Espinoza2006}}%%melhorar imagem e referenciar a imagem melhorada
+      \label{fig:genericArchitecture_WScomposition}
+  \end{figure}	
+
+
+A idéia de partir de uma estrutura genérica para analisar o estado da arte da composição de serviços não é nova (\cite{Srivastava2003a} e \cite{Rao2004}). Em
+ outros trabalhos também são realizados  estudos de diferentes  estratégias de composição (\cite{Chakraborty2001},\cite{Benatallah2005} e \cite{Milanovic2004}),
+ mas em \cite{Espinoza2006} ao contrário dos anteriores cobre o ciclo de vida inteiro. Para cada uma das
+ fases da arquitetura na figura \ref{fig:genericArchitecture_WScomposition}, extraem-se um conjunto de parâmetros, técnicas, modelos e linguagens. Os
+ parâmetros podem ser usados como um mecanismo de
+ comparação para avaliar soluções diferentes para a composição de serviços Web.
+
+As seções a seguir identificam uma série de parâmetros, técnicas, modelos e linguagens com as quais é possível gerenciar  o ciclo de vida inteiro de uma ferramenta  específica para a composição de serviços Web.
+
+
+%---------------------------------------------%
+\section{Descrição e Modelagem de Serviços}
+\label{sec:service_modeling_description}
+
+Usando a tecnologia atual, um provedor de serviços pode implementar e expor uma interface de serviço usando  WSDL .A
+ descrição
+ WSDL de um serviço contém uma especificação de operações que o serviço expõe e enlaces de informações que detalham como invocar as operações em termos de protocolos
+ e endereços. Embora este nível de detalhe é suficiente para construir aplicações de serviços Web simples, isto não é suficiente quando se precisa criar serviços
+complexos e  raciocinar sobre sua composição \cite{Berardi2008}. WSDL não é a única maneira de descrever um serviço, devido ao grande número de linguagens que estão sendo
+propostos como padrão por diferentes grupos de pesquisa e indústria.
+
+%---------------------------------------------%
+\section{Desenho e Definição da Composição de Serviços}
+\label{sec:service_composition_design_definition}
+
+Na arquitetura genérica apresentada,mostra-se que uma solicitação externa feita por um requerente do serviço é necessária
+para iniciar o processo
+ de composição, o que faz sentido quando a aplicação não pode ser satisfeita por um serviço simples pré-existente, senão  pela combinação adequada de alguns
+ serviços disponíveis.
+
+A maioria das ferramentas que apoiam o desenho e definição da composição de serviços, fazem uma distinção entre linguagens de especificação de serviços
+internos e externos. As linguagens externas (também chamadas de linguagens de desenho) permitem representar (geralmente em forma gráfica) a composição de
+serviços para que possam ser facilmente compreendida pelos interessados. Por outro lado, as linguagens internas (linguagens de composição de serviços) são
+linguagens geralmente mais precisas e formais, que são usados para gerar o processo de composição. Algumas ferramentas podem apoiar a tradução de um desenho
+de serviço composto em uma linguagem de descrição.
+
+
+\subsection{Linguagens de Composição de Serviços Web}
+Algumas características da linguagem que ajudam a descrever a composição de serviços \cite{Espinoza2006} são:
+
+\begin{itemize}
+  \item \textbf{WS-BPEL}\footnote{WS-BPEL: Business Process Execution Language for Web Services}: É uma linguagem com uma sintaxe baseada em XML e suporta a especificação de processos
+fornecidas pelas operações que envolvem um ou vários serviços Web. BPEL (nome curto do WS-BPEL) suporta a descrição de dois tipos de processos: abstrato e executável. A linguagem
+ utiliza os conceitos desenvolvidos na área de gestão de fluxos de trabalho (\textit{workflows}) e  é relativamente expressiva, em comparação a algumas
+ linguagens suportadas por sistemas de \textit{workflow} existentes e padrões relacionados \cite{Benatallah2005}.
+
+  \item \textbf{ebXML BPSS}: (\emph{Electronic Business XML}), é um conjunto de padrões que tentam fornecer uma plataforma de implementação para a colaboração  entre
+ negócios. ebXML adota uma proposta baseada na coreografia para a composição de serviços. Especificamente, uma colaboração de negócios é descrita como um conjunto
+ de "Perfis de Protocolos de Colaboração" (CPP).
+
+  \item \textbf{BPML\footnote{BPML: Atualmente é BPMN}}: O BPMi(\emph{Business Process Management Iniciative}) é um consórcio que tem como objetivo contribuir no desenvolvimento de padrões de descrição
+ de processos. O consórcio tem publicado uma especificação para uma linguagem de descrição de processos chamado de BPML (\emph{Business Process Modeling Language}),que
+ é similar em algumas formas a WS-BPEL, e está orientado a descrever orquestrações de serviços Web. BPML se beneficia de um padrão prévio chamado de WSCI desenvolvido
+ pelos interessados em BPMi. O WSCI integra alguns dos modelos encontrados no BPML e BPEL (por exemplo, a sequência, a execução paralela, primitivas para
+ enviar/receber, etc.) e é usada também para descrever  coreografias de serviços.
+\end{itemize}
+
+\subsection{Linguagens Formais de Composição de Serviços Web}
+As linguagens de descrição de  composição de serviços na seção anterior, possuem  limitações para o desenho e análise de uma composição de serviços, para
+ permitir  técnicas de simulação, para garantir a verificação de propriedades, tais como segurança e gerenciamento de recursos ou de verificação de consistência
+ de dados, e satisfação das restrições de negócio. Por causa disso, alguns grupos de pesquisa têm proposto alguns  linguagens formais de composição de serviços
+ para cobrir essas necessidades. A seguir, descrevem-se algumas das linguagens formais para compor serviços Web.
+
+\begin{itemize}
+  \item \textbf{OWL-S\footnote{OWLS foi anteriormente conhecido como DAML-S}}: É uma ontologia de serviços que permite a descoberta, invocação,
+composição, inter-operação e monitoramento da execução de maneira  automática. OWL-S modela os serviços utilizando uma ontologia, que consiste em três
+ partes: (1) \textit{service profile}: descreve aquilo que o serviço requer dos usuários, (2) \textit{service model}: especifica como funciona o serviço, e
+(3) \textit{service  grounding}: oferece informações sobre como usar o serviço
+
+O modelo de processos é uma subclasse do \textit{service model}, que descreve um serviço
+em termos de entradas, saídas, pré-condições, pós-condições e, se necessário, seus sub-processos. OWL-S possui três tipos de processos: "atômicos", os quais
+não possuem "sub-processos" simples, os quais não podem ser invocados diretamente e são utilizados como elementos de abstração para processos atômicos ou compostos
+e "compostos", que consistem de sub-processos. Para fornecer uma base formal para a sua interação com o mundo real, OWL-S está baseado no cálculo de
+situações , que é um formalismo baseado em lógica que modela explicitamente o fato de que ao longo do tempo, diferentes "situações" podem surgir.
+
+  \item \textbf{Componentes Web}: Esta proposta trata os serviços como componentes para dar suporte a princípios de desenvolvimento de softwares básicos,
+ tais como reutilização, especialização e extensão. A idéia principal é encapsular a lógica de informação composta dentro de uma definição de classe, o que
+representa um componente Web. A interface pública de um componente Web pode então ser publicada e utilizada para a descoberta e reutilização.
+
+  \item \textbf{Composição de Processos Algébrica}: A composição algébrica de serviços tem como meta introduzir descrições muito mais simples do que outras
+ propostas, e modelar os serviços  como processos móveis para garantir a verificação de propriedades, tais como segurança e gerenciamento de recursos. A teoria
+ de processos móveis esta baseada no \textit{Pi-Calculus}, no qual a entidade básica é o processo, que pode ser um processo vazio, ou uma escolha entre várias operações
+de entrada / saí­da, uma composição paralela, uma definição recursiva ou uma invocação recursiva.
+
+  \item \textbf{Redes de Petri}: As Redes de Petri são uma proposta de modelagem de processos bem estabelecida. Uma rede de Petri é um grafo dirigido,
+conetado e bipartido, no qual os nós representam localizações e transições, e existem \textit{tokens} que ocupam os estados. Quando existe pelo menos um \textit{token} em
+ cada localização conectada a uma transição, esta transição é sensibilizada e habilitada. Os serviços podem ser modelados como redes de Petri, atribuindo
+ transições  para métodos e localizações   para os estados (\cite{Hamadi2003}, \cite{alvarez2005}). Cada serviço tem uma rede de Petri atribuída que descreve o comportamento e possui
+ dois portos: uma localização de entrada e saída. A qualquer momento, um serviço pode estar em um dos seguintes estados: não instanciado, pronto, em execução,
+ suspenso, ou completado.
+
+  \item \textbf{Inspeção de Modelos}: Uma inspeção de modelos é usada para verificar formalmente sistemas concorrentes de estado finito. A especificação do sistema
+ é descrita usando lógica temporal \cite{Wang2009a}, e para saber se a especificação tem se realiza  um teste no modelo. Podemos aplicar a inspeção de modelos para a
+composição de serviços Web, verificando a exatitude da especificação dos serviços. Dentre as propriedades que podem ser comprovadas estão a consistência
+ dos dados e a satisfação de restrições de negócio \cite{Fu2002}.
+
+  \item \textbf{\textit{Roman Model} (Ações com modelo de processos baseado em autômatos)}: Com esta proposta, os serviços são modelados de uma forma muito abstrata, baseada
+ na noção de atividades. Basicamente, é um alfabeto (finito) de nomes de atividades, mas não é modelada a estrutura interna (entradas, saídas
+ou interação com o mundo). 
+%Em [20] se especifica o fluxo do processos internos de um serviço Web através de sistemas de transição. No caso mais geral, %são potencialmente árvores infinitos, onde cada ramo corresponde a uma sequência de execução de atividades permitidas.
+
+  \item  \textbf{Máquinas de Mealy (máquinas de estado finito)}: São máquinas de estado finito com entradas e saídas. Os serviços se comunicam através do
+envio de mensagens  assíncronas, onde cada serviço tem uma fila. Um "observador" global faz acompanhamento de todas as mensagens. A conversa é feita como
+ uma sequência de mensagens. Entendendo as propriedades de conversação, este método fornece novas ferramentas para desenhar e analisar a composição de serviços  de maneira  "bem estruturada". 
+ %A composição automática de serviços é o objetivo da plataforma apresentada em [18], que descreve o comportamento de serviços % Web como uma árvore de execução e, em seguida, a converte em uma máquina de estado finito. Eles propõem um algoritmo que %comprova a existência da composição e retorna uma se existe uma.
+\end{itemize}
+
+\subsection{Modelo de Compatibilidade}
+Uma questão fundamental na definição de um serviço composto é saber se os seus serviços componentes podem formar parte uma composição \cite{Dustdar2005a}. Por exemplo,
+ pode ser difícil invocar uma operação, se não há uma correspondência entre os parâmetros necessários para a operação (por exemplo, tipos de dados, o número de
+ parâmetros) e os dados transmitidos pelo serviço do cliente. A seguir, identifica-se que pelo menos é possível verificar a compatibilidade  dos serviços em dois níveis \cite{Dustdar2005a}: %revisar esta ultima referencia
+
+  \begin{itemize}
+  \item \textbf{Sintaxe}: Em um nível sintático, a comparação é bem simples e podem ser feitas em:
+  (1) modo de operação e (2) enlaces, o que permite uma comparação dos protocolos de enlace dos serviços que interagem.
+
+%melhorar bib en lugar de espinoza
+  \item \textbf{Semântica}: Em um nível semântico a comparação é muito mais complexa e, entre outras coisas, as regras semânticas podem
+incluir: (1) mensagens, levando em conta o número de parâmetros das mensagens, os seus tipos de dados, papéis  de negócios e unidades. (2)
+ Operações semânticas, esta regra garante que as operações que estão interligadas tenham categorias e propósitos  "compatíveis". (3) Propriedades
+ qualitativas, os mecanismos de composição geralmente têm preferências em relação à  qualidade das operações que pretendem terceirizar. As regras
+qualitativas comprovam as propriedades qualitativas das operações que interagem, e (4) validade da composição, que verifica se uma determinada
+combinação de serviços de uma maneira específica é válida e se também agregam valor. A última regra é verificada no nível de composição, enquanto
+ que as anteriores regras semânticas  tratam a compatibilidade no nível dos serviços e operações.
+  %Em outro estudo do mesmo autor se estende o
+%modelo proposto em \cite{Medjahed2003} e são  introduzidos os conceitos de ``grau de compatibilidade'' e PI - compatibilidade  %para atender a compatibilidade total
+%e parcial. Mais detalhes desta proposta podem ser encontrados em \cite{Medjahed2005}.
+  \end{itemize}
+
+\subsection{Confiabilidade da Composição }
+\label{subsec:composition_reliability}
+Há uma grande diversidade de pesquisas nessa área, porém não há uma definição clara de confiabilidade que estabeleça seu escopo no contexto de um serviço
+ Web composto. Em \cite{Fu2002}, por exemplo, é proposta uma definição de confiabilidade que leva em consideração vários aspectos que afetam a confiabilidade de um
+ serviço Web composto durante sua composição e execução. Nesta seção descrevem-se os aspectos relacionados com a confiabilidade de um serviço Web composto
+ durante a fase de composição (antes da execução do serviço composto). Após serão descritos os aspectos de confiabilidade que são considerados durante a
+execução do serviço.
+
+
+  \begin{itemize}
+    \item \textbf{Verificação da Especificação do Serviço  Composto:} Este aspecto requer que a notação para especificar a composição dos serviços Web
+  seja correta e que a especificação dos serviços compostos, quando este é executado, traduza corretamente o fluxo do processo que representa. Uma possível
+  solução para essa atividade é descrita em \cite{Berardi2008}, que utiliza um modelo de técnicas de controle para verificar a especificação criada de acordo com um padrão
+  de composição de serviços Web específico.
+
+    \ item \textbf{Acordo entre a Especificação do Serviço Composto e a Especificação dos serviços individuais:}  É preciso a existência de um acordo entre os
+  requerimentos do fluxo do processo representados pelo serviço composto e as restrições previstas pelos serviços Web componentes. Existem alguns
+  esforços que permitem que os serviços Web especifiquem suas políticas respeito à  participação em um serviço composto [\cite{Medjahed2003}-\cite{Sivashanmugam2005}].%revisar el rango [10-12]
+
+    \item  \textbf{Suporte a mudanças na definição de Interfaces}: Dada a natureza autônoma dos provedores de serviços, é possível que um provedor
+  possa alterar a interface de um serviço que faz parte de um serviço Web composto, e isto não deveria causar uma falha no processo representado
+  pelo serviço composto ou levar a erros inesperados. Uma solução é construir uma camada de funcionalidade sobre a pilha de padrões de composição,
+  como é descrito em \cite{Kumaran2002}. Esta proposta utiliza um modelo de conversação entre os serviços da Web para gerenciar as mudanças nas
+  interfaces nos serviços individuais.
+  \end{itemize}
+
+\subsection{Estratégias para Expressar os Esquemas de Composição}
+O trabalho apresentado em \cite{Dustdar2005a} identifica pelo menos cinco estratégias de composição de  serviços:  estática ou dinâmica, orientado a modelos,
+composição baseado em regras de negócio, declarativa e a composição baseada em ontologias.
+
+A composição estática ocorre durante o tempo de desenho, quando a arquitetura e o desenho do software são planejados. Os componentes a serem
+utilizados são escolhidos, ligados e finalmente compilados e implantados. A composição estática pode ser demasiado restritiva, especialmente
+ quando os componentes requerem se adaptar automaticamente às mudanças imprevisíveis.
+
+Na composição dinâmica, os serviços são ligados em tempo de execução e o ambiente dos serviços é altamente flexível e dinâmico. Novos serviços
+ estão disponíveis diariamente e o número de provedores está em constante crescimento. Uma ferramenta que suporta a composição dinâmica de serviços
+ tem de ser capaz de  se adaptar perfeitamente às mudanças dos ambientes e às necessidades dos clientes com uma mínima intervenção do usuário. O seguinte
+ são as descrições de algumas estratégias para expressar esquemas de composição, onde os serviços Web são compostos dinamicamente.
+
+
+
+  \begin{itemize}
+    \item \textbf{Baseado em modelos:} Facilita a gestão e desenvolvimento de composições dinâmicas de serviços. UML é
+ utilizado para fornecer um alto nível de abstração e habilitar o mapeamento direito para outros padrões tais como BPEL
+ .Algumas propostas que utilizam essa abordagem para composição, utilizam também  OCL (\textit{Object Constraint Language})
+ como linguagem para a definição de regras de negócio. As regras de negócio podem ser usadas para estruturar e programar a composição de serviços, e descrever a seleção e enlaces dos serviços.
+
+    \item \textbf{Regras de Negócio:} A composição de serviços orientada por regras de negócios é muito semelhante ao baseado em modelos. As regras
+ de negócios são classificadas para facilitar a especificação de um serviço Web composto. Por exemplo, as regras relativas ao controle de papéis
+ dos participantes envolvidos no processo de composição, regras de mensagens relacionadas com o regulamento do uso de informações ou as regras
+ relacionadas a eventos que controlam o comportamento do serviço composto, em resposta a um evento inesperado.
+
+    \item \textbf{Declarativa:} Esta proposta é dinâmica e é diferente das outras estratégias  de composição de serviços, no sentido de que os
+ serviços são criados dinamicamente para executar as solicitações dos clientes. A proposta declarativa consiste de duas fases: a primeira tem como
+ entrada uma situação inicial e uma meta e constrói  um plano genérico para atingir o objetivo. A segunda fase escolhe um plano genérico, descobre
+ os serviços adequados e constrói um fluxo de trabalho neles. Esta estratégia usa o planejamento como um mecanismo para resolver a composição.
+
+    \item \textbf{Semântica:}  Permite compor serviços de maneira automática, e usam ontologias para descrever os serviços e para acessar a estes.
+  \end{itemize}
+
+
+%\subsection{Confiabilidade da Composição }
+
+
+%---------------------------------------------%
+\section{Geração do Modelo de Processo de Composição}
+\label{sec:composition_generation}
+
+O gerador de processos tenta resolver o requerimento fornecido pelo solicitante do serviço, compondo serviços
+ atômicos anunciados pelos provedores de serviços. Este módulo geralmente pega as funcionalidades dos serviços, tais como sua entrada,  e sua saída, que é um
+modelo que descreve o serviço composto. O modelo de processo gerado contém um conjunto de serviços atômicos selecionados e o fluxo de controle e os
+dados entre estes serviços. A seguir, descrevem-se as diferentes técnicas que podem ser usadas pelo  gerador do  processo de composição para descobrir
+os serviços existentes, que serão parte da composição de serviços.
+
+  \subsection{Descoberta de Serviços}
+
+    É o processo de descobrir quais serviços estão disponíveis para participar em uma composição. Identificam-se pelo menos dois critérios para
+    analisar as técnicas de descoberta de serviços \cite{Espinoza2006}: 1) pelos critérios de busca, 2) pela topologia da informação que é suporte
+    para a  busca e descoberta de serviços.
+
+    \subsubsection{Pelos critérios de busca}
+
+	\begin{itemize}
+	  \item \textbf{UDDI (sintática):}  É um dos padrões básicos dos serviços Web, cujo
+	  objetivo é ser acessado pelas mensagens SOAP e dar passo a documentos WSDL, nos quais se descrevem os requisitos de protocolo e formatos
+	  da mensagem solicitado para interagir com os serviços Web do catálogo de registros de serviços. UDDI se centra em detalhes sintáticos e
+	  operacionais para a implementação e execução de serviços Web, o que limita os mecanismos de busca a ser baseados apenas em palavras chave.
+
+	  \item \textbf{Preferências do Usuário:}  Em \cite{Balke2004}, por exemplo, propõe-se uma estrutura para a descoberta e seleção de serviços Web baseados
+	  em avaliações de qualidade personalizadas. Tem como objetivo melhorar o registro UDDI através de um componente, que além de executar a filtragem
+	  de serviços com base em termos específicos, também execute uma pesquisa cooperativa entre as descrições de serviços e as preferências do usuário.
+
+	  \item  \textbf{Descoberta Semântica:} Algumas propostas têm sugerido a adição de semântica nos serviços web. A semântica pode ser adicionada
+	  para os padrões atuais dos serviços Web, tais como UDDI ou WSDL ou os serviços podem ser descritos utilizando alguma linguagem de descrição
+	  baseada em ontologias tais como  DAML-S ou sua versão mais atual como OWL-S. 
+
+%No trabalho apresentado em \cite{Sivashanmugam2005}, faz melhoras na composição
+%	  usando Templates de Processo Semânticos  para capturar os requerimentos semânticos do processo. Usam ontologias na definição de templates
+%	  que permitem uma descrição muito mais rica dos requerimentos de atividade e uma forma mais eficaz para localizar serviços. Para a descoberta
+%	  de serviços, não somente se considera a funcionalidade, senão também a qualidade do serviço (QoS) das atividades. Essa proposta mistura o poder
+%	  expressivo dos padrões atuais de composição de serviços Web e as vantagens das técnicas da Web Semântica para a definição de templates de
+%	  processos e de descoberta de serviços web.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+	\end{itemize}
+
+
+    \subsubsection{Pela topologia}
+	\begin{itemize}
+	    \item \textbf{Centralizada e Ponto a Ponto:} Uma arquitetura no centralizada para busca de serviços  Web é mais escalável, tolerante a falhas e
+	eficiente do que uma centralizada \cite{Pelechano2005}. Em \cite{Banaei-kashani2004} propõe-se WSPDS (\emph{Web Services Peer-to-peer Service Discovery}),  um serviço de
+	descoberta inter-operável e totalmente descentralizado, com capacidade para a descoberta a nível semântico. WSPDS é implementado
+	como um serviço cooperativo onde uma rede WSPDS resolve as consultas de descoberta lançada por cada  \emph{peer}. Em \cite{Verma2005} se propõe uma
+	arquitetura baseada em ontologias para organizar os registros e permitem a classificação semântica de todos os serviços web. Cada
+	um destes registros suporta a publicação semântica, que é usada durante o processo de descoberta, além disso, esta proposta é
+	apoiada por uma arquitetura P2P que permite  acesso a múltiplos registros.
+	\end{itemize}
+
+
+
+%---------------------------------------------%
+\section{Avaliação do Serviço Composto}
+\label{sec:composition_evaluation}
+
+É muito comum que alguns serviços tenham a mesma funcionalidade, ou pelo menos semelhantes. Assim, é possível que o gerador do processo de
+composição gere mais de um modelo de composição que atenda aos requerimentos do usuário. Neste caso, os serviços compostos são avaliados de
+acordo com todas as suas funções, utilizando as informações fornecidas pelas propriedades não funcionais. O método mais comum é a utilização
+ de funções, por exemplo, pode-se atribuir pesos para cada atributo não funcional  e o melhor serviços composto funcionais será aquele com
+ o maior pontuação.
+
+
+%---------------------------------------------%
+\section{Execução da Composição}
+\label{sec:composition_execution}
+Após que um único modelo de composição de serviços tenha sido selecionado, o serviço está pronto para ser executado. A execução de um
+serviço Web composto pode ser pensado como uma sequência de mensagens ou conversas  com os serviços Web, integrados ao modelo de
+ processos. O fluxo de dados de um serviço composto é definido como ações que os dados de saí­da de um serviço executado anteriormente
+ transferem para as entradas de um serviço executado mais adiante. Durante a execução do serviço composto é necessário levar em conta
+ alguns parâmetros, como descrito abaixo.
+
+\subsection{Mecanismos de Execução de Processos}
+Desde as plataformas de composição de serviços Web existentes é possível identificar
+pelo menos três mecanismos para coordenar a execução  de um serviço Web composto:
+
+  \begin{itemize}
+    \item \textbf{Centralizada}: Neste modelo, a responsabilidade para coordenar a execução de um serviço composto é atribuída para um simples
+ ``planejador''.    Este planejador interage com cada um dos serviços componentes, processando e enviando as mensagens. A  arquitetura interna
+ do planejador central é semelhante a um sistema de gestão de fluxo de trabalho (\textit{workflow}) tradicional, exceto que os recursos são serviços ao
+ invés de atores humanos, e que não há banco de dados compartilhado através do qual as informações possam ser implicitamente enviadas de um ator
+ para outro. Em vez disso, as informações devem ser explicitamente passadas por meio de troca de mensagens.
+
+    \item  \textbf{Distribuída:}   O paradigma distribuído em contraste, espera que os serviços Web participantes compartilhem seu contexto de
+    execução. Todo \textit{host} tem o seu próprio coordenador, o qual deve trabalhar com os coordenadores dos outros \textit{host}, para garantir a execução
+    ordenada dos serviços.
+
+    \item  \textbf{Ponto a Ponto:} Neste modelo, a responsabilidade de coordenar a execução de serviço composto é distribuída por meio dos
+ provedores dos serviços componentes, que interage em uma rede P2P, sem encaminhar mensagens por meio de de um planejador
+ central. O ambiente de execução do serviço composto, portanto, se manifesta em forma de uma coleção de módulos interconectados
+ que se comunicam através de um protocolo acordado. Este modelo de execução suporta algumas semelhanças com os modelos de execução
+ de fluxos de trabalho distribuídos \cite{Espinoza2006}. %revisar este ultimo bib
+  \end{itemize}
+
+\subsection{Confiabilidade na Execução}
+Dado que um serviço composto pode envolver uma mistura de vários serviços autônomos , a confiabilidade da composição  é significativa. Como já
+ foi descrito na seção \ref{subsec:composition_reliability},  não existe uma definição clara de confiabilidade que estabeleça o escopo no contexto de um serviço composto, mas, em
+ seguida, descrevem-se os aspectos de confiabilidade a ser considerado durante a execução do serviço, com base no trabalho apresentado em \cite{Fu2002}.
+
+  \begin{itemize}
+    \item \textbf{Suporte de transições:} Os mecanismos de tolerância a falhas podem lidar com os erros que podem ocorrer durante a execução do
+ serviço composto de forma adequada. A maneira de tratar o erro pode depender de sua classe e seu efeito sobre a execução do serviço composto. Uma
+abordagem geral para tratar com tais requerimentos é a utilização de mecanismos transacionais. WS-CAF e \textit{WS-Transactions} são os padrões de
+referência em serviços Web para tratar com transações. Além disso, outras propostas poderão ser utilizadas para permitir transações nos serviços
+ Web (\cite{Banaei-kashani2004} e \cite{Verma2005}). Em \cite{Berardi2003} propõe-se uma arquitetura multi-camada e um modelo de transação para criar serviços compostos confiáveis.\cite{Fu2002} propõe um
+\textit{framework} para construir composição transacional de Serviços web.
+
+    \item \textbf{Troca confiável de mensagens:} A entrega confiável de mensagens entre serviços  Web é um fator importante que tem influência
+  na execução correta do serviço composto, portanto, está diretamente relacionada com a confiabilidade global do serviço composto. Existem
+  alguns esforços que permitem entregar em forma confiável mensagens entre serviços Web. Por exemplo, o \textit{WS-ReliableMessaging} é um modelo que
+ garante que as mensagens enviadas pelo remetente original serão  entregues ao destinatário final.
+
+  \end{itemize}
+
+\begin{comment}
+\subsection{Escalabilidade}
+A escalabilidade é a capacidade do sistema para crescer em uma ou mais dimensões, como o volume de dados disponíveis, o número de transações
+ suportadas por unidade de tempo, e o número de relacionamentos que podem ser suportadas. Dentro do contexto da composição de serviços,
+escalabilidade é um fator para levar em conta, porque  não é igual compor 2 serviços do que  10 ou 100 serviços. Em um cenário real, uma
+ plataforma de composição tem de interagir com alguns serviços, portanto, um aspecto crucial é saber como é que as diferentes propostas
+ escalam com o número de serviços envolvidos na composição. Os problemas (e soluções) que se podem encontrar em uma plataforma de composição
+ de serviços para escalar os serviços que ele suporta são semelhantes aos de escalar a infra-estrutura Web em geral \cite{Pelechano2005}.
+
+Uma solução é usar intermediários (agentes) que podem atender a essas necessidades, disponibilizando serviços desde um número
+de dispositivos. Os intermediários podem ser classificados em duas categorias: funcionais e de otimização. Os intermediários funcionais
+ disponibilizam serviços, responsabilizando-se deles ( ou partes deles). Por sua vez, os intermediários de otimização enriquecem os serviços
+ aproveitando certos aspectos da sua semântica, para: 1) eliminar ou atrasar as conexões ao servidor de origem, 2) reduzir o número de
+ bytes enviados desde / para o servidor de origem.
+\end{comment}
+%%
+\begin{comment}
+\subsection{Segurança}
+
+A segurança é uma grande preocupação em diferentes tipos de aplicações, mesmo se as aplicações necessitam de serviços de diferentes fontes,
+ tais como a composição de serviços Web, por isso, é necessário ter mecanismos de segurança para ter autenticação mútua, integridade na comunicação,
+ confidencialidade, não repúdio e autorização \cite{Espinoza2006}.%revisar bib
+
+Uma plataforma de composição de serviços deve ser capaz de determinar o ní­vel de segurança suportado e requerido pelos serviços individuais. Os
+serviços Web devem documentar seus requerimentos e suportar transações, segurança e confiabilidade das mensagens. \textit{WS-Policy} permite que
+os serviços Web documentem quais transações , segurança e funções de confiabilidade suportam ou requerem. O protocolo \textit{WS-Security}, por sua vez,
+ contém as especificações de como a integridade e a confidencialidade podem ser obrigados no envio de mensagens dos serviços Web. WSS inclui
+ detalhes sobre o uso do SAML e \textit{Kerberos} e formatos de certificação como \textit{X.509}.
+
+Com relação ao controle de acesso, a maioria das propostas estão baseadas na autenticação, através de um controle central (registro) e
+ um teste de identidade, que tem algumas limitações. Em \cite{Agarwal2004} propõe-se a idéia de conceder direitos de acesso e decisão baseados em estruturas
+ de confiança independentes. Eles mostram como as credenciais podem ser usadas em Web Semântica e como \textit{Simple Public Key Infrastructure/Simples
+ Distributed Security Infrastructure} (SPKI/SDSI) pode ser usado para especificá-las. Além disso, introduzem também uma álgebra de polí­ticas que
+ permite um controle de acesso mais complexo e eficiente. Em \cite{Uszok2004}, se definem polí­ticas e contratos que são aplicados para arquiteturas
+ orientadas a serviços. Eles apresentam a linguagem Knowledgeable Agent-Oriented Language System (KAoS), o qual  é usado em diferentes aspectos
+ da segurança dos serviços Web. Em \cite{Kagal2004} propõe-se uma arquitetura para incorporar anotações de segurança na descrição dos serviços OWL-S. Os
+ autores mostram como usar a linguagem de polí­tica Rei para aumentar o modelo de processo OWL-S, e oferecem uma estrutura para executar as
+ polí­ticas definidas em um ambiente de execução OWL-S.
+\end{comment}
+
+\subsection{Adaptabilidade}
+Este aspecto se refere à capacidade do serviço composto para gerenciar as mudanças nos serviços individuais, sem causar erros
+inesperados. Em \cite{Balke2004}, por exemplo, há uma camada de funcionalidade adicional sobre os padrões de composição que permitem tratar esse
+ aspecto. Esse trabalho usa um modelo conservacional de interação entre os serviços  Web para gerenciar as mudanças na interface dos serviços individuais.
+
+%\section{Composição Dinamica de S|erviços}
+%---------------------------------------------%
+%\section{Organização do Trabalho}
+%\label{sec:organzation}

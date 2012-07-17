@@ -1,0 +1,379 @@
+% Arquivo LaTeX de  de dissertação/tese a ser apresentados à CPG do IME-USP
+%
+% Versão 3: Sat Jan 13 15:02:20 BRST 2011
+%
+% Criação: Victoriano Alfonso Phocco Diaz
+
+%
+% Obs:
+
+\documentclass[11pt,twoside,a4paper]{book}
+%\documentclass[openany,11pt,twoside,a4paper]{book}
+
+% ---------------------------------------------------------------------------- %
+% Pacotes
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[pdftex]{graphicx}           % usamos arquivos pdf/png como figuras
+\usepackage{setspace}                   % espaçamento flexível
+\usepackage{indentfirst}                % indentação do primeiro parágrafo
+\usepackage{makeidx}                    % índice remissivo
+\usepackage[nottoc]{tocbibind}          % acrescentamos a bibliografia/indice/conteudo no Table of Contents
+\usepackage{courier}                    % usa o Adobe Courier no lugar de Computer Modern Typewriter
+\usepackage{type1cm}                    % fontes realmente escaláveis
+\usepackage{listings}                   % para formatar código-fonte (ex. em Java)
+\usepackage{titletoc}
+\usepackage{comment}
+%\usepackage[bf,small,compact]{titlesec} % cabeçalhos dos títulos: menores e compactos
+\usepackage[fixlanguage]{babelbib}
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+\usepackage[a4paper,top=2.54cm,bottom=2.0cm,left=2.0cm,right=2.54cm]{geometry} % margens
+%\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=black,linkcolor=black,urlcolor=black,filecolor=black,bookmarksopen=true]{hyperref} % links em preto
+\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=DarkGreen,linkcolor=NavyBlue,urlcolor=DarkRed,filecolor=green,bookmarksopen=true]{hyperref} % links coloridos
+\usepackage[all]{hypcap}                % soluciona o problema com o hyperref e capitulos
+\usepackage[square,sort,nonamebreak,comma]{natbib}  % citação bibliográfica alpha (alpha-ime.bst)
+\fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
+
+%adicionais
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{booktabs}
+%\usepackage{apalike}
+%\usepackage{jpc}
+
+
+
+
+% ---------------------------------------------------------------------------- %
+% Cabeçalhos similares ao TAOCP de Donald E. Knuth
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\lstlistingname}{Listagem}
+%\renewcommand{\lstlistlistingname}{Listagens de Código}
+
+% ---------------------------------------------------------------------------- %
+\graphicspath{{./figuras/}}             % caminho das figuras (recomendável)
+\frenchspacing                          % arruma o espaço: id est (i.e.) e exempli gratia (e.g.)
+\urlstyle{same}                         % URL com o mesmo estilo do texto e não mono-spaced
+\makeindex                              % para o índice remissivo
+\raggedbottom                           % para não permitir espaços extra no texto
+\fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
+\cleardoublepage
+\normalsize
+
+% ---------------------------------------------------------------------------- %
+% Opções de listing usados para o código fonte
+% Ref: http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+\lstset{ %
+language=Java,                  % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,	                % adds a frame around the code
+framerule=0.6pt,
+tabsize=2,	                    % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)},         % if you want to add a comment within your code
+backgroundcolor=\color[rgb]{1.0,1.0,1.0}, % choose the background color.
+rulecolor=\color[rgb]{0.8,0.8,0.8},
+extendedchars=true,
+xleftmargin=10pt,
+xrightmargin=10pt,
+framexleftmargin=10pt,
+framexrightmargin=10pt
+}
+
+% ---------------------------------------------------------------------------- %
+% Corpo do texto
+\begin{document}
+\frontmatter
+% cabeçalho para as páginas das seções anteriores ao capítulo 1 (frontmatter)
+\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+\setcounter{tocdepth}{2}
+\fancyhead[LE]{\thepage\hspace{2em}\footnotesize{\leftmark}}
+\fancyhead[RE,LO]{}
+\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+
+\onehalfspacing  % espaçamento
+
+% ---------------------------------------------------------------------------- %
+% Capa
+% Nota: O título para as teses/dissertações do IME-USP devem caber em um
+% orifício de 10,7cm de largura x 6,0cm de altura que há na capa fornecida pela SPG.
+\thispagestyle{empty}
+\begin{center}
+    \vspace*{2.3cm}
+    %\textbf{\Large{Monitoramento de coreografias de serviços Web    \\
+     %               baseado em SLA e atributos  QoS    }}\\
+    \textbf{\Large{ Detecção de Violações de SLA em Coreografias de Serviços Web}}\\
+
+
+    \vspace*{1.2cm}
+    \Large{Victoriano Alfonso Phocco Diaz}
+
+    \vskip 2cm
+    \textsc{
+    %Dissertação/Tese apresentada\\[-0.25cm]
+    Texto para Qualificação de Mestrado  apresentada\\[-0.25cm]
+    ao\\[-0.25cm]
+    Instituto de Matemática e Estatística\\[-0.25cm]
+    da\\[-0.25cm]
+    Universidade de São Paulo\\[-0.25cm]
+    %para\\[-0.25cm]
+    %obtenção do título\\[-0.25cm]
+    %de\\[-0.25cm]
+    %Mestre em Ciências
+    }
+
+    \vskip 1.5cm
+    Programa: Mestrado em Ciência da Computação \\
+    Orientador: Prof. Dr. Daniel Macêdo Batista\\
+    Co-orientador: Prof. Dr. Marco Dimas Gubitoso\\
+
+   	\vskip 1cm
+    \normalsize{Durante o desenvolvimento deste trabalho o autor recebeu auxílio
+    financeiro da CAPES}
+
+    \vskip 0.5cm
+    \normalsize{São Paulo, Setembro de 2011}
+\end{center}
+
+% ---------------------------------------------------------------------------- %
+% Página de rosto (só para a versão final)
+% Nota: O título para as teses/dissertações do IME-USP devem caber em um
+% orifício de 10,7cm de largura x 6,0cm de altura que há na capa fornecida pela SPG.
+\newpage
+\thispagestyle{empty}
+    \begin{center}
+        \vspace*{2.3 cm}
+        \textbf{\Large{ Detecção de Violações de SLA em Coreografias de Serviços Web }}\\
+        \vspace*{2 cm}
+    \end{center}
+
+    \vskip 2cm
+
+    \begin{flushright}
+    % Este exemplar corresponde à redação\\
+    % final da dissertação/tese devidamente corrigida\\
+    % e defendida por (Nome Completo do Aluno)\\
+    % e aprovada pela Comissão Julgadora.
+    %
+	Proposta de dissertação apresentada ao\\
+	Instituto de Matemática e Estatística da\\
+	Universidade de São Paulo como requisito\\
+        parcial para qualificação de Mestre em \\
+	Ciência da Computação.
+
+    \vskip 2cm
+
+    \end{flushright}
+    \vskip 4.2cm
+
+    \begin{quote}
+    \noindent Comissão Julgadora:
+
+    \begin{itemize}
+		\item Prof. Dr. Daniel Macêdo Batista (orientador) - IME-USP
+		\item Prof. Dr. João Eduardo Ferreira  - IME-USP
+		\item Prof. Dr. Marco Aurélio Gerosa - IME-USP
+    \end{itemize}
+
+    \end{quote}
+\pagebreak
+
+\pagenumbering{roman}     % começamos a numerar
+
+% ---------------------------------------------------------------------------- %
+% Agradecimentos
+%\chapter*{Agradecimentos}
+%Agradecimentos ...
+
+% ---------------------------------------------------------------------------- %
+% Resumo
+\chapter*{Resumo}
+
+Coreografias de serviços Web representam uma forma mais escalável e flexível de compor serviços do que uma abordagem centralizada como a orquestração,
+ e seu papel na integração e comunicação de sistemas de   larga escala é vital para
+os objetivos do paradigma SOA. % no futuro.  %(Arquitetura orientada a serviços) no futuro
+Atualmente  coreografias de serviços Web possuem vários desafios de pesquisa, 
+ dos quais %a adaptação e
+ o monitoramento de coreografias de serviços Web é uma linha importante. O objetivo
+ deste trabalho é propor e implementar um mecanismo de monitoramento não intrusivo de coreografias de serviços Web baseado em SLAs %(Acordos de Nível de Serviço)
+ que especificam as restrições  de atributos de  QoS %(Qualidade de Serviço)
+ de maneira probabilística%, os quais são chamados de contratos não rígidos. Os contratos não rígidos são uma melhor
+%forma de especificar requerimentos de QoS do que os contratos rígidos (\emph{hard contracts}), que definem restrições com valores de QoS de maneira absoluta (por exemplo, 
+%tempo de resposta < 10 ms) 
+. Esta pesquisa propõe um mecanismo
+% técnica baseada em distribuições de probabilidade
+ para: (1) especificar contratos probabilísticos sobre parâmetros de QoS usando SLA e (2) realizar um monitoramento 
+``não intrusivo'' de coreografias de serviços Web para detectar violações de SLA. 
+%O monitoramento ``não intrusivo'' é importante porque no
+%no nível de coregrafias não se  precisa conhecer o comportamento interno (implementação) dos participantes. 
+%por meio de políticas de QoS.% e atributos de QoS, mas de maneira ``não intrusiva''.
+
+
+%Avaliações na coleta e medição de valores QoS
+%Avaliações do funcionamento do monitor com vários
+
+%%Pretende-se utilizar a simulação de Montecarlo para obter os parâmetros necessários para a especificação dos contratos probabilísticos e para a configuração
+%%do monitoramento. Para avaliar a técnica proposta, será utilizado um  estudo de caso de uma coreografia especificada em WS-CDL.
+
+%, na qual  se utilizará WSLA para especificar
+% os SLAs probabilísticos. A orquestração utilizará WS-BPEL para especificar os processos interno de cada participante da coreografia de serviços. 
+
+
+
+%O Monitoramento levará em conta as restrições QoS expressadas como documentos SLA(Service Level Agreement \cite{Zeng2007}), tais restrições compreendem
+%métricas de rede e desempenho dos recursos computacionais,  as métricas de rede estão classificadas
+ %em quatro principais grupos (baseados no \cite{Hanemann2006}): disponibilidade, perdida e erro, retraso e
+ %largura de banda.  Dentre dessas métricas de desempenho  serão utilizadas o tempo de resposta do serviço de cada
+%serviço. Quando acontecer alguma violação nas restrições de QoS, o monitor lança uma exceção, para procurar um
+ %outro serviço  que cumpra com as exigências mínimas no contrato expressado no documento SLA, para isso são usadas
+ %uma das estratégias descritas em \cite{Momotk2007}. Para avaliar a implementação, será utilizado o  estudo de caso
+ %denominado \textit{WorldTravel} \cite{Budny2008} que é um test-bed para SOA. Para o \textit{deployment} (\textit{enactment})  da coreografia de
+%serviços web  e para realizar
+ %os experimentos serão utilizados o PlanetLab \cite{PlanetLab2010} ou OpenCirrus \cite{HPLabsIntel2010}, nos quais
+  %se utilizarão topologias pequenas de nós para avaliações preliminares, e depois serão geradas aleatoriamente  topologias de vários nós.
+
+
+\vspace{6mm}
+
+\noindent \textbf{Palavras-chave:}  Qualidade de Serviço (QoS), Monitoramento, Coreografias de serviços Web.
+%Computação Orientada a Serviços, Serviços Web, Acordo de Nível de Serviço (SLA), Arquitetura Orientada a Serviços
+ 
+\let\cleardoublepage\clearpage
+
+% ---------------------------------------------------------------------------- %
+% Abstract
+%\chapter*{Abstract}
+%Abstract ...
+
+%\noindent \textbf{Keywords:} Service Oriented Computing, Web Services, Quality of Service, Service Level Agreement,
+ % Service oriented Architecture, Service Choreography, QoS Monitoring, SLA Monitoring.
+
+% ---------------------------------------------------------------------------- %
+% Sumário
+\tableofcontents    % imprime o sumário
+\let\cleardoublepage\clearpage
+% ---------------------------------------------------------------------------- %
+\chapter{Lista de Abreviaturas}
+\begin{tabular}{ll}
+        
+
+ 
+ 
+ 
+ %BPML		& \emph{Business Process Modeling Language} \\
+ B2B         	& Negócio a Negócio (\emph{Business to Business}) \\
+ BPEL		& \emph{Business Process Execution Language } \\
+ BPEL4Chor 	& \emph{Business Process Modeling Notation for Choreography} \\
+ BPMI 		& \emph{Business Process Management Initiative} \\
+ BPMN 		& \emph{Business Process Modeling Notation} \\
+ CPP		& \emph{Collaboration Protocol Profile}\\
+ ebXML  	& \emph{Electronic Business XML} \\
+
+ %I/O		& Entrada/Saída (\emph{Input/Output})\\
+ 
+ ESB		& \emph{Enterprise Service Bus}  \\
+ GSPN		& \emph{Generalized Stochastic Petri Net}  \\
+ %OWl		& \emph{Web Ontology Language} \\
+ OWL-S		& \emph{Semantic Web Ontology Language} \\
+ DAML-S		& \emph{DARPA Agent Markup Language} \\
+ OMG		& \emph{Object Management Group} \\
+ P2P		& Ponto a Ponto (\emph{peer-to-peer})\\
+ PDF		& Função Densidade de Probabilidade (\emph{Probability Density Function})\\
+ QoS		& Qualidade de Serviço (\emph{Quality of Service}) \\
+ REST		& \emph{Representational State Transfer} \\
+ RTT		& \emph{Round Trip Time} \\
+ SOA		& Arquitetura Orientada a Serviços (\emph{Service Oriented Architecture}) \\
+ SOC		& Computação Orientada a Serviços (\emph{Service Oriented Computing}) \\
+ SLA		& Acordo de Nível de Serviço (\emph{Service Level Agreement}) \\
+ SOAP		& \emph{Simple Object Access Protocol} \\
+ TI		& Tecnologia de Informação \\
+ UDDI		& \emph{Universal Description, Discovery and Integration}\\
+ UML 		& \emph{Unified Modeling Language} \\
+ W3C		& \emph{World Wide Web Consortium} \\
+ WS		& Serviço Web   (\emph{Web Service})\\
+ WSCI		& \emph{Web Service Choreography Interface}\\
+ WSDL		& \emph{Web Service Description Language}\\
+ WS-CDL		& \emph{Web Service Choreography Description Language}\\
+ WSI		& \emph{Web Services Interoperability}\\
+ WSLA		& \emph{Web Service Level Agreement}\\
+ XML		& \emph{Extensible Markup Language} \\
+
+\end{tabular}
+
+% ---------------------------------------------------------------------------- %
+%%\chapter{Lista de Símbolos}
+%%\begin{tabular}{ll}
+  %%      $\omega$    & Frequência angular\\
+    %%    $\psi$      & Função de análise \emph{wavelet}\\
+      %%  $\Psi$      & Transformada de Fourier de $\psi$\\
+%%\end{tabular}
+
+% ---------------------------------------------------------------------------- %
+% Listas de figuras e tabelas criadas automaticamente
+\let\cleardoublepage\clearpage
+\listoffigures
+\let\cleardoublepage\clearpage
+\listoftables
+
+% ---------------------------------------------------------------------------- %
+% Capítulos do trabalho
+\mainmatter
+
+% cabeçalho para as páginas de todos os capítulos
+\fancyhead[RE,LO]{\thesection}
+
+\singlespacing              % espaçamento simples
+%\onehalfspacing            % espaçamento um e meio
+\let\cleardoublepage\clearpage
+\input sections/cap-introduction2        % associado ao arquivo: 'cap-introducao.tex'
+\input sections/cap-concepts
+%\input sections/cap-service_composition
+\input sections/cap-service_choreography
+%\input sections/cap-dynamic_choreography
+\input sections/cap-SLA_choreography
+\input sections/cap-QoS_Monitoring_choreography
+\input sections/cap-purpose3
+%\input sections/cap-preliminary_results
+%\input sections/cap-conclusions
+
+% cabeçalho para os apêndices
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\appendixname\ \thechapter}} {\MakeUppercase{#1}} }
+\fancyhead[RE,LO]{}
+%\appendix
+
+%\include{ape-conjuntos}      % associado ao arquivo: 'ape-conjuntos.tex'
+
+% ---------------------------------------------------------------------------- %
+% Bibliografia
+\backmatter \singlespacing   % espaçamento simples
+%\bibliographystyle{apalike}% citação bibliográfica alpha
+\bibliographystyle{alpha-ime}% citação bibliográfica alpha
+\bibliography{bib13_}  % associado ao arquivo: 'bibliografia.bib'
+
+% ---------------------------------------------------------------------------- %
+% Índice remissivo
+%%\index{TBP|see{periodicidade região codificante}}
+%%\index{DSP|see{processamento digital de sinais}}
+%%\index{STFT|see{transformada de Fourier de tempo reduzido}}
+%%\index{DFT|see{transformada discreta de Fourier}}
+%\index{Fourier!transformada|see{transformada de Fourier}}
+
+\printindex   % imprime o índice remissivo no documento
+
+\end{document} 

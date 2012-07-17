@@ -1,0 +1,189 @@
+\chapter{Proposta}
+\label{cap:purpose}
+
+%---------------------------------------------%
+%\section{Metodologia } %%Ou Metodologia
+%\label{sec:proposta}
+%%
+%Utilizar VCL como linguagem de especificação de requerimentos QoS e VRESCo como plataforma para
+%dinamicamente gerar e implantar uma composição (neste caso, coreografias).
+
+\section{Integração de Qos e SLA}
+Para facilitar o desenvolvimento de processos de negócio baseado em serviços Web, o modelo multi-camada
+descrito no capítulo 5 é uma efetiva solução para incluir aspectos de QoS e SLA
+de uma maneira de "cima para baixo" (\textit{top-down}) desde a fase de modelado. Isto é realizado definindo
+coreografias com consciência de SLA (\textit{SLA-aware}) ,e derivar (automaticamente) orquestrações por cada participante. Durante
+o processo de transformação, as políticas de QoS para cada participante são gerados para descrever os atributos QoS
+ não determinísticos de acordo aos SLA, que foram definidos no nível da coreografia. Estas orquestrações podem ser utilizadas
+como ponto de partida para a implementação da lógica de negócio interna, que depois é implantado em um motor BPEL.Por cada
+participante na coreografia serão gerados documentos WSDL. É importante entender que estes artefatos(processos BPEL e documentos WSDL)
+são \textit{stubs}, que servem como ponto de partida na implementação de cada participantes,  para serem executados em um motor BPEL.
+Esses mapeamentos e transformações são ilustrados na figura \ref{fig:QoST_SLA_Mapping_Transformation}.
+
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=.70\textwidth]{figures/MappingAndTransformation1_.png}
+      \caption{Mapeamento e transformação no modelo multicamada de QoS e SLA \cite{Rosenberg2009}}
+      \label{fig:QoST_SLA_Mapping_Transformation}
+  \end{figure}	
+
+
+As coreografias serão especificadas com WS-CDL, já que o modelo multi-camada a utilizar  esta construída sobre essa linguagem. Por isso, outras linguagens,
+tais como BPMN ou BPEL4Chor não foram considerados. Os SLA são definidos e integrados na coreografia que está especificada em WS-CDL de modo a definir as garantias e obrigações entre dois participantes. O WSLA será o \textit{framework} utilizado para definir os SLA por meio de SLOs
+(Objetivos de Nível de Serviço), que por sua vez estão conformados por parâmetros SLA que representam atributos QoS. Depois, para realizar
+o cumprimento do SLA, precisa-se mapear os SLO para políticas QoS no processo BPEL gerado, porque cada participante(internamente) precisa garantir sua parte no SLA.
+
+WS-QoSPolicy é uma extensão de WS-Policy de modo a habilitar o suporte para definir políticas de QoS, as quais são integradas nos processo de %%falta especificar como
+%%a engine que processa o BPEL com essas asserções tratará essas asseroções de WS-QoSPolicy
+ negócio. As políticas de QoS precisam calcular o QoS da composição dos processos de negócio do participante para realizar, avaliar e garantir seu cumprimento. Para
+ tal,  utilizará-se o algoritmo e regras de agregação de QoS proposto em \cite{Rosenberg2009},que serve para composições estruturadas com os padrões de fluxo de trabalhos (\textit{workflow}) do capítulo 5.
+
+Neste trabalho se utilizará o exemplo da coreografia de uma "ordem de compra", que está descrito em \cite{Savara2011}. 
+%e que se mostra na figura \ref{}. 
+Neste exemplo serão realizados os mapeamentos da especificação de WS-CDL para "stubs" dos processos executáveis BPEL e dos documentos WSDL dos participantes, assim como as integrações de WSLA e WS-QoSPolicy.
+
+\subsection{Monitoramento de coreografias}
+
+A figura \ref{fig:QoS_SLA_Monitoring_Architecture} mostra a arquitetura do monitor de coreografias baseado em SLA e QoS. O monitor a implementar tem que coletar e medir os valores dos atributos QoS não determinísticos dos serviços Web. O monitor utiliza as abordagens
+de \textit{Probe Request} e técnicas de \textit{sniffing} para estimar os valores dos atributos QoS. Os documentos WSDL dos participantes são
+analisados sintaticamente (\textit{parsing}) para gerar \textit{stubs} de clientes de serviço para poder realizar a invocação dos serviços
+no monitoramento. Nesses \textit{stubs} são realizadas as medições, em cuja implementação se utiliza Programação Orientada a Aspectos  para
+desacoplar a implementação do ``stub'' (do cliente do serviço) da implementação da medição e estimação dos valores dos atributos. Para tal fim,
+os ``stubs'' serão gerados usando \textit{WSDL2Java}, que uma ferramenta de Axis
+ \footnote{Apache Axis: \url{http://axis.apache.org/axis/}}. \textit{AspectJ} \footnote{AspetJ: \url{http://www.eclipse.org/aspectj/}}
+será utilizado para realizar a programação orientada a a objetos.
+
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=.80\textwidth]{figures/Architecture1.png}
+      \caption{Arquitetura do Monitor de SLA e QoS de coreografias}
+      \label{fig:QoS_SLA_Monitoring_Architecture}
+  \end{figure}	
+
+
+
+Na hora de realizar a avaliação, um serviços web é invocado, e o monitor vai utilizar um \textit{sniffer} para capturar informação dos pacotes TCP
+gerada pela invocação. O \textit{sniffer} utilizará a biblioteca Jpcap \footnote{ Jpcap: \url{http://www.quartz-scheduler.org/}}
+ para capturar e enviar  pacotes. Jpcap fornece de uma envoltura (\textit{wrapper}) para \textit{libcap}. O monitor também deve ter um
+ planejador para realizar a avaliação e a invocação  de um serviço em intervalos regulares de tempo.
+Para isso, utilizará-se a ferramenta Quartz \footnote{Quartz:  \url{http://www.quartz-scheduler.org/}} ) para implementar o planejador de tempo
+para realizar as invocações e avaliações.
+
+Os atributos QoS são estimados de acordo às instâncias de tempo descritas no capítulo 5. Uma vez que os valores dos atributos
+ QoS dos serviços sejam calculados, precisa-se realizar a agregação de QoS para calcular o QoS da composição. Após o cálculo dos atributos QoS dos serviços Web e
+o QoS da composição, estes são utilizados para  verificar o cumprimento das políticas QoS. Caso acontecer violações nas políticas,  desencadeia-se a violação
+do SLA de um participante da coreografia, tal evento lançará a respectiva notificação. A plataforma VReSCO é utilizada para o suporte de processamento de eventos e o
+armazenamento dos valores  QoS dos serviços.
+
+Finalmente, Avaliações de desempenho do monitoramento serão feitas em dois frentes. A primeira, na coleta e medição dos valores dos atributos QoS
+, sobretudo da latência da rede. A segunda, se refere a avaliações  do monitoramento ``não intrusivo'' de coreografias,
+ que inclui a detecção de violação de SLA e as notificações respectivas.
+%%Suporte: eventos, invocação dinâmica de service VReSCO
+%%Engine, JBoss ESB
+%%suporte de verificar politicas QoS com o Qos da composição e dos serviços, para a detecção de violações deve ser integrado na engine
+%%Viedame é a chave pra isso
+
+%Estudo de Caso: simples ...
+
+%Avaliações: medição dos atributos,
+%Avaliação do Monitor: por abordagem
+%no estudo de caso
+
+
+
+\begin{comment}
+    O Monitoramento levará em conta as restrições QoS expressadas como documentos SLA (\textit{Service Level Agreement})\cite{Zeng2007},
+    tais restrições compreendem
+    métricas de rede e desempenho dos recursos computacionais,  as métricas de rede estão classificados
+    em quatro principais grupos (baseados no \cite{Hanemann2006}): disponibilidade, perdida e erro, retraso e
+    largura de banda.  Dentre as métricas de desempenho  serão utilizadas o tempo de resposta do serviço de cada
+    serviço.
+
+    Quando acontecer alguma violação nas restrições de QoS, o monitor lançará uma exceção, para procurar
+    outro serviço  que cumpra com as exigências mínimas no contrato expressado no documento SLA, para isso são usadas
+    uma das estratégias descritas em \cite{Momotko}.
+
+    Para avaliar o framework, será utilizado um  estudo de caso,
+    o WorldTravel \cite{Budny2008} que é um test-bed para SOA. Para o \textit{deployment}   da coreografia de serviços web  e para realizar
+    os experimentos serão utilizados PlanetLab\cite{PlanetLab} ou OpenCirrus\cite{OpenCirrus}, nos quais
+      se utilizarão topologias pequenas de rede para avaliações preliminares, e depois serão geradas aleatoriamente  topologias de vários nós
+    que simulem uma rede internet, como no \cite{Nahrstedt}.
+
+\end{comment}
+%O modelo de monitoramento a ser implementado inclui o acompanhamento e verificação do cumprimento do contratos QoS na coreografia e
+%a reação quando acontecer uma violação de qualquer desses contratos, que consiste em uma forma básica de adaptação. Por tanto o escopo
+% do trabalho não inclui a reconfiguração da coreografias
+%caso acontecer uma falha.
+
+%Também não inclui predição de QoS baseado no histórico, mas isto será
+%levado em conta em trabalhos futuros assim como o foco na reconfiguração dinâmica de coreografias. Os atributos de QoS a serem utilizados incluem principalmente
+%métricas de desempenho tais como tempo de resposta, largura de banda, disponibilidade entre outras. Finalmente o estudo de caso estará baseado no \textit{testbed}
+%para SOA WorldTravel \cite{Budny2008} e para realizar os experimentos serão utilizados PlanetLab\cite{PlanetLab} ou OpenCirrus\cite{OpenCirrus}.
+
+%---------------------------------------------%
+%\section{Resultados Preliminares}
+%\label{sec:PreliminaryResults}
+
+
+
+\section{Trabalhos Futuros}
+\label{sec:FutureWorks}
+
+O modelo multi-camada utiliza WS-CDL como linguagem de especificação de coreografias, e WS-BPEL para a implementação do processo interno do participantes.
+Poderia ser interessante estender esse modelo de QoS e SLA para ser integrado com BPMN 2.0, que suporta especificação de coreografias e que também tem a capacidade de especificar processo de negócio executáveis.
+
+Esta pesquisa está focada em atributos QoS não determinísticos de desempenho e confiabilidade. Futuros trabalhos podem adicionar outros tipos tais como o custo,
+pagamento, segurança, reputação, entre outras. Além disso, o monitoramento poderia incluir predição de QoS baseado no histórico dos valores medidos anteriormente,
+isto serve de base para realizar, por exemplo,  auto-cura(sel-healing) em vários níveis (serviços, orquestração e coreografia), melhorar a adaptação, entre outras.
+
+Dado que o monitoramento baseado em QoS e SLA é a um fator chave para alavancar a adaptação, então trabalhos futuros podem considerar usar o monitoramento como base
+para uma ferramenta que forneça de adaptação dinâmica, reconfiguração e autocura baseada em QoS para coreografias de serviços Web.
+
+%implementações em uma engine comercial, etc
+%integração no SAVARA, etc
+
+\section{Cronograma}
+\label{sec:scheluding}
+
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=.90\textwidth]{figures/SchedulingThesis.png}
+      \caption{Cronograma de Trabalho}
+      %\label{fig:QoST_SLA_Mapping_Transformation}
+  \end{figure}	
+
+
+
+
+
+
+%% Util
+\begin{comment}
+Um fator fundamental e decisivo para o sucesso de uma adatação de uma composição consciente de QoS é a disponibilidade
+de informação QoS precisa, para tal é importante contar com ferramentas que apoiem nessa coleta de informação dos valores dos atributos QoS
+na camada de serviços
+
+- Evitar uma especificação manual de politicas QoS na camada de orquestração do modelo QoS x
+
+The use of IP as a means to implement the QoS-optimization has proven to be a better approximation in terms of performance compared
+to a pure constraint-based approach.
+
+
+
+we followed this approach by providing
+general concepts and tools that enable native support for adaptivity (such as the VRESCO environment)
+and allow developers to implement more advanced concepts by providing custom
+adaptation logic (e.g., by extending VRESCO’s rebinding logic).
+
+
+We leverage QoS in form of SLAs on the choreography layer and automatically transform the choreography into orchestrations for
+each partner including their enforceable QoS policies that reflect the SLA from the choreography layer.
+
+VRESCo é uma plataforma de execução de Serviços Web focada para composição de serviços consciente de QoS(QoS-aware), propoe um modelo de programação
+dirigido a caracteristicas (feature-driven)  para implementar aplicações orientadas a serviços e adaptável. ref
+Além do mais, trata e direciona vários desafios de pesquisa em SOC, tais como invocação e enlace dinâmico, composição de
+serviços consciente de QoS, seleção de serviços eficiente, entre outras.
+\end{comment}

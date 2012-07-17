@@ -1,0 +1,422 @@
+\chapter{Monitoramento de Coregrafias de Serviços Web baseado em QoS}
+\label{cap:QoS_choreography}
+
+%---------------------------------------------%
+\section{Qualidade de serviço}
+\label{sec:QoS}
+% QoS de serviços
+
+Um fator  chave para habilitar a possibilidade de  um comportamento adaptativo em sistemas orientados a serviços em geral, e
+especificamente em composição de serviços, é a disponibilidade de dados de Qualidade de Serviço (daqui para frente referido como QoS) \cite{Rosenberg2009}.
+O termo QoS  surge no escopo das redes de computadores, onde é definido por \textit{Crawley et al.}\cite{Crawley1998} como um
+``conjunto de requisitos de serviços  para ser cumpridos pela rede enquanto realiza o transporte de um fluxo''. Na Comunidade SoC,
+QoS abrange todos os atributos ou propriedades não funcionais de um serviço, por exemplo, atributos que tem a ver com desempenho,confiabilidade,
+segurança e inclusive até custos.
+QoS joga um papel crucial em sistemas orientados a serviços, por exemplo nas seguintes linhas de, na seleção, descoberta, adaptabilidade,
+monitoramento, entre outras, assim como  a composição de serviços com consciência de QoS (\textit{QoS-aware}) \cite{Michlmayr2009}.QoS habilita
+ enlace dinâmico com consciência de QoS a serviços concretos  em tempo de execução, habilita também a otimização de serviços compostos, em termos
+do QoS da composição toda e da adaptação dinâmica de serviços quando acontecerem  mudanças \cite{Rosenberg2009}.
+
+
+Os atributos QoS estão classificados como determinísticos e não determinísticos \cite{Halima2008a}. Tratar com atributos não determinísticos é mais
+ complexo, dado que requerem a realização de cálculos baseados na coleta de dados
+feitos em  um monitoramento em tempo de execução.Esses atributos não determinísticos serão o foco neste trabalho, dado que sãos fatores importantes
+para conseguir o intuito da adaptação dinâmica em sistemas orientados a serviços \cite{Rosenberg2009} . É neste contexto que para os atributos QoS não
+ determinísticos, as abordagens de monitoramento podem ser usadas para  continuamente medir valores QoS atuais.
+
+Um atributo QoS pode ser também  estático ou dinâmico \cite{Sathya2010}. O valor de  atributo QoS estático é definido na hora que é
+descrito(design, especificação), enquanto que o valor de um atributo QoS dinâmico requer medição e atualização periodicamente (principalmente em tempo de execução).
+Serviços com funcionalidades similares e compatíveis podem ser oferecidos em diferentes níveis de QoS, por exemplo, rede, aplicação, requerimentos, entre outros.
+
+%%parrafo duda
+%%Segundo \cite{Rosenberg2009a}, tipicamente  o QoS é considerado uma restrição dura que pode tratar com sistemas extra
+%%restritos(\emph{over-constrained}). Nesses casos é difícil satisfazer requisições de composição dinâmica dos usuários se os valores QoS não
+%%encaixam (por exemplo, tempo de resposta de 1500 ms mas um serviço tem de 1502 ms ). Neste sentido abordagens nas quais
+
+%
+%%segundo \cite{Zeng2007}
+%%QoS global e local
+
+
+%%multicamada
+Diferentes métodos e ferramentas para capturar e analisar o desempenho de serviços Web tem sido desenvolvidos. Em geral estas abordagens para a avaliação
+da capacidade dos serviços Web são diferentes uns dos outros, cada uma tem um diferente conjunto de métricas QoS  que podem ser aplicados em tempo de desenho
+ou em tempo de execução, com diferentes modelos de QoS e técnicas. Isto pode dificultar a escolha de uma abordagem para a avaliação especifica de QoS de uma aplicação.
+Assim, no contexto de uma coreografia de serviços Web, um modelo, como o proposto em \cite{Rosenberg2009}, propõe um modelo de QoS multicamada que permite
+integrar coerentemente informação de QoS em um modelo comum em vários níveis de abstração: a camada de coregrafia, a camada de orquestração e a camada de
+ serviço. A seguir, uma descrição resumida de cada camada desse modelo multicamada para integrar QoS nos níveis de abstração que será implementado neste
+trabalho para realizar o monitoramento de coreografias.
+
+
+
+
+\subsubsection{Camada de Serviços}
+
+Os serviços, em sistema orientado a serviços, são invocados por milhões de usuários concorrentemente e que na maioria dos casos são desconhecidos
+em tempo de desenho e implantação. Por isso, é importante que um serviço forneça uma descrição dos aspectos não funcionais, além dos funcionais
+(por exemplo, em um documento WSDL). Esta camada representa todos os serviços atômicos dentro de um sistema orientado a serviços. Nesta camada
+ são definidos os atributos  de QoS tais como tempo de resposta, disponibilidade, largura de banda, etc.
+
+Os atributos definidos nesta camada serão utilizados nas camadas de acima (orquestração ou coreografia) para, através de cálculos de agregação de QoS,
+ obter o QoS global e desta maneira definir politicas QoS (na orquestração) e SLA( na coregrafia). Em \cite{Sabata1997} propõe-se uma taxonomia
+ hierárquicas para sistema distribuídos. \cite{Mahambre2007} apresenta uma taxonomia de QoS, mas focada em sistemas \textit{middleware} baseado em
+ eventos, Em \cite{Marzolla2010} propõe uma taxonomia de
+ atributos QoS categorizados por abordagens tais como ponto de vista, métricas, nível de desenvolvimento e método de avaliação de QoS. Contudo,
+se utilizará a taxonomia proposta em  \cite{Michlmayr2009} por ser mais simples, usada em coregrafias com consciência de SLA(\textit{SLA-aware}) e
+ mais detalhada na definição dos atributos. A figura \ref{fig:QoSTaxonomy1} mostra a taxonomia a utilizar nesta tese. Neste trabalho serão utilizados os
+atributos de Desempenho e de Confiabilidade, os outros serão levados em consideração em trabalhos futuros.
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=.90\textwidth]{figures/QoSAttributesTaxonomy2.png}
+      \caption{Taxonomia de atributos QoS \cite{Aalst2005}}
+      \label{fig:QoSTaxonomy1}
+  \end{figure}
+
+
+%%  Fig. 2 Overview of Quality Assurance Techniques for Service-Based  Applications  \cite{Jamoussi2010}
+
+Para o calculo e estimação de valores dos atributos de desempenho e de confiabilidade serão utilizados os instantes de tempo, tal como é mostrado
+ na figura \ref{fig:QoSTimestamps}. A seguir as fórmulas para calcular alguns dos atributos baseados nesses instantes e tempo \cite{Rosenberg2006}:
+
+\subsubsection*{Atributos QoS de Desempenho}
+\begin{itemize}
+ \item \textbf{Tempo de Processamento}:  Tempo necessário para executar uma operação requerida de um serviço. Dado um serviço $s$ e uma operação $o$ é dado por:
+    $$q_{pt}(s,o) = t_{p2} - t_{p1}$$
+ \item \textbf{Tempo de embalagem(\textit{wrapping})}: É o tempo para embrulhar(\textit{wrap}) ou desembrulhar(\textit{unwrap}) uma mensagem.
+    \begin{itemize}
+  	  \item  No lado do Servidor: $$q_{wp}(s,o) = t_{p1} - t_{p0} + t_{p3} - t_{p2}$$
+	  \item  No lado do Cliente:  $$q_{wp}(c,s,o) = t_{c1} - t_{c0} + t_{c3} - t_{c2}$$
+    \end{itemize}
+  \item \textbf{Tempo de execução}: Tempo que o provedor de serviço precisa para processar uma requisição.
+	$$q_{ex}(s,o) = q_{pt} + q_{wp}$$
+  \item \textbf{Latência (ou latência de rede)}: Representa o tempo que uma requisição de um serviço demora desde o cliente até
+    o provedor. É influenciado pelo tipo de conexão de rede, roteamento, utilização da rede, largura de banda e tamanho da requisição.
+	$$q_l(c,s,o) = \frac{t_{p0} - t_{c1} + t_{c2} - t_{p3}}{2}$$
+  \item \textbf{Tempo de Resposta:} Tempo necessário para enviar uma mensagem de um cliente $c$ até um fornecedor do serviço $s$ e até que a mensagem de resposta retorne
+    de volta ao cliente.
+  	$$q_{rt}(c,s,o) = q_{ex}(s,o) + 2*q_l(s,o)$$
+  \item \textbf{\textit{Round Trip Time}}: tempo total que é consumido, isto é, tempo de resposta mais o tempo de embalagem.
+	$$q_{rtt}(c,s,o) = q_{wc}(s,o)+ q_{rt}(s,o)$$
+  \item \textbf{Taxa de Transferência}: Número de requisições $r$ por operação $o$ que foram processadas por $s$ e retornadas ao cliente $c$ com sucesso
+dentro de um intervalo $[t_0,t_1]$.
+	$$q_{tp}(c,s,o) = \frac{r}{t_1 - t_0}$$
+  Depende principalmente do poder do \textit{hardware} e da largura da banda do fornecedor de serviço.
+\end{itemize}
+
+\subsubsection*{Atributos QoS de Confiabilidade}
+\begin{itemize}
+ \item \textbf{Disponibilidade}:  Define a probabilidade de se um serviço $s$ está apto e rodando para produzir resultados corretos dentro de um intervalo $[t_0,t_1]$.
+      $$q_{av}(s) = 1- \frac{t_d}{t_1-t_0}$$
+ \item \textbf{Precisão}:  É a taxa de sucesso produzido pelo serviço $s$.
+      $$q_{ac}(s) = 1- \frac{r_f}{r_t}$$
+	
+  \item \textbf{Robustez}: Probabilidade que um sistema possa reagir adequadamente a mensagens de entrada inválidas, incompletas ou conflitantes.
+	$$q_{ro}(s) = \frac{1}{r_t}\sum_{i=1}^{n}{f(resp_i(s))}$$
+	Onde $resp_i(s)$ é uma função auxiliar, que é a $i-ésima$ reposta produzida por um serviço $s$. $n$ é o numero total de requisições para $s$. $f(m)$
+	representa se a resposta de uma mensagem $m$ é válida ou inválida para uma entrada dada, é calculada com a seguinte fórmula.
+	$$
+	 f(m) =
+	  \begin{cases}
+	     1  : isValid(m) \\
+	     0  : \lnot isValid(m)
+	  \end{cases}
+	$$
+
+\end{itemize}
+
+A taxonomia de atributos QoS e suas formulas para calculá-los será o que conforma o modelo de QoS para serviços Web nesta camada. Nesta camada é importante
+diferenciar os atributos que são medíveis no lado do servidor e quais no lado do cliente, dado que isso afeta na abordagem a utilizar no monitoramento.
+
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=.70\textwidth]{figures/ServiceInvocationTimes.png}
+      \caption{Tempos na invocação de serviços \cite{Michlmayr2009}}
+      \label{fig:QoSTimestamps}
+  \end{figure}	
+
+%%Um documento WSDL que é a descrição da interface das funcionalidades, não possui
+%%mencionar outras abordagens de integração de QoS em serviços Web
+
+\subsubsection{Camada de Coreografias}
+
+  %%QoS na  Camada de coreografias
+É o topo do modelo QoS multicamada e tem como principal meta expressar as garantias e obrigações em termos de QoS entre as partes contratuais
+  em um alto nível de abstração \cite{Rosenberg2009}. O acordo contratual entre dois participantes são comumente referidas como SLA
+(\textit{Service Level Agreement}) \cite{Jin2002}. O SLA é importante quando se integra serviços externos dentro de processo de negócio(
+coreografias,orquestrações e \textit{workflows}) \cite{Michlmayr2009}.O modelo QoS multicamada é a base para realizar a coregrafias de serviços
+ com consciência de SLA (\textit{SLA-aware}).
+
+  Existem várias linguagens SLA, tais como : WSLA (\textit{Web Service Level Agreement}) \cite{Keller2003}  ,  WS-Agreement\cite{Andrieux2007} ,
+  SLang \cite{Lamanna2003}, WSOL \cite{Tosic2002}. Nesta tese
+  será utilizado WSLA como a linguagem para especificar e integrar SLA nas coreografias. WSLA define principalmente as seguintes três seções:
+
+\begin{itemize}
+  \item \textbf{Participantes}: Identifica todas as partes contratuais, incluindo a identificação e todas as propriedades técnicas tais como as descrições
+ da interface ou o \textit{endpoint} do serviço.
+  \item \textbf{Descrições de serviços}: São definidos todas as características do serviço (por exemplo, nomes de operações), os parâmetros SLA (a figura
+ \ref{fig:SLAParameterExample})e as métricas a utilizar no monitoramento de serviços.
+  \item \textbf{Obrigações}: Define as restrições para garantir valores nos parâmetros SLA. São representadas e especificadas a través de
+  SLOs(\textit{Service Level Objectives}) usando parâmetros SLA, a lista \ref{SLAParameterExample} mostra um exemplo de um parâmetro SLA.
+\end{itemize}
+
+WSLA fornece de um conjunto de operações, funções e predicados para definir SLOs. Toda vez que um SLO é violado pelo provedor de
+ serviços(o que implica também uma violação do SLA), eventos são disparados para notificar a violação para reagir de alguma maneira \cite{Michlmayr2009},
+por exemplo, tomar ações de
+garantia tais como punições, ou simplesmente realizar uma mudança de provedor de serviços. No lado do provedor, uma notificação de violação pode servir para
+ tomar ações corretivas ou simplesmente selecionar um outro serviço com as mesmas funcionalidades e realizar uma substituição dinâmica. Dado que uma coreografia de serviços
+é um descrição desde um ponto de vista global das interações do seus participantes, não pode ser executada direitamente porque não envolve o aspecto
+interno de um participante. Assim, o SLA precisa ser cumprido também no aspecto interno (comportamento não visível) de um participante. Em consequência,
+uma descrição SLA precisa ser mapeada em politicas concretas de QoS na camada de Orquestração.
+
+
+\lstset{language=XML,
+  morekeywords={encoding, wsp:Policy,qosp},
+  caption= Exemplo de parâmetro SLA  \cite{Keller2003} , label= SLAParameterExample}
+\begin{lstlisting}
+  <wsp:Policy>
+    <wsp:All>
+      <qosp:ExecutionTimeAssertionunit="msec" predicate="Less" value="1500"/>
+      <qosp:ThroughputAssertionunit="ops" predicate="GreaterEqual" value="130"/>
+    </wsp:All>
+  </wsp:Policy>
+\end{lstlisting}
+
+
+%  \begin{figure}[!h]
+ %     \centering
+  %    \includegraphics[width=.70\textwidth]{figures/SLA-Parameter_Example.png}
+   %   \caption{Exemplo de parâmetro SLA  \cite{Keller2003}}
+    %  \label{fig:SLAParameterExample}
+  %\end{figure}	
+
+  %%\begin{figure}[!h]
+    %%  \centering
+      %%\includegraphics[width=.70\textwidth]{figures/SLODefinitionExample.png}
+      %%\caption{Exemplo de definição de um SLO a partir de um parâmetro SLA  \cite{Keller2003}}
+      %%\label{fig:SLODefinitionExample}
+  %%\end{figure}	
+
+
+
+%Em ... os autores anexam especificações SLA para \textit{partner links} BPEL  e associá-los com
+%o seu respectivo serviço Web participante dentro do processo, isto é, anexa SLA's diretamente em processos BPEL. De maneira contrária, em
+%\cite{Rosenberg2009} utiliza SLA's na camada  de coreografias para depois decompor essas especificações SLA em políticas QoS, as
+%quais são diretamente anexadas aos (\textit{partner links}) em um processo BPEL. Isto permite que o motor de processos reforce
+%essas politicas e dispare ações necessárias  caso o QoS degradar.
+
+%% atributos como rede não (talvez) sejam levados em conta neste nível ...
+\subsubsection{Camada de Orquestração}
+  %% QoS na camada de Orquestração
+  Nesta camada as especificações dos SLA's são mapeadas a  politicas concretas de QoS para cumprir o SLA no correspondente processo de negócio
+  do participante \cite{Rosenberg2009}. WS-Policy \footnote{WS-Policy: recomendação pela W3C, \url{http://www.w3.org/TR/ws-policy/}} é
+ usado para especificar as políticas QoS.
+
+WS-Policy é um \textit{framework} extensível definido na pilha de serviços Web, que é uma coleção de políticas em forma de asserções. Tais
+ asserções de politicas definem requerimentos, capacidades ou outras propriedades de um determinado assunto, por exemplo, mensagens, \textit{endpoint},
+operações, entre outros. Atualmente WS-Policy está focado na segurança utilizando WS-SecurityPolicy
+\footnote{WS-SecurityPolicy: \url{http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/ws-securitypolicy-1.2-spec-os.html}} e também focado no envio de
+  mensagens de maneira confiável usando WS-RM Policy \footnote{WS-RM Policy: \url{http://docs.oasis-open.org/ws-rx/wsrmp/200608/wsrmp-1.1-spec-cd-04.html}}
+, porém, atualmente não existe uma especificação oficial acerca de politicas QoS. Não obstante,  em \cite{Rosenberg2009} propõe uma extensão do WS-Policy ( chamada de
+WS-QoSPolicy) para  permitir a definição de politicas QoS e assim realizar o mapeamento de SLA.
+
+WS-QoSPolicy define um modelo de asserções para os atributos QoS da camada de serviços.Com essas asserções de políticas QoS, requerimentos de QoS
+para serviços podem ser integrados em processo de negócio, Cabe então ao motor (\textit{engine}) de processos tratar essas asserções apropriadamente, por
+exemplo, disparando eventos para algum serviço ou entidade(do lado cliente ou provedor) que tome as medidas necessárias quando um valor específico foi violado. Na lista
+\ref{WSQoSPolicyAssertionExample} mostra-se um exemplo de asserção de uma política QoS em WS-QoSPolicy, utilizando os atributos QoS de tempo de execução e a taxa de
+transferência.
+
+%%restrições do escopo de SLA enforcement
+
+\lstset{language=XML,
+  morekeywords={encoding, wsp:Policy,xs:element,xs:complexType,xs:sequence,xs:attribute},
+  caption= Exemplo de Asserção em WS-QoSPolicy \cite{Rosenberg2009} , label= WSQoSPolicyAssertionExample}
+\begin{lstlisting}
+  <wsp:Policy>
+    <wsp:All>
+      <qosp:ExecutionTimeAssertionunit="msec" predicate="Less" value="1500"/>
+      <qosp:ThroughputAssertionunit="ops" predicate="GreaterEqual" value="130"/>
+    </wsp:All>
+  </wsp:Policy>
+\end{lstlisting}
+
+
+Para avaliar e validar os valores no SLA, precisa-se de informação QoS precisa de cada serviço através
+ de monitoramento, levando em consideração que os valores dos atributos QoS medidos devem ser agregados para calcular o QoS da composição. A
+agregação de atributos QoS é levada a cabo mediante um calculo incremental baseado em padrões de fluxo de trabalho(\textit{workflows})\cite{VanDerAalst2003} bem
+definidos. Para cada um desses padrões uma regra de agregação de QoS tem que ser aplicado para obter o QoS do padrão, desta maneira aplicando
+isto recursivamente consegue-se o QoS global da composição toda. Na implementação não serão utilizados todos os padrões de fluxo de trabalho,porque
+é mais fácil calcular o QoS global em composições estruturadas que não utilizam todos os padrões, os padrões de composição a utilizar são
+:
+
+\begin{itemize}
+ \item \textbf{Sequência}
+ \item \textbf{Laço}
+ \item \textbf{\textit{AND split/AND join}}
+ \item \textbf{\textit{XOR split/XOR join}}
+\end{itemize}
+
+A figura \ref{fig:CompositionPatterns} mostra os padrões de composição(ou \textit{workflow}) a utilizar, mesmo seja um subconjunto do total de padrões, são usualmente suficientes
+para expressar lógicas de composição comuns \cite{Rosenberg2009} e porque no escopo desta pesquisa não é de vital importância a agregações de QoS que possam abranger
+outros padrões para suportar composições não estruturadas, maior informação de algoritmos e regras mais sofisticados de agregação de QoS em \cite{Mukherjee2008}. Nesta pesquisa
+ o foco é com as composições estruturadas formadas com os padrões de composição mencionadas.
+
+\begin{figure}[!h]
+     \centering
+     \includegraphics[width=.70\textwidth]{figures/workflowpatterns.png}
+     \caption{Padrões de Composição \cite{Rosenberg2009}}
+     \label{fig:CompositionPatterns}
+\end{figure}	
+
+
+%%QoS e SLA em coreografias
+Existem várias abordagens de integrar modelos QoS em composição de serviços, mas poucos focados em coreografias de serviços. WS-CDL não tem integrado QoS apesar que
+tem demandado uma especificação de QoS no seus requerimentos \cite{Austin2004}. Em
+\cite{Xiangpeng2007a} propõe um modelo formal que incorpora informação QoS, extendendo a pequena linguagem \textit{Chor}\cite{Yang2006}(que é um
+ WS-CDL simplificado) para adicionar informação QoS, sobretudo tempo e custo, em um nível sintático e semântico para obter o QoS global da coreografia.
+
+Em \cite{Pandey2008}, propõe um modelo formal para estimar o minimo, máximo e a média do costo(atributo não funcional) de uma coregrafia. Tal modelo proposto
+adiciona características semânticas para incorporar o atributo costo no seu modelo, que é uma extensão do WS-CDL. Este modelo associa o costo com instâncias de um
+ papel(\textit{role instance}) em lugar de \textit{role type} do WS-CDL.
+Em \cite{Xia2009}, propõe uma abordagem nova para predizer o QoS de uma coreografia de serviços especificada em WSCI. Utiliza uma Rede de Petri Estocástica Generalizada
+(\textit{GSPN} \footnote{GSPN: Generalized Stochastic Petri Net}) como modelo intermediário. A partir do modelo GSPN obtido do mapeamento do modelo WSCI, avaliações
+ analíticas da árvore de métricas QoS são realizadas.
+Em  \cite{Pandey2010}, propõe um modelo multidimensional de QoS para coreografias.Tal QoS de coreografia é definido
+ em termos de papel (\textit{role}) dominante, relacionamento
+dominante e  interação dominante. Essas características são avaliadas baseadas no QoS dos papéis, operações e mensagens. Sua proposta é desenvolvida como uma
+extensão do metamodelo de WS-CDL para suportar QoS.
+
+Somente em \cite{Rosenberg2009}, propõe um  modelo multicamada de  para integrar QoS e SLA no nível de coreografia, orquestração e serviços.No nível de coreografias
+integra WSLA na linguagem WS-CDL para especificar o acordo do nível de serviço(SLA) entre os participantes. E para realizar seu cumprimento internamente em cada participante
+realiza o mapeamento a políticas QoS na camada de orquestração, que por sua vez utiliza os atributos QoS no nível de serviços. Até hoje, nenhum
+propõe um modelo de QoS para integrá-lo em BPMN, que é o ``padrão''  para modelar processos de negócios colaborativos, incluindo coreografias.
+%%falta mencionar trabalhos sobre SLA, geralmente no nível de serviços e orquestração, mas em coreografias ainda não, dai seria bom encaixar com o
+%%modelo multicamada
+
+%padrões de fluxos de trabalho (workflow) escolher algumas em base a VCl, é suficiente ?
+
+%%Os processos de longa duração (macroflows) eram implementados em sistemas de workflow como o YAWL, mas atualmente, são geralmente
+%%especificados em WS-BPEL e executados em um motor(\textit{engine})  BPEL tais como ActiveBPEL, PetalsESB
+%OpenESB, Apache ODE, Orchestra, entre outras. %%Dado que BPEL se tornou um padrão defato na pilha de serviços Web.
+
+%A maioria destes sistemas ou engines de execução não fornece de um suporte nativo para especificar e fazer cumprir um SLA.
+%\textit{WS-Agreement} é uma especificação do \textit{Open Grid Forum}
+  %Related Works
+
+
+%% outro contexto,
+%Em \cite{Rosenberg2009} propõe a aplicação de DSL (Linguagem especifica do domínio) na composição de serviços QoS-aware em sistemas orientado a serviços,
+%existem de dois tipos , de alto nível e de baixo nível. Nesse mesmo trabalho, se fornece de uma linguagem chamada de VCL para especificar
+% restrições QoS funcionais. O VCL é considerado no meio (tem de  alto e baixo nível) e tem foco na especificação baseada em restrições
+%de requerimentos QoS. Permite estabelecer a relativa importancia de uma restrição através de uma hierarquia de restrições.
+
+
+%---------------------------------------------%
+\section{Monitoramento  em Coreografias de Serviços Web}
+\label{sec:QoS_Monitoring}
+
+%%Definição de Monitoramento \cite{Jamoussi2010}
+
+% Abordagens de monitoramento de QoS
+A eficiência e automatização do monitoramento de serviços Web utilizando QoS é fundamental para o sucesso e apalancamento de linhas de pesquisa
+tais como  a seleção, composição e optimização de serviços Web com consciência de QoS no escopo de SOC \cite{Michlmayr2009}, \cite{Jiang2000}. Atualmente
+ os serviços Web não fornecem de informação QoS como parte da sua interface de  contrato ou funcionalidade, por exemplo, um documento WSDL.
+
+Alguns valores de atributos QoS podem ser obtidos tanto em um monitoramento no lado do cliente quanto no lado do servidor, mas existem atributos que podem ser obtidos
+em um lado completamente ou parcialmente(perdendo precisão) \cite{Michlmayr2009}. Por exemplo, no lado do servidor o calculo do tempo de execução é mais preciso do que
+ no lado cliente, porque no servidor se conhece a implementação do serviço e é mais fácil realizar a medição aí do que no cliente, mas tem a desvantagem de ser
+intrusivo porque conhece a implementação do serviço.No lado servidor, não é possível medir a latência da rede, pelo qual o cálculo do tempo de resposta
+seria menos preciso. Uma abordagem de monitoramento do lado cliente pura seria a \textbf{não intrusiva}, dado que não precisa conhecer o comportamento interno do serviço
+fornecedor \cite{Halima2008a}. Com esta abordagem, atributos tais como o tempo de execução $q_{ex}$ ou o tempo de processamento $q_{pt}$ precisam ser medidos
+de outra maneira, por exemplo utilizando técnicas de análise do tráfego de pacotes TCP.
+
+
+\subsubsection{Abordagens de Monitoramento baseado em QoS}
+Atualmente existem muitas abordagens, cada uma com suas respectivas vantagens e desvantagens, respeito a factibilidade ou precisão na medição dos
+ atributos QoS. A seguir algumas abordagens de monitoramento QoS em serviços web atômicos \cite{Arab2010}, \cite{Riegen2009}, \cite{Zeng2007}, \cite{Rosenberg2009}.
+%de serviços Web atômicos, de composição e de coreografias?
+
+\begin{itemize}
+ \item \textbf{Instrumentação do Lado do Fornecedor}: Instrumenta na implementação do serviço como maneira simples de medir atributos QoS, sobretudo os de confiabilidade,
+  Existem dois tipos de instrumentação, a intrusiva e a não intrusiva. A primeira consegue-se mexendo direitamente no código da implementação. Mas a instrumentação não
+  intrusiva, para cumprir seu objetivo utiliza técnica ou ferramentas tais como Programação Orientada a Objetos (POA) ou mecanismos do sistema operacional,
+  WPC \footnote{WPC: \url{http://technet.microsoft.com/en-us/library/cc774901(WS.10).aspx}} (\textit{Windows Performance Counters}) fornecidos no sistema operacional Windows,
+  em \cite{Arab2010} implementa um monitoramento de atributos QoS com usando WPC. Esta abordagem não suporta cálculo de atributos como a latência de rede
+  e em consequência os que dependem dele. Além disso o consumidor do serviço tem que confiar nas medidas do provedor.
+
+ \item \textbf{Intermediários de SOAP}: Aceitam(interceptam), processam e direcionam mensagens SOAP que são encaminhadas de um origem a um destino. O
+   monitor fica entre
+  o consumidor e o provedor de serviços para interceptar as mensagens e medir os atributos QoS, por isso, possui baixo acoplamento. Pode ser feita no lado cliente,
+ no lado  servidor ou por um parte externa e confiável para  ambos os lados. Dado que atua como um \textit{proxy} tratando todas as requisições para realizar
+ medições de QoS, pode-se
+  tornar o gargalo.Além disso, pode precisar de  informação adicional nas mensagens SOAP para calcular atributos QoS, tal como em \cite{Riegen2009}.
+
+  \item \textbf{\textit{Probing}}: Consiste em enviar um requisições de testes ao fornecedor do serviço em tempos regulares. Não precisa interceptar mensagens,
+   e o monitor pode estar no cliente, no servidor ou entre os dois. O fator chave é o intervalo de tempo entre cada requisição de teste ao fornecedor, que influi na
+precisão da medição. Principalmente é utilizado para medir a disponibilidade de um serviço e o tempo que este está ativo.
+
+  \item \textbf{\textit{Sniffing}}: Utiliza técnicas de análise dos fluxos dos  pacotes TCP de baixo nível, \textit{sniffing}, que se realiza na invocação de um
+  serviço, permitindo desta maneira, o cálculo de atributos tais como latência da rede, tempo de resposta, entre outros. Debe ser executado assincronamente para evitar
+  um alto tempo de execução e conseguir maior estabilidade quando realizar o \textit{sniffing}, a agregação e a correlação dos dados coletados do fluxo de pacotes
+  TCP \cite{Rosenberg2009}.
+
+\end{itemize}
+
+%Server side
+%atributos QoS  como a taxa de transferência podem ser calculados com mais precisão. Contudo, apresenta a desvantagem de não poder medir atributos tais como
+%a latência da rede, em consequência um atributo como o tempo de resposta (que não somente é o tempo de execução) é difícil de medir também.
+
+Das abordagens descritas, as que apresentam-se como boas alternativas para um monitoramento não intrusivo são  o \textit{Probing} e \textit{Sniffing}. \textit{Probing}
+ é mais simples de implementar e o \textit{sniffing} pode ser utilizada junto com \textit{Probing} para estimar os valores de atributos como o tempo de latência da rede.
+Assim é possível compensar algumas desvantagens da abordagem de monitoramento do lado do cliente, em que não é possível medir alguns atributos do lado do servidor, por exemplo,
+ tempo de execução, uma abordagem deste tipo é o framework \textit{Quatsch} \cite{Rosenberg2006}, e nesta pesquisa também se implementará um monitor baseado em Quatsch,
+ mas integrado com o modelo de QoS multicamada descrito acima.
+
+
+%%Trabalhos Relacionados
+\subsection{Trabalhos relacionados com Monitoramento de Coreografias}
+
+Existem várias propostas de monitoramento QoS de serviços Web exclusivamente, tais como em  \cite{Arab2010}, \cite{Freitas2009}, \cite{Buccafurri2008a},
+ \cite{Artaiam2008}, \cite{Zeng2007} ,
+ \cite{Rosenberg2006}, \cite{Tian2004} %(WS-QoS)%
+  e \cite{Tjaden2002}. Outras baseadas em acordos(não necessariamente SLA) de QoS entre serviços podem ser achadas em
+\cite{Leitner2010}, \cite{Buccafurri2008a}, \cite{Michlmayr2009} e \cite{Keller2003}.
+   .
+Existem poucos trabalhos acerca  de monitoramento de coreografias e menos ainda baseado em características não funcionais tal como atributos ou restrições QoS.
+ trabalhos em monitoramento baseado em QoS de serviços web \cite{Zeng2007},
+
+Em \cite{Michlmayr2009} propõe um monitoramento de atributos QoS usando SLA no nível de serviços Web, utiliza também uma abordagem misturada, já que
+ está baseada  na ferramenta \textit{Quatsch}, como continuação do trabalho em \cite{Rosenberg2006} que está focada em monitorar somente informação
+ QoS. O foco está na deteção de violações dos SLA utilizando uma
+ infraestrutura de gerenciamento de eventos e enlace dinâmico de serviços a través  da plataforma VReSCO \cite{Hummer2010}.
+
+Em \cite{Buccafurri2008a} apresenta uma abordagem de  monitoramento de coreografias com a possibilidade de reagir com adaptação dinâmica,
+ mas está focado nas funcionalidades, em lugar de atributos QoS (não funcionais). Tal monitoramento verifica o caso de acontecer uma
+desviação do comportamento especificado, que possa representar uma anomalia no comportamento dos serviços envolvidos na coreografia. Também propõe
+dois diferentes modelos de QoS, um para a qualidade dos serviços e o outro para a qualidade no nível de provisionamento de conteúdo multimídia  em tempo real
+(RTSP \footnote{RSTP: \textit{Real Time Service Provisioning}}). Fornece de deteção de falhas entre acordos de QoS sem utilizar SLA.
+
+
+Em \cite{Ardissono2009} se propõe a construção de um \textit{framework} para  o monitoramento do progresso da execução de uma coreografia de serviços Web,
+a deteção ceda de falhas e a notificação dos serviços web afetados por essas falhas. Nesse \textit{framework}, o monitor acompanha a execução dos serviços Web
+analisando o seu comportamento conversacional, ou seja, durante a execução o monitor tem conhecimento das mensagens que são enviadas e recebidas pelos serviços junto
+com o estado da sua execução. O monitor usa essa informação para verificar se o serviço global, realmente está progressando ou avançando,
+isto é, se o fluxo de mensagens entre os serviços é consistente com a coreografia. Caso acontecer uma falha, o monitor avalia se ainda é possível completar
+o serviço coreografado, e informa aos outros serviços Web para reagir ante o problema ocorrido. A sua abordagem assume que o monitor não conhece
+ a implementação dos serviços Web e  o \textit{framework} confia na análise  das mensagens.
+
+Finalmente, em \cite{Rosenberg2009} é, até agora, o unico trabalho achado que propõe um modelo multicamada para integrar QoS  e  SLA  no nível de Serviços(QoS),
+de orquestração(Politicas de QoS) e de coreografias (SLA), utiliza o monitor \textit{Quatsch} para coletar informação QoS, este monitor  foi desenvolvido em um
+ trabalho anterior do mesmo autor em \cite{Rosenberg2006}. Esta pesquisa vai utilizar esse modelo multicamada de QoS e SLA para realizar o monitoramento de coregrafias,
+focado na deteção de violações dos SLAs, baseado nas violações das camadas orquestração e de serviços. O monitor utilizará uma mistura de abordagens de monitoramento
+do lado do cliente para ser ``não intrusivo''.
+
+
+
+
+%%
+%Uma abordagem de implementar uma abordagem de monitoramento junto com a informação necessária de QoS é realizá-la no mesmo motor de execução BPEL. Assim
+ %é apto para realizar uma adaptação, reconfiguração e reparação baseado nos valores dos atributos QoS medidos. Uma forma de realizar essa implementação no motor de execução
+%BPEL é utilizando POA(Programação Orientada a Aspectos) <ref> para não modificar o código do processo de negócio nem muito menos o código do motor BPEL, um exemplo desta
+ %abordagem pode ser encontrado em <Viedame>. 
