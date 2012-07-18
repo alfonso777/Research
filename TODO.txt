@@ -1,4 +1,11 @@
 ==  Eu ==
+-> Fazer correções no artigo do CAMAD segundo comentários dos revisores
+-> Dar entrada com pedido para viagem para Barcelona:
+  -- Ver a forma de pedir auxilio do CHOReOS. 
+  -- Verificar se preciso de visto e verificar se o ime pagaria a associação à IEEE.
+
+
+
 -> Transformar o texto que está no google docs em uma sessão de motivação para sua dissertação e me envie a dissertação com essa sessão.
 
 -> Enviar um diagrama explicando o que vc está fazendo no simulador (quais são as coisas novas que vc está adicionando) e me diga o que de novo já está funcionando em relação à versão anterior e deixando claro quais blocos / partes do simulador está diretamente relacionando com sua dissertação.
