@@ -1,0 +1,9 @@
+#from  Latex 
+*.aux
+*.blg
+*.bbl
+*.log
+*.bak
+*-synctex
+
+# 
