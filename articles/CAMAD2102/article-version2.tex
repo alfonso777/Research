@@ -1,0 +1,647 @@
+%% bare_conf.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% See:
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[conference]{IEEEtran}
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+\else
+
+\fi
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+%%  my packages  %%
+%\usepackage{sbc-template}
+
+\usepackage{graphicx,url}
+
+%\usepackage[brazil]{babel}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+% *** SPECIALIZED LIST PACKAGES ***
+%
+\usepackage[lofdepth,lotdepth]{subfig}
+\usepackage{amsthm} %%math
+\usepackage{amsfonts}%%math
+\newtheorem{mydef}{Definition}
+%\newenvironment{definition}[1][Definition]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\usepackage{comment}
+\usepackage{multirow}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\floatname{algorithm}{Procedure}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+%\title{Análise de Desempenho de Coreografias de Serviços  no Modelo de Interação}
+%\title{Performance Evaluation of Service Choreographies in the Interaction Model}
+%\title{A Mechanism to Establish Network QoS Requirements of Service Choreographies}
+%\title{A Methodology to Predict the Impact of Network QoS Attributes in Service Choreographies}
+\title{ A Methodology to Define QoS and SLA Requirements in Service Choreographies }
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{
+  %\IEEEauthorblockN{Victoriano P. Diaz,  Daniel M. Batista}
+  \IEEEauthorblockN{Victoriano P. Diaz and Daniel M. Batista}
+  %\IEEEauthorblockN{Daniel M. Batista}
+  \IEEEauthorblockA{Computer Science Department \\
+  University of São Paulo (IME-USP)\\
+  Postal Code 166281 -- Sao Paulo -- SP -- Brazil \\
+  %Atlanta, Georgia 30332--0250\\
+  Email:  \{alfonso7,batista\}@ime.usp.br
+  }
+  %\and
+  %\IEEEauthorblockN{Daniel M. Batista}
+  %\IEEEauthorblockA{Computer Science Department \\
+  %University of São Paulo (IME-USP)\\
+  %Postal Code 166281 -- Sao Paulo -- SP -- Brazil
+  %Atlanta, Georgia 30332--0250\\
+  %Email: http://www.michaelshell.org/contact.html
+  %}
+}
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+
+
+
+% make the title area
+\maketitle
+
+
+\begin{abstract}
+%\boldmath
+Service choreography allows the composition of services in a collaborative way,  taking advantage of various benefits of P2P systems. The
+ existing modeling approaches  to evaluate choreographies are the interconnection and interaction models. %Interaction models are  supported by BPMN standard version 2.0. 
+However, these approaches don't evaluate choreographies focusing on QoS or in the earlier stages 
+of development of the distributed application.
+This paper proposes an approach to assess the impact of QoS attributes specified in a choreography interaction model. %using BPMN 2.0. For  this purpose, 
+ %we use a representation of a choreography by a Generalized Stochastic Petri Net (GSPN). This representation
+ %results from the composition of GSPN modules mapped from BPMN elements used in a choreography modeling. 
+With our proposal it is possible to establish requirements for QoS and SLA in early stages of development in order to %reduce costs  and impact in later stages.
+plan the capacity of the network elements connecting the hosts involved in the enactment and deployment of the choreography.
+%, reducing the costs in later stages of the development.
+
+\end{abstract}
+
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction} \label{sec:introduction}
+
+The process to develop applications and complex systems evolved over time until converge to the approach know as
+ Service Oriented Computing - SOC \cite{PapazoglouSOC2007a}. The service-based applications require compositions of services as a
+ key factor to allow rapid development, loosely coupling and flexible integration with other systems. In this scenario, now,  a 
+  single application is formed by several services spread over the network.
+
+
+Among the various methods to compose services, Web services choreography is an efficient way to implement inter-organizational business
+ processes, as the participants' business interactions are mutually independent (autonomous and heterogeneous) \cite{Telang2011}. A service
+ choreography is a description of peer to peer interactions among existing services, i.e., in this model there isn't the role of 
+ a central controller. The various services communicate with each other similarly to what occurs in a P2P application \cite{Barker2009}. 
+%Business  processes are modeled and executed using workflow languages like BPEL for orchestration \cite{Barker2009}.
+
+% Uma coreografia de serviços modela os processos visíveis publicamente e a troca de mensagens
+% entre os participantes do ponto de vista global \cite{Wetzstein2010}.
+
+
+ During the enactment of web services choreographies, the state of network elements (devices and links) plays a fundamental role. There must be guarantees 
+ of Quality of Service - QoS so that there are advantages of using a decentralized business model. A common method to define
+ guarantees between a service provider and a client (which may also be a service) is by means of a Service Level Agreement - SLA. After
+ the choreography be specified,  constraints of QoS between each participant must be defined through SLAs \cite{Rosenberg2007}. To meet the SLA 
+ agreements there must be some mechanism for management at runtime. This mechanism must involve monitoring, control and  
+ decisions against violations or degradation of service quality. All the concern about guarantee of the QoS requirements of participants comes 
+ from the fact that the QoS of composite service, represented by the choreography, depends directly on the QoS of the separate services.
+
+
+ To reduce the number of SLA violations and the corrective measures to fulfill the QoS requirements during the enactment of choreographies, 
+ the detection of non-functional failures in early stages of the development of the choreography can be employed. For example, 
+  some non-functional failures (or undesirables properties)  are communication and network errors such as high latency and low bandwidth.
+%, connection timed out, and so on .  
+
+
+
+ This paper presents a new approach to detect non-functional failures of the participants in a choreography during the design stage. Our approach
+ conducts a performance evaluation by means of generalized stochastic Petri nets (GSPN) as the intermediate representation of a choreography
+ specified in BPMN2, a notational language to model business process, with the representation of the QoS model. Our work differs from 
+ those found in the literature because it is employed in stages before the development (for example, in the modeling and design). With our 
+ proposal it is possible to establish requirements for QoS and SLA in early stages in order to plan the capacity of the network connecting
+ the hosts involved in the deployment of the application, reducing the costs and unexpected behaviors  in later stages of the development.
+
+
+ This paper is organized as follows: Section~\ref{sec:basicConcepts}  introduces the basic concepts necessary to understand the
+ proposal and presents the example of a choreography specified in BPMN2. Section~\ref{sec:relatedWorks} presents the related
+ work. Section~\ref{sec:proposta} describes the proposal, which includes the formalization, the QoS model and the mapping for
+ GSPN. Section~\ref{sec:PerformanceAnalysis} presents the application of the proposal in a scenario with the objective to evaluate this
+ effectiveness. Finally, Section~\ref{sec:Conclusions} presents the conclusions and future work.
+
+%\hfill mds
+
+
+\section{Basic Concepts } \label{sec:basicConcepts}
+  %\subsection{ Overview } %concepts
+   %\subsection{ Conceitos } %concepts
+
+  The two main approaches to compose services are choreographies and orchestrations. A service choreography allow the composition of services
+ in a collaborative manner. A choreography describes the P2P interactions of the externally observable behavior of its participants. Different
+ from orchestrations, choreographies don't have a single point of control or coordination \cite{Barker2009}. Choreography tend to be more
+ efficient than orchestrations because the probability to have a bottleneck in the system is reduced \cite{Barker2009b}.
+
+
+  According to \cite{Kopp2011}, languages to specify choreographies can be classified based on two criteria: implementation and approach used
+ in modeling. In terms of approach, there are languages with interaction models and languages with interconnection models. 
+  To standardize the representation of choreographies, the BPMN graphical representation, currently in version 2.0, was proposed 
+ (\url{http://www.bpmn.org/}). It supports the modeling of interconnection through collaboration, and the modeling of interaction through
+ choreography of processes. In this paper it is assumed that the choreography is represented by models of interaction because they incur less
+ redundancies and errors \cite{Decker2008}.
+ %  Neste artigo será considerado que as coreografias são representadas por modelos de interação porque incorrem em menos redundâncias e erros  com uma modelagem
+ %  mais simples que se encaixa adequadamente em metodologias de cima para baixo (\textit{top-down} ) \cite{Decker2008}.
+
+
+  Figure~\ref{fig:ChoreographyElements} shows the BPMN elements considered in this paper. We consider only this subset because
+  they are enough to evaluate our proposal. To the reader interested, in \cite{OMG2011} all the elements allowed in BPMN choreographies are presented.
+ 
+
+  \begin{figure}[!h]
+      \centering
+      %\includegraphics[width=.90\textwidth]{Choreography_CaseStudy.png}
+      \includegraphics[width=0.5\textwidth]{./figures/BPMNBasicChoroegraphy.png}
+      %\caption{Elementos BPMN para modelar coreografias de processos}
+      \caption{BPMN elements for modeling  choreographies }
+      \label{fig:ChoreographyElements}
+  \end{figure}
+
+
+Figure~\ref{fig:choreographyExample} presents an example of choreography modeled with elements presented in Figure~\ref{fig:ChoreographyElements}. It 
+ is a choreography for the offer of investment in stock market presented in \cite{Koppa}. First, a 
+ financial advisor offers an investment to a customer and, after a time interval, the customer decides to accept or reject such a proposal, thereby ending the process.
+
+ In the scenario of Figure~\ref{fig:choreographyExample}, basic elements of choreography processes are used, such as three choreography
+ tasks, two events (\emph{start} and \emph{end}), six sequence flows and one gateway (\emph{Data-based XOR}). A choreography task 
+represents an atomic interaction between two or more participants performed by exchanging messages via the network.
+
+
+  \begin{figure}[!h]
+      \centering
+      %\includegraphics[width=.90\textwidth]{Choreography_CaseStudy.png}
+      \includegraphics[width=0.5\textwidth]{./figures/BPMNChoreographyExample.png}
+      %\caption{Modelagem BPMN para a coreografia de processo do cenário de exemplo}
+      \caption{Example of choreography using BPMN2 elements.}
+      \label{fig:choreographyExample}
+  \end{figure}
+
+
+%=====================%
+\section{Related Works} \label{sec:relatedWorks}
+
+ In \cite{Xia2009}, it is proposed an approach to predict  the QoS  of a Web service choreography specified in WSCI
+ (\textit {Web Service Interaction Choreography}).  A GSPN is used as an intermediate model. An analytical evaluation is performed in the 
+ QoS metrics tree and transformation rules to map activities are specified. A problem with the proposal presented in \cite{Xia2009}
+  is that the WSCI language has been discontinued.
+
+ 
+Recently, \cite{Xia2011} proposed an approach to predict the reliability of composite services specified in WS-CDL. It is also
+ presented a complete translation of a choreography specified in WS-CDL to a GSPN. Similar to \cite{Xia2011}, we also use the formalism
+ of Petri nets as an intermediate representation of a choreography. \cite{Xia2011} is focused in reliability, while our proposal is focused in
+ QoS attributes of communication network and we use the interaction model of BPMN2 as choreography language.  
+%differ from \cite{Xia2011} in terms of the objective. We define QoS requirements, while 
+
+\cite{Bruneo} and \cite{Valero2012} present a proposal to evaluate the performance of choreographies represented in WS-CDL using Petri nets. However,
+ WS-CDL is a limited language since it is more oriented to implementation, instead interaction between the participants. Our proposal is 
+ oriented to BPMN. For the best of our knowledge, there is no proposal that evaluate the performance of choreographies specified in BPMN.
+
+
+
+%=================================%
+\section{ Methodology to evaluate the performance of service choreographies} \label{sec:proposta}
+
+The contribution of this paper is to present a new methodology for evaluate the performance of choreographies with the objective of
+ define  QoS requirements. The evaluation is performed in the design stage of the choreography by using GSPNs. The proposal is based 
+on the execution of the following steps:
+
+
+\begin{enumerate}
+
+  \item Mapping of the choreography specified in BPMN 2.0 to a GSPN. The GSPN includes the intermediate representation of the choreography
+ and the QoS model that takes into account time and communication constraints of the interactions among participants (each participant 
+ represents a peer that is active during the enactment of the choreography)
+
+  \item Definition of weights in the transitions with time constraints in the GSPN. In this step, the probability distributions and weights
+ in the interactions related to communications and message exchange are defined.
+
+ \item Simulations of scenarios, one with a minimum configuration of failures and another with a higher possibility of failure.
+
+\end{enumerate}
+
+The next subsections present information needed to the execution of all the steps. Subsection~\ref{subsec:formalization} defines
+ choreographies of processes in BPMN. Subsection~\ref{subsec:QoSModel} describes the QoS model  considered in our
+ proposal, and  Subsection~\ref{subsec:mapping} presents the algorithm executed to map BPMN elements to a GSPN.
+
+
+ %\subsection{ Formalization }   \label{subsec:formalization} %%or BPMN Chor
+\subsection{ Definition of choreographies specified in BPMN }   \label{subsec:formalization}
+ 
+ Based on Figure 1 and on the work presented in \cite{Dijkman2007}, choreographies of BPMN processes can be defined as explained below:
+
+%. Para tanto, a seguir vamos definir o \textit{core process choreography BPMN} (baseado em \cite{Dijkman2007}).
+
+
+    \begin{mydef}
+      A choreography of BPMN processes is a tuple: \\
+       $PC = (\mathcal{O, A, E, G, T, S}, \{e^S\}, \mathcal{E}^I, \{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T}, \mathcal{G}^F, \mathcal{G}^J,$
+       $\mathcal{G}^X, \mathcal{G}^M, \mathcal{G}^V, \mathcal{F} )$ where:
+      \begin{itemize}
+	\item $\mathcal{O}$ is the set of objects, which is partitioned in three disjoint sets: activities ($\mathcal{A}$), events $\mathcal{E}$
+	and \emph{gateways} $\mathcal{G}$.
+
+	\item $\mathcal{A}$, is the set of choreography tasks and it is the same as $\mathcal{T}$.
+
+	\item $\mathcal{E}$ is the set of events. It is partitioned in three disjoint sets: Start event {$e^\mathcal{S}$}, Intermediate
+	events $\mathcal{E^I}$ and End event {$e^\mathcal{E}$}.
+
+	\item $\mathcal{E^I}$ is partitioned in the disjoint sets of events of the type messages $\mathcal{E}^{I_M}$ and timer $\mathcal{E}^{I_T}$.
+
+	\item $\mathcal{G}$ é the set of gateways and it is partitioned in the 	five disjoints sets of parallel fork gateways $\mathcal{G}^F$,
+	parallel join gateways $\mathcal{G}^J$, data-based XOR gateways $\mathcal{G}^X$, XOR merge gateways $\mathcal{G}^V$ and event-based
+	XOR gateways $\mathcal{G}^M$.
+      \end{itemize}
+    \end{mydef}
+
+%Uma coreografia de processos é um grafo orientado com nós (objetos) $ \mathcal{O}$ e arestas (fluxos de sequencias) $\mathcal{F}$. para qualquer
+% nó $x \in \mathcal{O}$, os nós de entrada de $x$ são dados por $in(x) = \{ y \in \mathcal{O} | y\mathcal{F}x\}$ e os nós de saída são dados por
+% $out(x) = \{ y \in \mathcal{O} | x\mathcal{F}y\}$.
+
+%%   GSPN Definition
+%    \begin{mydef}
+%    \end{mydef}
+
+ %    Nesta definição,  não estão incluídas tarefas de orquestrações (tarefas tradicionais do BPMN), alguns eventos e nem menos exceções,  já que não
+ %   são parte de uma coreografia de processos. %% Mehorar
+
+
+\subsection{QoS model } \label{subsec:QoSModel}
+
+%Descrição do modelo de QoS e os atributos de QoS levados em consideração...
+
+%O validade do formato da mensagem recebida é considerada no segundo aspecto e no último aspecto, somente o tempo de execução  da operação do serviço é considerado.
+%A tabela \ref{tableQoS} resume o modelo de QoS descrito e que será utilizado no mapeamento para a GSPN.
+
+ In order to analyze the non-functional behavior of choreographies, it is necessary to define the QoS attributes considered. In this
+ paper we consider three entities with QoS attributes: service, network and message. In the operation of the service, the QoS attribute
+ considered is the  time needed to complete the service.  In the network, the QoS attributes considered are delay and errors in communication, 
+since both significantly  affect the response time of the choreography. In the message, the QoS attribute considered is the format of the message, 
+ since the message need to be validated.
+
+
+\subsection{ Mapping of BPMN choreography to GSPN} \label{subsec:mapping}
+
+ Figure~\ref{fig:MappingEventsAndGateways} presents the mapping of gateways and events (choreography elements) to the respective modules of Petri nets.
+Figure~\ref{fig:MappingTaskChoreographiesQoS1} exemplifies the mapping of two different choreography tasks (choreography tasks are the basic
+building blocks of choreographies since they generate messages and service invocation). In Figure~\ref{fig:MappingTaskChoreographiesQoS1}, positions $A$,
+$A_2$ and $B$ represent the participants. Positions $C_{init}$, $C_{end}$, $C_{init2}$, $C_{end2}$, $C_{endOk}$ and $C_{endOk2}$ represent the start, end and the
+correct validation of the communication between two participants. Transitions of type $T_{send}$ and $T_{receive}$ represent the actions of sending and
+receiving messages. Transitions $T_{msg}$ represent the transmission of the message by the communication channel.
+
+% Esses módulos de redes de Petri devem ser compostos de acordo à sequência de fluxo e os \textit{gateways} presentes na
+% modelagem da coreografia tal como está ilustrada na Figura \ref{fig:MappingEventsAndGateways}. Uma rede de Petri composta representa uma
+% coreografia de processos completa, e como um processo deve ter uma posição de começo e uma de fim.
+
+  \begin{figure}[!h]
+      \centering
+      %\includegraphics[width=.90\textwidth]{Choreography_CaseStudy.png}
+      \includegraphics[width=0.5\textwidth]{./figures/BPMNChoreographies2_2.png}
+      \caption{Mapping of events and gateways elements to modules of Petri nets}
+      %\caption{Mapeamento de eventos e \emph{gateways} para módulos de redes de Petri}
+      \label{fig:MappingEventsAndGateways}
+  \end{figure}
+
+  \begin{figure}[!h]
+      \centering
+      %\includegraphics[width=.90\textwidth]{Choreography_CaseStudy.png}
+      \includegraphics[width=0.5\textwidth]{./figures/BPMNChoreographies1-QoS.png}
+      %\caption{GSPN modules of task choreograpies including the QoS model}
+      \caption{  Mapping of two different choreography tasks with the QoS model}
+      \label{fig:MappingTaskChoreographiesQoS1}
+  \end{figure}
+
+
+ The Step 1 of our methodology is executed by the Algorithm~\ref{alg2}. The algorithm maps a choreography of processes specified in BPMN 2.0 
+to a GSPN including the QoS model. Each BPMN element is mapped to its respective module of Petri nets and the modules are composed as a
+function of the sequence flows and the gateways. Finally, the Start and the End events are included.
+
+%Basicamente, a GSPN da coreografia toda é obtida mediante a composição dos módulos de GSPN.
+
+
+     %\textbf{Output:} Rede de Petri Estocástica Generalizada $GSPN$. \\
+    \begin{algorithm}[!h]
+      %\caption{Mapping a Interconnection Choreography in BPMN onto a GSPN with QoS model}
+      %\caption{ { \small Mapeamento de uma coreografia especificada em BPMN 2.0 para uma GSPN com o modelo de QoS } }
+      \caption{ { \small Mapping of choreography specified in BPMN 2.0 to a GSPN with QoS model} }
+      \label{alg2}
+      \begin{algorithmic}
+      { \small
+	%\REQUIRE Process Choreography $\mathcal{PC}$ in BPMN 2.0.
+	\REQUIRE Process Choreography $PC = (\mathcal{O, A, E, G, T, S}, \{e^S\}, \mathcal{E}^I,$ $\{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T},
+         \mathcal{G}^F, \mathcal{G}^J,$ $\mathcal{G}^X, \mathcal{G}^M, \mathcal{G}^V, \mathcal{F} )$ in BPMN 2.0.
+
+	\ENSURE Generalized Stochastic Petri Net $GSPN_{QoS}$.
+	
+	\STATE Consider $CT_i \in \mathcal{T} $, $G_j \in \mathcal{G} $ and $E_k \in \mathcal{E}$. $i, j, k \in \mathbb{N} $
+	%\STATE Let $PNQoS(CT_i)$ a respective GSPN including QoS from type of $CT_i$ and according to mapping rules (Figure \ref{fig:MappingTaskChoreographiesQoS1}).
+	%\STATE Let $PNQoS(CT_i)$ be a respective GSPN including QoS from type $CT_i$ and according to mapping rules (Figure \ref{fig:MappingTaskChoreographiesQoS1}).
+	\STATE Consider $PNQoS(CT_i)$ the respective GSPN including QoS as a function of the type of $CT_i$ and the mapping rules specified on Figure \ref{fig:MappingTaskChoreographiesQoS1}.
+	\STATE Consider $PNQoS(G_j)$ the respective GSPN including QoS as a function of the type of $G_j$ and the mapping rules specified in Figure \ref{fig:MappingEventsAndGateways}.
+	\STATE Consider $PNQoS(E_k)$ the respective GSPN including QoS as a function of the type of $E_k$ and the mapping rules specified in Figure \ref{fig:MappingEventsAndGateways}.
+	\STATE Consider $\oplus$ The binary operator of composition of two GSPNs that returns other GSPN.
+
+
+	\STATE $GSPN_{QoS} \leftarrow  Empty\  Petri\  Net$
+
+	%\FOR { $CT_i \in T $ }
+	 % \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PNQoS(CT_i)$
+	%\ENDFOR
+
+	\FOR { $CT_i \in \mathcal{T} $ }
+	  \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PNQoS(CT_i)$
+          \STATE Add a arrival timed Transition at first of the $GSPN_{QoS}$.
+	\ENDFOR
+
+	\FOR{ $G_j \in \mathcal{G} $ }
+          \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PN(G_j)$
+	\ENDFOR
+
+	\FOR{ $E_k \in \mathcal{E} $ }
+          \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PN(E_k)$
+	\ENDFOR
+
+	\STATE Add a starting Place and immediate Transition at the beginning of the $GSPN_{QoS}$.
+        \STATE Add a ending Place and immediate Transition the end of the $GSPN_{QoS}$.
+
+	\RETURN $GSPN_{QoS}$
+      }
+      \end{algorithmic}
+    \end{algorithm}
+
+
+
+
+%%%
+
+%===========================================%
+%\section{Analysis and Performance Evaluation}
+\section{Performance Evaluation}  \label{sec:PerformanceAnalysis}
+
+%Nesta seção são aplicados os passos descritos da nossa abordagem no cenário de exemplo da Seção \ref{serviceChoreography} .
+To attest the efficacy of our proposal, in this section all the steps of our methodology are performed. The choreography
+ presented in Figure~\ref{fig:choreographyExample} is used in the process. Each one of the next subsections describes one of the three steps of 
+ the proposal defined in the Section~\ref{sec:proposta}.
+
+\subsection{ Mapping } \label{subsec:mapping_performance}
+
+
+Figure~\ref{fig:ExampleChoreographyGSPNQoS} presents the GSPN obtained as the result of the mapping of the choreography of Figure~\ref{fig:choreographyExample}. Tables 
+\ref{table:place_description} and \ref{table:transition_description} list the interpretation of all places and transitions of the GSPN. The places
+ represent the participants, the start and the end of a communication channel in the interactions, the start and the end of the choreography and 
+ the points of decision and errors according to the QoS model.
+
+
+  \begin{figure}[!h]
+      \centering
+      %\includegraphics[width=.90\textwidth]{Choreography_CaseStudy.png}
+      \includegraphics[width=0.5\textwidth]{./figures/BPMNChoreographyExample-QoS.png}
+      %\caption{GSPN obtido da coreografia do cenário de exemplo}
+      \caption{GSPN obtained from the choreography of Figure~\ref{fig:choreographyExample} }
+      \label{fig:ExampleChoreographyGSPNQoS}
+  \end{figure}
+
+
+
+\begin{table}[!h]
+    \centering
+    %\caption{Descrição das posições da GSPN do exemplo }
+    \caption{  Description of the places in the GSPN of Figure~\ref{fig:ExampleChoreographyGSPNQoS} }
+    \label{table:place_description}
+    \begin{tabular}{|l|l|}
+      \hline
+       Place     &       Description \\
+       \hline
+       $Start$, $End$            &  Start and end of choreography process. \\
+       $A_1$, $A_2$, $A_3$   &  Represents the participant ''Customer''. \\
+       $B_1$, $B_2$, $B_3$   &  Represents the participant ''Financial Advisor''. \\
+       $C_{i1}$, $C_{i2}$, $C_{i3}$   &  Start of the communication. \\
+       $C_{f1}$, $C_{f2}$, $C_{f3}$   &  End of the communication. \\
+       $C_{fok1}$, $C_{fok2}$, $C_{fok3}$   &  Valid message format . \\
+       $C_{error1}$    & Communication error  between A and B. \\
+       $C_{error2}$    & Communication error  between B and A. \\
+       $C_{error3}$    & Communication error  between B and A. \\
+       $M_{err1}$, $_2$, $_3$  & Invalid message format. \\
+       $Xor$ e $Sync$  & \textit{Fork} and \textit{Join} of  exclusive gateway XOR. \\
+      \hline
+    \end{tabular}
+\end{table}
+
+
+\begin{table}[!h]
+    \centering
+    %\caption{Descrição de transições da GSPN do exemplo }
+    \caption{  Description of the transitions in the GSPN of Figure~\ref{fig:ExampleChoreographyGSPNQoS} }
+    \label{table:transition_description}
+    \begin{tabular}{|l|l|}
+      \hline
+       Transition     &       Description \\
+       \hline
+       $T_{Starting}$	 &  Starting choreography instance. \\
+       $T_{Ending}$      &  Ending choreography instance. \\
+       $T_{send1}$, $T_{send2}$ e $T_{send3}$   &  Activity of message sending. \\
+       $T_{arrival1}$, $_2$, $_3$  &  Choreography instances arrival.\\
+       $T_{arrival2}$, $_3$   &  Flow decision.\\
+       $T_{latency1}$, $_2$, $_3$   &     Network latency\\
+       $T_{receive1}$, $_2$, $_3$   &     Receive and service execution.\\	
+       $T_{cerror1}$, $_2$, $_3$  &  Communication error. \\
+       $T_{merror1}$, $_2$, $_3$ &  Format fault message. \\
+       $T_{g}$   & Flow sequence continuation. \\
+       $T_{joining2}$, $_3$   &   Flow joining. \\
+
+      \hline
+    \end{tabular}
+\end{table}
+
+
+%\subsection{ Simulations } \label{subsec:simulations}
+\subsection{ Definitions of weights } \label{subsec:simulations}
+
+The next step is to define the weights representing the timed transitions and the priorities in the immediate transitions. These values
+ depend on the knowledge about the environment where the choreography will be executed and the reliability of the independent
+ services. In this paper we don't consider uncertainties in these values. Table~\ref{table:transitionsConfigurations} presents
+ the definition of the weights in two scenarios, that will be needed to the simulations on the next step. Scenario 1 is configured
+ to have less probability of failures than Scenario 2.
+
+
+\begin{table}[!h]
+    \centering
+    %\caption{Configuração de pesos nos Cenários 1 e 2}
+    \caption{Weights of Scenario 1 and Scenario 2}
+    \label{table:transitionsConfigurations}
+    \begin{tabular}{|l|l|l|}
+      \cline{1-3}
+		    &   \multicolumn{2}{|c|}{ Weights } \\
+      \cline{1-3}
+      %\hline
+       \multicolumn{1}{|c|}{Transition }     		&      Scenario 1   &   Scenario 2 		\\
+       \hline
+       $T_{latency1}$, $T_{latency2}$, $T_{latency3}$ 	& 	0.99       &   0.94	\\
+       $T_{cerror1}$, $T_{cerror2}$, $T_{cerror3}$      	&  	0.01 	   &   0.06	\\
+       $T_{receive1}$, $T_{receive2}$, $T_{receive3}$  &  	99  	   &    97	\\
+       $T_{merr1}$, $T_{merr2}$, $T_{merr3}$   &   1 	   &    3	\\
+       $T_{arrival2}$, $T_{arrival3}$   &  0.5  &	0.5	\\
+      \hline
+    \end{tabular}
+\end{table}
+
+
+
+
+\subsection{Simulations} \label{subsec:analysis}
+
+
+To simulate the scenarios, 100 tokens are considered to each scenario at the place Start. Each token represent one instance of execution
+ of the simulation. So, in each simulation, 100 concurrent instances of the scenarios were executed. Since there are probabilities
+ involved in the experiments, as seen in Table~\ref{table:transitionsConfigurations}, the experiments need to be executed several times. There were defined 1500
+ fires and 10 replications. To simulate the scenarios, the simulator Pipe2 \cite{Bonet2007} was used.
+
+ Table~\ref{table:simulationsAll} shows the results of the simulations. The numbers presented in the table show the average of the tokens 
+that arrived at each one of the places of the GSPN.
+
+%A tabela \ref{table:simulationsAll} mostra os principais resultados das simulações dos cenários 1 e 2 respectivamente nas quais se especificaram
+% 1500 disparos e 10 replicações. Estes resultados mostram a média do número
+%de \emph{tokens} que passaram em uma determinada posição e o intervalo de confiança para indicar a confiabilidade da estimativa.
+
+
+\begin{table}[!h]
+    \centering
+    \caption{Results  (in \%) }
+    \label{table:simulationsAll}
+    \begin{tabular}{|l|l|l|l|l|}
+	  \hline
+		       & \multicolumn{2}{c|}{ Average number of tokens } & \multicolumn{2}{c|}{ 95\% Confidence interval  (+/-) }\\
+	  \hline
+	  Place      &  Scenario 1   &   Scenario 2  	 &  Scenario 1 	  &   Scenario 2 \\
+	  \hline
+	  $Start$ &    35,277	 &    40,14833        &   5,83475    	 &    6,23113         \\
+	  $End$   &    41,94523	 &    38,78167        &   2,53329  	  &  3,82088	\\
+	  $A_1$   &    0,07825	 &    0,08333         &   0,00105   	&  0,00369     \\ %% após da execucao do Treceive 1
+	  $B_2$	  &    0,03599	&     0,00469 		& 	0,00604 &  0,00651 \\ %% após da execucao do Treceive 2
+	  $B_3$	  &    0,03991	&     0,0099  		& 0,00643 	&  0,00742 \\ %% após da execucao do Treceive 3
+      \hline
+	  $B_1$	  &    0,07668	 &  3,22932  		& 0,00056	&  0,00168	\\ %Primeiro participante em iniciar a interação
+	  $A_2$	  &    0,03599	 &  0,00843		& 0,00643	&  0,00724	\\ %% aceito
+	  $A_3$	  &    0,04069	 &  0,00531		& 0,00612	&  0,00638	\\ %%rejeitado
+        \hline
+	  $M_{err1}$	& 0,39202	&     0,90583 		& 0,94914	&  1,92248	\\
+	  $M_{err2}$	& 0	 &    0,9325 		& 0,62632		&  0,63929	\\
+	  $M_{err3}$	& 0   & 0,65583 		& 0,86536	&  0,74018	\\
+        \hline
+	  $C_{err1}$	& 0,73787 	 & 2,93833 	& 0,81703	&  2,02391	\\
+	  $C_{err2}$	& 0	         & 0 		& 0,66667	&  1,75059	\\
+	  $C_{err3}$ 	& 0,77856	 & 0.16233 	& 0,91667	&  1,51997	\\
+        \hline
+	  $C_{i1}$ 	& 8,32316	 & 8,90167 	& 5,32508	&  7,47872	\\
+      $C_{i2}$ 	& 0,62676	 & 0,6875 	& 0,22787	&  0,52219	\\
+      $C_{i3}$ 	& 0,75039	 & 8,90167 	& 0,39	&  0,21236	\\
+
+	  \hline
+	  \end{tabular}
+\end{table}
+
+
+
+%A tabela \ref{table:simulationsAll} mostra que no cenário $1$ em média  $1,51643\%$ ($Cerr1 + Cerr2 + Cerr3$) de instâncias de coreografias não terminaram o processo ($End$) por causa de erros na comunicação na rede entre as interações entre o participante Financeiro com o Cliente no momento de enviar a mensagem. Também, em média $0,39202\%$ ($Merr1 + Merr2 + Merr3$) de instâncias
+%não terminaram o processo por causa de erros no formato de mensagem recebida.
+
+By the results presented in Table~\ref{table:simulationsAll} it is possible to note that in the Scenario 1, an average of $1.51643\%$ ($Cerr1 + Cerr2 + Cerr3$) of 
+the instances didn't  finish the process because of error in the network in the moment of the message exchanges. Also, an average
+ of $0,39202\%$ ($Merr1 + Merr2 + Merr3$) of the instances didn't finish the process because of error in the messages
+ format, detected when the messages were received.
+
+%Da mesma forma, no cenário $2$  houve uma perda de   $4,52167\%$ ($Cerr1 + Cerr2 + Cerr3$) e   $2,49416\%$ ($Merr1 + Merr2 + Merr3$)  de instâncias que não terminaram o processo por causa de erros de comunicação e de formato de mensagem respectivamente. Resultando que efetivamente houve uma maior perda de instâncias de coreografias do que no cenário $1$. No entanto, o que se manteve foi  o gargalo achado no começo da comunicação na primeira interação ($C_{i1}$), retendo  em média $8,32316\%$ e $8,90167\%$ das instâncias antes de serem enviadas pela rede o que pode contribuir em um atraso do tempo de execução total do processo.
+Similarly to the Scenario 1, in Scenario 2 $4,52167\%$ and $2,49416\%$ of the instances didn't finish the process because of error in 
+the network and in the message format respectively. As expected, the results are inline with the parameters
+ defined to each scenario (Table~\ref{table:transitionsConfigurations}).
+
+One important finding with the simulation of these scenarios, and that can be useful to developers and network administrators is related with the existing 
+bottleneck in the first iteration ($C_{i1}$), which avoided $8,32316\%$ and $8,90167\%$ of the instances for being send via
+ network. This information can affect the implementation of the definite choreography or even define new QoS policies to be
+ configured in the network to reduce the delay of the executions.
+
+%Então, como pode se apreciar dá para reconhecer requerimentos de QoS a partir da análise da GSPN obtida. Por exemplo, a resposta de aceitação de uma oferta de
+%A partir dos resultados obtidos das simulações sobre a GSPN que representa a coreografia e o modelo de QoS, dá para reconhecer alguns requerimentos de QoS. Por exemplo, a resposta de aceitação de uma oferta por um Cliente é critica para conseguir lucro na empresa, é por isso que  as falhas devem ser  mínimas e podem ser garantidas mediante o estabelecimento de restrições de QoS e SLA dos serviços entre os participantes.
+
+
+%====================================%
+%\section{Conclusões e Trabalhos Futuros}
+\section{Conclusions and Future Works} \label{sec:Conclusions}
+  This paper presented a new methodology to evaluate the impact of QoS attributes in choreographies of process specified in BPMN 2.0 and
+following the interaction model. This methodology is executed in the earlier stages of the development with the objective of defining
+QoS constraints and SLAs.  This definition allows a reduction in the failures when the choreography will be deployed and enacted. The
+methodology uses a new algorithm to map the choreography into a GSPN. The methodology was employed in two scenarios and the results
+confirmed its efficacy, since it was observed the presence of a bottleneck in the choreography that can be solved by changing the
+interaction in the development or by employing QoS mechanisms in the network to prioritize the traffic affected by the bottleneck.
+
+
+ As future work we will expand our methodology to support generic  probability distributions in the decision points.
+
+
+%Um  trabalho futuro que já se encontra em desenvolvimento pelos autores é considerar aqueles elementos BPMN 2.0 para especificar coreografias de processos
+%que não foram considerados, tais como \emph{sub-choreographies}, \emph{call choreographies}, laços, os outros tipos de \emph{task choreography},
+%entre outros. Além do mais, precisa-se outro tipo de rede de petri para tratar o problema de correlação de instâncias de coreografias e suporte
+% de outros tipos de distribuição de probabilidade nas transições com tempo.  Nessa linha, o uso de redes de petri coloridas pode ajudar
+% a resolver esses problemas.
+%Finalmente, precisamos realizar uma análise mais minuciosa da GSPN obtida e  aplicar nossa proposta para modelos de interconexão de coreografias  e assim realizar uma comparação.
+
+
+
+\section*{Acknowledgment}
+
+ This work is supported by the European Community's Seventh Framework Programme FP7/2007-2013 under grant agreement number
+257178 (project CHOReOS - Large Scale Choreographies for the Future Internet - \url{www.choreos.eu}).
+
+%The authors would like to thank the CHOReOS Project of the  FP7 European program FP7-ICT-2009-5 for financial support. We  would also like to thank to
+%staff of CHOReOS USP partner.
+
+
+
+
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{acm}
+%\bibliography{sbc-template}
+\bibliography{references5.bib}
+
+% that's all folks
+\end{document}
+
+
+
+
