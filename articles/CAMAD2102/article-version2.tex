@@ -247,12 +247,14 @@ on the execution of the following steps:
 
   \item Mapping of the choreography specified in BPMN 2.0 to a GSPN. The GSPN includes the intermediate representation of the choreography
  and the QoS model that takes into account time and communication constraints of the interactions among participants (each participant 
- represents a peer that is active during the enactment of the choreography)
+ represents a peer that is active during the enactment of the choreography).
 
   \item Definition of weights in the transitions with time constraints in the GSPN. In this step, the probability distributions and weights
  in the interactions related to communications and message exchange are defined.
 
- \item Simulations of scenarios, one with a minimum configuration of failures and another with a higher possibility of failure.
+ \item Simulations of scenarios, one with a minimum configuration of failures and another with a higher possibility of failure. Simulations
+  are used because choreographies in the real world represent complex processes which generate complex petri nets with many states 
+  that difficult analytical evaluations \cite{Oliveira2009}.
 
 \end{enumerate}
 
@@ -416,8 +418,9 @@ function of the sequence flows and the gateways. Finally, the Start and the End 
 
 %Nesta seção são aplicados os passos descritos da nossa abordagem no cenário de exemplo da Seção \ref{serviceChoreography} .
 To attest the efficacy of our proposal, in this section all the steps of our methodology are performed. The choreography
- presented in Figure~\ref{fig:choreographyExample} is used in the process. Each one of the next subsections describes one of the three steps of 
- the proposal defined in the Section~\ref{sec:proposta}.
+ presented in Figure~\ref{fig:choreographyExample} is used in the process because that scenario is simple in order to show and understand better the
+ purposed methodology, and includes at least one element of three choreography  BPMN types (task, gateways and events). Each one of the
+ next subsections describes one of the three steps of  the proposal defined in the Section~\ref{sec:proposta}.
 
 \subsection{ Mapping } \label{subsec:mapping_performance}
 
@@ -434,7 +437,7 @@ Figure~\ref{fig:ExampleChoreographyGSPNQoS} presents the GSPN obtained as the re
       \includegraphics[width=0.5\textwidth]{./figures/BPMNChoreographyExample-QoS.png}
       %\caption{GSPN obtido da coreografia do cenário de exemplo}
       \caption{GSPN obtained from the choreography of Figure~\ref{fig:choreographyExample} }
-      \label{fig:ExampleChoreographyGSPNQoS}
+      \label{fig:ExampleChoreographyGSPNQoS} 
   \end{figure}
 
 
