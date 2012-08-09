@@ -369,7 +369,7 @@ function of the sequence flows and the gateways. Finally, the Start and the End 
       \begin{algorithmic}
       { \small
 	%\REQUIRE Process Choreography $\mathcal{PC}$ in BPMN 2.0.
-	\REQUIRE Process Choreography $PC = (\mathcal{O, A, E, G, T, S}, \{e^S\}, \mathcal{E}^I,$ $\{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T},
+	\REQUIRE Process Choreography $PC = (\mathcal{O, A, E, G, T}, \{e^S\}, \mathcal{E}^I,$ $\{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T},
          \mathcal{G}^F, \mathcal{G}^J,$ $\mathcal{G}^X, \mathcal{G}^M, \mathcal{G}^V, \mathcal{F} )$ in BPMN 2.0.
 
 	\ENSURE Generalized Stochastic Petri Net $GSPN_{QoS}$.
@@ -460,9 +460,9 @@ Figure~\ref{fig:ExampleChoreographyGSPNQoS} presents the GSPN obtained as the re
        $C_{i1}$, $C_{i2}$, $C_{i3}$   &  Start of the communication. \\
        $C_{f1}$, $C_{f2}$, $C_{f3}$   &  End of the communication. \\
        $C_{fok1}$, $C_{fok2}$, $C_{fok3}$   &  Valid message format . \\
-       $C_{error1}$    & Communication error  between A and B. \\
-       $C_{error2}$    & Communication error  between B and A. \\
-       $C_{error3}$    & Communication error  between B and A. \\
+       $C_{err1}$    & Communication error  between A and B. \\
+       $C_{err2}$    & Communication error  between B and A. \\
+       $C_{err3}$    & Communication error  between B and A. \\
        $M_{err1}$, $_2$, $_3$  & Invalid message format. \\
        $Xor$ e $Sync$  & \textit{Fork} and \textit{Join} of  exclusive gateway XOR. \\
       \hline
