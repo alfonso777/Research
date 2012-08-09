@@ -145,7 +145,7 @@ Among the various methods to compose services, Web services choreography is an e
 
 
  This paper presents a new approach to detect non-functional failures of the participants in a choreography during the design stage. Our approach
- conducts a performance evaluation by means of generalized stochastic Petri nets (GSPN) as the intermediate representation of a choreography
+ conducts a performance evaluation by means of generalized stochastic Petri nets (GSPNs) as the intermediate representation of a choreography
  specified in BPMN2, a notational language to model business process, with the representation of the QoS model. Our work differs from 
  those found in the literature because it is employed in stages before the development (for example, in the modeling and design). With our 
  proposal it is possible to establish requirements for QoS and SLA in early stages in order to plan the capacity of the network connecting
@@ -167,7 +167,7 @@ Among the various methods to compose services, Web services choreography is an e
 
   The two main approaches to compose services are choreographies and orchestrations. A service choreography allow the composition of services
  in a collaborative manner. A choreography describes the P2P interactions of the externally observable behavior of its participants. Different
- from orchestrations, choreographies don't have a single point of control or coordination \cite{Barker2009}. Choreography tend to be more
+ from orchestrations, choreographies don't have a single point of control or coordination \cite{Barker2009}. Choreographies tend to be more
  efficient than orchestrations because the probability to have a bottleneck in the system is reduced \cite{Barker2009b}.
 
 
@@ -223,9 +223,9 @@ represents an atomic interaction between two or more participants performed by e
   is that the WSCI language has been discontinued.
 
  
-Recently, \cite{Xia2011} proposed an approach to predict the reliability of composite services specified in WS-CDL. It is also
+In \cite{Xia2011} it is  proposed an approach to predict the reliability of composite services specified in WS-CDL. It is also
  presented a complete translation of a choreography specified in WS-CDL to a GSPN. Similar to \cite{Xia2011}, we also use the formalism
- of Petri nets as an intermediate representation of a choreography. \cite{Xia2011} is focused in reliability, while our proposal is focused in
+ of Petri nets as an intermediate representation of a choreography. Different from \cite{Xia2011}, our proposal is focused in 
  QoS attributes of communication network and we use the interaction model of BPMN2 as choreography language.  
 %differ from \cite{Xia2011} in terms of the objective. We define QoS requirements, while 
 
@@ -238,7 +238,7 @@ Recently, \cite{Xia2011} proposed an approach to predict the reliability of comp
 %=================================%
 \section{ Methodology to evaluate the performance of service choreographies} \label{sec:proposta}
 
-The contribution of this paper is to present a new methodology for evaluate the performance of choreographies with the objective of
+The contribution of this paper is  a new methodology to evaluate the performance of choreographies with the objective of
  define  QoS requirements. The evaluation is performed in the design stage of the choreography by using GSPNs. The proposal is based 
 on the execution of the following steps:
 
@@ -256,7 +256,7 @@ on the execution of the following steps:
   are used because choreographies in the real world represent complex processes, which generate complex petri nets with many states 
   that become in difficult analytical evaluations \cite{Oliveira2009}.
 
-
+%The simulations are employed to retrieve approximated performance measures with certain confidence level
 \end{enumerate}
 
 The next subsections present information needed to the execution of all the steps. Subsection~\ref{subsec:formalization} defines
@@ -274,13 +274,14 @@ The next subsections present information needed to the execution of all the step
 
     \begin{mydef}
       A choreography of BPMN processes is a tuple: \\
-       $PC = (\mathcal{O, A, E, G, T, S}, \{e^S\}, \mathcal{E}^I, \{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T}, \mathcal{G}^F, \mathcal{G}^J,$
+       $PC = (\mathcal{O, A, E, G, T}, \{e^S\}, \mathcal{E}^I, \{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T}, \mathcal{G}^F, \mathcal{G}^J,$
        $\mathcal{G}^X, \mathcal{G}^M, \mathcal{G}^V, \mathcal{F} )$ where:
       \begin{itemize}
 	\item $\mathcal{O}$ is the set of objects, which is partitioned in three disjoint sets: activities ($\mathcal{A}$), events $\mathcal{E}$
 	and \emph{gateways} $\mathcal{G}$.
 
-	\item $\mathcal{A}$, is the set of choreography tasks and it is the same as $\mathcal{T}$.
+	\item $\mathcal{A}$, is the set of \textit{Choreography Tasks} ($\mathcal{T}$), \textit{Sub-choreographies} and \textit{Call Choreographies}. However, 
+	\textit{Sub-choreographies} and \textit{Call Choreographies} aren't taken into account in this work, then $\mathcal{A}$ it is the same as $\mathcal{T}$.
 
 	\item $\mathcal{E}$ is the set of events. It is partitioned in three disjoint sets: Start event {$e^\mathcal{S}$}, Intermediate
 	events $\mathcal{E^I}$ and End event {$e^\mathcal{E}$}.
@@ -290,6 +291,7 @@ The next subsections present information needed to the execution of all the step
 	\item $\mathcal{G}$ é the set of gateways and it is partitioned in the 	five disjoints sets of parallel fork gateways $\mathcal{G}^F$,
 	parallel join gateways $\mathcal{G}^J$, data-based XOR gateways $\mathcal{G}^X$, XOR merge gateways $\mathcal{G}^V$ and event-based
 	XOR gateways $\mathcal{G}^M$.
+	\item $\mathcal{F} \subseteq \mathcal{O}x\mathcal{O}$ is the control flow relation, i.e. a set of sequence flows connecting objects,
       \end{itemize}
     \end{mydef}
 
@@ -389,7 +391,7 @@ function of the sequence flows and the gateways. Finally, the Start and the End 
 
 	\FOR { $CT_i \in \mathcal{T} $ }
 	  \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PNQoS(CT_i)$
-          \STATE Add a arrival timed Transition at first of the $GSPN_{QoS}$.
+          \STATE Add a arrival timed Transition at beginning of the $GSPN_{QoS}$.
 	\ENDFOR
 
 	\FOR{ $G_j \in \mathcal{G} $ }
@@ -401,7 +403,7 @@ function of the sequence flows and the gateways. Finally, the Start and the End 
 	\ENDFOR
 
 	\STATE Add a starting Place and immediate Transition at the beginning of the $GSPN_{QoS}$.
-        \STATE Add a ending Place and immediate Transition the end of the $GSPN_{QoS}$.
+        \STATE Add a ending Place and immediate Transition at the end of the $GSPN_{QoS}$.
 
 	\RETURN $GSPN_{QoS}$
       }
@@ -420,7 +422,7 @@ function of the sequence flows and the gateways. Finally, the Start and the End 
 %Nesta seção são aplicados os passos descritos da nossa abordagem no cenário de exemplo da Seção \ref{serviceChoreography} .
 To attest the efficacy of our proposal, in this section all the steps of our methodology are performed. The choreography
  presented in Figure~\ref{fig:choreographyExample} is used in the process  because that scenario is simple in order to show and understand better the
- proposed methodology, and includes at least one element of three choreography  BPMN types (task, gateways and events). Each one of the
+ proposed methodology, and includes at least one element of the three choreography  BPMN types considered (activities, gateways and events). Each one of the
  next subsections describes one of the three steps of  the proposal defined in the Section~\ref{sec:proposta}.
 
 \subsection{ Mapping } \label{subsec:mapping_performance}
@@ -477,17 +479,19 @@ Figure~\ref{fig:ExampleChoreographyGSPNQoS} presents the GSPN obtained as the re
       \hline
        Transition     &       Description \\
        \hline
-       $T_{Starting}$	 &  Starting choreography instance. \\
-       $T_{Ending}$      &  Ending choreography instance. \\
+       $T_{arrival1}$  &  Choreography instances arrival.\\
+       $T_{arrival2}$, $_3$   & Choreography instances arrival and  Flow decisions.\\
        $T_{send1}$, $T_{send2}$ e $T_{send3}$   &  Activity of message sending. \\
-       $T_{arrival1}$, $_2$, $_3$  &  Choreography instances arrival.\\
-       $T_{arrival2}$, $_3$   &  Flow decision.\\
        $T_{latency1}$, $_2$, $_3$   &     Network latency\\
-       $T_{receive1}$, $_2$, $_3$   &     Receive and service execution.\\	
-       $T_{cerror1}$, $_2$, $_3$  &  Communication error. \\
-       $T_{merror1}$, $_2$, $_3$ &  Format fault message. \\
+       $T_{receive}$, $_2$, $_3$   &     Receive and service execution.\\	
+       $T_{cerr1}$, $_2$, $_3$  &  Communication error. \\
+       $T_{merr1}$, $_2$, $_3$ &  Format fault message. \\
        $T_{g}$   & Flow sequence continuation. \\
+       $T_{ok1}, T_{ok2}, T_{ok3}$   &  Valid receive message . \\
        $T_{joining2}$, $_3$   &   Flow joining. \\
+       %$T_{starting}$	 &  Starting choreography instance. \\
+       $T_{ending}$      &  Ending choreography instance. \\
+
 
       \hline
     \end{tabular}
@@ -497,10 +501,10 @@ Figure~\ref{fig:ExampleChoreographyGSPNQoS} presents the GSPN obtained as the re
 %\subsection{ Simulations } \label{subsec:simulations}
 \subsection{ Definitions of weights } \label{subsec:simulations}
 
-The next step is to define the weights representing the timed transitions and the priorities in the immediate transitions. These values
+The next step is to define the weights (rates) representing the timed transitions and the priorities in the immediate transitions. These values
  depend on the knowledge about the environment where the choreography will be executed and the reliability of the independent
  services. In this paper we don't consider uncertainties in these values. Table~\ref{table:transitionsConfigurations} presents
- the definition of the weights in two scenarios, that will be needed to the simulations on the next step. Scenario 1 is configured
+ the definition of the weights and priorities in two scenarios, that will be needed to the simulations on the next step. Scenario 1 is configured
  to have less probability of failures than Scenario 2.
 
 
@@ -517,8 +521,8 @@ The next step is to define the weights representing the timed transitions and th
        \multicolumn{1}{|c|}{Transition }     		&      Scenario 1   &   Scenario 2 		\\
        \hline
        $T_{latency1}$, $T_{latency2}$, $T_{latency3}$ 	& 	0.99       &   0.94	\\
-       $T_{cerror1}$, $T_{cerror2}$, $T_{cerror3}$      	&  	0.01 	   &   0.06	\\
-       $T_{receive1}$, $T_{receive2}$, $T_{receive3}$  &  	99  	   &    97	\\
+       $T_{cerr1}$, $T_{cerr2}$, $T_{cerr3}$      	&  	0.01 	   &   0.06	\\
+       $T_{receive}$, $T_{receive2}$, $T_{receive3}$  &  	99  	   &    97	\\
        $T_{merr1}$, $T_{merr2}$, $T_{merr3}$   &   1 	   &    3	\\
        $T_{arrival2}$, $T_{arrival3}$   &  0.5  &	0.5	\\
       \hline
@@ -531,13 +535,14 @@ The next step is to define the weights representing the timed transitions and th
 \subsection{Simulations} \label{subsec:analysis}
 
 
-To simulate the scenarios, 100 tokens are considered to each scenario at the place Start. Each token represent one instance of execution
- of the simulation. So, in each simulation, 100 concurrent instances of the scenarios were executed. Since there are probabilities
- involved in the experiments, as seen in Table~\ref{table:transitionsConfigurations}, the experiments need to be executed several times. There were defined 1500
- fires and 10 replications. To simulate the scenarios, the simulator Pipe2 \cite{Bonet2007} was used.
+To simulate the scenarios, 100 tokens are considered to each scenario at the place Start. Each token represents one instance of execution
+ of the simulation. So, in each simulation, 100 concurrent instances of the scenarios were executed (multiple-server semantic). 
+%Since  there are probabilities  involved in the experiments
+The two scenarios were executed several times according to configurations in Table~\ref{table:transitionsConfigurations}. There were defined 1500
+ fires and 10 replications. The Pipe2 \cite{Bonet2007} tool was used to model GSPNs and simulate the scenarios.
 
- Table~\ref{table:simulationsAll} shows the results of the simulations. The numbers presented in the table show the average of the tokens 
-that arrived at each one of the places of the GSPN.
+ Table~\ref{table:simulationsAll} shows the results of the simulations with confidence level of $95\%$. The numbers presented in 
+the table show the average of the tokens that arrived at each one of the places of the GSPN.
 
 %A tabela \ref{table:simulationsAll} mostra os principais resultados das simulações dos cenários 1 e 2 respectivamente nas quais se especificaram
 % 1500 disparos e 10 replicações. Estes resultados mostram a média do número
