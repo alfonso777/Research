@@ -480,7 +480,7 @@ Figure~\ref{fig:ExampleChoreographyGSPNQoS} presents the GSPN obtained as the re
        Transition     &       Description \\
        \hline
        $T_{arrival1}$  &  Choreography instances arrival.\\
-       $T_{arrival2}$, $_3$   & Choreography instances arrival and  Flow decisions.\\
+       $T_{arrival2}$, $_3$   & Choreography instances arrival and  flow decisions.\\
        $T_{send1}$, $T_{send2}$ e $T_{send3}$   &  Activity of message sending. \\
        $T_{latency1}$, $_2$, $_3$   &     Network latency\\
        $T_{receive}$, $_2$, $_3$   &     Receive and service execution.\\	
@@ -559,27 +559,27 @@ the table show the average of the tokens that arrived at each one of the places 
 	  \hline
 	  Place      &  Scenario 1   &   Scenario 2  	 &  Scenario 1 	  &   Scenario 2 \\
 	  \hline
-	  $Start$ &    35,28	 &    40,15        &   5,83    	 &    6,23         \\
-	  $End$   &    41,95	 &    38,78        &   2,53  	  &  3,82	\\
-	  $A_1$   &    0,08	 &    0,08         &   0,00   	&  0,00     \\ %% após da execucao do Treceive 1
-	  $B_2$	  &    0,04	&     0,01 		& 	0,01 &  0,01 \\ %% após da execucao do Treceive 2
-	  $B_3$	  &    0,04	&     0,01  		& 0,01 	&  0,01 \\ %% após da execucao do Treceive 3
+	  $Start$ &    35.28	 &    40.15        &   5.83    	 &    6.23         \\
+	  $End$   &    41.95	 &    38.78        &   2.53  	  &  3.82	\\
+	  $A_1$   &    0.08	 &    0.08         &   0.00   	&  0.00     \\ %% após da execucao do Treceive 1
+	  $B_2$	  &    0.04	&     0.01 		& 	0.01 &  0.01 \\ %% após da execucao do Treceive 2
+	  $B_3$	  &    0.04	&     0.01  		& 0.01 	&  0.01 \\ %% após da execucao do Treceive 3
       \hline
-	  $B_1$	  &    0,08	 &  3,23  		& 0,00	&  0,00	\\ %Primeiro participante em iniciar a interação
-	  $A_2$	  &    0,04	 &  0,01		& 0,01	&  0,01	\\ %% aceito
-	  $A_3$	  &    0,04	 &  0,01		& 0,01	&  0,01	\\ %%rejeitado
+	  $B_1$	  &    0.08	 &  3.23  		& 0.00	&  0.00	\\ %Primeiro participante em iniciar a interação
+	  $A_2$	  &    0.04	 &  0.01		& 0.01	&  0.01	\\ %% aceito
+	  $A_3$	  &    0.04	 &  0.01		& 0.01	&  0.01	\\ %%rejeitado
         \hline
-	  $M_{err1}$	& 0,39	 & 0,91 		& 0,95	&  1,92	\\
-	  $M_{err2}$	& 0,00	 & 0,93 		& 0,63		&  0,64	\\
-	  $M_{err3}$	& 0,00   & 0,66 		& 0,87	&  0,74	\\
+	  $M_{err1}$	& 0.39	 & 0.91 		& 0.95	&  1.92	\\
+	  $M_{err2}$	& 0.00	 & 0.93 		& 0.63		&  0.64	\\
+	  $M_{err3}$	& 0.00   & 0.66 		& 0.87	&  0.74	\\
         \hline
-	  $C_{err1}$	& 0,74 	 & 2,94 	& 0,82	&  2,02	\\
-	  $C_{err2}$	& 0,00	 & 0,00 	& 0,67	&  1,75	\\
-	  $C_{err3}$ 	& 0,78	 & 0.16 	& 0,92	&  1,52	\\
+	  $C_{err1}$	& 0.74 	 & 2.94 	& 0.82	&  2.02	\\
+	  $C_{err2}$	& 0.00	 & 0.00 	& 0.67	&  1.75	\\
+	  $C_{err3}$ 	& 0.78	 & 0.16 	& 0.92	&  1.52	\\
         \hline
-	  $C_{i1}$ 	& 8,32	 & 8,90 	& 5,33	&  7,48	\\
-      $C_{i2}$ 	& 0,63	 & 0,69 	& 0,23	&  0,52	\\
-      $C_{i3}$ 	& 0,75	 & 8,90 	& 0,39	&  0,21	\\
+	  $C_{i1}$ 	& 8.32	 & 8.90 	& 5.33	&  7.48	\\
+      $C_{i2}$ 	& 0.63	 & 0.69 	& 0.23	&  0.52	\\
+      $C_{i3}$ 	& 0.75	 & 8.90 	& 0.39	&  0.21	\\
 
 	  \hline
 	  \end{tabular}
@@ -592,16 +592,16 @@ the table show the average of the tokens that arrived at each one of the places 
 
 By the results presented in Table~\ref{table:simulationsAll} it is possible to note that in the Scenario 1, an average of $1.52\%$ ($C_{err1} + C_{err2} + C_{err3}$) of 
 the instances didn't  finish the process because of error in the network in the moment of the message exchanges. Also, an average
- of $0,39\%$ ($M_{err1} + M_{err2} + M_{err3}$) of the instances didn't finish the process because of error in the messages
+ of $0.39\%$ ($M_{err1} + M_{err2} + M_{err3}$) of the instances didn't finish the process because of error in the messages
  format, detected when the messages were received.
 
 %Da mesma forma, no cenário $2$  houve uma perda de   $4,52167\%$ ($Cerr1 + Cerr2 + Cerr3$) e   $2,49416\%$ ($Merr1 + Merr2 + Merr3$)  de instâncias que não terminaram o processo por causa de erros de comunicação e de formato de mensagem respectivamente. Resultando que efetivamente houve uma maior perda de instâncias de coreografias do que no cenário $1$. No entanto, o que se manteve foi  o gargalo achado no começo da comunicação na primeira interação ($C_{i1}$), retendo  em média $8,32316\%$ e $8,90167\%$ das instâncias antes de serem enviadas pela rede o que pode contribuir em um atraso do tempo de execução total do processo.
-Similarly to the Scenario 1, in Scenario 2, an average of $3,10\%$ and $2,50\%$ of the instances didn't finish the process because of error in 
+Similarly to the Scenario 1, in Scenario 2, an average of $3.10\%$ and $2.50\%$ of the instances didn't finish the process because of error in 
 the network and in the message format respectively. As expected, the results are inline with the parameters
  defined to each scenario (Table~\ref{table:transitionsConfigurations}).
 
 One important finding with the simulation of these scenarios, and that can be useful to developers and network administrators is related with the existing 
-bottleneck in the first iteration ($C_{i1}$), which avoided $8,32\%$ and $8,90\%$ of the instances for being send via
+bottleneck in the first iteration ($C_{i1}$), which avoided $8.32\%$ and $8.90\%$ of the instances for being send via
  network. This information can affect the implementation of the definite choreography or even define new QoS policies to be
  configured in the network to reduce the delay of the executions.
 
