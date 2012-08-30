@@ -18,7 +18,8 @@
 \usepackage{subfigure} 					% uso de many figures
 
 
-\usepackage{color}
+%\usepackage{color}
+\usepackage{color, colortbl}
 %\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage{xcolor}
 \usepackage{comment}
@@ -117,7 +118,7 @@
 % ------------------------------------------------------------------%
 % --- Basic Concepts ---------------------------------------------------%
 \section{Introduction}
-  
+
 % -----  SOC ----------%
     \begin{frame}{SOC}
        	\begin{block}{SOC (Service Oriented Computing)}\vspace{-.3\baselineskip}
@@ -219,7 +220,7 @@
 		\item Don’t have a single point of control or coordination.
 	      \end{itemize}
 
-	      
+	
               \begin{figure}[!h]
                   \centering
                   \includegraphics[width=0.4\textwidth]{ChoreographyA.png}
@@ -258,17 +259,17 @@
     \begin{itemize}
       \item <1-> A Choreography is a type of process.
 	\begin{itemize}
-	  \item Differs in purpose and behavior from a standard BPMN Process (Process Orchestration). 
+	  \item Differs in purpose and behavior from a standard BPMN Process (Process Orchestration).
 	  \item Formalizes the way business \colorbox{yellow}{Participants} \textbf{coordinate} their \colorbox{yellow}{interactions}.
 	\end{itemize}
       \item <2-> Focus on the exchange of information (\colorbox{yellow}{Messages}) between these Participants.
       \item <3-> Two approaches:
 	\begin{itemize}
-	  \item <4-> \colorbox{yellow}{Interconnection Model}: With collaborations diagrams. 
-	  \item <5-> \colorbox{yellow}{Interaction Model}:  BPMN Choreographies. using special activities (\textit{Choreography Activity}). 
+	  \item <4-> \colorbox{yellow}{Interconnection Model}: With collaborations diagrams.
+	  \item <5-> \colorbox{yellow}{Interaction Model}:  BPMN Choreographies. using special activities (\textit{Choreography Activity}).
 	\end{itemize}
     \end{itemize}
-    
+
   \end{frame}
 
 
@@ -282,7 +283,7 @@
 	    \centering
 	    \includegraphics[width=0.8\textwidth]{interconnection_choreography.png}
 	    %\caption{BPMN elements for modeling choreographies.}
-    \end{figure}	 
+    \end{figure}	
   \end{frame}
 
 
@@ -296,25 +297,45 @@
 	      \centering
 	      \includegraphics[width=0.8\textwidth]{interaction_choreography.png}
 	      %\caption{BPMN elements for modeling choreographies.}
-      \end{figure}	 
+      \end{figure}	
   \end{frame}
 
 
   \begin{frame}{BPMN Choreography}
-    
+
     \begin{figure}[!h]
 	      \centering
 	      \includegraphics[width=0.8\textwidth]{BPMNBasicChoroegraphy.png}
 	      \caption{BPMN elements for modeling choreographies (BPMN 2.0).}
-      \end{figure}	 
+      \end{figure}	
   \end{frame}
-  
+
   \begin{frame}{ Generalized Stochastic Petri Net (GSPN) (I)}
-   
+    \begin{itemize}
+	  \item \textbf{Petri Net}:.	
+	  \item 
+	  \item 
+	\end{itemize}
+
+    \begin{figure}[!h]
+	      \centering
+	      \includegraphics[width=0.8\textwidth]{petrinet.png}
+	      \caption{Elements of a petri net.}
+      \end{figure}	    
   \end{frame}
 
   \begin{frame}{ Generalized Stochastic Petri Net (GSPN) (II)}
-   
+    \begin{itemize}
+	  \item \textbf{GSPN}: .	
+	  \item
+	  \item
+	\end{itemize}
+
+    \begin{figure}[!h]
+	      \centering
+	      \includegraphics[width=0.8\textwidth]{petrinet.png}
+	      \caption{Elements of a GSPN.}
+      \end{figure}	    
   \end{frame}
 % ------------------------------------------------------------------%
 % ------------------------------------------------------------------%
@@ -330,7 +351,7 @@
 	      \item focusing on \textbf{QoS} or
 	      \item in earlier stages of development.
 	    \end{itemize}
-          \item <3-> To guarantee QoS about communications (network) is important. 
+          \item <3-> To guarantee QoS about communications (network) is important.
     	\end{itemize}
     \end{frame}
 
@@ -345,7 +366,7 @@
         \end{block}
     \end{frame}
 
-    
+
 \begin{comment}
   \begin{frame}{Justification}
     	\begin{itemize}
@@ -372,7 +393,7 @@ choreography.
 	    \item The resulting GSPN include a QoS model.
 	  \end{itemize}
 
-      \item <2-> Configurations of resulting GSPN. 
+      \item <2-> Configurations of resulting GSPN.
       \item <3-> Simulations of scenarios.
     \end{enumerate}
 
@@ -381,34 +402,37 @@ choreography.
 
   \begin{frame}{Choreography Formalization}
     \begin{block}{ Definition: Process Choreography }\vspace{-.3\baselineskip}
-      A process choreography  is a tuple: 
+      \uncover<1->{A process choreography  is a tuple: }
+      \uncover<2->{
+         \textcolor{componentColor}{
             \textbf{ $PC = (\mathcal{O, A, E, G, T}, \{e^S\}, \mathcal{E}^I, \{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T}, \mathcal{G}^F, \mathcal{G}^J,$
-       $\mathcal{G}^X, \mathcal{G}^M, \mathcal{G}^V, \mathcal{F} )$} where:
-      
+       $\mathcal{G}^X, \mathcal{G}^M, \mathcal{G}^V, \mathcal{F} )$} }where:
+        }
+
       \begin{itemize}
-	  \item \textbf{$\mathcal{O}$} is a set of objects and it's partitioned in \textbf{activities $\mathcal{A}$}, \textbf{events $\mathcal{E}$} and \textbf{gateways $\mathcal{G}$}.
-	  \item \textbf{$\mathcal{A}$}, is the set of \textbf{choreography tasks $\mathcal{T}$}.
-	  \item \textbf{$\mathcal{E}$} is the set of \textbf{events} and  it's is partitioned in \textbf{Start event {$e^\mathcal{S}$}}, \textbf{Intermediate
+	  \item <2->\textbf{$\mathcal{O}$} is a set of objects and it's partitioned in \textbf{activities $\mathcal{A}$}, \textbf{events $\mathcal{E}$} and \textbf{gateways $\mathcal{G}$}.
+	  \item <3-> \textbf{$\mathcal{A}$}, is the set of \textbf{choreography tasks $\mathcal{T}$}.
+	  \item <4-> \textbf{$\mathcal{E}$} is the set of \textbf{events} and  it's is partitioned in \textbf{Start event {$e^\mathcal{S}$}}, \textbf{Intermediate
 	events $\mathcal{E^I}$} and \textbf{End event {$e^\mathcal{E}$}}.
-	  \item \textbf{$\mathcal{G}$} é the set of \textbf{gateways} and is partitioned in \textbf{parallel fork gateways $\mathcal{G}^F$},
+	  \item <5-> \textbf{$\mathcal{G}$} é the set of \textbf{gateways} and is partitioned in \textbf{parallel fork gateways $\mathcal{G}^F$},
 	\textbf{parallel join gateways $\mathcal{G}^J$}, \textbf{data-based XOR gateways $\mathcal{G}^X$}, \textbf{XOR merge gateways $\mathcal{G}^V$} and \textbf{event-based
 	XOR gateways $\mathcal{G}^M$}.
-	\item \textbf{$\mathcal{F} \subseteq \mathcal{O}x\mathcal{O}$} is the control flow relation, i.e. a \textbf{set of sequence flows connecting objects}.
+	\item <6-> \textbf{$\mathcal{F} \subseteq \mathcal{O}x\mathcal{O}$} is the control flow relation, i.e. a \textbf{set of sequence flows connecting objects}.
       \end{itemize}
-      
+
     \end{block}
 
   \end{frame}
 
-  
+
   \begin{frame}{QoS Model}
-    \begin{itemize} %%Perhaps it's needed use some picture, for example life cycle call service. 
+    \begin{itemize} %%Perhaps it's needed use some picture, for example life cycle call service.
 	\item Defining the QoS attributes involved in \textbf{service}, \textbf{network} and \textbf{message} aspects.
 	\item QoS attributes:
 	    \begin{itemize}
-	      \item In service operation: time to complete the service.
-	      \item In network: delay and communication errors. 
-	      \item In message: format of message.
+	      \item \colorbox{yellow}{In service operation}: \textbf{time to complete the service}.
+	      \item \colorbox{yellow}{In network}: delay and \textbf{communication errors}.
+	      \item \colorbox{yellow}{In message}: \textbf{message format}.
 	    \end{itemize}
     \end{itemize}
   \end{frame}
@@ -417,21 +441,21 @@ choreography.
   \begin{frame}{Mapping BPMN to Petri Net (I)}
     \begin{figure}[!h]
       \centering
-      \includegraphics[width=0.8\textwidth]{BPMNChoreographies1-QoS1.png}
-      \caption{  Mapping of two different choreography tasks with the QoS model}      
-    \end{figure}   
+      \includegraphics[width=1.0\textwidth]{BPMNChoreographies1-QoS.png}
+      \caption{  Mapping of two different choreography tasks with the QoS model}
+    \end{figure}
   \end{frame}
 
 
   \begin{frame}{Mapping BPMN to Petri Net (II)}
     \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{BPMNChoreographies2_2.png}
+	\includegraphics[width=0.95\textwidth]{BPMNChoreographies2_2.png}
 	\caption{Mapping of events and gateways elements to modules of Petri nets}
-     \end{figure}   
+     \end{figure}
   \end{frame}
 
-  
+
   \begin{frame}{Mapping Algorithm (I)}
       \begin{algorithm}[H]
 	  %\caption{Mapping a Interconnection Choreography in BPMN onto a GSPN with QoS model}
@@ -441,11 +465,11 @@ choreography.
 	    \begin{algorithmic}
 	    { \footnotesize
 	      %\REQUIRE Process Choreography $\mathcal{PC}$ in BPMN 2.0.
-	      \uncover<0->{ \REQUIRE \textbf{Process Choreography} \textcolor{componentColor}{ \textbf{ $PC = (\mathcal{O, A, E, G, T}, \{e^S\}, \mathcal{E}^I,$ $\{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T}, 
+	      \uncover<0->{ \REQUIRE \textbf{Process Choreography} \textcolor{componentColor}{ \textbf{ $PC = (\mathcal{O, A, E, G, T}, \{e^S\}, \mathcal{E}^I,$ $\{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T},
 	      \mathcal{G}^F, \mathcal{G}^J,$ $\mathcal{G}^X, \mathcal{G}^M, \mathcal{G}^V, \mathcal{F} )$} } in BPMN 2.0. }
 
 	      \uncover<1->{ \ENSURE Generalized Stochastic Petri Net \textcolor{componentColor}{ \textbf{$GSPN_{QoS}$} }.  }
-	      
+	
 	    \vspace*{3 mm}
 	     \uncover<2->{ \STATE Consider \textcolor{componentColor}{ \textbf{$CT_i \in \mathcal{T} $, $G_j \in \mathcal{G} $}} and \textcolor{componentColor}{ \textbf{$E_k \in \mathcal{E}$}. where  $i, j, k \in \mathbb{N} $}. }
 	      %\STATE Let $PNQoS(CT_i)$ a respective GSPN including QoS from type of $CT_i$ and according to mapping rules (Figure \ref{fig:MappingTaskChoreographiesQoS1}).
@@ -459,7 +483,7 @@ choreography.
 
 	    }
 	\end{algorithmic}
- 
+
       \end{algorithm}
 
   \end{frame}
@@ -467,21 +491,21 @@ choreography.
 
 %165,42,42
   \begin{frame}{ Mapping Algorithm (II)}
-       
+
 
     \begin{algorithm}[H]
 %	    \caption{ { \small Mapping of choreography specified in BPMN 2.0 to a GSPN with QoS model} }
 %	    \label{alg2}
 	    \begin{algorithmic}
 	    { \footnotesize
-	      
+	
 	      \uncover<1->{  \STATE $\textcolor{componentColor}{GSPN_{QoS} } \leftarrow  Empty\  Petri\  Net$  }
 
 	      %\FOR { $CT_i \in T $ }
 	      % \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PNQoS(CT_i)$
 	      %\ENDFOR
 
-	      \uncover<2->{   \FOR { $\textcolor{componentColor}{ CT_i} \in \textcolor{componentColor}{\mathcal{T}} $ } }  
+	      \uncover<2->{   \FOR { $\textcolor{componentColor}{ CT_i} \in \textcolor{componentColor}{\mathcal{T}} $ } }
 		\uncover<3->{ \STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{ GSPN_{QoS} } \oplus \textcolor{componentColor}{ PNQoS(CT_i) } $  		}
 		\uncover<4->{ \STATE Add a arrival \textbf{timed Transition} at beginning of the \textcolor{componentColor}{$GSPN_{QoS}$}.   }
 	     \uncover<2->{  \ENDFOR }
@@ -490,7 +514,7 @@ choreography.
 		\uncover<6->{	\STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{GSPN_{QoS}} \oplus \textcolor{componentColor}{ PN(G_j) }$	}
 	      \uncover<5->{ \ENDFOR	}
 	    \vspace*{3 mm}
-	    \uncover<7->{ \FOR{ $\textcolor{componentColor}{ E_k } \in \textcolor{componentColor}{ \mathcal{E} } $ }					}	
+	    \uncover<7->{ \FOR{ $\textcolor{componentColor}{ E_k } \in \textcolor{componentColor}{ \mathcal{E} } $ }					 }	
 		\uncover<8->{ \STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{ GSPN_{QoS} } \oplus \textcolor{componentColor}{ PN(E_k) }$  	}
 	      \uncover<7->{ \ENDFOR		}
 	      \vspace*{3 mm}
@@ -500,45 +524,136 @@ choreography.
 	      \uncover<11->{ \RETURN \textcolor{componentColor}{$GSPN_{QoS}$}		}
 	    }
 	\end{algorithmic}
- 
+
       \end{algorithm}
   \end{frame}
 
-  
 
 
-  
+
+
 
 % ------------------------------------------------------------------%
 % ------------------------------------------------------------------%
 % -------------------- Performance Evaluation ----------------------%
 \section{Performance Evaluation}
   \begin{frame}{Scenario}
-  
+    \begin{figure}[!h]
+    	\centering
+    	\includegraphics[width=0.8\textwidth]{BPMNChoreographyExample.png}
+    	\caption{Example of choreography using BPMN2 elements.}
+    \end{figure}
   \end{frame}
 
 
   \begin{frame}{Mapping}
-   
+    \begin{figure}[!h]
+    	\centering
+    	\includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS.png}
+    	\caption{GSPN obtained from the choreography.}
+    \end{figure}
   \end{frame}
 
 
   \begin{frame}{ Configuration}
-   
+        \begin{table}[!h]
+            \centering
+            %\caption{Configuração de pesos nos Cenários 1 e 2}
+            \caption{Weights of Scenario 1 and Scenario 2}
+            \label{table:transitionsConfigurations}
+            \begin{tabular}{|l|l|l|}
+              \cline{1-3}
+        		    &   \multicolumn{2}{|c|}{ \textbf{Weights} } \\
+              \cline{1-3}
+              %\hline
+               \multicolumn{1}{|c|}{\textbf{Transition} }     		&      \textbf{Scenario 1}   &   \textbf{Scenario 2} 		\\
+               \hline
+               $T_{latency1}$, $T_{latency2}$, $T_{latency3}$ 	& 	0.99       &   0.94	\\
+               $T_{cerr1}$, $T_{cerr2}$, $T_{cerr3}$      	&  	0.01 	   &   0.06	\\
+               $T_{receive}$, $T_{receive2}$, $T_{receive3}$  &  	99  	   &    97	\\
+               $T_{merr1}$, $T_{merr2}$, $T_{merr3}$   &   1 	   &    3	\\
+               $T_{arrival2}$, $T_{arrival3}$   &  0.5  &	0.5	\\
+              \hline
+            \end{tabular}
+        \end{table}
+
   \end{frame}
 
 
   \begin{frame}{ Simulation}
-   
+   \begin{itemize}
+     \item <1-> \textbf{$1$ token} = \textbf{$1$ choreography instance}.
+     \item <2-> \textbf{$100$ tokens} are considered to each scenario at the \textbf{place Start}.
+     \item <2-> \textbf{$100$ concurrent instances} were executed (\textbf{multiple-server semantic}).
+     \item <3-> The \textbf{Pipe2} tool was used to \textbf{model} and \textbf{simulate} the \textbf{GSPN}.
+     \item <4-> $1500$ fires and $10$ replications.
+     \item <4-> Confidence level of $95\%$.
+   \end{itemize}
   \end{frame}
 
 
+  \begin{frame}{ Results (I)}
 
-  \begin{frame}{ Results}
-   
+{ \footnotesize
+     \begin{table}[!h]
+            \centering
+            \caption{Simulation results  (in \%) }
+            \label{table:simulationsAll}
+            \begin{tabular}{|l|l||l|l||l|}
+        	  \hline
+        	 	        & \multicolumn{2}{c|}{ \textbf{Average number of tokens} } & \multicolumn{2}{c|}{ \textbf{95\% Confidence interval  (+/-)} }  \\
+        	  \hline
+        	  \textbf{Place}      &  \textbf{Scenario 1}   &   \textbf{Scenario 2}  	 &  \textbf{Scenario 1} 	  &   \textbf{Scenario 2} \\
+        	  \hline
+        	  $Start$ &    35.28	 &    40.15        &   5.83    	 &    6.23         \\
+        	  $End$   &    41.95	 &    38.78        &   2.53  	  &  3.82	\\
+        	  %$A_1$   &    0.08	 &    0.08         &   0.00   	&  0.00     \\ %% após da execucao do Treceive 1
+        	  %$B_2$	  &    0.04	&     0.01 		& 	0.01 &  0.01 \\ %% após da execucao do Treceive 2
+        	  %$B_3$	  &    0.04	&     0.01  		& 0.01 	&  0.01 \\ %% após da execucao do Treceive 3
+              \hline
+        	  %$B_1$	  &    0.08	 &  3.23  		& 0.00	&  0.00	\\ %Primeiro participante em iniciar a interação
+        	  %$A_2$	  &    0.04	 &  0.01		& 0.01	&  0.01	\\ %% aceito
+        	  %$A_3$	  &    0.04	 &  0.01		& 0.01	&  0.01	\\ %%rejeitado
+              %  \hline
+        	  $M_{err1}$	& 0.39	 & 0.91 		& 0.95	&  1.92	\\
+        	  $M_{err2}$	& 0.00	 & 0.93 		& 0.63		&  0.64	\\
+        	  $M_{err3}$	& 0.00   & 0.66 		& 0.87	&  0.74	\\
+                \hline
+        	  $C_{err1}$	& 0.74 	 & 2.94 	& 0.82	&  2.02	\\
+        	  $C_{err2}$	& 0.00	 & 0.00 	& 0.67	&  1.75	\\
+        	  $C_{err3}$ 	& 0.78	 & 0.16 	& 0.92	&  1.52	\\
+                \hline
+        	  $C_{i1}$ 	& 8.32	 & 8.90 	& 5.33	&  7.48	\\
+              $C_{i2}$ 	& 0.63	 & 0.69 	& 0.23	&  0.52	\\
+              $C_{i3}$ 	& 0.75	 & 8.90 	& 0.39	&  0.21	\\
+
+        	  \hline
+        	  \end{tabular}
+        \end{table}
+}
   \end{frame}
 
+  \begin{frame}{ Results (II)}
+      \begin{itemize}
+         \item <1-> \textbf{Communication errors}: An average of  \textbf{$C_{err1}+C_{err2}+C_{err3}$} of instances \textbf{didn’t finish the process}.
+            \begin{itemize}
+              \item Scenario 1: $1.52\%$.
+              \item Scenario 2: $3.10\%$ (more errors).
+            \end{itemize}
+         \item <2-> \textbf{Invalid format message}: An average of  \textbf{$M_{err1}+M_{err2}+M_{err3}$} of instances \textbf{didn’t finish the process}.
+            \begin{itemize}
+              \item Scenario 1: $0.39\%$.
+              \item Scenario 2: $2.50\%$ (more invalid messages).
+            \end{itemize}
+        \item <3->\textbf{Bottleneck}: It was found a communication bottleneck in the first interaction ($C_i$ place).
+            \begin{itemize}
+              \item Scenario 1: $8.32\%$.
+              \item Scenario 2: $8.90\%$.
+            \end{itemize}
 
+      \end{itemize}
+  \end{frame}
+  
 
 
 
@@ -546,21 +661,34 @@ choreography.
 \section{Conclusions and Future Works}
    \begin{frame}{Conclusions}
        \begin{itemize}
-         \item <1->  We have prosposed a Nobel methodology to aid define QoS and SLA requirements in service Choreography.
-	 \item <2->  
+         \item <1->  We have proposed a Novel methodology to aid define QoS and SLA requirements in service Choreography.
+         \item <2-> First and initial approach using the ``interaction model'' (supported by BPMN $2.0$).
+         \item <3-> The GSPN is good to model and analyze several aspects involved into service choreography. 
+         \item <4-> The simulation is needed for supporting analysis of complex process (e.g. process choreography).   
+     	 \item <5-> The simulation results can be used to establish early QoS and SLA constraints. 
+            \begin{itemize}
+              \item Integration is expensive, then early detections are needed.  
+              \item Establishing SLAs according to resources. 
+              \item Planning in order to reduce failures.
+              \item For example: the detected bottleneck can be solved by changing the interaction (modeling issues) or by employing QoS mechanisms in the network to prioritize the traffic affected ( resource planning).
+            \end{itemize}
        \end{itemize}
    \end{frame}
+
 
   \begin{frame}{Future Works}
        \begin{itemize}
-         \item <1->  .
-	 \item <2->  
+         \item <1-> To extend the mapping to supporting more choreography BPMN elements.
+    	 \item <2-> To expand our methodology to support generic probability distributions in the decision points. Using Colored Petri Nets (CPNs) can be a alternative.
+         \item <3-> To make more analysis and to use complex scenarios, where correlations problems could happen.
+         \item <4-> To include more QoS attributes.
+
        \end{itemize}
    \end{frame}
 
 
 
-%\bibliographystyle{apalike}% 
+%\bibliographystyle{apalike}%
 %\def\newblock{}
  %       \bibliography{slides}
  %   \end{thebibliography}
@@ -578,4 +706,4 @@ choreography.
 
 
 
-\end{document}
+\end{document} 
