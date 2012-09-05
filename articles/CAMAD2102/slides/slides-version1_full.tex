@@ -1,5 +1,6 @@
 %\documentclass[12pt,t]{beamer}
 \documentclass[xcolor=svgnames]{beamer}
+
 %\usecolortheme[named=DarkBlue]{structure}
 
 \useoutertheme{infolines}
@@ -43,7 +44,7 @@
 \renewcommand{\algorithmicdo}{\textcolor[RGB]{165, 42, 42}{\textbf{Do}}}
 \renewcommand{\algorithmicreturn}{\textcolor[RGB]{165, 42, 42}{\textbf{Return}}}
 
-\newcommand {\otoprule}{\midrule [\heavyrulewidth]}  % This is for getting a bold horizontal line in the
+\newcommand {\otoprule}{\midrule [\heavyrulewidth]}  % This is for getting a bold horizontal line in the 
 
 \bibliographystyle{apalike}
 % ------numbering frames-----------------------------------------%
@@ -84,7 +85,7 @@
 		%%{\bf Co-orientador} \\  Marco Dimas Gubitoso 	
 	}
 \institute[IME-USP]
-	{%{Institute of Mathematics and Statistics \\
+	{Institute of Mathematics and Statistics \\
 	 Departament of Computer Science \\	
 	 University of Sao Paulo  \\  [1ex]
 	 \texttt{alfonso7@ime.usp.br, batista@ime.usp.br}
@@ -147,7 +148,6 @@
     \end{frame}
 
 
-\begin{comment}
 %----------------- SOA -------------------%
   \begin{frame}{Web Services and SOA}
     	         \only<1>{	
@@ -188,16 +188,32 @@
           }
 
     \end{frame}
-\end{comment}
+
 
     %----- Service Orchestration -----%
     \begin{frame}{Service Orchestration}
-	      %show only orchestrator without workflow
+          \only<1>{	
               \begin{figure}[!h]
                   \centering
-                  \includegraphics[width=0.4\textwidth]{Orchestration.png}
+                  \includegraphics[width=0.25\textwidth]{Orchestration_1.png}
                   \caption{Service Orchestration}
               \end{figure}	
+          }
+          \only<2>{	
+              \begin{figure}[!h]
+                  \centering
+                  \includegraphics[width=0.45\textwidth]{Orchestration_2.png}
+                  \caption{Service Orchestration}
+              \end{figure}	
+          }
+          \only<3>{	
+              \begin{figure}[!h]
+                  \centering
+                  \includegraphics[width=0.5\textwidth]{Orchestration_3.png}
+                  \caption{Service Orchestration}
+              \end{figure}	
+          }
+
   \end{frame}
 
     %----- Service Choreography -----%
@@ -223,14 +239,20 @@
             %      \caption{Service Choreography}
             %  \end{figure}	
           %}
-          \only<2>{ %without workflow on the right	
+          \only<2>{	
               \begin{figure}[!h]
                   \centering
-                  \includegraphics[width=0.8\textwidth]{ChoreographyB.png}
+                  \includegraphics[width=1.0\textwidth]{ChoreographyB_2.png}
                   \caption{Service Choreography}
               \end{figure}	
           }
-
+          \only<3>{
+              \begin{figure}[!h]
+                  \centering
+                  \includegraphics[width=1.0\textwidth]{ChoreographyB_3.png}
+                  \caption{Service Choreography}
+              \end{figure}
+          }
     \end{frame}
 
 
@@ -259,7 +281,6 @@
   \end{frame}
 
 
-\begin{comment}
   \begin{frame}{Interconnection Model}
       \begin{itemize}
 	\item Interconnected public views.	
@@ -272,7 +293,7 @@
 	    %\caption{BPMN elements for modeling choreographies.}
     \end{figure}	
   \end{frame}
-\end{comment}
+
 
   \begin{frame}{Interaction Model}
     \begin{itemize}
@@ -282,7 +303,7 @@
 	\end{itemize}
     \begin{figure}[!h]
 	      \centering
-	      \includegraphics[width=0.8\textwidth]{interaction_choreography2.png}
+	      \includegraphics[width=0.8\textwidth]{interaction_choreography.png}
 	      %\caption{BPMN elements for modeling choreographies.}
       \end{figure}	
   \end{frame}
@@ -297,7 +318,6 @@
       \end{figure}	
   \end{frame}
 
-\begin{comment}
   \begin{frame}{ Petri Net (PN)}
       \begin{itemize}
 	    \item < 1-> \textbf{PN} is a formalism for modeling \textcolor{blue}{\textbf{concurrency}},  \textcolor{blue}{\textbf{causality}} and \textcolor{blue}{\textbf{conflict}}.	
@@ -314,7 +334,6 @@
     }
   \end{frame}
 
-
   \begin{frame}{ Generalized Stochastic Petri Net (GSPN)}
     \begin{itemize}
         \item < 1->\textbf{GSPN} is an extension of PN that associate an \textbf{exponentially distributed delay} with
@@ -330,11 +349,11 @@
 	\end{figure}	
     }
   \end{frame}
-\end{comment}
 % ------------------------------------------------------------------%
 % ------------------------------------------------------------------%
 % ------ Problem ---------------------------------------------------%
 \section{Problem}
+
 
     \begin{frame}{Problem to Solve}
     	\begin{itemize}
@@ -393,7 +412,6 @@ choreography.
   \end{frame}
 
 
-\begin{comment}
   \begin{frame}{Choreography Formalization}
     \begin{block}{ Definition: Process Choreography }\vspace{-.3\baselineskip}
       \uncover<1->{A process choreography  is a tuple: }
@@ -417,7 +435,7 @@ choreography.
     \end{block}
 
   \end{frame}
-\end{comment}
+
 
   \begin{frame}{QoS Model}
     \begin{itemize} %%Perhaps it's needed use some picture, for example life cycle call service.
@@ -432,7 +450,6 @@ choreography.
   \end{frame}
 
 
-\begin{comment}
   \begin{frame}{Mapping BPMN to Petri Net (I)}
     \begin{figure}[!h]
       \centering
@@ -440,18 +457,17 @@ choreography.
       \caption{  Mapping of two different choreography tasks with the QoS model}
     \end{figure}
   \end{frame}
-\end{comment}
 
-\begin{frame}{Mapping BPMN to GSPN (I)}
+
+  \begin{frame}{Mapping BPMN to Petri Net (II)}
     \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{BPMNChoreographies2_2.png}
+	\includegraphics[width=0.95\textwidth]{BPMNChoreographies2_2.png}
 	\caption{Mapping of events and gateways elements to modules of Petri nets}
      \end{figure}
-\end{frame}
+  \end{frame}
 
-
-  \begin{frame}{Mapping BPMN to GSPN (II)}
+  \begin{frame}{QoS support}
       \only<1>{	
             \begin{figure}[!h]
             	\centering
@@ -493,97 +509,82 @@ choreography.
 %\newcounter{inialg}
 %\newcounter{savealg}
 %\counterwithout{algorithm}{frame}
-  \begin{frame}{Mapping Algorithm}
-
+  \begin{frame}{Mapping Algorithm (I)}
       \begin{algorithm}[H]
+
 	  %\caption{Mapping a Interconnection Choreography in BPMN onto a GSPN with QoS model}
 	    %\caption{ { \small Mapeamento de uma coreografia especificada em BPMN 2.0 para uma GSPN com o modelo de QoS } }
-	    \caption*{   Mapping of choreography in BPMN 2.0 to  GSPN with QoS model}
+	    \caption*{  \textbf{\textit{Algorithm 1}:}  { \footnotesize     Mapping of choreography specified in BPMN 2.0 to a GSPN with QoS model} }
 	    %\label{alg2}
-
- 
 	    \begin{algorithmic}%[1]
- { \footnotesize		
+	    { \footnotesize
 	      %\REQUIRE Process Choreography $\mathcal{PC}$ in BPMN 2.0.
 	      \visible<1->{ \REQUIRE \textbf{Process Choreography} \textcolor{componentColor}{ \textbf{ $PC = (\mathcal{O, A, E, G, T}, \{e^S\}, \mathcal{E}^I,$ $\{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T},
 	      \mathcal{G}^F, \mathcal{G}^J,$ $\mathcal{G}^X, \mathcal{G}^M, \mathcal{G}^V, \mathcal{F} )$} } in BPMN 2.0. }
 
+	    
 	      \visible<2->{ \ENSURE Generalized Stochastic Petri Net \textcolor{componentColor}{ \textbf{$GSPN_{QoS}$} }.  }
-	      \vspace*{3 mm}	
-}	
-  { \tiny	
-	     \visible<3->{
-        \STATE \textcolor{componentColor}{ \textbf{$CT_i \in \mathcal{T} $, $G_j \in \mathcal{G} $}} and \textcolor{componentColor}{ \textbf{$E_k \in \mathcal{E}$}. where  $i, j, k \in \mathbb{N} $}.
+	
+	    \vspace*{3 mm}
+	    
+	     \visible<3->{ \STATE Consider \textcolor{componentColor}{ \textbf{$CT_i \in \mathcal{T} $, $G_j \in \mathcal{G} $}} and \textcolor{componentColor}{ \textbf{$E_k \in \mathcal{E}$}. where  $i, j, k \in \mathbb{N} $}. }
 	      %\STATE Let $PNQoS(CT_i)$ a respective GSPN including QoS from type of $CT_i$ and according to mapping rules (Figure \ref{fig:MappingTaskChoreographiesQoS1}).
 	      %\STATE Let $PNQoS(CT_i)$ be a respective GSPN including QoS from type $CT_i$ and according to mapping rules (Figure \ref{fig:MappingTaskChoreographiesQoS1}).
-	
-%	      \visible<4->{ \STATE \textcolor{componentColor}{ $PNQoS(CT_i)$, $PNQoS(G_j)$, $PNQoS(E_k)$   } are functions of the type %of \textcolor{componentColor}{ $CT_i$, $G_j$, $E_k$} respectively that return a GSPN according to mapping rules. }
+	    \vspace*{3 mm}
+	    
+	      \visible<4->{ \STATE Consider \textcolor{componentColor}{ $PNQoS(CT_i)$ } is a function of the type of \textcolor{componentColor}{ $CT_i$} that returns a GSPN according to mapping rules. }
+	     \visible<5->{ \STATE Consider \textcolor{componentColor}{ $PNQoS(G_j)$ } is a function of the type of \textcolor{componentColor}{$G_j$ } that returns a GSPN according to mapping rules. }
+	     \visible<6->{ \STATE Consider \textcolor{componentColor}{ $PNQoS(E_k)$ } is a function of the type of \textcolor{componentColor}{$E_k$} that returns a GSPN according to mapping rules. }
+	    \vspace*{3 mm}
+	     \visible<7->{ \STATE Consider \textcolor{componentColor}{ \textbf{$\oplus$} } the binary operator of  two GSPNs composition that returns other GSPN. }
 
-	      \STATE \textcolor{componentColor}{ $PNQoS(CT_i)$, $PNQoS(G_j)$, $PNQoS(E_k)$   } are functions return a GSPN according to mapping rules. 
 
-	      \STATE \textcolor{componentColor}{ {\normalsize \textbf{$\oplus$}} } as the operator composition that returns other GSPN. 
-	      \vspace*{3 mm}
-	      \STATE $\textcolor{componentColor}{GSPN_{QoS} } \leftarrow  Empty\  Petri\  Net$  
-
-	      %\FOR { $CT_i \in T $ }
-	      % \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PNQoS(CT_i)$
-	      %\ENDFOR
-
-	    \FOR { $\textcolor{componentColor}{ CT_i} \in \textcolor{componentColor}{\mathcal{T}} $ } 
-		\STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{ GSPN_{QoS} } \oplus \textcolor{componentColor}{ PNQoS(CT_i) } $  		
-		 \STATE Add a arrival \textbf{timed Transition} at beginning of the \textcolor{componentColor}{$GSPN_{QoS}$}.   
-	     \ENDFOR
-	      %\vspace*{3 mm}
-	     \FOR{ $\textcolor{componentColor}{G_j} \in \textcolor{componentColor}{\mathcal{G}} $ } 			
-		\STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{GSPN_{QoS}} \oplus \textcolor{componentColor}{ PN(G_j) }$	
-	    \ENDFOR	
-	    %\vspace*{3 mm}
-	    \FOR{ $\textcolor{componentColor}{ E_k } \in \textcolor{componentColor}{ \mathcal{E} } $ }					 	
-		\STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{ GSPN_{QoS} } \oplus \textcolor{componentColor}{ PN(E_k) }$  	
-	    \ENDFOR
-
-	    \STATE Add a starting Place and \textbf{immediate Transition} at the beginning of the \textcolor{componentColor}{ $GSPN_{QoS}$}.	
-	    \STATE Add a ending Place and \textbf{immediate Transition} at the end of the \textcolor{componentColor}{$GSPN_{QoS}$}.	
-
-	    \RETURN \textcolor{componentColor}{$GSPN_{QoS}$}
-  }
-}	
-	
+	    }
 	\end{algorithmic}
 
       \end{algorithm}
-
 
   \end{frame}
 
 
 %165,42,42
- \begin{frame}{ Mapping Algorithm (II)}
-    \only<1>{	
-        \begin{figure}[!h]
-            \centering
-            \includegraphics[width=0.5\textwidth]{Algorithm1.png}
-        \end{figure}
-    }    
-    \only<2>{	
-        \begin{figure}[!h]
-            \centering
-            \includegraphics[width=0.5\textwidth]{Algorithm2.png}
-        \end{figure}
-    } 
-    \only<3>{	
-        \begin{figure}[!h]
-            \centering
-            \includegraphics[width=0.65\textwidth]{Algorithm3.png}
-        \end{figure}
-    } 
-    \only<4>{	
-        \begin{figure}[!h]
-            \centering
-            \includegraphics[width=0.65\textwidth]{Algorithm4.png}
-        \end{figure}
-    }             
- \end{frame}
+  \begin{frame}{ Mapping Algorithm (II)}
+
+
+    \begin{algorithm}[H]
+	    \caption*{ \textbf{\textit{Algorithm 1}:} { \small   (continued)  }   }
+%	    \label{alg2}
+	    \begin{algorithmic}
+	    { \footnotesize
+	
+	      \uncover<1->{  \STATE $\textcolor{componentColor}{GSPN_{QoS} } \leftarrow  Empty\  Petri\  Net$  }
+
+	      %\FOR { $CT_i \in T $ }
+	      % \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PNQoS(CT_i)$
+	      %\ENDFOR
+
+	      \uncover<2->{   \FOR { $\textcolor{componentColor}{ CT_i} \in \textcolor{componentColor}{\mathcal{T}} $ } }
+		\uncover<3->{ \STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{ GSPN_{QoS} } \oplus \textcolor{componentColor}{ PNQoS(CT_i) } $  		}
+		\uncover<4->{ \STATE Add a arrival \textbf{timed Transition} at beginning of the \textcolor{componentColor}{$GSPN_{QoS}$}.   }
+	     \uncover<2->{  \ENDFOR }
+	      \vspace*{3 mm}
+	      \uncover<5->{ \FOR{ $\textcolor{componentColor}{G_j} \in \textcolor{componentColor}{\mathcal{G}} $ } 			}
+		\uncover<6->{	\STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{GSPN_{QoS}} \oplus \textcolor{componentColor}{ PN(G_j) }$	}
+	      \uncover<5->{ \ENDFOR	}
+	    \vspace*{3 mm}
+	    \uncover<7->{ \FOR{ $\textcolor{componentColor}{ E_k } \in \textcolor{componentColor}{ \mathcal{E} } $ }					 }	
+		\uncover<8->{ \STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{ GSPN_{QoS} } \oplus \textcolor{componentColor}{ PN(E_k) }$  	}
+	      \uncover<7->{ \ENDFOR		}
+	      \vspace*{3 mm}
+	      \uncover<9->{ \STATE Add a starting Place and \textbf{immediate Transition} at the beginning of the \textcolor{componentColor}{ $GSPN_{QoS}$}.	}
+	      \uncover<10->{ \STATE Add a ending Place and \textbf{immediate Transition} at the end of the \textcolor{componentColor}{$GSPN_{QoS}$}.	}
+	      \vspace*{3 mm}
+	      \uncover<11->{ \RETURN \textcolor{componentColor}{$GSPN_{QoS}$}		}
+	    }
+	\end{algorithmic}
+
+      \end{algorithm}
+  \end{frame}
 
 
 
@@ -602,8 +603,21 @@ choreography.
 		\caption{ Choreography example using BPMN2 elements.}
             \end{figure}
         }
-
       \only<2>{	
+            \begin{figure}[!h]
+            	\centering
+            	\includegraphics[width=0.85\textwidth]{BPMNChoreographyExample1.png}
+		\caption{Choreography example using BPMN2 elements.}
+            \end{figure}
+        }
+      \only<3>{	
+            \begin{figure}[!h]
+            	\centering
+            	\includegraphics[width=0.85\textwidth]{BPMNChoreographyExample3.png}
+		\caption{Choreography example using BPMN2 elements.}
+            \end{figure}
+        }
+      \only<4>{	
             \begin{figure}[!h]
             	\centering
             	\includegraphics[width=0.85\textwidth]{BPMNChoreographyExample4.png}
@@ -625,7 +639,7 @@ choreography.
   \begin{frame}{ Configuration (I)}
         \begin{table}[!h]
             \centering
-            %\caption{ConfiguraÃÂ§ÃÂ£o de pesos nos CenÃÂ¡rios 1 e 2}
+            %\caption{ConfiguraÃ§Ã£o de pesos nos CenÃ¡rios 1 e 2}
             \caption{Weights of Scenario 1 and Scenario 2}
             \label{table:transitionsConfigurations}
             \begin{tabular}{ lcc}
@@ -674,10 +688,10 @@ choreography.
             	\includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration4.png}
             \end{figure}
     }
-
+    
   \end{frame}
-
-
+  
+  
   \begin{frame}{ Simulation}
    \begin{itemize}
      \item <1-> \textbf{$1$ token} = \textbf{$1$ choreography instance}.
@@ -690,10 +704,9 @@ choreography.
   \end{frame}
 
 
-\begin{frame}{ Results (I)}
+  \begin{frame}{ Results (I)}
 
 { \footnotesize
-  \only<1>{
      \begin{table} [tp] %[!h]
             \centering
             \caption{Simulation results } % (in \%) }
@@ -710,24 +723,13 @@ choreography.
         	  %\hline
         	  $Start$ &    35.28	 &    40.15        &   5.83    	 &    6.23         \\
         	  $End$   &    41.95	 &    38.78        &   2.53  	  &  3.82	\\
-        	  %$A_1$   &    0.08	 &    0.08         &   0.00   	&  0.00     \\ %% apÃ³s da execucao do Treceive 1
-        	  %$B_2$	  &    0.04	&     0.01 		& 	0.01 &  0.01 \\ %% apÃ³s da execucao do Treceive 2
-        	  %$B_3$	  &    0.04	&     0.01  		& 0.01 	&  0.01 \\ %% apÃ³s da execucao do Treceive 3
-              %\hline
+        	
 		\midrule
-        	  %$B_1$	  &    0.08	 &  3.23  		& 0.00	&  0.00	\\ %Primeiro participante em iniciar a interaÃ§Ã£o
-        	  %$A_2$	  &    0.04	 &  0.01		& 0.01	&  0.01	\\ %% aceito
-        	  %$A_3$	  &    0.04	 &  0.01		& 0.01	&  0.01	\\ %%rejeitado
-              %  \hline
+        	
         	  $M_{err1}$	& 0.39	 & 0.91 		& 0.95	&  1.92	\\
         	  $M_{err2}$	& 0.00	 & 0.93 		& 0.63		&  0.64	\\
         	  $M_{err3}$	& 0.00   & 0.66 		& 0.87	&  0.74	\\
-                %\hline
 		\midrule
-        	  $C_{err1}$	& 0.74 	 & 2.94 	& 0.82	&  2.02	\\
-        	  $C_{err2}$	& 0.00	 & 0.00 	& 0.67	&  1.75	\\
-        	  $C_{err3}$ 	& 0.78	 & 0.16 	& 0.92	&  1.52	\\
-                %\hline
 		\midrule
         	  $C_{i1}$ 	& 8.32	 & 8.90 	& 5.33	&  7.48	\\
               $C_{i2}$ 	& 0.63	 & 0.69 	& 0.23	&  0.52	\\
@@ -737,52 +739,6 @@ choreography.
 		\bottomrule
 	  \end{tabular}
         \end{table}
-  }
-  \only<2>{
-     \begin{table} [tp] %[!h]
-            \centering
-            \caption{Simulation results } % (in \%) }
-            \label{table:simulationsAll}
-            \begin{tabular}{l p{1.9cm} p{1.9cm} c c}
-		  \toprule
-        	  %\hline
-        	 	        & \multicolumn{2}{c|}{ \textbf{Average number of tokens (\%)} } & \multicolumn{2}{c|}{ \textbf{95\% Confidence interval  (+/- \%)} }  \\
-        	  %\hline
-		  %\cmidrule(r){2-5}
-        	  \textbf{Place}      &  Scenario 1   &   Scenario 2  	 &  Scenario 1 	  &   Scenario 2 \\
-		  \otoprule
-		  %\midrule
-        	  %\hline
-        	  $Start$ &    35.28	 &    40.15        &   5.83    	 &    6.23         \\
-        	  $End$   &    41.95	 &    38.78        &   2.53  	  &  3.82	\\
-        	  %$A_1$   &    0.08	 &    0.08         &   0.00   	&  0.00     \\ %% apÃÂ³s da execucao do Treceive 1
-        	  %$B_2$	  &    0.04	&     0.01 		& 	0.01 &  0.01 \\ %% apÃÂ³s da execucao do Treceive 2
-        	  %$B_3$	  &    0.04	&     0.01  		& 0.01 	&  0.01 \\ %% apÃÂ³s da execucao do Treceive 3
-              %\hline
-		\midrule
-        	  %$B_1$	  &    0.08	 &  3.23  		& 0.00	&  0.00	\\ %Primeiro participante em iniciar a interaÃÂ§ÃÂ£o
-        	  %$A_2$	  &    0.04	 &  0.01		& 0.01	&  0.01	\\ %% aceito
-        	  %$A_3$	  &    0.04	 &  0.01		& 0.01	&  0.01	\\ %%rejeitado
-              %  \hline
-        	  $M_{err1}$	&\cellcolor{green!25} 0.39   & \cellcolor{red!25}0.91 		& 0.95	&  1.92	\\
-        	  $M_{err2}$	& \cellcolor{green!25}0.00   & \cellcolor{red!25}0.93 		& 0.63		&  0.64	\\
-        	  $M_{err3}$	& \cellcolor{green!25}0.00   & \cellcolor{red!25}0.66 		& 0.87	&  0.74	\\
-                %\hline
-		\midrule
-        	  $C_{err1}$	& \cellcolor{green!25}0.74 	 & \cellcolor{red!25}2.94 	& 0.82	&  2.02	\\
-        	  $C_{err2}$	& \cellcolor{green!25}0.00	 & \cellcolor{red!25}0.00 	& 0.67	&  1.75	\\
-        	  $C_{err3}$ 	& \cellcolor{green!25}0.78	 & \cellcolor{red!25}0.16 	& 0.92	&  1.52	\\
-                %\hline
-		\midrule
-        	  $C_{i1}$ 	& 8.32	 & 8.90 	& 5.33	&  7.48	\\
-              $C_{i2}$ 	& 0.63	 & 0.69 	& 0.23	&  0.52	\\
-              $C_{i3}$ 	& 0.75	 & 8.90 	& 0.39	&  0.21	\\
-
-        	  %\hline
-		\bottomrule
-	  \end{tabular}
-        \end{table}
-  }
 }
   \end{frame}
 
@@ -790,18 +746,18 @@ choreography.
       \begin{itemize}
          \item <1-> \textbf{Communication errors}: An average of  \textcolor{blue}{\textbf{$C_{err1}+C_{err2}+C_{err3}$}} of instances \textbf{didn't finish the process}.
             \begin{itemize}
-              \item Scenario 1: \colorbox{green!25}{$1.52\%$}.
-              \item Scenario 2: \colorbox{red!25}{$3.10\%$} (more errors).
+              \item Scenario 1: \textcolor{blue}{$1.52\%$}.
+              \item Scenario 2: \textcolor{blue}{$3.10\%$} (more errors).
             \end{itemize}
          \item <2-> \textbf{Invalid format message}: An average of  \textcolor{blue}{\textbf{$M_{err1}+M_{err2}+M_{err3}$}} of instances \textbf{didn't finish the process}.
             \begin{itemize}
-              \item Scenario 1: \colorbox{green!25}{$0.39\%$}.
-              \item Scenario 2: \colorbox{red!25}{$2.50\%$} (more invalid messages).
+              \item Scenario 1: \textcolor{blue}{$0.39\%$}.
+              \item Scenario 2: \textcolor{blue}{$2.50\%$} (more invalid messages).
             \end{itemize}
         \item <3->\textbf{Bottleneck}: It was found a communication bottleneck in the first interaction (\textcolor{blue}{$C_i$} place).
             \begin{itemize}
-              \item Scenario 1: \colorbox{green!25}{$8.32\%$}.
-              \item Scenario 2: \colorbox{red!25}{$8.90\%$}.
+              \item Scenario 1: \textcolor{blue}{$8.32\%$}.
+              \item Scenario 2: \textcolor{blue}{$8.90\%$}.
             \end{itemize}
 
       \end{itemize}
@@ -823,7 +779,7 @@ choreography.
               \item Integration is expensive, then early detections are needed.
               \item Establishing SLAs according to resources.
               \item Planning in order to reduce failures.
-              %\item For example: the detected bottleneck can be solved by changing the interaction (modeling issues) or by employing QoS mechanisms in the network to prioritize the traffic affected ( resource planning).
+              \item For example: the detected bottleneck can be solved by changing the interaction (modeling issues) or by employing QoS mechanisms in the network to prioritize the traffic affected ( resource planning).
             \end{itemize}
        \end{itemize}
    \end{frame}
@@ -848,42 +804,24 @@ choreography.
 %\end{frame}
 
 
-
 %--------- fim ----------
-  \begin{frame}{Sponsors}
-	\begin{figure}[!h]
-	    \centering
-	    \includegraphics[scale=0.6]{CHOReOSProject.png}
-	\end{figure}
-
-	\begin{figure}[!h]
-	    \centering
-	    \includegraphics[width=0.3\textwidth]{hp_logo_2.png}
-	\end{figure}
-
-%	      \subfigure{
-%		\includegraphics[scale=0.6]{CHOReOSProject.png}
-%		\label{fig:subfig1}
-%		}
-
-  \end{frame}
-
     \begin{frame}%{\textbf{Thanks!}}
 %        \begin{block}{}\vspace{-.3\baselineskip}
 	%\resizebox{dimH}{dimV}{Texto}
 	%\resizebox{!}{1cm}{Tamanho}
 %	  \begin{center}
-%	      {\Huge Thanks!}		
+%	      {\Huge Thanks!}		            
 %	  \end{center}
 %        \end{block}
 
-	\begin{beamercolorbox}[sep=2em,wd=12cm]{postit}
+	\begin{beamercolorbox}[sep=2em,wd=10cm]{postit}
 	    \begin{center}
-	      {\Huge \textbf{\textcolor{blue}{Thanks!}}}		
+	      {\Huge \textbf{\textcolor{blue}{Thanks!}}}		            
 	    \end{center}
 	\end{beamercolorbox}
 	%\mbox{}\medskip\newline
 
     \end{frame}
+
 
 \end{document}
