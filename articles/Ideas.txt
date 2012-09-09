@@ -1,0 +1,59 @@
+- QoS
+- Simulation
+- Choreography SLAs
+- 
+
+
+- Simulation tool for Service Choroegraphy with QoS support.
+- probabilistic SLAs in  Service Choreography  simulator
+
+- QoS Composition into a Service Choreography Simulation tool (engine)
+QoS Composition into a Service Choreography Simulator
+- Monitoring of QoS Composition in a Service Choreography Simulator
+  Monitoring of QoS Composition in a Service Choreography Simulator
+
+
+== Call of abstracts ==
+
+=== Purpose 1 ===
+QoS Composition into a Service Choreography Simulation tool (engine)
+
+Title: Establishment of SLAs in Service Choreography based on a failure model
+Abstract:
+
+Service choreography allows the composition of services in a collaborative way, because of global description and descentralized coordination using interactions P2P among participants. However, since   infraestructures and implementations aren't mature enough to enact choreographies, then 
+to evaluate and analyse how the environment affects the QoS requirements and composition behavior into a choreography is a difficult task. To be able to do so, we developed a Choreography simulator in order to simulate enacting of choreographies.  
+
+In this work, we propose a approach for establishment of SLAs between participant services involved into a service choreography taking into account QoS composition behavior and infraestructure aspects. The establishment of SLAs are based on simulation results of scenarios according to the failure model of service operation, data and communication issues. Furthermore, we adopted a choreography scenario about Content Delivery Network (CDN) providing streaming multimedia objects.
+
+
+% taking advantage of various benefits of P2P systems. 
+%We aim to establish SLAs between several partners that involve into a service choreography taking into account QoS composition and based on 
+%results of simulations. 
+
+
+
+=== Purpose 2 ===
+- Monitoring of QoS Composition in a Service Choreography Simulator
+- Monitoring of SLA in Service Choreography
+- Monitoring and detection of SLA violations in service choreography
+- Detection of SLA violations through monitoring in service choreography
+
+Title :   Detection of SLA violations through monitoring in service choreography
+Abstract:
+
+Service choreography allows the composition of services in a collaborative way, because of global description and descentralized coordination using interactions P2P among participants. However, since   infrastructures and implementations aren't mature enough to enact choreographies, then to evaluate and analyse accomplishment SLA  through monitoring of QoS constraints involved into a choreography is a difficult task. 
+Therefore,  we developed a choreography simulator in order to simulate enacting of choreographies. 
+In this work,  we propose a approach to detect SLA violations using a monitoring module developed over the choreography simulator. This
+monitoring leads with SLAs specified as probabilistic QoS contraints, which are a better way to specify realistic SLAs. Furthermore, the monitoring could be useful for tuning establishment of SLAs. We adopted a Content Delivery Network (CDN) application that provides streaming multimedia objects, as our choreography scenario.  
+
+
+%To be able to do so
+
+
+%The monitoring is responsible for to collect QoS metric values, compose them and check QoS guarantees. 
+
+
+
+
+
