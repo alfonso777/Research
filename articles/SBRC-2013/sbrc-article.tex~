@@ -1,0 +1,147 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+
+\usepackage{graphicx,url}
+\usepackage{comment}
+
+%\usepackage[brazil]{babel}   
+\usepackage[latin1]{inputenc}  
+
+     
+\sloppy
+
+%\title{Establishment of SLAs in Service Choreography based on a failure model Abstract:}
+\title{Estabelecimento de  SLAs em Coreografia de Serviços baseado em Modelos de Falhas}
+
+\author{Alfonso Phocco Diaz\inst{1}, Daniel M. Batista \inst{1}}
+
+\address{
+  Departamento de Ciencia da Computação\\
+  Universidade de São Paulo (USP) -- São Paulo, SP -- Brazil
+  \email{\{alfonso7,batista\}@ime.usp.br}
+}
+
+\begin{document} 
+
+\maketitle
+
+\begin{abstract}
+  Service choreography allows the composition of services in a collaborative way, because of global description and descentralized 
+coordination using interactions P2P among participants. However, since   infraestructures and implementations aren't mature enough
+ to enact choreographies, then to evaluate and analyse how the environment affects the QoS requirements and composition behavior 
+into a choreography is a difficult task. To be able to do so, we developed a Choreography simulator in order to simulate 
+enacting of choreographies.  
+
+In this work, we propose a approach for establishment of SLAs between participant services involved into a service choreography
+ taking into account QoS composition behavior and infraestructure aspects. The establishment of SLAs are based on simulation
+ results of scenarios according to the failure model of service operation, data and communication issues. Furthermore, we adopted
+ a choreography scenario about Content Delivery Network (CDN) providing streaming multimedia objects.
+
+\end{abstract}
+     
+\begin{resumo} 
+
+\end{resumo}
+
+
+\section{Introdução} \label{sec:introduction}
+
+\begin{comment}
+O modo de desenvolver aplicações e sistemas complexos evoluiu com o passar do tempo até convergir  para arquiteturas
+ de software e modelos de computação orientados a serviços, o que é chamado de Computação Orientada a Serviços 
+ (\textit{Service Oriented Computing} -- SOC) \cite{PapazoglouSOC2007a}. As aplicações baseadas em serviços requerem composições de serviços como um
+ fator chave para alavancar um desenvolvimento rápido, de baixo acoplamento e flexível na integração com  outros sistemas.
+ 
+
+Dentre as várias formas de se compor serviços, as coreografias de serviços Web aparecem como uma maneira eficiente de implementar
+ processos de negócio inter-organizacionais, já que as interações dos
+participantes de negócios são mutuamente independentes (autônomos e heterogêneos) \cite{Telang2011}. %%VO, BPO, etc
+Uma coreografia de serviços é uma descrição de interações %observáveis externamente
+ ponto a ponto que existem entre serviços, ou seja, nesse modelo, não há a figura de um controlador central. Os vários serviços 
+comunicam-se entre si de forma similar ao que ocorre em uma rede P2P \cite{Barker2009}. No contexto de SOA, os processos de negócio 
+são modelados e executados utilizando linguagens de \textit{workflow} para orquestração como BPEL.
+
+ Uma coreografia de serviços modela os processos visíveis publicamente e a troca de mensagens
+ entre os participantes do ponto de vista global \cite{Wetzstein2010}.
+
+
+Em processos de negócios inter-organizacionais, %estão envolvidos redes de serviços, nas quais se devem  % garantir %con más razon??...  % a qualidade sobre os serviços prestados, isto é, garantir a Qualidade de Serviço (QoS).
+ o estado  da rede desempenha um papel fundamental. É necessário que haja garantia de qualidade de serviço (\textit{Quality of Service} -- QoS) 
+para que haja vantagens em se utilizar um modelo de negócios descentralizado e heterogêneo como é a coreografia de serviços Web. Uma maneira formal para definir
+  garantias entre um serviço provedor e um cliente (que pode ser também um serviço) é por meio de um Acordo do Nível de
+   Serviço (\textit{Service Level Agreement} -- SLA). %Assim, após a especificação de uma coreografia se definem as restrições de QoS a serem cumpridas pelos participantes por meio de SLAs
+    Ou seja, após a coreografia ser especificada, é necessário que sejam definidas as restrições de QoS entre cada participante por meio de 
+ SLAs \cite{Rosenberg2007}.  Para cumprir os acordos de SLA é necessário que haja algum mecanismo de  gerenciamento em tempo de execução, o que envolve 
+monitoramento, controle e tomada de decisões ante violações ou degradações da
+qualidade dos serviços. Toda a preocupação com o cumprimento dos requisitos de QoS entre participantes vem do fato de que a QoS do serviço composto, 
+ representado pela coreografia, depende diretamente da QoS dos serviços dependentes.
+%A QoS do serviço composto depende da qualidade dos serviços dependentes e por conta disso, é importante
+%cumprir seus acordos, especialmente dos mais críticos.
+
+
+Uma detecção rápida de falhas não funcionais em etapas antecipadas no desenvolvimento da coreografia pode reduzir o número de violações  de SLA e melhorar a tomada
+ de decisões em etapas posteriores. 
+
+\end{comment}
+
+
+
+Este trabalho apresenta uma proposta para detectar falhas não funcionais dos participantes de uma coreografia na etapa de \textit{design} e a partir delas estabelecer
+requisitos e restrições de QoS de maneria a definir  SLAs iniciais que possam ser refinados em etapas posteriores.  Nossa abordagem realiza uma avaliação de
+ desempenho mediante simulações de cenários definidos a partir da  coreografia alvo. Tais cenários são instâncias de coreografias mas com diferentes configurações 
+de acordo com um modelo de falhas de atributos de QoS. Os atributos de QoS  envolvem  aspectos de serviços Web, troca de mensagens dos participantes, e especialmente da rede. 
+Dessa maneira, os requisitos e restrições de QoS estão baseados na análise dos resultados das simulações de cenários com diversos níveis de falha. 
+
+%Justificativa da simulação, outras abordagens, etc
+A simulação é utilizada já que   implementar  e \textit{enact} coreografias de serviços Web reais ainda é difícil por conta da imaturidade das tecnologias de suporte, principalmente
+pela falta de um motor de execução com consciência de coreografias \cite{Kopp2010}. Nós temos desenvolvido um simulador inicial para realizar o ``enactment'' de coreografias, mas 
+para nossos objetivos adicionamos suporte de composição de QoS e infraestrutura de comunicação.
+
+%Em \cite{}, desenvolveu-se um simulador 
+
+As contribuições desse trabalho são: (1) propor uma metodologia para estabelecer SLAs iniciais a partir de requisitos e restrições de QoS em coreografia de
+ serviços. (2) propor um modelo de falhas e QoS para coreografias de serviços de modo a serem usados em simulações. (3) desenvolvimento de um simulador
+ de coreografias com suporte de QoS. Nosso trabalho difere dos encontrados na literatura porque realiza uma análise de desempenho em etapas
+ antes do desenvolvimento (como na modelagem e \emph{design}) de coreografias, o que serve também como primeira etapa para definir os requerimentos de
+ QoS e SLA entre os participantes. Além disso, este trabalho faz uso do modelo de interação de coreografias oferecida no padrão BPMN na versão 2.0.
+
+ Este artigo está organizado da seguinte forma: a Seção \ref{sec:concepts} apresenta rapidamente os conceitos básicos necessários para a
+ compreensão da proposta  e   descreve um cenário de exemplo de uma coreografia especificada em BPMN2. Na Seção \ref{sec:related_works} são 
+ apresentados os trabalhos relacionados a esta pesquisa. Na Seção \ref{sec:methodology} é descrita a proposta que inclui a descrição  modelo de QoS de falhas, mapeamento 
+de BPMN para os cenários. 
+ %formalização de elementos BPMN2 de uma coreografia com as respectivas regras de mapeamento e algoritmos para redes de Petri incluindo o  modelo de QoS.
+ %apresentados os conceitos da rede de petri generalizada  com as respectivas regras de mapeamento de elementos de BPMN da coreografia. 
+ %A Seção 5 descreve o algoritmo de mapeamento da coreografia para
+ A Seção \ref{sec:simulations} apresenta a aplicação da proposta no cenário de exemplo com destaque no modelo de QoS e falhas,
+  e se realiza uma análise segundo os resultados das simulações. %Na Seção 6 são apresentados os resultados dos experimentos  realizados para avaliar a abordagem. 
+ Finalmente, na Seção \ref{sec:conclusions} são apresentadas as conclusões e trabalhos futuros.
+
+
+
+\section{Basic Concepts} \label{sec:concepts}
+
+
+
+\section{Related Works} \label{sec:related_works}
+
+
+\section{Methodology} \label{sec:methodology}
+
+  \subsection{QoS and Failure Model}
+
+
+\section{Simulações e Análise de Desempenho} \label{sec:simulations}
+
+
+
+\section{Conclusões e Trabalhos Futuros} \label{sec:conclusions}
+
+
+
+%\section{Referências}
+
+\bibliographystyle{sbc}
+\bibliography{sbrc-2013}
+
+\end{document}
