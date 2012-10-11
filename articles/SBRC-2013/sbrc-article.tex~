@@ -5,7 +5,7 @@
 \usepackage{graphicx,url}
 \usepackage{comment}
 
-%\usepackage[brazil]{babel}   
+\usepackage[brazil]{babel}   
 \usepackage[latin1]{inputenc}  
 
      
@@ -128,13 +128,96 @@ de BPMN para os cenários.
 
 \section{Methodology} \label{sec:methodology}
 
-  \subsection{QoS and Failure Model}
+  Descrição de passos...
 
+  \begin{enumerate}
+    \item Estabelecer o modelo de QoS e de falhas de acordo aos objetivos da avaliação da coreografia.
+    \item Modelo de Agregação de QoS.
+    \item Representar a coreografia de serviços para o Simulador.
+    \item Definir os cenários de simulação e dar valores aos atributos QoS.
+    \item Análise dos resultados.
+  \end{enumerate}
+
+
+  \subsection{QoS and Failure Model}
+      Descrição de atributos de QoS ...
+
+    \begin{table}[!h]
+      \centering
+      %\caption{Configuração de pesos nos Cenários 1 e 2}
+      \caption{Modelo de QoS e de falhas}
+      \label{table:QoSmodel}
+      \begin{tabular}{|c|c|c|c|}
+	\hline
+	 Tipo      		&     Atributo de  QoS    	&   Métrica  &   Tipo de Falha		\\
+	\hline
+	  Serviço       	& 	Tempo de Execução       &   ms		&	timeout, QoS violation\\
+	  Serviço 	     	&  	Throughput 	   	&   \#requests/s	&      service not available,QoS violation\\
+	  Mensagem 		&  	Formato da Mensagem  	&   -		&		failure probability\\
+	  Comunicação		&   	Latência 	   	&   ms		& 	Communication Error/QoS violation\\
+	  Comunicação		&   	Largura de Banda(máxima)&   Mb/s	& 	Communication Error\\ %/QoS violation
+	\hline
+      \end{tabular}
+    \end{table}
+
+  \subsection{Agregação de QoS }
+  Definição e fórmulas para compor atributos de QoS de acordo a padrões de \textit{workflow} em coreografia de serviços...
+
+  \subsection{Simulador}
+  Descrição do simulador ...
 
 \section{Simulações e Análise de Desempenho} \label{sec:simulations}
+%Simulações baseada em dados reais são frequentemente inadequadas, já que os dados podem não estar disponíveis e sua coleta pode requerer 
+%longos periodos de tempo.
+Para testar a eficacia da proposta, a coreografia apresentada em \cite{Buccafurri2008a} é utilizada. Essa coreografia representa uma aplicação de
+ CDN (Content Delivery Network) para fornecimento de conteúdo multimídia como Audio, Vídeo e Imagens (Ver Fig. ). A coreografia está composta de cinco
+serviços Web (WS1,WS2, WS3, WS4 e WS5 ) e cada serviço pertence a um participante diferente e há sete canais de comunicação definido a topologia de rede $Crede$, onde:
+
+ 
+$C_{rede} = \{ (ws_1,ws_2), (ws_1,ws_3), (ws_1,ws_4), (ws_2,ws_4), (ws_2,ws_5), (ws_3,ws_5), (ws_4,ws_5) \} $ 
+Onde $ws_i$ é um serviço que participa na coreografia.
 
 
+O objetivo é calcular o tempo de resposta total do serviço composto $ws_1$ e $ws_2$ de acordo como o modelo de agregação de QoS descrito seção anterior. A
+ tabela~\ref{table:simulation_configuration} apresenta os atributos de QoS levados em consideração com seus respectivos valores segundo
+ se são fixos ou variáveis. Neste caso, o atributos variável é o \textit{throughput} que  varia de 5  a 100  requisições por $ms$ com passos de 5.  O 
+outro atributo variável é a largura de banda  que define três casos de simulação, de alta capacidade(H), de meia capacidade (M) e de baixa capacidade (L) para
+ todos os canais de comunicação. 
 
+
+\begin{table}[!h]
+{\footnotesize
+      \centering
+      %\caption{Configuração de pesos nos Cenários 1 e 2}
+      \caption{Configuração dos cenários de simulação}
+      \label{table:simulation_configuration}
+      \begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Atributo de  QoS}    	&   \textbf{Condição}  		& \textbf{Valor}  					&   \textbf{Tipo de Falha}		\\
+	\hline
+	 Tempo de Execução       &   fixo     		& $ws$ = {30ms,15ms, 35ms, 20ms, 40ms} 	&    timeout= 5ms (tolerância)\\
+	 Throughput 	   	&    variável 		& $ws_i$ = 5 a  100 Requests/ms		&    service not available = 0.5\%\\
+	 Formato da Mensagem  	&    fixo		& --   					&	0.5\%	\\
+	 Latência 	   	&    fixo     		& $ws$ = {5ms,7ms, 5ms, 7ms, 5ms}  & 	Communication Error= 3\%\\
+	 Largura de Banda&   fixo/cenário  	& $\forall ws_i$, H = 200Mb/s, M = 100Mb/s, L = 50Mb/s	& 	Communication Error= 3\%\\ %/QoS violation
+	\hline
+      \end{tabular}
+}
+\end{table}
+
+
+Também são definidos os valores de falha para cada atributo de QoS, neste caso todos estes valores são fixos. Além disso, as probabilidades de escolha
+ de caminhos nos padrões de \textit{workflow} é a mesma (50\%) e o tamanho de toda  mensagens é de 50 Bytes. Dessa  maneira, definem-se três casos de
+ simulação para calcular o tempo de resposta total dos serviços compostos `$ws_1$ e $ws_2$. 
+
+ Os gráficos 1 e 2 mostram os resultados dos casos de simulação para o $ws_1$ e $ws_2$. Esses gráficos mostram como varia o tempo de resposta total segundo
+a variação do \textit{throughput}. No gráfico 1 podemos observar que ... e no gráfico 2 podemos observar que também ...
+
+%\subsection{Resultados}
+
+
+%\cite{Buccafurri2008a}
+ %\cite{Manivannan2011}
 \section{Conclusões e Trabalhos Futuros} \label{sec:conclusions}
 
 
