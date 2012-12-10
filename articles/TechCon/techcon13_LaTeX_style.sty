@@ -1,1 +1,170 @@
-style/techcon13_LaTeX_style.sty
+% Originally written by Yasushi Saito.
+% Adjusted by Jeff Mogul with Yaz's help.
+% Minor changes by Greg Astfalk (August 2008).
+% Major changes by Greg Astfalk (August 2009).
+% Minor changes by Greg Astfalk (August 2010).
+% Minor changes by Greg Astfalk (August 2012).
+%
+% Note: Do not change this file.  The TechCon committee will not
+%       look favorably on you if you do, and your abstract may be
+%       penalized or even rejected.
+
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{url}
+
+\pagestyle{empty}
+
+\DeclareFixedFont{\tcsectionfont}{OT1}{phv}{b}{n}{14}
+\DeclareFixedFont{\tcsubsectionfont}{OT1}{phv}{b}{n}{12}
+\DeclareFixedFont{\tcsubsubsectionfont}{OT1}{phv}{b}{sl}{12}
+\DeclareFixedFont{\tcabstractfont}{OT1}{phv}{b}{n}{14}
+\DeclareFixedFont{\tcreferencesfont}{OT1}{phv}{b}{n}{14}
+\DeclareFixedFont{\tcabstracttextfont}{OT1}{ptm}{m}{it}{10}
+\DeclareFixedFont{\tctitlefont}{OT1}{phv}{b}{n}{16}
+\DeclareFixedFont{\tccaptionfont}{OT1}{ptm}{m}{n}{10}
+
+\long\def\@makecaption#1#2{%
+   \vskip\abovecaptionskip
+   \sbox\@tempboxa{\tccaptionfont #1: #2}%
+   \ifdim \wd\@tempboxa >\hsize
+      \tccaptionfont #1: #2\par
+   \else
+      \global \@minipagefalse
+      \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+   \fi
+\vskip\belowcaptionskip}
+
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+   {-0.5ex \@plus -1ex \@minus -.2ex}{1pt}{\tcsectionfont}}
+
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+   {-0.25ex\@plus -1ex \@minus -.2ex}{1pt}{\tcsubsectionfont}}
+
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+   {-0.25ex\@plus -1ex \@minus -.2ex}{1pt}{\tcsubsubsectionfont}}
+
+\renewcommand\maketitle{
+   \let\footnotesize\small
+   \let\footnoterule\relax
+   \let \footnote \thanks
+   \begin{center}%
+      {\tctitlefont \@title \par}%
+      {\large
+      \lineskip .75em%
+      \begin{tabular}[t]{c}%
+         \@author
+      \end{tabular}\par}%
+      \vskip 0.9em%
+   \end{center}
+   \par
+}
+
+\renewenvironment{abstract}{%
+   \centerline{\tcabstractfont Abstract}}
+{\par\null}
+
+\setlength{\topmargin}{-0.8in}
+     
+\setlength{\textheight}{9.5in}
+     
+\setlength{\oddsidemargin}{-0.1in}
+\setlength{\evensidemargin}{-0.1in}
+\marginparwidth 0.5in
+\addtolength{\oddsidemargin}{-0.25in}
+\addtolength{\evensidemargin}{-0.25in} 
+     
+% This seemingly bizzare number was derived by trial and error
+% to have the LaTeX and Word versions of the TechCon templates
+% match the word count per page.  Authors have complained
+% over a difference of a few words.  I suppose they felt cheated
+% if one template offered a couple fewer words than the other
+% template.  Go figure.
+
+\setlength{\textwidth}{6.97in}
+
+\pagestyle{empty}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+
+\renewcommand\@listI{\leftmargin\leftmargini 
+   \parsep 3.6\p@ \@plus 2\p@ \@minus 1\p@%
+   \topsep 0.0\p@ \@plus 2\p@ \@minus 4\p@%
+   \itemsep 3.0\p@ \@plus 2\p@ \@minus 1\p@}
+\let\@listi\@listI
+
+\newif\ifpagefooterline \pagefooterlinefalse
+\newdimen\pagefooterlineskip \pagefooterlineskip=-14.0pt
+
+\newif\ifpageheaderline \pageheaderlinefalse
+\newdimen\pageheaderlineskip \pageheaderlineskip=0.01pt
+
+\def\@headerline#1#2#3{%
+   \ifpageheaderline
+      \vbox{\hbox to \textwidth{\rlap{#1}\hss{#2}\hss\llap{#3}}%
+      \vskip\pageheaderlineskip \hrule}%
+   \else{\rlap{#1}\hss{#2}\hss\llap{#3}}\fi}
+
+\def\@footerline#1#2#3{%
+   \ifpagefooterline
+      \vbox{\hbox to \textwidth{\rlap{#1}\hss{#2}\hss\llap{#3}}%
+      \vskip\pagefooterlineskip \hrule}%
+   \else{\rlap{#1}\hss{#2}\hss\llap{#3}}\fi}
+
+\newcommand\oddpageheader[3]{%
+   \def\@oddhead{\@headerline{#1}{#2}{#3}}
+}
+
+\newcommand\evenpageheader[3]{%
+   \def\@evenhead{\@headerline{#1}{#2}{#3}}
+}
+
+\newcommand\oddpagefooter[3]{%
+  \def\@oddfoot{\@footerline{#1}{#2}{#3}}
+}
+
+\newcommand\evenpagefooter[3]{%
+   \def\@evenfoot{\@footerline{#1}{#2}{#3}}
+}
+
+\newcommand\pageheader[3]{%
+   \oddpageheader{#1}{#2}{#3}\evenpageheader{#1}{#2}{#3}
+}
+
+\newcommand\pagefooter[3]{%
+   \oddpagefooter{#1}{#2}{#3}\evenpagefooter{#1}{#2}{#3}
+}
+
+\pagefooter{HP Confidential}{}{\thepage}
+
+\newcommand\tcabstract[1]{%
+   \vspace*{0.4in}{\tcabstractfont\centerline{Abstract}}
+   {\tcabstracttextfont{#1}}
+}
+
+\newcommand\tcreferences[1]{%
+   \vspace*{0.5in}{\tcreferencesfont\centerline{References}}
+   \vspace*{-0.04in}{#1}
+}
+
+\newcommand\tcauthor[1]{%
+   \vspace*{0.1in}\centerline{#1}
+}
+
+\newcommand\tcbusinessgroup[1]{%
+   \vspace*{0.1in}\centerline{#1}
+}
+
+\newcommand\tcemail[1]{%
+   \vspace*{0.1in}\centerline{#1}
+}
+
+\newcommand\tctitle[1]{%
+   \vspace*{-0.82in}
+   \textsf{\textup{\textbf{\LARGE\begin{center}{#1}\end{center}}}}
+   \vspace*{-0.12in}
+}
+
+\renewcommand\refname{}
+
+\endinput     
