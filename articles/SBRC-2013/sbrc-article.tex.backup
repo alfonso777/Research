@@ -5,6 +5,8 @@
 \usepackage{graphicx,url}
 \usepackage{comment}
 
+\usepackage{amstext}
+\usepackage{booktabs}
 \usepackage[brazil]{babel}
 \usepackage[latin1]{inputenc}
 \usepackage{float}
@@ -14,7 +16,7 @@
 
 %\title{Establishment of SLAs in Service Choreography based on a failure model Abstract:}
 %\title{Estabelecimento de  SLAs em Coreografia de Serviços baseado em Modelos de Falhas}
-\title{Definição de Requisitos de QoS em Coreografias de Serviços}
+\title{Definição de Requisitos de QoS em Coreografias de Serviços Web}
 
 \author{Alfonso Phocco Diaz\inst{1}, Daniel M. Batista \inst{1}}
 
@@ -38,13 +40,20 @@ coordination using  P2P interactions between participants. However, since   infr
 In this work, we propose an approach for QoS requirements definition between participant services involved into a service choreography
  taking into account QoS composition and infrastructure aspects. To be able to do so, we developed a choreography simulator in order to simulate
 the enactment of choreographies.  The establishment of QoS constraints are based on simulation  results of CDN scenario according to the failure model
- of service operation, data and communication issues. %Furthermore, we adopted
+ of communication issues. %Furthermore, we adopted
  %a choreography scenario about Content Delivery Network (CDN) providing streaming multimedia objects.
-
+%[TODO]: traduzir
 \end{abstract}
 
 \begin{resumo}
-TODO
+Coreografias de serviços Web permitem  que serviços sejam compostos de forma colaborativa, por causa da descrição global e coordenação P2P
+ descentralizada. Como as infraestruturas e implementações
+não são maduras o suficientes para executar (\textit{enact}) coreografias, a avaliação de requisitos de QoS e o comportamento da composição
+ é uma tarefa difícil. Neste trabalho, é proposta uma abordagem para a definição de requisitos de QoS entre
+os serviços dos participantes envolvidos em uma coreografia, levando em consideração composição de QoS e aspectos de infraestrutura. Para 
+tanto, foi desenvolvido um simulador de coreografias, a fim de simular a  execução  de coreografias. A proposta é avaliada atraves de %O estabelecimento  de restrições de QoS estão baseadas   nos resultados
+  simulações de uma coreografia de serviços que implementa  uma aplicação de  CDN. 
+%(\emph{Content Delivery Network}) de acordo com um modelo de falha de comunicação.
 \end{resumo}
 
 
@@ -93,51 +102,59 @@ O modo de desenvolver aplicações e sistemas complexos evoluiu com o passar do te
  (\textit{Service Oriented Computing} -- SOC)~\cite{PapazoglouSOC2007a}. As aplicações baseadas em serviços requerem composições de serviços como um
 fator chave para alavancar um desenvolvimento rápido, de baixo acoplamento e flexível na integração com  outros sistemas~\cite{PapazoglouSOC2007a}.
 
-Devido ao número crescente de dispositivos móveis que se aderem à Internet, uma abordagem orientada a serviços centralizada como a orquestração
-pode não ser escalável em termos de largura de banda  para lidar com o número cada vez  mais crescente de dispositivos e
-serviços que podem estar disponíveis. Nesse cenário, uma abordagem descentralizada, como a coreografia, pode se tornar a mais
-adequada para as características da Internet do Futuro~\cite{Stuttgart2012}. %\cite{Tan2010}.
-
 Atualmente existem duas principais abordagens para compor serviços, a orquestração e a coreografia. A orquestração de serviços é uma
- composição centralizada, já que uma entidade denominada \textit{orquestrador} é responsável de coordenar a comunicação dos serviços
- participantes em base a um fluxo de trabalho. %que por sua vez também pode ser um serviço.
- Por outro lado, a coreografia de serviços, a diferencia da orquestração, é uma composição descentralizada já que é uma descrição
- de interações %observáveis externamente
+ composição centralizada, já que uma entidade denominada \textit{orquestrador} é responsável por coordenar a comunicação dos serviços
+ participantes. %que por sua vez também pode ser um serviço.
+ Por outro lado, a coreografia de serviços%, a diferencia da orquestração,
+ é uma composição descentralizada já que é uma descrição  de interações %observáveis externamente
  ponto a ponto entre os serviços participantes, ou seja, nesse modelo, não há a figura de um controlador central~\cite{Barker2009}.
 
 
+Devido ao número crescente de dispositivos móveis que se conectam à Internet, uma abordagem orientada a serviços centralizada como a orquestração
+pode não ser escalável em termos de largura de banda  para lidar com o número cada vez  mais crescente de dispositivos e
+serviços. Nesse cenário, uma abordagem descentralizada, como a coreografia, pode se tornar a mais
+adequada para as características da Internet do Futuro~\cite{Stuttgart2012}. %\cite{Tan2010}.
+
+
+
 Durante a execução de coreografias de serviços\footnote{Utilizaremos o termo executar coreografias por falta de uma tradução ideal para
- o termo \textit{to enact choreographies}}, o estado dos elementos de rede (aparelhos e conexões) jogam um papél fundamental.
- Deve haver garantias da Qualidade de Serviço - QoS,  de modo que haja vantagens usando um modelo de negócios descentralizado.
-Um método comum para definir garantias entre um provedor de serviços e um cliente
-(que pode ser também um serviço) é por meio de um Acordo de nível de serviço - SLA.
+ o termo \textit{to enact choreographies}}, o estado dos elementos de rede desempenham um papel fundamental.
+ Deve haver garantias dw Qualidade de Serviço - QoS,  de modo que haja vantagens usando um modelo de negócios descentralizado.
+Um método comum para definir garantias entre um provedor de serviços e um cliente %(que pode ser também um serviço)
+ é por meio de um Acordo de nível de serviço - SLA.
 %After  the choreography be specified,  constraints of QoS between each participant must be defined through SLAs \cite{Rosenberg2007}. To meet the SLA
 % agreements there must be some mechanism for management at runtime. This mechanism must involve monitoring, control and
 % decisions against violations or degradation of service quality. All the concern about guarantee of the QoS requirements of participants comes
 % from the fact that the QoS of composite service, represented by the choreography, depends directly on the QoS of the separate services.
 %% To reduce the number of SLA violations and the corrective measures to fulfill the QoS requirements during the enactment of choreographies,
 %% the detection of non-functional failures in early stages of the development of the choreography can be employed.
-Atualmente, para implementar e executar uma coreografia serviço real ainda é difícil já que a  tecnologia de suporte está imatura,
-especialmente pela falta de motores de execução cientes de coreografia~\cite{Kopp2010}. Assim, os mecanismos para definir medições de QoS,
-estabelecimento de requisitos de QoS, monitoramento, entre outros, não estão bem desenvolvidos para coreografias.
+Atualmente,  implementar e executar uma coreografia de serviço real  é uma tarefa complexa já que a  tecnologia para suportar esse paradgima de
+composição de serviços  está imatura, especialmente pela falta de motores de execução cientes de coreografia~\cite{Kopp2010}. Assim,
+ os mecanismos para medir parãmetros de QoS,
+e estabelecer requisitos de QoS não estão bem desenvolvidos para coreografias.
 
 
 Este trabalho apresenta uma proposta para detectar falhas não funcionais dos participantes de uma coreografia na etapa de projeto e a partir delas estabelecer
 requisitos e restrições de QoS de maneira a definir  SLAs iniciais.  Nossa abordagem realiza uma avaliação de
  desempenho mediante simulações de cenários definidos a partir da  coreografia alvo. Tais cenários são instâncias de coreografias mas com diferentes configurações
-de acordo com um modelo de falhas de atributos de QoS. Os atributos de QoS  envolvem  aspectos de serviços Web, troca de mensagens dos participantes, e especialmente da rede.
+de acordo com um modelo de falhas de atributos de QoS. Os atributos de QoS  envolvem  aspectos de serviços Web, troca de mensagens dos participantes,
+ e especialmente parâmetros de desempenho da rede.
 Dessa maneira, os requisitos e restrições de QoS estão baseados na análise dos resultados das simulações de cenários com diversos níveis de falha.
 
 %Justificativa da simulação, outras abordagens, etc
-A simulação é utilizada pois a implementação e a execução de coreografias de serviços Web reais ainda é difícil por conta da imaturidade das tecnologias.% de suporte, principalmente
-%pela falta de um motor de execução ciente de coreografias \cite{Kopp2010}.
-O simulador utilizado para avaliar a nossa proposta também representa uma contribuição deste artigo. Este novo simulador estende aquele novel apresentado em
- ~\cite{Guimaraes2012} por meio da adição do suporte a composição e monitoramento de QoS.
+O simulador utilizado para avaliar a nossa proposta também representa uma contribuição deste artigo. Este novo
+ simulador estende aquele apresentado em~\cite{Guimaraes2012} por meio da adição do suporte a composição e monitoramento de QoS.
 %Em \cite{}, desenvolveu-se um simulador
 
-As contribuições desse trabalho são: (1) uma metodologia para estabelecer SLAs iniciais a partir de requisitos e restrições de QoS em coreografia de
- serviços; (2) um modelo de falhas e QoS para coreografias de serviços; (3)  um simulador
- de coreografias com suporte da requisitos de QoS. Nosso trabalho difere dos encontrados na literatura porque realiza uma análise de desempenho em etapas
+As contribuições desse trabalho são:
+\begin{itemize}
+  \item Uma metodologia para estabelecer requisitos e restrições de QoS iniciais em coreografia de  serviços Web.
+  \item Um modelo de falhas e QoS para coreografias de serviços.
+  \item Um simulador  de coreografias com suporte da requisitos de QoS.
+\end{itemize}
+ 
+
+ Nosso trabalho difere dos encontrados na literatura porque realiza uma análise de desempenho em etapas
  antes do desenvolvimento (como na modelagem e projeto) de coreografias, o que serve também como primeira etapa para definir os requisitos de
  QoS e SLA entre os participantes. Além disso, este trabalho faz uso do modelo de interação de coreografias oferecida no padrão BPMN na versão 2.0.
 
@@ -148,7 +165,7 @@ As contribuições desse trabalho são: (1) uma metodologia para estabelecer SLAs i
  %formalização de elementos BPMN2 de uma coreografia com as respectivas regras de mapeamento e algoritmos para redes de Petri incluindo o  modelo de QoS.
  %apresentados os conceitos da rede de petri generalizada  com as respectivas regras de mapeamento de elementos de BPMN da coreografia.
  %A Seção 5 descreve o algoritmo de mapeamento da coreografia para
- A Seção~\ref{sec:simulations} apresenta os cenários propostos para avaliar o modelo proposto e os resultados das simulações. %Na Seção 6 são apresentados os resultados dos experimentos  realizados para avaliar a abordagem.
+ A Seção~\ref{sec:simulations} apresenta os cenários simulados para avaliar o modelo proposto e os resultados das simulações. %Na Seção 6 são apresentados os resultados dos experimentos  realizados para avaliar a abordagem.
  Finalmente, na Seção~\ref{sec:conclusions} são apresentadas as conclusões e trabalhos futuros.
 
 
@@ -157,26 +174,26 @@ As contribuições desse trabalho são: (1) uma metodologia para estabelecer SLAs i
 \section{Conceitos Básicos} \label{sec:concepts}
   \subsection{Coreografia de Serviços}
     Uma coreografia de serviços é uma forma de compor serviços de maneira colaborativa e é uma descrição ponto a ponto (P2P) de interações dos comportamentos
-    externamente observáveis dos seus participantes (serviços). Difere de uma orquestração em que não
-  possui um único ponto central de controle ou de coordenação, em cujo caso  é realizada desde uma perspectiva global com foco na troca de
-  mensagens \cite{Barker2009}. A coreografia é mais eficiente do que a orquestração porque não joga toda a carga em cima de um único ponto
-  \cite{Barker2009b}, e por ser um esquema P2P,  a rede é um aspecto que afeta o funcionamento da  coreografia.
+    externamente observáveis dos seus participantes (serviços). Coreografias diferem de orquestrações por não haver um ponto 
+    central de controle ou de coordenação.% , em cujo caso  é realizada desde uma perspectiva global com foco na troca de  mensagens \cite{Barker2009}.
+    Em cenários onde há transferência intensa de dados entre os participantes, a coreografia é mais eficiente do que a orquestração
+    porque não sobrecarrega um único serviço~\cite{Barker2009b} e \cite{Guimaraes2012}. %, e por ser um esquema P2P,  a rede é um aspecto que afeta o funcionamento da  coreografia.
   %Choreographies tend to be more  efficient than orchestrations because the probability to have a bottleneck in the system is reduced \cite{Barker2009b}.
 
 Existem duas maneiras de especificar coreografias de serviços, com modelos de interação e com modelos de interconexão. O padrão
 BPMN\footnote{BPMN: \url{http://www.bpmn.org/}} suporta a especificação de coreografias para ambos os modelos, sendo que só a partir do BPMN versão 2.0
 o modelo de interação  é suportado. O modelo de interação tem como bloco de construção de coreografias as interações atômicas entre participantes
-por meio de troca de mensagens.% \cite{Decker2008}.
+por meio de troca de mensagens. O modelo de interação  para especificar coreografias é usado neste trabalho.% \cite{Decker2008}.
 
 
  %  Neste artigo será considerado que as coreografias são representadas por modelos de interação porque incorrem em menos redundâncias e erros  com uma modelagem
  %  mais simples que se encaixa adequadamente em metodologias de cima para baixo (\textit{top-down} ) \cite{Decker2008}.
 
-
   A Figura~\ref{fig:ChoreographyElements} mostra alguns dos elementos BPMN do modelo de interação que são considerados na construção do simulador.
-Consultar~\cite{OMG2011} para informação detalhada de todos os elementos BPMN de coreografias. As tarefas de coreografias (\textit{choreography task})
-representam  as interações atômicas. %que envolvem dois participantes por meio de troca de mensagens.
-Os \textit{gateways} são elementos que permitem definir condições e caminhos de execução e também sincronização delas. %%Eventos não serão levado em consideração
+Informações  detalhadas de todos os elementos BPMN de coreografias podem ser  encontradas  em~\cite{OMG2011}. As tarefas de coreografias (\textit{choreography task})
+representam  as interações atômicas que envolvem dois participantes por meio de troca de mensagens. Os \textit{gateways} são elementos que
+ permitem definir condições e caminhos de execução e também sincronização delas. Os eventos são elementos que indicam o que está ocorrendo, como o começo
+e finalização de uma instância de coreografia, chegada de uma mensagem, entre outros.  %%Eventos não serão levado em consideração
 
 
   \begin{figure}[!h]
@@ -197,27 +214,29 @@ Os \textit{gateways} são elementos que permitem definir condições e caminhos de 
     %QoS abrange todos os atributos ou propriedades não funcionais de um serviço, por exemplo, atributos que tem a ver com desempenho, confiabilidade,
     %segurança e inclusive até custos.
 
-    Na computação orientada a serviços (SOC), o fornecimento de serviços com garantia de qualidade exige ter soluções
-    que incluem modelos de qualidade de serviço (QoS) como característica chave. De facto, os modelos de QoS fornecem uma
-    adequada base para o cumprimento de QoS em ambientes orientados a serviços~\cite{Mabrouk2009}.
+    Na computação orientada a serviços (SOC), o fornecimento de serviços com garantia de qualidade exige mecanismos
+    que incluam modelos de qualidade de serviço (QoS) como característica chave. De fato, os modelos de QoS fornecem uma
+    base adequada para o cumprimento de QoS em ambientes orientados a serviços~\cite{Mabrouk2009}.
 
-    Em tais ambientes, a QoS pode ser influenciada por diversos fatores incluindo o hardware, a infraestrutura de rede (capacidades dos aparelhos
-    de computação, conectividade de rede), o nível de qualidade oferecido pelos serviços de aplicação e pelas
-    características do usuário final (mobilidade, tráfego gerado). Isso implica que, a fim de se obter uma avaliação exata da
-    QoS, nenhum destes aspectos devem, em princípio, ser negligenciados na fase de modelagem de QoS. Assim, a QoS deve considerar uma base
-    ponto a ponto (\textit{end-to-end}), ou seja, que os modelos de QoS devem cobrir características de todos os recursos e atores
-    envolvidos na execução de um serviço. Na prática, estes incluem~\cite{Mabrouk2009}:  (i) o ambiente do serviço e o hardware e infraestrutura de rede subjacente,
-    (ii) os serviços mesmos, e (iii) os usuários finais.
+    Em tais ambientes, a garantía de QoS pode ser afetada por diversos fatores incluindo o hardware, a infraestrutura de rede,
+ %(capacidades dos aparelhos   de computação, conectividade de rede)
+    o nível de qualidade oferecido pelos serviços de aplicação e pelas
+    características do usuário final (mobilidade por exemplo). Isso implica que, a fim de se obter uma avaliação exata da
+    QoS, nenhum destes aspectos devem ser negligenciados na fase de modelagem de QoS. Parâmetros que devem ser considerados
+    em um modelo de QoS para coreografias são similares àqueles considerados em sistemas P2P~\cite{Mabrouk2009}:  (i) o 
+    ambiente do serviço e o hardware e infraestrutura de rede subjacente, (ii) os serviços disponíveis, e (iii) os usuários finais.
 
 
-    Este trabalho está focado em  atributos não funcionais ou de QoS presentes em serviços Web, principalmente de desempenho e de disponibilidade. Tais
-    atributos de QoS abrangem os pontos citados acima (i,ii e iii) e três aspectos como serviço, mensagem e comunicação.
+    O modelo de QoS apresentado neste artigo foca em  atributos não funcionais presentes em serviços Web, principalmente de
+   desempenho e de disponibilidade. Tais atributos de QoS abrangem os pontos citados acima (i,ii e iii) e podem estar relacionados
+   com algum dos seguintes aspctos:  serviço, mensagem e comunicação. A seguir, uma breve  descrição dos atributos considerados.
+
 
       \begin{itemize}
 	\item \textbf{Tempo de Execução}: Tempo necessário para executar um serviço.
-	\item \textbf{Tempo de Resposta}: Tempo necessário para executar um serviço e retorná-lo ao cliente.
+	\item \textbf{Tempo de Resposta}: Tempo necessário para executar um serviço e retornar sua resposta ao cliente.
 	\item \textbf{Vazão}: Número de requisições realizadas em um período de tempo.
-	\item \textbf{Formato da mensagem}: Conteúdo consistente tanto sintática quanto semântica  da mensagem.
+	\item \textbf{Formato da mensagem}: Conteúdo consistente tanto sintaticamente quanto semanticamente  da mensagem.
 	\item \textbf{Latência de rede}: Atraso de rede ao enviar as requisições ou ao retornar as respostas.
 	\item \textbf{Largura de banda}: Medida da capacidade de transmissão do canal de comunicação.
 	%\item \textbf{Tempo de comunicação}: Medida da capacidade de transmissão do canal de comunicação.
@@ -229,22 +248,22 @@ Os \textit{gateways} são elementos que permitem definir condições e caminhos de 
     %(3) de gerenciamento de recursos, (4) de comunicação (5) de ciclo de vida
 
     Um modelo de falhas descreve os tipos de falhas que podem ocorrer em um sistema enquanto está sendo executado, e ajuda a
-    determinar qual mecanismo de tolerância de falhas deveria ser aplicado~\cite{Liu2010a}. Baseado no trabalho~\cite{Liu2010a},
-      pode se distinguir em um modelo de falhas em serviços Web quatro tipos: lógicas, de sistema, de conteúdo e
-    de nível de serviço (SLA).
+    determinar quais mecanismos de tolerância a falhas deveria ser aplicado~\cite{Liu2010a}. Levando em consideração o trabalho~\cite{Liu2010a},
+      pode se classificar para um modelo de falhas em serviços Web quatro tipos de falhas: lógicas, de sistema, de conteúdo e
+    de nível de serviço (SLA). A seguir, uma breve descrição desses tipos:
 
     \begin{itemize}
-      \item \textbf{Falhas Lógicas}: Detectados na lógica definida na especificação da composição.%Devido a terminações sem sucesso de outros serviços Web por conta de várias causas.%%
-      \item \textbf{Falhas de Sistema}: Surgem no suporte do ambiente de execução, estão relacionados a falhas nos \textit{hosts}, rede, sistema operacional, etc.
+      \item \textbf{Falhas Lógicas}: Detectadas na lógica definida na especificação da composição.%Devido a terminações sem sucesso de outros serviços Web por conta de várias causas.%%
+      \item \textbf{Falhas de Sistema}: Surgem no suporte do ambiente de execução e estão relacionados a falhas nos computadores, rede, sistema operacional, etc.
       \item \textbf{Falhas de Conteúdo}: Devido a dados ou mensagens corrompidos.
       \item \textbf{Falhas de SLA}: Devido a violações de QoS especificados em um SLA.
     \end{itemize}
 
 
-    O modelo de QoS e o modelo de falhas correspondente são definidos na Subseção~\ref{qos_fault-model}. No contexto
+    O modelo de QoS e o modelo de falhas propostos neste artigo  são apresentados na Subseção~\ref{qos_fault-model}. No contexto
     de coreografias, já que há serviços compostos, os atributos de QoS são individuais e agregados de acordo com
-    os padrões de fluxo de trabalho (\textit{gateways} que definem decisões, paralelismo, etc) e dependências.  O monitor é responsável pela coleta, medição
-    e agregação de tais atributos, assim como de acompanhar a execução da coreografia e detectar falhas e violações de
+    os padrões de fluxo de trabalho e suas dependências.  Um monitor deve ficar responsável pela coleta, medição
+    e agregação de tais atributos, assim como por acompanhar a execução da coreografia e detectar falhas e violações de
     restrições de QoS. %Importancia do monitoramento
 
 
@@ -257,36 +276,39 @@ Os \textit{gateways} são elementos que permitem definir condições e caminhos de 
 
 
 
-Existem poucas infraestruturas para implementação de coreografias de serviços Web~\cite{Barker2009b}. O Pi4SOA~\cite{Zhou2006} é um 
-arcabouço que fornece de um editor para modelagem de coregrafias em WS-CDL\footnote{WSCDL: Linguagem de especificação de coreografias proposto pela W3C},
- e realizar verificações, validações e simulações. Porém,
-  não  suporta  execução de coreografias e as suas simulações servem só para achar inconsistências na especificação.
+Existem poucas infraestruturas para implementação de coreografias de serviços Web~\cite{Barker2009b}. O Pi4SOA~\cite{Zhou2006} é um
+arcabouço que fornece  um editor para modelagem de coregrafias em WS-CDL\footnote{WSCDL: Linguagem de especificação de coreografias proposto pela W3C},
+ e realiza verificações, validações e simulações. Porém,
+  não  suporta  execução de coreografias e as suas simulações servem apenas para encontrar inconsistências na especificação.
 O WS-CDL+~\cite{Kang2007} é uma proposta de um motor de execução de coreografias especificadas em WS-CDL, mas foi implementado na forma
  de protótipo e somente a versão $1.0$ foi lançada. O OpenKnowledge~\cite{Barker2009b} é um arcabouço que fornece a capacidade  de rodar
-sistemas distribuídos em uma  arquitetura P2P (ponto a ponto), podendo rodar coreografias também, mas de maneira limitada. 
+sistemas distribuídos em uma  arquitetura P2P (ponto a ponto), podendo rodar coreografias também, mas de maneira limitada.
 
-Muitos simuladores para sistemas e ambientes distribuídos foram propostos, por exemplo, o arcabouço GridSim~\cite{Buyya2002},
+Muitos simuladores para sistemas e ambientes distribuídos foram propostos. Por exemplo, o arcabouço GridSim~\cite{Buyya2002},
  o Pi4SOA~\cite{Zhou2006}, e o arcabouço SimGrid~\cite{Casanova2008}. O arcabouço GridSim~\cite{Buyya2002} é um motor de simulação
 de ambientes distribuídos baseado em eventos. Ele implementa entidades para emular usuários. As requisições dos usuários são escalonadas
  por meio de um \textit{broker} que os aloca nos recursos de simulação. O SimGrid~\cite{Casanova2008}] é um arcabouço para simular
- diversos sistemas distribuídos e permite para avaliar  mecanismos de \textit{cluster}, grade e P2P. 
+ diversos sistemas distribuídos e permite avaliar  mecanismos de \textit{clusters} e grades.
 
-Como podemos notar, não há soluções baseadas em simulações para apoiar a execução de coreografias e menos ainda com suporte de QoS.
-Por conta disso, em ~\cite{Guimaraes2012}, nós desenvolvimos um simulador inicial para demonstrar que coreografias são mais eficientes
- do que orquestrações de serviços. Contudo, os trabalhos citados ainda não tratam a execução ou simulação de coreografias com QoS ou SLA.
+Como podemos notar, não há soluções baseadas em simulações para apoiar a execução de coreografias e menos ainda com suporte a QoS.
+Por conta disso, em ~\cite{Guimaraes2012}, um dos autores deste artigo desenvolveu um simulador inicial para demonstrar que coreografias são mais eficientes
+ do que orquestrações de serviços. Contudo, esse simulador não suporta experimentos de coreografias com o objetivo de avaliar mecanismos
+relacionados com QoS ou SLA.
 
-Por outro lado, existem algumos trabalhos acerca de coreografias de serviços com QoS. Em~\cite{Haq2010a} propõe uma abordagem baseada em agregação de
-SLAs para garantir qualidade de serviço (QoS) em coregrafias de serviços Web, para suportar vários níveis de hierarquia de coreografias. Mas
-a proposta está focada na formalização do conceito de coreografia de SLA e definir um modelo de agregação baseado em vistas de SLA. 
+Por outro lado, existem algumos trabalhos acerca de coreografias de serviços que estudam mecanismos de QoS. Em~\cite{Haq2010a} é proposta uma
+ abordagem baseada em agregação de SLAs para garantir qualidade de serviço (QoS) em coregrafias de serviços Web, para suportar
+ vários níveis de hierarquia de coreografias. Mas
+a proposta está focada na formalização do conceito de coreografia de SLA e na definição de um modelo de agregação baseado em vistas de SLA.
 Em~\cite{Buccafurri2008a}, apresenta-se uma abordagem para o tratamento de QoS em serviços Web focando-se na degradação da qualidade. Também se desenvolveu
- um arcabouço para fornecer funcionalidades de adaptação por meio de um monitoramento e ações de recuperação ante falhas. Apesar de descrever rapidamente
-uma abordagem do monitoramento de uma coreografia do exemplo acerca do CDN (\textit{Content Delivery Network}) em tempo real, não foca-se na
- especificação do QoS nem na agregação de QoS em coreografias. Porém, nosso trabalho  fornece de um simulador de coreografias e leva em 
-consideração a agregação de QoS em coreografias.
+ um arcabouço para fornecer funcionalidades de adaptação por meio de um monitoramento e ações de recuperação em caso de falhas. Apesar de descrever rapidamente
+uma abordagem do monitoramento de uma coreografia de um exemplo aplicado a  CDN  em tempo real, o trabalho não foca na
+ especificação de QoS nem na agregação de QoS em coreografias. Nosso trabalho diferencia-se dos demais por apresentar um novo simulador para coreografias de
+serviços Web que permite a avaliação de mecanismos de garantia de QoS e SLA. Além disso também é apresentada uma metodologia para estabelecer requisitos
+de QoS e um modelo de falhas e QoS para coreografias de serviço.
 
 
 %Pi4SOA~\cite{Zhou2006} apresenta uma infraestrutura baseada em políticas para dinamicamente verificar e controlar
-%o processo de colaboração em SOA. 
+%o processo de colaboração em SOA.
 
 
 \section{Metodologia}\label{sec:methodology}
@@ -309,8 +331,8 @@ consideração a agregação de QoS em coreografias.
 
 \begin{figure}[h]
       \centering
-      \includegraphics[width=.6\linewidth]{figures/ChorInteractionToServiceInteraction.png}
-      \caption{ Interação de serviços a partir de uma interaçções atômicas do BPMN2.}
+      \includegraphics[width=.5\linewidth]{figures/ChorInteractionToServiceInteraction.png}
+      \caption{ Interação de serviços a partir de  interações atômicas do BPMN2.}
       \label{figure:InteractionBPMNServiceInteraction}
   \end{figure}
 
@@ -318,65 +340,67 @@ consideração a agregação de QoS em coreografias.
     A Figura~\ref{figure:QoSInvocationService} mostra os atributos de QoS básicos envolvidos em uma invocação de um
     serviço tais como, o tempo de comunicação na requisição, o tempo de execução, o tempo de comunicação na resposta
      e o tempo de resposta. O tempo de comunicação depende de atributos de QoS de rede como a largura de banda
-    e a latência, o tempo de resposta depende do tempo de execução e do tempo de comunicação da requisição e da 
+    e a latência; o tempo de resposta depende do tempo de execução e do tempo de comunicação da requisição e da
    resposta. Além do mais, no caso de serviços compostos o cálculo dos atributos de QoS depende das medidas dos
-    outros atributos de QoS e das dependências com outros serviços. A seguir, as equações para calcular os atributos de QoS já mencionados.
+    outros atributos de QoS e das dependências com outros serviços. %A seguir, as equações para calcular os atributos de QoS já mencionados.
 
 
     \begin{figure}[h]
 	\centering
-	\includegraphics[width=.6\linewidth]{figures/QoSInvocationService.png}
+	\includegraphics[width=.5\linewidth]{figures/QoSInvocationService.png}
 	\caption{Atributos de QoS em uma interação com um serviço Web}
 	\label{figure:QoSInvocationService}
     \end{figure}
 
 
-
+Os atributos de QoS podem ser calculados da seguinte forma:
       \begin{itemize} %[label={}]
-	\item \textbf{Tempo de comunicação}: $ t_{C} = L_{ij} + S/B{ij}$.  Onde o $S$ é o tamanho da mensagem, e $L_{ij}$  e $B{ij}$ 
+	\item \textbf{Tempo de comunicação}: $ t_{C} = L_{ij} + S/B{ij}$.  Onde o $S$ é o tamanho da mensagem, e $L_{ij}$  e $B{ij}$
 	      são a latência e largura de banda de rede entre o ponto $i$ e o ponto $j$.
-	\item \textbf{Tempo de execução}: $t_{Execution} = t_3 - t_2$.
-	\item \textbf{Tempo de Resposta}: $ t_{R} =  t_{Execution}+t_{C1}+t_{C2}$. Onde o $t_{C1}$ e $t_{C2}$ são os
+	\item \textbf{Tempo de execução}: $t_{\text{Execução}} = t_3 - t_2$.
+	\item \textbf{Tempo de resposta}: $ t_{R} =  t_{\text{Execução}}+t_{C1}+t_{C2}$. Onde o $t_{C1}$ e $t_{C2}$ são os
 		tempos de comunicação na requisição e na resposta respectivamente.
       \end{itemize}
 
       %\subsection{Agregação de QoS }
       \begin{itemize} %[label={}]
-	  \item \textbf{Tempo de execução efetiva}: $ t_{Execution} = t_{Rcomposed} + t_{Execution\_individual}$. Onde $t_{Rcomposed}$ é o tempo de resposta acumulado 
-	  das dependências, e $t_{Execution\_individual}$ é o tempo de execução do serviço atual.
+	  \item \textbf{Tempo de execução efetivo}: $ t_{\text{Execução}} = t_{Rcomposto} + t_{\text{Execução}\_individual}$. Onde $t_{Rcomposed}$ é o tempo de resposta acumulado
+	  das serviços que são  dependências do serviço atual, e $t_{\text{Execução}\_individual}$ é o tempo de execução do serviço atual.
 	  \item \textbf{Tempo de resposta composto}: \\
-	      $ t_{R_composed} = F( aggregationType, data, t_{R1}, ..., t_{Rk})$.  Onde os $t_{R1},..., t_{Rk}$  são os tempos de resposta
-		das dependências do serviço atual, $F$ é a função de agregação que depende do tipo de  padrão de \emph{workflow} 
-		(\emph{gateway}) $aggregationType$, e $data$ é a informação associada. Os \emph{gateways} atualmente suportados são
-		a sequência, paralelismo e a decisão exclusiva:
+	      $ t_{R_composto} = F( aggregationType, dado, t_{R1}, ..., t_{Rk})$.  Onde os $t_{R1},..., t_{Rk}$  são os tempos de resposta
+		das dependências do serviço atual, $F$ é a função de agregação que depende do tipo de  padrão de \emph{workflow}
+		(\emph{gateway}) $aggregationType$, e $dado$ é a informação associada. Os \emph{gateways} atualmente suportados são
+		a sequência, paralelismo e a decisão exclusiva~\ref{fig:ChoreographyElements}:
 	      \begin{itemize}
-		\item \textbf{Sequência}: $F( SEQUENCE, data, t_{R1}) = t_{R1}$. Onde $t_{R1}$ é o serviço em sequência do atual.
-		\item \textbf{Paralelismo}: $F( PARALLEL, data, t_{R1}, ..., t_{Rk}) = max{t_{R1},..., t_{Rk}}$.  %sum_i=1^k{t_{Ri}}$
-		\item \textbf{Decisão exclusiva}: $F( EXCLUSIVE, data, t_{R1}, ..., t_{Rk}) = t_{Ry}$. Onde os $t_{Ry}$  é o tempo
-		de resposta do serviço escolhido de acordo ao valor de $data$.
+		\item \textbf{Sequência}: $F( SEQUENCE, dado, t_{R1}) = t_{R1}$. Onde $t_{R1}$ é o serviço em sequência do atual.
+		\item \textbf{Paralelismo}: $F( PARALLEL, dado, t_{R1}, ..., t_{Rk}) = max\{t_{R1},..., t_{Rk}\}$.  %sum_i=1^k{t_{Ri}}$
+		\item \textbf{Decisão exclusiva}: $F( EXCLUSIVE, dado, t_{R1}, ..., t_{Rk}) = t_{Ry}$. Onde os $t_{Ry}$  é o tempo
+		de resposta do serviço escolhido de acordo ao valor de $dado$.
 	      \end{itemize}
       \end{itemize}
 
 
 
-A Figura~\ref{figure:QoSAttributosEvents} mostra as requisições e respostas que entram e saiem de um serviço composto.  Essas interações 
-(requisições e respostas) são registradas mediante eventos por parte de um serviço ou cliente solicitador (eventos $1$ e $4$) 
+A Figura~\ref{figure:QoSAttributosEvents} mostra as requisições e respostas enviada para e transmitidas de um serviço composto.  Essas interações
+(requisições e respostas) são registradas mediante eventos por parte de um serviço ou cliente solicitador (eventos $1$ e $4$)
 e eventos por parte das dependências (eventos $2$ e $3$). Os eventos indicam quando e quais  atributos de QoS
- devem ser medidos e garantem a ordem para ter valores consistentes, e é por isso que o gerenciamento de  eventos complexos 
-são importantes nos atuais \emph{middlewares} para composição de serviços. Finalmente, os atributos de QoS base com as
- suas métricas e tipos de falhas associadas são apresentados na Tabela~\ref{table:QoSmodel}.
+ devem ser medidos e garantem a ordem para ter valores consistentes.%, e é por isso que o gerenciamento de  eventos complexos
+%são importantes nos atuais \emph{middlewares} para composição de serviços. 
+Os atributos de QoS  com as  suas métricas e tipos de falhas associadas são apresentados na Tabela~\ref{table:QoSmodel}.
 %descrever os atributos de QoS da Figura de acordo com os eventos
 
 
    \begin{figure}[h]
        \centering
       \includegraphics[width=.6\linewidth]{figures/ServiceDependency_Events_QoS.png}
-      \caption{ Atributos de QoS calculados em um evento dado. (1) Recebendo de requisições de um cliente ou serviço, (2) enviando requisições para um serviço dependente, (3) recebendo resposta de um serviço dependente e (4) enviando resposta para o um cliente ou serviço.}
+      \caption{ Atributos de QoS calculados em um evento dado. (1) Recebendo requisições de um cliente ou serviço, (2) enviando
+      requisições para um outro serviço, (3) recebendo resposta de um outro serviço (dependência)  e (4) enviando resposta para um cliente ou serviço solicitador.}
       \label{figure:QoSAttributosEvents}
   \end{figure}
 
 
     \begin{table}[!h]
+      {\footnotesize
       \centering
       %\caption{Configuração de pesos nos Cenários 1 e 2}
       \caption{Modelo de QoS e de falhas}
@@ -392,20 +416,26 @@ são importantes nos atuais \emph{middlewares} para composição de serviços. Final
 	  Comunicação		&   	Largura de Banda(máxima)&   Mb/s	& 	Erro de comunicação\\ %/QoS violation
 	\hline
       \end{tabular}
+      }
     \end{table}
 
 
 
   \subsection{Simulador}
-   Implementar um simulador inteiro de zero é uma tarefa muito complexa. Devido isso, decidimos usar um framework de simulação existente,  o
-   SimGrid~\cite{Casanova2008}. Desde o SimGrid permite a simulação de ambientes distribuídos,
-   ele foi usado como base para implementar nosso simulador.
+  %A simulação é utilizada pois a implementação e a execução de coreografias de serviços Web reais ainda é difícil por conta da
+% imaturidade das tecnologias.% de suporte, principalmente
+%pela falta de um motor de execução ciente de coreografias \cite{Kopp2010}.
+   Implementar um simulador por completo é uma tarefa complexa. Devido isso, decidimos usar um framework de simulação existente,  o
+   SimGrid~\cite{Casanova2008}. Como o SimGrid permite a simulação de ambientes distribuídos, ele é suficiente para servir como base
+  para o nosso simulador de coreografias com suporte a avaliação de mecanismos de QoS.
 
-   A Figura~\ref{figure:SimulatorArchitecture} mostra a arquitetura do simulador de coreografias (ChorSim) com suporte de QoS. A base 
-   do ChorSim está construído sobre o arcabouço SimGrid, para suportar a definição de \emph{hosts}, topologia de rede, comunicação entre 
-    serviços, e especificação de consumo de recursos. O motor de execução  de coreografias do
-    ChorSim permite a criação de instâncias de coreografias e iniciar as interações dos diversos serviços envolvidos
-    mediante uma grafo de requisições e de informação de QoS.
+%Desde o SimGrid permite a simulação de ambientes distribuídos,  ele foi usado como base para implementar nosso simulador.
+
+   A Figura~\ref{figure:SimulatorArchitecture} mostra a arquitetura do simulador de coreografias (ChorSim) com suporte de QoS, onde
+  cada bloco representa um componente do simuador e será explicado a seguir. A base do ChorSim está construído sobre o arcabouço
+  SimGrid, para suportar a definição de \emph{hosts}, topologia de rede, comunicação entre  serviços, e especificação
+  de consumo de recursos. O motor de execução  de coreografias (\textit{Choreography Enactment}) do  ChorSim permite a criação de instâncias de coreografias
+ e iniciar as interações dos diversos serviços envolvidos resultando em um grafo de requisições e de informações de QoS.
 
 
     %%Arquitetura
@@ -422,42 +452,42 @@ são importantes nos atuais \emph{middlewares} para composição de serviços. Final
   A topologia da coreografia (host, canais de comunicação e links) é configurada por meio de um arquivo XML de especificação de plataforma.
 %A   topologia de cenário coreografia é composta por cinco hosts e cada host implanta um único serviço. a rede
 %    foi simulado por meio de conexões e rotas entre os hosts para suportar interações entre serviços.
-  Os serviços foram modelados como um conjunto de \textit{threads} que recebem uma tarefa enviada através da rede, a executam
+  Os serviços foram modelados como um conjunto de \textit{threads} que recebem uma tarefa enviada através da rede, a executam e 
   em seguida enviam outra tarefa através da rede para atuar como uma resposta da requisição.
 
-Um modelo de coreografias (\textit{Choreography Model}) é construido a partir de uma especificação baseada em XML que define  os
+Um modelo de coreografias (\textit{Choreography Model}) é construído a partir de uma especificação baseada em XML que define  os
   serviços participantes, suas dependências e suas interações. Os recursos computacionais  necessários para executar, a quantidade de \textit{threads}, o tamanho médio das respostas dadas nas interações dos serviços e suas operações  são configurados por meio  de um arquivo XML de implantação, que está especificado de acordo como o modelo de coreografias. O arquivo de implantação
    serve também como base para construir o Registro de serviços (\textit{Service Registry}).
 %Neste caso, cada serviço foi configurado para 50 segmentos     para participar de várias solicitações simultâneas.
 
-  O \emph{Manager Request} gerencia o grafo de requisições e de informação de QoS de acordo com o avanço e execução dos serviços.
-  Acima desta infraestrutura e usando o modelo de coreografias, o registro de serviços e o gerenciador de requisições, o monitoramento de coreografias é desenvolvido. Esse monitor é responsável pela  medição dos atributos
-  de QoS dos serviços individuais  e agregá-los para calcular os atributos de QoS compostos. A agregação de QoS é
+  O \emph{Manager Request and QoS} gerencia o grafo de requisições e de informações de QoS de acordo com o avanço e execução dos serviços.
+  Acima desta infraestrutura o monitoramento de coreografias (\textit{Choreography Monitoring}) é desenvolvido, usando o modelo de coreografias, o registro de
+  serviços e o gerenciador de requisições, . Esse monitor é responsável pela  medição dos atributos
+  de QoS dos serviços individuais  e por agregá-los para calcular os atributos de QoS compostos. A agregação de QoS é
   realizada de acordo com as dependências, interações e os padrões de fluxo de trabalho (\emph{gateways})
   do modelo de coreografia. Por meio do monitor criam-se e gerenciam-se as instâncias de coreografias e seus
-  respectivos identificadores para serem usadas nas mensagens durante as interações e evitar problemas de correlação.
+  respectivos identificadores para serem usados nas mensagens durante as interações. % e evitar problemas de correlação.
 
 
 \section{Simulações e Análise de Desempenho} \label{sec:simulations}
 %Simulações baseada em dados reais são frequentemente inadequadas, já que os dados podem não estar disponíveis e sua coleta pode requerer
 %longos periodos de tempo.
 \subsection{Metodologia dos Experimentos}
-Para atestar a eficacia da proposta, a coreografia apresentada em \cite{Buccafurri2008a} é utilizada. Essa coreografia representa uma aplicação de
- CDN (\textit{Content Delivery Network}) para fornecimento de conteúdo multimídia como áudio, vídeo e imagens. A Figura ~\ref{figure:scenario} ilustra
-a coreografia a simular mostrando os serviços e suas respectivas interações. A  coreografia está composta de cinco serviços
- Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e $WS_5$ ). Cada serviço pertence a um participante diferente e há sete canais de comunicação
-definindo a topologia  $G_{chor}$, onde:
+Para atestar a eficácia da proposta, a coreografia apresentada em \cite{Buccafurri2008a} é utilizada. Essa coreografia representa uma aplicação de
+ CDN (\textit{Content Delivery Network}) para fornecimento de conteúdo multimídia como audio, vídeo e imagens. A Figura ~\ref{figure:scenario} ilustra
+a coreografia.  % a simular mostrando os serviços e suas respectivas interações. 
+Ela é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e $WS_5$ ). Cada serviço pertence a um participante 
+diferente e há sete canais de comunicação definindo a topologia  $G_{chor}$, onde:
 
-$G_{chor} = (V_{WS}, E)$ é um grafo não dirigido, $ws_{i} \in V_{WS}$ é um serviço Web da coreografia e $e \in E$  é a comunicação
+$G_{chor} = (V_{WS}, E)$ é um grafo não orientado, $WS_{i} \in V_{WS}$ é um serviço Web da coreografia e $e \in E$  é a comunicação
  entre dois serviços. $V_{WS}= \cup_{i=1}^5 \{WS_i\}$ e
-,  $E = \{(ws_1,ws_2), (ws_1,ws_3), (ws_1,ws_4), (ws_2,ws_4), (ws_2,ws_5), (ws_3,ws_5), (ws_4,ws_5) \} $.
-Nem sempre todos os serviços  de uma coreografias são utilizados em uma instância de coreografia, isto é, há interações entre serviços
- que não acontecem porque a especificação de uma coreografia abrange varias posibilidades e todas as possíveis interações. Assim,
- os serviços utilizados em uma instância de coreografia depende do ponto de entrada, ou seja, a primeira requisição para algum serviço da coreografia.
-Neste caso as instâncias de coreografias a simular conforme a Figura~\ref{figure:scenario} se iniciam com requisições do cliente para  uma operação
- do serviço composto $WS_1$, que resulta em interações com os serviços $WS_3$ e $WS_5$.
+,  $E = \{(WS_1,WS_2), (WS_1,WS_3), (WS_1,WS_4), (WS_2,WS_4), (WS_2,WS_5), (WS_3,WS_5), (WS_4,WS_5) \} $.
 
-é $WS_1$, realizando requisições na operação 1$  
+Nem sempre todos os serviços  de uma coreografias são utilizados em uma instância de coreografia, isto é, há interações entre serviços
+ que não acontecem porque a especificação de uma coreografia abrange várias possibilidades e todas as possíveis interações. Assim,
+ os serviços utilizados em uma instância de coreografia dependem do ponto de entrada, ou seja, a primeira requisição para algum serviço da coreografia.
+Neste caso as instâncias de coreografias a simular, conforme a Figura~\ref{figure:scenario}, se iniciam com requisições do cliente para uma operação
+ do serviço composto $WS_1$, que resulta em interações com os serviços $WS_3$ e $WS_5$.
 
 
 %\{ (ws_1,ws_2), (ws_1,ws_3), (ws_1,ws_4), (ws_2,ws_4), (ws_2,ws_5), (ws_3,ws_5), (ws_4,ws_5) \} $
@@ -475,32 +505,68 @@ Neste caso as instâncias de coreografias a simular conforme a Figura~\ref{figure
 \end{figure}
 
 %já que a coreografia é CDN ....
-O objetivo dos experimentos é analisar o comportamento do tempo de resposta total do serviço composto $WS_1$ quando o
-tamanho de resposta de $WS_1$ é acrescentado com diferentes valores de largura de banda. Para tanto, utilizam-se dois cenários
+O objetivo dos experimentos é analisar o comportamento do tempo de resposta total do serviço composto $WS_1$ respeito
+do tamanho de resposta de $WS_1$ e diferentes valores de largura de banda. Para tanto, utilizam-se dois cenários
 definidos pelo comportamento da largura de banda da rede. O primeiro cenário possui valores de largura de banda que são
- fixos ao longo do tempo. O segundo cenário consiste em usar valores de largura de banda que são variáveis no percorrer do tempo,
-  e representa o estado dinâmico e a degradação por falhas em um período de tempo. A Figura \ref{figure:failure_model} mostra
-  essa variabilidade da largura de banda em um período de $100$ segundos que será utilizada no segundo cenário.
+ fixos ao longo do tempo. O segundo cenário consiste em usar valores de largura de banda que são variáveis no decorrer do tempo %da largura de banda referencial,
+ representando assim a dinâmica do ambiente e a degradação por conta de falhas. %o que representa o estado dinâmico e a degradação por falhas em um período de tempo.
+  A Figura~\ref{figure:failure_model} mostra  como a largura de banda varia em um período  de $100$ segundos. Esta é a
+  variação na simulação do segundo cenário. %Por exemplo, para uma largura de banda referencial de $100$Mbps
+  %no intervalo de $0$ a $20$ segundos se mantém no $100\%$, daí cai até $50\%$ ($5$Mbps) no intervalo de $20$ a $25$ segundos
+   %e desse jeito vai mudando de valores até atingir os $100$ segundos e começar de novo o período de variabilidade.
+Essas variações foram geradas aleatoriamente.
+  
 
 % de acordo como o modelo de agregação de QoS descrito na seção anterior
-Então, a variável independente nos experimentos é o tamanho da resposta do serviço composto $WS_1$ que varia de $1KB$ até $100MB$. A variável 
+A variável independente nos experimentos é o tamanho da resposta do serviço composto $WS_1$ que varia de $1KB$ até $100MB$. A variável
 dependente é o tempo médio da resposta total do serviço composto $WS_1$ de várias requisições simultâneas (que variam de $1$ para $10$ requisições)
  e de acordo à largura de banda da rede. Essa largura de banda  está definida entre o canal de comunicação do Cliente e o serviço composto $WS_1$,
-  e  varia de 1Mbps até 16Mbps,  abrangendo uma alta capacidade (H),  de média capacidade (M) e de 
-baixa capacidade (L) (inspirado em \cite{Xia2011}).
+  e  varia de 1Mbps até 16Mbps. %,  abrangendo uma alta capacidade (H),  de média capacidade (M) e de
+%baixa capacidade (L) (inspirado em \cite{Xia2011}).
 
- As Tabelas~\ref{table:simulation_configuration_requests} e \ref{table:simulation_configuration_responses} apresentam os 
+ As Tabelas~\ref{table:simulation_configuration_responses} e \ref{table:simulation_configuration_requests} apresentam os
 valores dos atributos de QoS das requisições e das respostas que são usados para as simulações.
 %%TODO descrever o ambiente de simulação e nro de simulações e explicar as tabelas resumidamente
+Cada simulação consistiu na execução de instâncias de coreografia iniciadas por requisições de um cliente. Desse modo, foram
+ realizadas 960  simulações ( $1$ a $5$ requisições, 120 valores de tamanhos resposta e 16 valores de largura de banda )
+para cada cenário (modelo normal e variável da largura de banda). As simulações foram executadas em um computador equipado com
+ processador Intel Core $i7-2700$K $3.5$Ghz, $16$GB de memória RAM e $1$TB de espaço em disco rodando o sistema operacional
+Debian GNU/Linux versão $6.0$.
 
-\begin{figure}[h]
-    \center
-    %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
-    %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
-    \includegraphics[width=.8\linewidth]{figures/failure_model.png}
-    \caption{Modelo  falhas que representa a  degradação da largura de banda em um periodo de 100 segundos.}
-    \label{figure:failure_model}
-\end{figure}
+    \begin{figure}[!h]
+        \centering
+        %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
+        %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
+        \includegraphics[width=.8\linewidth]{figures/failure_model.png}
+        \caption{Modelo de falhas que mostra a largura de banda efetiva devido à degradação da largura de banda referencial em um período de $100$ segundos.}
+%       \caption{Capacidade variável da Largura de Banda  referencial em um período de tempo de $100$ segundos}
+        \label{figure:failure_model}
+    \end{figure}
+
+
+    \begin{comment}
+    \begin{table}[!h]
+        \centering
+        \caption{Capacidade variável da Largura de Banda  referencial em um período de tempo de $100$ segundos}
+        \label{table:failure_model}
+        \begin{tabular}{ |l|ccccccccc|}
+      %\toprule	
+      	\hline
+     %		    &   \multicolumn{2}{c}{ \textbf{Weights} } \\
+      %\cmidrule(r){2-3}
+          %\textbf{Transition}      		&      Scenario 1   &   Scenario 2 		\\
+       %\otoprule
+           \textbf{{\footnotesize Intervalo (s.)} }       	& 	$[0,20[$    &  $[20,25[$     &   $[25,45[$   &  $[45,47[$   &   $[47,52[$  &  $[52,72[$ & $[72,75[$   &  $[75,95[$     &  $[95,100[$  \\
+           	\hline
+        %\cmidrule(r){1-1}
+        %\cmidrule
+        %\cline{1-1}
+           \textbf{{\footnotesize Capacidade} } 	        & 	$100\%$     &   $50\%$	   &     $100\%$   &     $5$\%    &     $50\%$   &    $100\%$   &  $10\%$      &   $100\%$      &   $20\%$                 \\
+        %\bottomrule
+       	\hline
+        \end{tabular}
+    \end{table}
+    \end{comment}
 
 
 %o proposto em~\cite{Chaflea2004}, o atributo \textbf{vazão} é variável, desta vez de 1  a 10  requisições concorrentes
@@ -573,29 +639,30 @@ valores dos atributos de QoS das requisições e das respostas que são usados para
 
 %O gráfico~\ref{figure:results} mostra os resultados d
 
- Os gráficos~\ref{figure:results} e \ref{figure:results_failure} mostram os resultados dos dois cenários de simulação, isto é, 
- para o modelo normal e para o modelo variável com falhas. No modelo normal percebe-se que o comportamento do tempo de 
+ Os gráficos das Figuras~\ref{figure:results} e \ref{figure:results_failure} mostram os resultados dos dois cenários de simulação, isto é,
+ para o modelo normal e para o modelo variável com falhas. No modelo normal percebe-se que o comportamento do tempo de
 resposta é menor quanto  maior é a largura de banda, e estabiliza-se a partir de $5Mbps$ com um tempo de resposta
-  de $150ms$. Além disso, com valores pequenos  nos tamanhos de resposta de até $30MB$ os tempos de resposta são 
-similares com larguras de banda a partir de $2MB$. Com base nisso já pode se definir restrições de QoS tais como, poder
+  de $150ms$. Além disso, com valores pequenos  nos tamanhos de resposta de até $30MB$ os tempos de resposta são
+similares com larguras de banda a partir de $2Mbps$. Com base nisso já pode se definir restrições de QoS tais como, poder
  oferecer tempos de resposta menores que $450ms$  desde que se tenha uma infraestrutura para suportar uma largura de banda de mais de $5Mbps$. %%
- 
- Já no modelo variável com falhas, os tempo de resposta diminui quanto maior é a largura de banda, mas diferente do modelo normal,
-neste cenário começa a se estabilizar a partir de $14Mbps$ de largura de banda, a pesar que a partir dos $8Mbps$ os tempos de resposta
-são bem próximos. Além disso, o tempo de resposta tem quase o mesmos comportamento para todos os tamanhos de resposta, diferente do 
-modelo normal, onde para tamanhos de resposta menores que $30MB$ podia se obter algumas vantagens. Neste cenário, houveram $timeouts$ 
-com larguras de banda de $1Mbps$ e $2Mbps$ com mais de 2 requisições simultâneas e por conta disso não aparecem no gráfico. Dessa
+
+ Já no modelo variável com falhas, os tempos de resposta diminuem quanto maior é a largura de banda, mas diferente do modelo normal,
+neste cenário começa a se estabilizar a partir de $14Mbps$ de largura de banda, apesar de a partir dos $8Mbps$ os tempos de resposta
+serem bem próximos. Além disso, o tempo de resposta tem quase o mesmo comportamento para todos os tamanhos de resposta, diferente do
+modelo normal, onde para tamanhos de resposta menores que $30MB$ podia se obter algumas vantagens. Neste cenário, houveram estouros de temporização (\textit{timeouts})
+com as larguras de banda de $1Mbps$ e $2Mbps$ com mais de 2 requisições simultâneas e por conta disso essas curvas não aparecem no gráfico. Dessa
  maneira, as restrições de QoS estariam  focadas em garantir larguras de banda mínimas maiores que $2Mbps$ e para
  garantir tempos de resposta mínimos deveria se  ter larguras de banda a partir de $14Mbps$.
- 
- 
+
+
 
 \begin{figure}[H]
     \center
     %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
     %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
     \includegraphics[width=1.0\linewidth]{figures/results1.png}
-    \caption{Tempo médio de resposta total da coreografia sob tamanho da resposta do serviço WS1 com largura de banda de 1Mbps até 16Mbps}
+    \caption{Tempo médio de resposta total da coreografia sob o tamanho de resposta do serviço WS1 com larguras de banda de 1Mbps até
+	16Mbps (intervalos de confiança não são visíveis por terem ficado muito pequenos).}
     \label{figure:results}
 \end{figure}
 
@@ -606,7 +673,7 @@ com larguras de banda de $1Mbps$ e $2Mbps$ com mais de 2 requisições simultâneas
     %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
     %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
     \includegraphics[width=1.0\linewidth]{figures/results1-failure.png}
-    \caption{Tempo médio de resposta total da coreografia sob tamanho da resposta do serviço WS1 segundo o modelo de falha. A largura de banda varia de 1Mbps até 16Mbps}
+    \caption{Tempo médio de resposta total da coreografia sob o tamanho de resposta do serviço WS1 segundo o modelo de falha. A largura de banda varia de 1Mbps até 16Mbps}
     \label{figure:results_failure}
 \end{figure}
 
@@ -620,17 +687,24 @@ com larguras de banda de $1Mbps$ e $2Mbps$ com mais de 2 requisições simultâneas
 %\cite{Buccafurri2008a}
  %\cite{Manivannan2011}
 \section{Conclusões e Trabalhos Futuros} \label{sec:conclusions}
-Este trabalho apresentou o ChorSim, um simulador de coreografias para suporte de QoS, baseando-se em elementos (atividades de coreografia, \emph{gateways}, entre outros) do modelo de interação de coreografias que oferece o padrão BPMN2 para 
-sua construção. O simulador permite realizar medições de atributos de QoS atômicos e compostos e possui um monitoramento
+Este trabalho apresenta uma proposta para detectar falhas não funcionais dos participantes de uma coreografia na etapa de projeto.
+ A partir delas e por meio dos resultados das simulações estabelecer requisitos e restrições de QoS de maneira a definir SLAs iniciais.
+
+Este trabalho também apresentou o ChorSim, um simulador de coreografias para suporte de QoS. A sua construção se baseou em 
+elementos (atividades de coreografia, \emph{gateways},  entre outros) do modelo de interação de coreografias que oferece
+ o padrão BPMN2. O simulador permite realizar medições de atributos de QoS atômicos e compostos e possui um monitoramento
 para acompanhar a execução das instâncias de coreografias.
 
-Dessa maneira, é possível simular comportamentos que atualmente não podem ser realizados pela falta de implementações maduras e que permitam realizar pesquisas em coreografias de serviços Web, especialmente as relacionadas com QoS e monitoramento. 
+Dessa maneira, é possível simular comportamentos que atualmente não podem ser realizados pela falta de implementações
+ maduras e que permitam realizar pesquisas em coreografias de serviços Web, especialmente as relacionadas com QoS e monitoramento.
 
-Trabalhos futuros envolvem suporte de mais elementos de coreografias de BPMN2 para poder simular coreografia de processos completamente. Além disso, seria bem interessante experimentar com modelos variáveis por meio de diversas distribuições de probabilidade sobre os atributos de QoS.
+Trabalhos futuros envolvem suporte de mais elementos de coreografias de BPMN2 para poder simular coreografia
+ de processos completamente. %Além disso, seria bem interessante experimentar com modelos variáveis por meio
+ %de diversas distribuições de probabilidade sobre os atributos de QoS.
 
 
 \section*{Agradecimentos}
-Este trabalho é apoiado pela HP Brasil sob o acordo de cooperação técnica número HP-045/12 (Projeto Baile - \url{http://ccsl.ime.usp.br/baile/} e pelo
+Este trabalho é apoiado pela HP Brasil sob o acordo de cooperação técnica número HP-045/12 (Projeto Baile - \url{http://ccsl.ime.usp.br/baile/} e pela
 \textit{European Community's Seventh Framework Programme} FP7/2007-2013 sob o acordo número 257178 (Projeto CHOReOS - Coreografias de Larga
  Escala para o Internet do Futuro - \url{http://www.choreos.eu}).
 
