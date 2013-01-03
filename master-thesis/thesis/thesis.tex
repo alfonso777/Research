@@ -207,10 +207,10 @@ framexrightmargin=10pt
 
 Coreografias de serviços Web representam uma forma mais escalável e flexível de compor serviços do que uma abordagem centralizada como a orquestração,
  e seu papel na integração e comunicação de sistemas de   larga escala é vital para
-os objetivos do paradigma SOA. % no futuro.  %(Arquitetura orientada a serviços) no futuro
+os objetivos da SOC (Computação Orientada a Serviços) e o Internet do Futuro. % no futuro.  %(Arquitetura orientada a serviços) no futuro
 Atualmente  coreografias de serviços Web possuem vários desafios de pesquisa, 
  dos quais %a adaptação e
- o monitoramento de coreografias de serviços Web é uma linha importante. O objetivo
+  a qualidade de serviço (QoS) e monitoramento de coreografias de serviços Web são linhas importantes. O objetivo
  deste trabalho é propor e implementar um mecanismo de monitoramento não intrusivo de coreografias de serviços Web baseado em SLAs %(Acordos de Nível de Serviço)
  que especificam as restrições  de atributos de  QoS %(Qualidade de Serviço)
  de maneira probabilística%, os quais são chamados de contratos não rígidos. Os contratos não rígidos são uma melhor
@@ -218,7 +218,7 @@ Atualmente  coreografias de serviços Web possuem vários desafios de pesquisa,
 %tempo de resposta < 10 ms) 
 . Esta pesquisa propõe um mecanismo
 % técnica baseada em distribuições de probabilidade
- para: (1) especificar contratos probabilísticos sobre parâmetros de QoS usando SLA e (2) realizar um monitoramento 
+ para: (1) definir requerimentos de QoS, (2) especificar contratos probabilísticos sobre parâmetros de QoS usando SLA e (2) realizar um monitoramento 
 ``não intrusivo'' de coreografias de serviços Web para detectar violações de SLA. 
 %O monitoramento ``não intrusivo'' é importante porque no
 %no nível de coregrafias não se  precisa conhecer o comportamento interno (implementação) dos participantes. 
@@ -251,8 +251,8 @@ Atualmente  coreografias de serviços Web possuem vários desafios de pesquisa,
 
 \vspace{6mm}
 
-\noindent \textbf{Palavras-chave:}  Qualidade de Serviço (QoS), Monitoramento, Coreografias de serviços Web.
-%Computação Orientada a Serviços, Serviços Web, Acordo de Nível de Serviço (SLA), Arquitetura Orientada a Serviços
+\noindent \textbf{Palavras-chave:}  Qualidade de Serviço (QoS), Monitoramento, Coreografias de serviços Web, 
+Computação Orientada a Serviços, Acordo de Nível de Serviço (SLA), Internet do Futuro.%Arquitetura Orientada a Serviços
  
 \let\cleardoublepage\clearpage
 
@@ -341,14 +341,14 @@ Atualmente  coreografias de serviços Web possuem vários desafios de pesquisa,
 \singlespacing              % espaçamento simples
 %\onehalfspacing            % espaçamento um e meio
 \let\cleardoublepage\clearpage
-\input sections/cap-introduction2        % associado ao arquivo: 'cap-introducao.tex'
+\input sections/cap-introduction        % associado ao arquivo: 'cap-introducao.tex'
 \input sections/cap-concepts
 %\input sections/cap-service_composition
-\input sections/cap-service_choreography
+\input sections/cap-service_choreography2
 %\input sections/cap-dynamic_choreography
 \input sections/cap-SLA_choreography
 \input sections/cap-QoS_Monitoring_choreography
-\input sections/cap-purpose3
+\input sections/cap-purpose4
 %\input sections/cap-preliminary_results
 %\input sections/cap-conclusions
 
@@ -364,7 +364,7 @@ Atualmente  coreografias de serviços Web possuem vários desafios de pesquisa,
 \backmatter \singlespacing   % espaçamento simples
 %\bibliographystyle{apalike}% citação bibliográfica alpha
 \bibliographystyle{alpha-ime}% citação bibliográfica alpha
-\bibliography{bib13_}  % associado ao arquivo: 'bibliografia.bib'
+\bibliography{bib13}  % associado ao arquivo: 'bibliografia.bib'
 
 % ---------------------------------------------------------------------------- %
 % Índice remissivo
