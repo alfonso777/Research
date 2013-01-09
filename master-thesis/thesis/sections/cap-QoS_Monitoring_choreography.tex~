@@ -1,6 +1,5 @@
-%\chapter{Monitoramento de Coreografias de Serviços Web baseado em QoS}
-%\label{cap:QoS_Monitoring_choreography}
-
+\chapter{Monitoramento de Coreografias de Serviços Web baseado em QoS}
+\label{cap:QoS_Monitoring_choreography}
 
 %---------------------------------------------%
 \section{Monitoramento  em Coreografias de Serviços Web}
@@ -304,8 +303,8 @@ especificar restrições de QoS em SLAs, e nem como realizar monitoramento.
 %\subsection{Monitoramento não intrusivo de serviços web usando SLA}
 
 
-\begin{comment}
-\section{Conclusões}
+%\begin{comment}
+\section{Considerações Finais}
 No capítulo anterior foram descritos os trabalhos que possuem alguma relação com o monitoramento de atributos de QoS em coreografias de serviços Web. Pode-se 
 notar que há poucos trabalhos sobre modelos de QoS em coreografias, e ainda menos, aqueles que agem
  de maneira integrada com orquestrações e serviços Web. Também são
@@ -326,4 +325,4 @@ da rede um item fundamental para que a comunicação entre os serviços seja possív
 %%%
 %A dissertação de mestrado proposta neste documento tem como objetivo ... (resume o objetivo aqui). As seções a seguir apresentam 
 %(explica a organização do capítulo sobre a proposta aqui)
-\end{comment}
+%\end{comment}

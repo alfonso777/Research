@@ -131,7 +131,7 @@ diferenciar os atributos que são medíveis no lado do servidor e quais no lado do
 
   \begin{figure}[!h]
       \centering
-      \includegraphics[width=.70\textwidth]{figures/ServiceInvocationTimes.png}
+      \includegraphics[width=.70\textwidth]{figures/ServiceInvocationTimes_.png}
       \caption{Tempos na invocação de serviços \cite{Michlmayr2009}}
       \label{fig:QoSTimestamps}
   \end{figure}	

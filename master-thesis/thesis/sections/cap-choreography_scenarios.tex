@@ -1,0 +1,169 @@
+\chapter{Cenários de Coreografias de Serviços}
+\label{cap:chor_scenarios}
+
+O objetivo deste capítulo é mostrar exemplos e cenários onde a utilização de  coreografias fazem sentido. Além disso, apresenta-se também
+uma comparação entre orquestrações e coreografias com foco em desempenho e dessa maneira conhecer em quais situações aplicar coreografias.
+
+
+\section{Oquestração contra Coreografias}
+
+O controle centralizado por meio de um mecanismo de orquestração é uma solução válida para cenários encontrados em comércio eletrônico
+ (\textit{e-commerce}), em que  quantidades relativamente pequenas de dados intermediários (quando a saída de uma chamada de serviço é
+ diretamente, sem nenhuma alteração, usada como entrada para outro) são movidos entre serviços em um fluxo de trabalho. No entanto,
+ servidores centralizados fazem menos sentido quando se lida com fluxos de trabalho (\textit{workflows}) centrados em dados (GBs/TBs), que são
+comuns em aplicações científicas. Passando grandes quantidades dados intermédiarios por meio de um motor de orquestração centralizado
+ resulta em uma transferência de dados desnecessária, largura de banda desperdiçada, a sobrecarga do motor de execução e a diminuição
+ do desempenho do fluxo de trabalho~\cite{Barker2009b}.
+
+
+
+%A seguir 
+\section{Cénarios}
+
+ \subsection*{Montage}
+ Montage (\textit{Montage Astronomical Image Mosaic Engine}) é  um conjunto de ferramentas de software usadas em astrofotografia para
+ montar imagens astronômicas em formato FITS (\textit{Flexible Image Transport System}) em imagens compostas, chamados ``mosaicos'', 
+ que preservam a calibração e fidelidade posicional das imagens originais de entrada.
+
+ Montage foi desenvolvido para apoiar a investigação científica. Ele permite aos astrônomos criar imagens de regiões do céu que são 
+ demasiado grandes para serem produzidos por câmeras astronômicas. Também cria imagens compostas de uma região do céu que foi medido 
+ com diferentes comprimentos de onda e com instrumentos diferentes. A imagem composta aparece como se a superfície tivesse sido medida com
+ o mesmo instrumento sobre o mesmo telescópio.
+
+Montagem ilustra várias características de workflows científicos em uso intensivo de dados. Montagem pode resultar em enormes
+ necessidades de fluxo de dados. Os dados intermdiários podem ser de três vezes o tamanho dos dados de entrada, por exemplo, um mosaico céu 
+todo pode resultar em 2-8 TB de movimentação de dados. Tal problema pode ser executado diariamente e Montage é essencialmente
+ um grafo acíclico direcionado (DAG).
+
+Montage é usado como cenário em~\cite{Barker2009b}, a fim de demonstrar que as coreografias são melhores do que  orquestrações comuns. Para  
+tanto  usou-se  padrões de fluxo de dados em \textit{workflows}, tais como \textit{fan-in}, \textit{fan-out} e seqüência.
+O  projeto Pegasus \footnote{Projeto Pegasus: \url{http://pegasus.isi.edu} } é um instrumento de gestão de fluxos de trabalho para construir
+ e habilitar os fluxos de trabalho usados no Montage~\cite{aa}.
+
+ \subsection*{Calculando o \textit{redshift}}
+
+Este cenário foi tomado dos casos de uso científicos do AstroGrid~\cite{aaa}  e envolve recuperação e análise de dados em grande escala a partir
+ de vários recursos distribuídos. Um \textit{redshift} (desvio para o vermelho) é um fenômeno ótico ocasionado pelo afastamento da fonte
+ de luz e um caso particular do conhecido efeito Doppler.
+
+ O \textit{redshift} fotométrico usa fotometria de banda larga para medir os \textbf{redshifts} de galáxias. Enquanto \textit{redshifts} 
+fotométricos têm incertezas maiores
+ que \textit{redshifts} espectroscópicas, eles são a única maneira de determinar as propriedades de grandes amostras de galáxias. Este 
+cenário descreve o processo de consulta a um grupo de bancos de dados distribuídos, contendo imagens astronômicas em diferentes
+larguras de banda, extraindo objetos de interesse e calcular o \textit{redshift} relativa de cada objeto.
+
+
+ \begin{figure}[!h]
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/RedshiftScenario.png}
+      \caption{ Cenário de \textit{redshift} do AstroGrid: (a) orquestração, (b) coreografia. }
+      \label{fig:RedshiftScenario}
+  \end{figure}
+
+
+%%TODO: complete this scenario
+O cenário (ver Figura~\ref{fig:RedshiftScenario}) representa um fluxo de trabalho e começa quando um cientista introduz coordenadas de ascensão
+ reta (RA) e de declinação (DEC)   no sistema, que definem uma área do céu. Essas coordenadas são usadas como entrada para três
+ bancos de dados remotos astronômicos. Nenhum dos banco de dados possui uma visão completa dos dados requeridos pelo cientista, já que 
+cada banco de dados armazena apenas  imagens de uma faixa de uma certa onda. Em cada um dos três bancos de dados, a consulta é usada 
+para extrair todas as imagens dentro das coordenadas indicadas que são retornadas ao cientista. As imagens são concatenadas e enviadas 
+para o serviço ``SEextractor'',que é uma ferramenta para processamento. Sextractor digitaliza cada imagem, por sua vez, e usa um 
+ algoritmo para extrair todos os objetos de interesse (posições de estrelas, galáxias, etc) e produz uma tabela para cada uma das
+ bandas, contendo todos os dados. Uma ferramenta de correspondência cruzada (\textit{cross matching}) é, depois,  usado para digitalizar
+ todas as imagens e produzir uma  tabela contendo dados sobre todos os objetos de interesse no céu em cinco bandas. Esta tabela é então 
+utilizada como entrada para  o algoritmo denominado ``HyperZ2'' que calcula os \textit{redshifts} fotométricos e os anexa a cada valor da 
+tabela usada como entrada. Esta  tabela final consiste em arquivos multibanda contendo a posição solicitada, bem como uma tabela contendo
+ para cada fonte todos os parâmetros  da saída do SExtrator e HyperZ, incluindo posições, magnitudes, classificação estelar e \textit{redshifts} 
+fotométricos e intervalos de confiança, a tabela final é retornada par o usuário.
+
+
+ \subsection*{Pegasus}
+
+Pegasus (Planning for Execution in Grids) é um arcabouço que permite o mapeamento de fluxos de trabalho complexos em recursos distribuídos 
+ como a grade. Em particular, Pegasus mapeia um fluxo de trabalho abstrato para uma forma que pode ser executada na rede usando uma variedade
+ de plataformas computacionais. O arcabouço Pegasus permite aos usuários personalizar o tipo de recurso e seleções de dados desemepenhados, 
+bem como para selecionar as fontes de informação.
+
+Algumas aplicações incluem:
+
+\begin{itemize}
+ \item \textbf{Astronomia}: Montage, Galactic Plane.
+ \item \textbf{Bioinformática}: DNA sequencing, Epigenomics, SeqWare, Association Mapping and Population Genetics in Vervets.  
+ \item \textbf{Análise do genoma}: GADU (the Genome Analysis and Database Update system).
+ \item \textbf{Modelagem do clima}: Climate Ensamble
+ \item \textbf{Ciência para terremotos}: Southern California Earthquake Center - CyberShake and Broadband.
+ \item \textbf{Heliosismologia}: Solar Dynamics Observatory (SDO).
+ %\item \textit{Chemistry}: Biochemistry.
+ %\item  Neuroscience: Telescience Project.
+ \item \textit{Física}: Laser Interferometer Gravitational Wave Observatory (LIGO), Molecular Thermodynamics.
+ \item \textbf{Ciencia do Oceano}: Predições no oceano.
+ %\item Computer Science:. Computer Vision 
+ %\item Botany: 
+
+\end{itemize}
+
+
+Assim, as coreografia de serviços podem ser aplicadas nos cenários de fluxo de trabalho uma vez que esta acima cenários são fluxos de 
+trabalho de dados intensivos e complexos ea coreografia abordagem pode ser melhorar vários aspectos deles.
+
+ \subsection*{Uma rede de valor do negócio}
+
+Arfa está visitando ULM (ou algum outro lugar turístico). Ela está gravando filmes e capturando fotos com uma câmera do seu telefone móvel. O 
+dispositivo móvel tem espaço de armazenamento limitado, mas felizmente ela conhece um serviço Web que pode arquivar, melhorar e hospedar seus filmes 
+online assim que ela completa uma gravação. Ela também está muito animada para compartilhar suas experiências com a sua família e amigos. Portanto, 
+ela quer atualizar alguns blogs com imagens dos lugares e sua descrição histórica. Sua amiga lhe contou sobre um serviço online que pode 
+coletar imagens de seu telefone celular, imprimi-las e enviá-las como cartões postais. Então, ela gostaria de fazer três tarefas: armazenar
+ automaticamente e hospedar seus filmes para armazenamento externo de onde ela e seus amigos podem assistir a qualquer hora, usando 
+seus dispositivos móveis ou estáticos; imprimir automaticamente algumas imagens selecionadas como cartões postais e enviá-los para
+ a sua família e amigos por meio de correio normal; atualizar alguns blogs com imagens e suas descrições históricas.
+
+A coreografia de SLAs resultante deste fluxo de trabalho simples é mostrada na Figura~\ref{fig:SLA-Choreography_Scenario}. Existem dois 
+serviços, chamados de serviços de hospedagem de vídeo e serviço de pós-foto. O serviço de hospedagem de vídeo baixa o vídeo 
+ do dispositivo móvel, e o melhorar e  arquivos. Qualquer usuário autenticado pode reproduzir o vídeo como no \textit{Youtube}. O serviço
+ pós-foto faz SLAs com dois serviços: o serviço de pós-impressão e o serviço  de \textit{E-post}. O serviço \textit{E-Post}  é 
+capaz de fazer a sua tarefa mediante a contratação de  dois serviços, o \textit{Blog-Service} e o \textit{MMS-Service}. O  \textit{Blog-Service}
+ pode atualizar automaticamente os blogs com as imagens e gerar automaticamente histórias sobre a  importância histórica com base
+ o seu endereço exato. O \textit{MMS-Service} envia as imagens selecionadas para os amigos em seus telefones móveis.
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=0.8\textwidth]{figures/SLA-Choreography_Scenario.png}
+      \caption{ Coreografia de SLA da rede de valor de negócio }
+      \label{fig:SLA-Choreography_Scenario}
+  \end{figure}
+
+
+
+ \subsection*{CDN de fornecimento de conteúdo multimídia}
+
+Um tipo particular de serviço está ganhando interesse em aplicações avançados é acerca do provisionamento de conteúdo em tempo real. O
+ provisionamento é frequentemente ativado por meio de  interações de serviços Web, ou seja, o serviço global combina tecnologias
+de serviços Web e fornecimento de conteúdo em tempo real, embora o usuário percebe esta composição como um único serviço. Também
+ neste caso, seria importante  medir e controlar a QoS de uma abordagem combinada.
+Eles lidam tanto com a QoS de serviços Web e com o QoS dos objetos entregues, ou seja, o conteúdo de \textit{streaming}
+ (imagens, vídeos, texto e som, e assim por diante).
+
+O arcabouço em \cite{Buccafurri2008a}, lida com os processos interagindo com diferentes actores e oferecendo serviços de valor 
+agregado, os que são capazes de satisfazer as solicitações do usuário para objetos complexos, tais como objetos de \textit{e-learning}, 
+ serviços de saúde clínica, ou serviços de \textit{e-governance}.
+A Figura~\ref{fig:CDN-Choreography_Scenario} mostra o cenário de referência: um usuário requere, e eventualmente recebe, 
+um serviço complexo gerido por meio de uma coreografia de diferentes serviços Web, um dos quais ($WS_3$ na figura) controla o provisionamento
+ de conteúdo streaming. $WS_1$ e $WS_2$ mostram que vários serviços Web são internamente orquestrados.
+%no restante deste documento um ponto de referência será WS1.
+%Este cenário é ... no Projeto Quadrantis. O objetivo desse projeto é combinar o mundo de serviços com o mundo dos objetos RTSP.
+
+ %um serviço  complexo obtido como uma composição (por meio de uma coreografia) de serviços Web diferentes, um deles ($WS_2$ na figura) fornece o índice
+ %de fluxo contínuo. As principais preocupações desta revisão incluem resolução de problemas associados com a garantia de requisitos
+ %de QoS em contextos variáveis fornecer uma abordagem ativa para a solução ou antecipar possíveis falhas.
+
+  \begin{figure}[!h]
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures/CDN_choreography-scenario.png}
+      \caption{Coreografia de serviços da aplicação de CDN ~\cite{Buccafurri2008a}}
+      \label{fig:CDN-Choreography_Scenario}
+  \end{figure}
+
+
+%TODO:life cycle, development, etc
+%\section{Desenvolvimento de Coreografias de Serviços}
+%\section{Considerações finais}
