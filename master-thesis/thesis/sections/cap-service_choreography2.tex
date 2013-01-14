@@ -68,7 +68,7 @@ está baseado no comportamento observável dos participantes, e o comportamento in
 %Let's Dance \cite{letsDance},
 %BPEL4Chor \footnote{BPEL4Chor:  \url{www.bpel4chor.org}}(WS-BPEl extended ),
 
-\begin{comment}
+\subsection{Padrões e Linguagens}
 Diversas propostas para definir e especificar coreografias têm surgido. A seguir mostra-se as definições de coreografia de serviços  segundo
 alguns dos padrões mais utilizados.
 
@@ -105,7 +105,6 @@ desde um ponto de vista global seus comportamentos observáveis  comuns e complem
 
 Finalmente, existem estudos nos quais se define formalmente uma coreografia de serviços Web, por exemplo em \cite{Zhao2010a}, \cite{Su2007a}, \cite{Lohmann2009}
 entre outros.
-\end{comment}
 
 
 %por exemplo para validá-la, por exemplo  em \cite{Lohmann2009} apresenta uma definição formal de uma coreografia de serviços.
@@ -117,7 +116,7 @@ entre outros.
 
 %%%%%%%%%%%
 %deprecated%  \subsection{Workflow, Orquestração  e Coreografia}
-\begin{comment}
+%\begin{comment}
 \subsection{ Orquestração e Coreografia de serviços}
 
 Ambas as abordagens fundamentam a área geral da engenharia de software orientada a serviços, e assim, representam
@@ -135,7 +134,7 @@ o comportamento externo observável é definido (e gerado) a partir de uma coreogr
 é uma guia para o sistema todo, e a orquestração é uma maneira para realizar o sistema sem a introdução de um intermediário de
  serviços geral \cite{Ross-talbot2005}.  %overall broker-service.
 %Poderia se pensar como ilhas de orquestração que interagem baseados em um blueprint.
-\end{comment}
+%\end{comment}
 
 
 
@@ -200,6 +199,40 @@ Como o objetivo desta pesquisa é propor mecanismos relacionados com coreografia 
       \includegraphics[width=1.0\textwidth]{figures/choreography_Vs_orchestration.png}
       \caption{Orquestração Vs. Coreografia \cite{Peltz2003a}}
       \label{fig:ChoreographyVsOrchestration}
+  \end{figure}	
+
+
+\subsection{Processos de Negócio}
+%TODO:coreografias do ponto de vista de BP
+Um processo de negócio interorganizacional (IOBP) é um grupo organizado de atividades unidas realizadas por duas ou mais organizações para atingir
+um objetivo de negócio. A conseqüência disso, a modelagem e projeto de processos de negócios usados dentro de uma organização tem que
+ ser melhorada e estendida para lidar com  particularidades de negócios interorganizacionais~\cite{Bouchbout2011}.
+
+Do ponto de vista de processos de negócios, as coreografias descrevem o comportamento externamente observável de uma entidade de negócios em
+processos de negócio inter-organizacionais. A idéia por trás das coreografias está relacionado ao fato de que as entidades de negócios
+ freqüentemente consideram seus processos intra-organizacionais como ativos (por exemplo, visão baseada em recursos em gestão estratégica)~\cite{Mendling2005}.
+No entanto, as empresas querem se beneficiar de fortes colaboração com os seus parceiros (participantes).
+Assim, as linguagens de coreografias são maneiras de definir regras de colaborações entre vários participantes sem revelar 
+as suas operações internas~\cite{Mendling2005}.
+
+Alé disso, a modelagem de processos de negócio inter-organizacionais envolve novos desafios, principalmente, a capacidade de lidar com 
+ autonomia, privacidade, heterogeneidade, e com suporte de coordenação por meio de contratos.
+%A modelagem de cenários B2B scenarios foca em conversações entre participantes para estabelecer um contexto de negócios comum
+%para realizar colaborações~\cite{Hettel2008}. 
+Nesse contexto, as coreografias são uma abordagem para modelar processos (ou \textit{workflows}) inter-organizacionais do ponto de
+ vista global (ver Figura~\ref{fig:Choreography_BP}). Nesse esquema os processos processo ficam descritos de maneira ``Privada''
+ (orquestração, interna ou executável), Pública (coreografia local, abstrata  ou vista), e Colaborativa (coreografia global,
+ inter-organizacional ou \textit{cross-organizacional}), a fim de separar melhor  a densidade de informação de diferentes áreas.
+
+%Dentre as várias formas de se compor serviços, as coreografias de serviços Web aparecem como uma maneira eficiente de implementar
+% processos de negócio inter-organizacionais, já que as interações dos
+%participantes de negócios são mutuamente independentes (autônomos e heterogêneos) \cite{Telang2011}
+
+ \begin{figure}[!h]
+      \centering
+      \includegraphics[width=1.0\textwidth]{./figures/Choreography1.png}
+      \caption{ Coreografia como solução para modelagem de processos de negócio inter-organizacionais}
+      \label{fig:Choreography_BP}
   \end{figure}	
 
 
@@ -546,7 +579,7 @@ tais como  \textit{AND-split}, \textit{AND-join}, \textit{XOR-split}, \textit{XO
 
   \begin{figure}[!h]
       \centering
-      \includegraphics[width=0.9\textwidth]{figures/BPMN_coreElement.png}
+      \includegraphics[width=1.0\textwidth]{figures/BPMN_coreElement.png}
       \caption{Conjunto dos principais elementos do BPMN~\cite{Dijkman2007}}
       \label{fig:BPMN_CoreElements}
   \end{figure}

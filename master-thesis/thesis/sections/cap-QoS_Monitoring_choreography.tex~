@@ -1,5 +1,5 @@
-\chapter{Monitoramento de Coreografias de Serviços Web baseado em QoS}
-\label{cap:QoS_Monitoring_choreography}
+%\chapter{Monitoramento de Coreografias de Serviços Web baseado em QoS}
+%\label{cap:QoS_Monitoring_choreography}
 
 %---------------------------------------------%
 \section{Monitoramento  em Coreografias de Serviços Web}
@@ -93,8 +93,10 @@ Assim é possível compensar algumas desvantagens da abordagem de monitoramento do
 \end{comment}
 
 
+%\begin{comment}
+\section{Trabalhos Relacionados}
+
 \begin{comment}
-%%Trabalhos Relacionados
 \subsection{Trabalhos relacionados com Monitoramento de Coreografias}
 
 Existem várias propostas de monitoramento de QoS de serviços Web exclusivamente, tais como em  \cite{Arab2010}, \cite{Freitas2009}, \cite{Buccafurri2008a},
@@ -126,11 +128,12 @@ isto é, se o fluxo de mensagens entre os serviços é consistente com a coreografi
 o serviço coreografado, e informa aos outros serviços Web para reagir ante o problema ocorrido. A sua abordagem assume que o monitor não conhece
  a implementação dos serviços Web e  o \textit{framework} confia na análise  das mensagens.
 
-Finalmente, em \cite{Rosenberg2009} é, até agora, o unico trabalho achado que propõe um modelo multicamada para integrar QoS  e  SLA  no nível de Serviços(QoS),
-de orquestração(Politicas de QoS) e de coreografias (SLA), utiliza o monitor \textit{Quatsch} para coletar informação QoS, este monitor  foi desenvolvido em um
- trabalho anterior do mesmo autor em \cite{Rosenberg2006}. Esta pesquisa vai utilizar esse modelo multicamada de QoS e SLA para realizar o monitoramento de coreografias,
-focado na deteção de violações dos SLAs, baseado nas violações das camadas orquestração e de serviços. O monitor utilizará uma mistura de abordagens de monitoramento
-do lado do cliente para ser ``não intrusivo''.
+Finalmente, em \cite{Rosenberg2009} é, até agora, o unico trabalho achado que propõe um modelo multicamada para integrar QoS  e  SLA  no nível de Serviços (QoS),
+de orquestração (politicas de QoS) e de coreografias (SLA), utiliza o monitor \textit{Quatsch} para coletar informação QoS, este monitor  foi desenvolvido em um
+ trabalho anterior do mesmo autor em \cite{Rosenberg2006}. 
+%Esta pesquisa vai utilizar esse modelo multicamada de QoS e SLA para realizar o monitoramento de coreografias,
+%focado na deteção de violações dos SLAs, baseado nas violações das camadas orquestração e de serviços. O monitor utilizará uma mistura de abordagens de monitoramento
+%do lado do cliente para ser ``não intrusivo''.
 
 \end{comment}
 
@@ -160,7 +163,7 @@ que se pretende desenvolver é ``não intrusivo''. %, já que no escopo de coreogra
  Assim, são resumidos a seguir alguns trabalhos relacionados e organizados em duas subseções: Monitoramento baseado em QoS de coreografias de serviços Web
  %e Monitoramento baseado em SLAs probabilísticos ou restrições probabilísticas de QoS.
  e Monitoramento de serviços usando SLAs probabilísticos.
-
+%\end{comment}
  %os trabalhos relacionados que serão descritos
  %serão divididos em duas subseções: Monitoramento baseado em QoS de coreografia de serviços Web  e monitoramento baseado em SLAs probabilísticos ou restrições
  %probabilísticas de QoS. 
@@ -307,15 +310,19 @@ especificar restrições de QoS em SLAs, e nem como realizar monitoramento.
 \section{Considerações Finais}
 No capítulo anterior foram descritos os trabalhos que possuem alguma relação com o monitoramento de atributos de QoS em coreografias de serviços Web. Pode-se 
 notar que há poucos trabalhos sobre modelos de QoS em coreografias, e ainda menos, aqueles que agem
- de maneira integrada com orquestrações e serviços Web. Também são
-poucos os trabalhos relacionados ao monitoramento de coreografias de serviços Web baseado em atributos de QoS. %, como em \cite{Rosenberg2009}.  
+ de maneira integrada com orquestrações e serviços Web. Existem poucos trabalhos relacionados com monitoramento de coreografias de 
+serviços Web baseado em atributos de QoS. %, como em \cite{Rosenberg2009}.  
  Também são poucas as abordagens que propõem um monitoramento baseado em contratos SLA de atributos de QoS de maneira probabilística.
 %, chamados de  contratos não rígidos (\textit{soft contracts}) como em \cite{Rosario2009}.
 
-A maioria dos trabalhos relacionados focam no atributo de tempo de resposta, entretanto, no contexto de coreografias de serviços, tornam-se importantes 
- os atributos de rede tais como o atraso e a largura de banda, já que 
-uma coreografia envolve vários participantes que podem possuir arquiteturas e infraestruturas de rede heterogêneas e pertencentes a domínios diferentes, fazendo
+A maioria dos trabalhos relacionados focam no atributo de tempo de resposta só, entretanto, no contexto de coreografias de serviços, tornam-se importantes 
+ os atributos de rede tais como o atraso e a largura de banda, já que uma coreografia envolve vários participantes que podem possuir arquiteturas e infraestruturas de rede heterogêneas e pertencentes a domínios diferentes, fazendo
 da rede um item fundamental para que a comunicação entre os serviços seja possível.
+
+No entanto, no presente trabalho se desenvolveu  um monitor centralizado de coreografias de maneira não intrusiva levando em consideração o modelo
+ de multi-camada que inclui a QoS e SLA. Porém, já que não existem infraestruturas maduras o suficiente para habilitar a pesquisa em definição de
+ restrições e monitoramento de coreografias de serviços Web, desenvolveu-se um simulador de coreografias com suporte de QoS. 
+O próximo capítulo descreve a construção do simulador e a metodologia utilizada para cumprir com os objetivos desta pesquisa.
 
 %Em consequência, é necessária  a garantia de QoS fim a fim (\emph{end-to-end}). Assim,  para conseguir um 
 % monitoramento externo e ``não intrusivo'' das interações entre os participantes, a latência de rede pode ser utilizada para estimar o tempo de execução de um serviço,

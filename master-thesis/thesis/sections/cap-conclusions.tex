@@ -1,5 +1,38 @@
 \chapter{Conclusions}
 \label{cap:conclusions}
 
-%---------------------------------------------%
+Neste Capítulo final da dissertação, são apresentadas as principais contribuições do trabalho, considerações finais 
+e sugestões para futuros trabalhos acerca desta pesquisa.
 
+
+%---------------------------------------------%
+ \section{Considerações Finais}
+
+Este trabalho apresentou uma proposta para detectar falhas não funcionais dos participantes de uma coreografia na etapa de projeto.
+ A partir dos modelos de QoS e de falhas  e por meio dos resultados das simulações podem se estabelecer requisitos e restrições de QoS de maneira a definir SLAs iniciais.
+
+Para executar coreografias de serviços Web foi desenvolvido um simulador de coreografias para suporte de QoS chamado de ChorSim. A sua construção se baseou em
+elementos (atividades de coreografia, \emph{gateways},  entre outros) do modelo de interação de coreografias que é oferecido
+ no padrão BPMN2. O simulador permite realizar medições de atributos de QoS atômicos e compostos e possui um monitoramento
+para acompanhar a execução das instâncias de coreografias.
+
+Dessa maneira, é possível simular comportamentos que atualmente não podem ser realizados pela falta de implementações
+ maduras e que permitam realizar pesquisas em coreografias de serviços Web, especialmente as relacionadas com QoS e monitoramento.
+
+%Trabalhos futuros envolvem suporte de mais elementos de coreografias de BPMN2 para poder simular completamente  coreografia
+% de processos. %Além disso, seria bem interessante experimentar com modelos variáveis por meio
+ %de diversas distribuições de probabilidade sobre os atributos de QoS.
+
+%---------------------------------------------%
+  \section{Trabalhos Futuros}
+  \label{sec:FutureWorks}
+
+  Esta pesquisa está focada em atributos QoS não determinísticos de desempenho e confiabilidade. Futuros trabalhos podem adicionar outros tipos tais como o custo,
+  pagamento, segurança, reputação, entre outras. Além disso, o monitoramento poderia incluir predição de QoS baseado no histórico dos valores medidos anteriormente,
+  isto serve de base para realizar, por exemplo,  auto-cura(\textit{self-healing}) em vários níveis (serviços, orquestração e coreografia), melhorar a adaptação, entre outras.
+
+  Dado que o monitoramento baseado em QoS e SLA é a um fator chave para alavancar a adaptação, então trabalhos futuros podem considerar usar o monitoramento como base
+  para uma ferramenta que forneça de adaptação dinâmica, reconfiguração e autocura baseada em QoS para coreografias de serviços Web.
+
+Trabalhos futuros envolvem suporte de mais elementos de coreografias de BPMN2 para poder simular completamente  coreografia
+ de processos.

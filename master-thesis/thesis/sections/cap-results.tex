@@ -1,0 +1,434 @@
+%\chapter{Experimentos e Resultados}
+\chapter{Resultados e Discussões}
+\label{cap:results}
+
+%%---------------------------------------%%
+%%       Cenário de Coreografia          %%    
+%%---------------------------------------%%
+\section{Cenários de Coreografia}
+
+  Para atestar a eficácia da proposta, a coreografia apresentada em \cite{Buccafurri2008a} é utilizada. Essa coreografia representa uma aplicação de
+  CDN (\textit{Content Delivery Network}) para fornecimento de conteúdo multimídia como audio, vídeo e imagens. A Figura ~\ref{figure:scenario} ilustra
+  a coreografia.  % a simular mostrando os serviços e suas respectivas interações.
+  Ela é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e $WS_5$ ). Cada serviço pertence a um participante
+  diferente e há sete canais de comunicação definindo a topologia  $G_{chor}$, onde:
+
+  $G_{chor} = (V_{WS}, E)$ é um grafo não orientado, $WS_{i} \in V_{WS}$ é um serviço Web da coreografia e $e \in E$  é a comunicação
+  entre dois serviços. $V_{WS}= \cup_{i=1}^5 \{WS_i\}$ e
+   $E = \{(WS_1,WS_2), (WS_1,WS_3),$
+   $(WS_1,WS_4), (WS_2,WS_4), (WS_2,WS_5), (WS_3,WS_5) \} $.
+
+  Nem sempre todos os serviços  de uma coreografia são utilizados em uma instância de coreografia, isto é, há interações entre serviços
+  que não acontecem porque a especificação de uma coreografia abrange várias possibilidades e todas as possíveis interações. Assim,
+  os serviços utilizados em uma instância de coreografia dependem do ponto de entrada, ou seja, a primeira requisição para algum serviço da coreografia.
+  Neste caso as instâncias de coreografias a simular, conforme a Figura~\ref{figure:scenario}, se iniciam com requisições do cliente para uma operação
+  do serviço composto $WS_1$, que resulta em interações com os serviços $WS_3$ e $WS_5$.
+
+
+  %\{ (ws_1,ws_2), (ws_1,ws_3), (ws_1,ws_4), (ws_2,ws_4), (ws_2,ws_5), (ws_3,ws_5), (ws_4,ws_5) \} $
+  %Onde $ws_i$ é um serviço que participa na coreografia.
+
+  %subcoreografia
+
+  \begin{figure}[h]
+      \centering
+      %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
+      %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
+      \includegraphics[width=.8\linewidth]{figures/CDN_choreography-scenario.png}
+      \caption{Coreografia de serviços da aplicação de CDN ~\cite{Buccafurri2008a}}
+      \label{figure:scenario}
+  \end{figure}
+
+
+
+%%-----------------------------------------------%%
+%%           Simulador de Coreografias           %%    
+%%-----------------------------------------------%%
+\section{Definição de Requisitos de QoS Analiticamente }
+
+  Nesta seção todos os pasos da metodologia proposta para definir requsitos de QoS de maneira analítica são realizados. A coreografia
+  apresentada na Figura~\ref{fig:Example-InteractionChor} é utilizada. É um cenário simples para entendê-lo e o suficiente para
+  mostrar a eficacia da  metodologia proposta, já que inclui pelo menos um tipo dos três elemntos de BPMN de coreografias
+  considerados (atividades, \textit{gateways} e eventos). As próximas subseções desenvolvem cada um dos pasos da metodologia.
+ % defined in the Section~\ref{sec:proposta}.
+
+  \subsection{ Mapeamento } \label{subsec:mapping_performance}
+
+
+  A Figura~\ref{fig:ExampleChoreographyGSPNQoS} apresenta a GSPN obtida como resultado de realizar o mapeamento
+  sobre a  coreografia da Figura~\ref{fig:Example-InteractionChor}. As Tabelas~\ref{table:place_description} e \ref{table:transition_description}
+   mostram a interpretação de todas as Posições e transições da GSPN resultante.As Posições representam o inicio e final da coreografia, os participantes, 
+ o inicio e fim do canal de comunicação nas interações,  pontos de decisão e os diversos erros de acordo ao modelo de QoS.
+
+
+    \begin{figure}[!h]
+	\centering
+	%\includegraphics[width=.90\textwidth]{Choreography_CaseStudy.png}
+	\includegraphics[width=1.0\textwidth]{./figures/BPMNChoreographyExample-QoS.png}
+	\caption{GSPN obtido da coreografia do cenário de exemplo}
+	%\caption{GSPN obtained from the choreography of Figure~\ref{fig:choreographyExample} }
+	\label{fig:ExampleChoreographyGSPNQoS} 
+    \end{figure}
+
+
+
+  \begin{table}[!h]
+      \centering
+      \caption{Descrição das posições da GSPN resultante }
+      %\caption{  Description of the places in the GSPN of Figure~\ref{fig:ExampleChoreographyGSPNQoS} }
+      \label{table:place_description}
+      \begin{tabular}{|l|l|}
+	\hline
+	Posição     &       Descrição \\
+	\hline
+	$Start$, $End$            &  Incio e fim da coreografia. \\
+	$A_1$, $A_2$, $A_3$   &  Representa ao participante ''Cliente''. \\
+	$B_1$, $B_2$, $B_3$   &  Representa ao participante ''Consultor Financeiro''. \\
+	$C_{i1}$, $C_{i2}$, $C_{i3}$   &  Inicio da comunicação. \\
+	$C_{f1}$, $C_{f2}$, $C_{f3}$   &  Fim da comunicação. \\
+	$C_{fok1}$, $C_{fok2}$, $C_{fok3}$   &  Formato de mensagem válido. \\
+	$C_{err1}$    & Erro de comunicação entre A e B. \\
+	$C_{err2}$    & Erro de comunicação entre B e A. \\
+	$C_{err3}$    & Erro de comunicação entre B e A. \\
+	$M_{err1}$, $_2$, $_3$  & Formato de mensagem inválido. \\
+	$Xor$ e $Sync$  & \textit{Fork} e \textit{Join} do  \textit{ exclusive gateway XOR}. \\
+	\hline
+      \end{tabular}
+  \end{table}
+
+
+  \begin{table}[!h]
+      \centering
+      %\caption{Descrição de transições da GSPN do exemplo }
+      \caption{  Descrição de transições da GSPN resultante }
+      \label{table:transition_description}
+      \begin{tabular}{|l|c|}
+	\hline
+	Transição     &       Descrição \\
+	\hline
+	$T_{arrival1}$  &  Chegada de instâncias de coreografia.\\
+	$T_{arrival2}$, $_3$   & Chegada de instâncias de coreografia e decições de fluxo.\\
+	$T_{send1}$, $T_{send2}$ e $T_{send3}$   &  Atividade e envio de mensagens. \\
+	$T_{latency1}$, $_2$, $_3$   &     Latência de rede.\\
+	$T_{receive}$, $_2$, $_3$   &     Recebimento de mensagem e execução do serviço.\\	
+	$T_{cerr1}$, $_2$, $_3$  &  Erro de comunicação. \\
+	$T_{merr1}$, $_2$, $_3$ &  Falha no formato da mensagem. \\
+	$T_{g}$   	&	Continuação do fluxo de sequência. \\
+	$T_{ok1}, T_{ok2}, T_{ok3}$   &  Mensagem válida recebida. \\
+	$T_{joining2}$, $_3$   &   Junção do fluxo. \\
+	%$T_{starting}$	 &  Starting choreography instance. \\
+	$T_{ending}$      &  Final da instância de coreografia. \\
+
+
+	\hline
+      \end{tabular}
+  \end{table}
+
+
+  %\subsection{ Simulations } \label{subsec:simulations}
+  \subsection{ Definição de pesos} \label{subsec:simulations}
+
+  O próximo passo é definir de pesos (\textit{rates}) das transições de tempo a as prioridades nas transições immediatas. Esse valores
+ dependem do conhecimento acerda do entorno onde as coreografias serão executadas e a confiabilidade dos serviços. 
+  %In this paper we don't consider uncertainties in these values. 
+ A Tabela~\ref{table:transitionsConfigurations} apresenta a definição dos pesos e prioridades em dois cenários, os quais serão simulados no próximo passo. 
+  O  cenário 1 está configurado para ter menor chance de falhas do que o cenário 2.
+
+  \begin{table}[!h]
+      \centering
+      \caption{Configuração de pesos nos Cenários 1 e 2}
+      %\caption{Weights of Scenario 1 and Scenario 2}
+      \label{table:transitionsConfigurations}
+      \begin{tabular}{|l|l|l|}
+	\cline{1-3}
+		      &   \multicolumn{2}{|c|}{ Weights } \\
+	\cline{1-3}
+	%\hline
+	\multicolumn{1}{|c|}{Transição }     		&      Cenário 1   &   Cenário 2 		\\
+	\hline
+	$T_{latency1}$, $T_{latency2}$, $T_{latency3}$ 	& 	0.99       &   0.94	\\
+	$T_{cerr1}$, $T_{cerr2}$, $T_{cerr3}$      	&  	0.01 	   &   0.06	\\
+	$T_{receive}$, $T_{receive2}$, $T_{receive3}$  &  	99  	   &    97	\\
+	$T_{merr1}$, $T_{merr2}$, $T_{merr3}$   &   1 	   &    3	\\
+	$T_{arrival2}$, $T_{arrival3}$   &  0.5  &	0.5	\\
+	\hline
+      \end{tabular}
+  \end{table}
+
+
+
+
+  \subsection{Simulações} \label{subsec:analysis}
+
+  Na simulação dos cenários, 100 \textit{tokens} foram considerados para cada cenário na Posição de Inicio. Cada \textit{token}
+  representa uma instância de coreografia na simulação. Assim, para cada simulação, 100 instância  concorrentes dos
+  cenários foram  executados (\textit{multiple-server semantic}). 
+  %Since  there are probabilities  involved in the experiments
+  As simulações dos dois cenários foram executados várias vezes de acordo com as configurações estabelecidas na
+   Tabela~\ref{table:transitionsConfigurations}. Foram realizados 1500 disparos com 10 replicações. A ferramenta Pipe2~\cite{Bonet2007}
+  foi utilizada para modelar as GSPNs e simular os cenários.
+
+  A Tabela~\ref{table:simulationsAll} mostra os resultados das simulações  com um intervalo de  confiabilidade de $95\%$. Os números apresentados
+  na tabela mostram a média do número de \textit{tokens} que cehgaram em cada uma das Posições da GSPN.
+
+  %A tabela \ref{table:simulationsAll} mostra os principais resultados das simulações dos cenários 1 e 2 respectivamente nas quais se especificaram
+  % 1500 disparos e 10 replicações. Estes resultados mostram a média do número
+  %de \emph{tokens} que passaram em uma determinada posição e o intervalo de confiança para indicar a confiabilidade da estimativa.
+
+
+  \begin{table}[!h]
+      \centering
+      \caption{Resultados  (em \%) }
+      \label{table:simulationsAll}
+      \begin{tabular}{|l|l|l|l|l|}
+	    \hline
+			& \multicolumn{2}{c|}{ Média do \# de \textit{tokens} } & \multicolumn{2}{c|}{ Intervalo de confiabilidade 95\% (+/-) }\\
+	    \hline
+	    Place      &  Cenário 1   &   Cenário 2  	 &  Cenário 1 	  &   Cenário 2 \\
+	    \hline
+	    $Start$ &    35.28	 &    40.15        &   5.83    	 &    6.23         \\
+	    $End$   &    41.95	 &    38.78        &   2.53  	  &  3.82	\\
+	    $A_1$   &    0.08	 &    0.08         &   0.00   	&  0.00     \\ %% após da execucao do Treceive 1
+	    $B_2$	  &    0.04	&     0.01 		& 	0.01 &  0.01 \\ %% após da execucao do Treceive 2
+	    $B_3$	  &    0.04	&     0.01  		& 0.01 	&  0.01 \\ %% após da execucao do Treceive 3
+	\hline
+	    $B_1$	  &    0.08	 &  3.23  		& 0.00	&  0.00	\\ %Primeiro participante em iniciar a interação
+	    $A_2$	  &    0.04	 &  0.01		& 0.01	&  0.01	\\ %% aceito
+	    $A_3$	  &    0.04	 &  0.01		& 0.01	&  0.01	\\ %%rejeitado
+	  \hline
+	    $M_{err1}$	& 0.39	 & 0.91 		& 0.95	&  1.92	\\
+	    $M_{err2}$	& 0.00	 & 0.93 		& 0.63		&  0.64	\\
+	    $M_{err3}$	& 0.00   & 0.66 		& 0.87	&  0.74	\\
+	  \hline
+	    $C_{err1}$	& 0.74 	 & 2.94 	& 0.82	&  2.02	\\
+	    $C_{err2}$	& 0.00	 & 0.00 	& 0.67	&  1.75	\\
+	    $C_{err3}$ 	& 0.78	 & 0.16 	& 0.92	&  1.52	\\
+	  \hline
+	    $C_{i1}$ 	& 8.32	 & 8.90 	& 5.33	&  7.48	\\
+	$C_{i2}$ 	& 0.63	 & 0.69 	& 0.23	&  0.52	\\
+	$C_{i3}$ 	& 0.75	 & 8.90 	& 0.39	&  0.21	\\
+
+	    \hline
+	    \end{tabular}
+  \end{table}
+
+
+  \subsection{Análise de Resultados}
+  %A tabela \ref{table:simulationsAll} mostra que no cenário $1$ em média  $1,51643\%$ ($Cerr1 + Cerr2 + Cerr3$) de instâncias de coreografias não terminaram o processo ($End$) por causa de erros na comunicação na rede entre as interações entre o participante Financeiro com o Cliente no momento de enviar a mensagem. Também, em média $0,39202\%$ ($Merr1 + Merr2 + Merr3$) de instâncias
+  %não terminaram o processo por causa de erros no formato de mensagem recebida.
+
+  Pelos resultados apresentados na Tabela~\ref{table:simulationsAll} é  possível notar que no Cenário 1, uma média de $1.52\%$ ($C_{err1} + C_{err2} + C_{err3}$)
+  das instâncias não finalizaram o processo devido a erros de redes no momento da troca de mensagens. Além disso, uma média de  $0.39\%$ ($M_{err1} + M_{err2} + M_{err3}$)
+  das instâncias não finalizaram o processo devido a formatos de menssagens inválidos, que foram detectados quando as mensagens foram recebidas.
+
+  %Da mesma forma, no cenário $2$  houve uma perda de   $4,52167\%$ ($Cerr1 + Cerr2 + Cerr3$) e   $2,49416\%$ ($Merr1 + Merr2 + Merr3$)  de instâncias que não terminaram o processo por causa de erros de comunicação e de formato de mensagem respectivamente. Resultando que efetivamente houve uma maior perda de instâncias de coreografias do que no cenário $1$. No entanto, o que se manteve foi  o gargalo achado no começo da comunicação na primeira interação ($C_{i1}$), retendo  em média $8,32316\%$ e $8,90167\%$ das instâncias antes de serem enviadas pela rede o que pode contribuir em um atraso do tempo de execução total do processo.
+  Similar ao cenário 1, no cenario 2, uma média de $3.10\%$ e $2.50\%$ das  instâncias não finalizaram o processo devido a erros na rede 
+  formatos de mensagens inválidos  respectivamente. Como esperado, os resultados estão de acordo com os parâmetros definidos
+  para cada cenário (Tabela~\ref{table:transitionsConfigurations}).
+
+  %One important finding
+  Um importante  finding com as simulações desses cenários, e que  pode ser útil para desenvolvedores e admnistradores de rede 
+  está relacioanda com a existência de  gargalos na primeira interação ($C_{i1}$), a qual evitou que $8.32\%$ e $8.90\%$ das
+  instâncias sejam enviadas pela rede. Essa  informação pode afetar a modelagem e implementação coreografia definitiva, bem como
+  definir novas políticas de  QoS para serem configuradas na rede para reducir o atraso na execução.
+  
+  %Então, como pode se apreciar dá para reconhecer requerimentos de QoS a partir da análise da GSPN obtida. Por exemplo, a resposta
+  %de aceitação de uma oferta de 
+  %A partir dos resultados obtidos das simulações sobre a GSPN que representa a coreografia e o modelo de QoS, dá para reconhecer alguns requerimentos de QoS. Por exemplo, a resposta de aceitação de uma oferta por um Cliente é critica para conseguir lucro na empresa, é por isso que  as falhas devem ser  mínimas e podem ser garantidas mediante o estabelecimento de restrições de QoS e SLA dos serviços entre os participantes.
+
+
+%%-----------------------------------------------%%
+%%           Simulador de Coreografias           %%    
+%%-----------------------------------------------%%
+\section{Simulador de Coreografias}
+
+%Nós temos desenvolvido um simulador inicial  para realizar o ``enactment'' de coreografias, mas 
+%para nossos objetivos adicionamos suporte de composição de QoS e infraestrutura de comunicação.
+Como não havia nenhum sistema de simulador para coreografias de serviços, temos desenvolvido um simulador inicial para comparar o desempenho
+  de um orquestrações e uma coreografia~\cite{Guimaraes2012}. Nesse trabalho, as coreografias revelaram ser uma melhor escolha 
+respeito ao desempenho do que orquestrações. Porém, para os objetivos desta pesquisa se desenvolveu um simulador de coreografias
+com suporte de QoS, como especificado no capítulo anterior.
+%Atualmente, estamos avaliando a desempenho com base em simulações, particularmente interassados em estudar os efeitos da
+% composição de QoS na taxa de transferência de coreografias e aspectos redes como latência e largura de banda.
+ A Figura~\ref{figura:preliminarResults1} mostra o tempo de resposta
+médio, máximo e mínimo de um número de requisições simultâneas. Assim, as instâncias de coreografia envolveram requisições iniciais
+ para $WS_1$, que pertence à cadeia de $WS_1$,  $WS_3$ e $WS_5$ dependências de serviço do cenário descrito na Figura~\ref{figure:scenario}.
+
+
+\begin{figure}[h]
+    \centering
+    %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
+    %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
+    \includegraphics[width=.8\linewidth]{figures/preliminar_results_1.png}
+    \caption{ Average, maximum and minimum response times from  number of concurrent requests. }
+    \label{figure:preliminarResults1}
+\end{figure}
+
+
+
+%%-----------------------------------------------%%
+%%        Definição de Requisitos de QoS         %%    
+%%-----------------------------------------------%%
+\section{Definição de Requisitos de QoS em Coreografias}%%Simulator
+
+  %\section{Simulações e Análise de Desempenho} \label{sec:simulations}
+  %Simulações baseada em dados reais são frequentemente inadequadas, já que os dados podem não estar disponíveis e sua coleta pode requerer
+  %longos periodos de tempo.
+  \subsection{Metodologia dos Experimentos}
+
+    %já que a coreografia é CDN ....
+    O objetivo dos experimentos é analisar o comportamento do tempo de resposta total do serviço composto $WS_1$ em função
+    do tamanho da resposta de $WS_1$ e diferentes valores de largura de banda. Para tanto, utilizam-se dois cenários
+    definidos pelo comportamento da largura de banda da rede. O primeiro cenário possui valores de largura de banda que são
+    fixos ao longo do tempo. O segundo cenário consiste em usar valores de largura de banda que são variáveis no decorrer do tempo %da largura de banda referencial,
+    representando assim a dinâmica do ambiente e a degradação por conta de falhas. %o que representa o estado dinâmico e a degradação por falhas em um período de tempo.
+      A Figura~\ref{figure:failure_model} mostra  como a largura de banda varia em um período  de $100$ segundos. Esta é a
+      variação na simulação do segundo cenário. %Por exemplo, para uma largura de banda referencial de $100$Mbps
+      %no intervalo de $0$ a $20$ segundos se mantém no $100\%$, daí cai até $50\%$ ($5$Mbps) no intervalo de $20$ a $25$ segundos
+      %e desse jeito vai mudando de valores até atingir os $100$ segundos e começar de novo o período de variabilidade.
+    Essas variações foram geradas aleatoriamente.
+
+
+    % de acordo como o modelo de agregação de QoS descrito na seção anterior
+    A variável independente nos experimentos é o tamanho da resposta do serviço composto $WS_1$ que varia de $1KB$ até $100MB$. A variável
+    dependente é o tempo médio da resposta total do serviço composto $WS_1$ de várias requisições simultâneas (que variam de $1$ para $10$ requisições)
+    e de acordo à largura de banda da rede. Essa largura de banda  está definida entre o canal de comunicação do Cliente e o serviço composto $WS_1$,
+      e  varia de 1Mbps até 16Mbps. %,  abrangendo uma alta capacidade (H),  de média capacidade (M) e de
+    %baixa capacidade (L) (inspirado em \cite{Xia2011}).
+
+    As Tabelas~\ref{table:simulation_configuration_responses} e \ref{table:simulation_configuration_requests} apresentam os
+    valores dos atributos de QoS das requisições e das respostas que são usados para as simulações.
+    %%TODO descrever o ambiente de simulação e nro de simulações e explicar as tabelas resumidamente
+    Cada simulação consistiu na execução de instâncias de coreografia iniciadas por requisições de um cliente. Desse modo, foram
+    realizadas 960  simulações ( $1$ a $5$ requisições, 120 valores de tamanhos resposta e 16 valores de largura de banda )
+    para cada cenário (modelo normal e variável da largura de banda). As simulações foram executadas em um computador equipado com
+    processador Intel Core $i7-2700$K $3.5$Ghz, $16$GB de memória RAM e $1$TB de espaço em disco rodando o sistema operacional
+    Debian GNU/Linux versão $6.0$.
+
+	\begin{figure}[!h]
+	    \centering
+	    %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
+	    %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
+	    \includegraphics[width=.8\linewidth]{figures/failure_model.png}
+	    \caption{Modelo de falhas que mostra a largura de banda efetiva devido à degradação da largura de banda referencial em um período de $100$ segundos.}
+    %       \caption{Capacidade variável da Largura de Banda  referencial em um período de tempo de $100$ segundos}
+	    \label{figure:failure_model}
+	\end{figure}
+
+
+
+    \begin{table}[!h]
+    {\footnotesize
+	  \centering
+	  %\caption{Configuração de pesos nos Cenários 1 e 2}
+	  \caption{Configuração dos cenários de simulação}
+	  \label{table:simulation_configuration}
+	  \begin{tabular}{|c|c|c|c|}
+	    \hline
+	    \textbf{Atributo de  QoS}    	&   \textbf{Condição}  		& \textbf{Valor}  					&   \textbf{Tipo de Falha}		 \\
+	    \hline
+	    Tempo de Execução       &   fixo     		& Simulador 	&    timeout= 100000ms (tolerância)\\
+	    Vazão 	   	&    variável 		& $ws_i$ = 5 a  10 Requisições/ms		&    serviço não disponível = 0.5\%\\
+	    Formato da Mensagem  	&    fixo		& --   					&	--	\\
+	    Latência 	   	&    fixo     		& $ws$ = {20ms,7ms, 5ms, 7ms, 5ms}  & 	Erro de comunicação= 3\%\\
+	    \hline
+	  \end{tabular}
+    }
+    \end{table}
+    %\end{comment}
+
+
+
+    \begin{table}[!h]
+	  \centering
+    {\footnotesize
+	  \caption{Configuração de valores dos atributos de QoS nas requisições}
+	  \label{table:simulation_configuration_responses}
+	\begin{tabular}{|l|c|c|c|c|}
+	      %%\hline
+			  %%& \multicolumn{2}{c|}{ Average number of tokens } & \multicolumn{2}{c|}{ 95\% Confidence interval  (+/-) }\\
+	      \hline
+	      Requisições           &  Largura de banda     &   Tamanho da requisição    &  latência       &  \# requisições	  \\
+	      \hline
+	      $Cliente$ a $WS_1$    &    $1$Mbps	              &      $1.95$MB        &   $0.002s$      &    De $1$ a $10$     \\
+	      $WS_1$ a $WS_3$       &    $1$Mbps	              &      $5.47$MB        &   $0.002s$      &    De $1$ a $10$     \\
+	      $WS_3$ a $WS_5$       &    $1$Mbps                  &      $5.47$MB        &   $0.002s$      &    De $1$ a $10$     \\
+	      \hline
+	      \end{tabular}
+    }
+    \end{table}
+
+    \begin{table}[!h]
+	  \centering
+    {\footnotesize
+	  \caption{Configuração de valores dos atributos de QoS nas respostas}
+	  \label{table:simulation_configuration_requests}
+	\begin{tabular}{|l|c|c|c|c|}
+	      %%\hline
+			  %%& \multicolumn{2}{c|}{ Average number of tokens } & \multicolumn{2}{c|}{ 95\% Confidence interval  (+/-) }\\
+	      \hline
+	      Respostas           &  Largura de banda           &   Tamanho de resposta    &  latência         &   \emph{timeout}	  \\
+	      \hline
+	      $WS_1$ a $Cliente$  &    $1$Mbps a $16$Mbps	        &    $1$KB a  $100$MB                   &   $0.002s$      &   $1000s$     \\
+	      $WS_3$ a $WS_1$     &    $20$Mbps	                &      $8$MB                   &   $0.002s$      &   $1000s$     \\
+	      $WS_5$ a $WS_3$     &    $40$Mbps                 &      $200$MB                 &   $0.002s$      &   $1000s$     \\
+	      \hline
+	      \end{tabular}
+    }
+    \end{table}
+
+    %Também são definidos os valores de falha para cada atributo de QoS, neste caso todos estes valores são fixos. Além disso, as %probabilidades de escolha de caminhos nos padrões de \textit{workflow} é a mesma (50\%) e o tamanho de toda  mensagens é de 50 MB. Dessa  %maneira, definem-se três casos de  simulação para calcular o tempo de resposta total dos serviços compostos $ws_1$ e $ws_2$.
+
+
+
+    \subsection{Análise de Resultados}
+
+    %O gráfico~\ref{figure:results} mostra os resultados d
+
+    Os gráficos das Figuras~\ref{figure:results} e \ref{figure:results_failure} mostram os resultados dos dois cenários de simulação, isto é,
+    para o modelo normal e para o modelo variável com falhas. No modelo normal  (Figura~\ref{figure:results}) percebe-se que o comportamento do tempo de
+    resposta é menor quanto  maior é a largura de banda, e estabiliza-se a partir de $5Mbps$ com um tempo de resposta
+      de $150ms$. Além disso, com valores pequenos  nos tamanhos de resposta de até $30MB$ os tempos de resposta são
+    similares com larguras de banda a partir de $2Mbps$. Com base nisso já pode-se definir restrições de QoS tais como, poder
+    oferecer tempos de resposta menores que $450ms$  desde que se tenha uma infraestrutura para suportar uma largura de banda de mais de $5Mbps$. %%
+
+    Já no modelo variável com falhas, os tempos de resposta diminuem quanto maior é a largura de banda, mas diferente do modelo normal,
+    neste cenário começa a se estabilizar a partir de $14Mbps$ de largura de banda, apesar de a partir dos $8Mbps$ os tempos de resposta
+    serem bem próximos. Além disso, o tempo de resposta tem quase o mesmo comportamento para todos os tamanhos de resposta, diferente do
+    modelo normal, onde para tamanhos de resposta menores que $30MB$ podia se obter algumas vantagens. Neste cenário, houveram estouros de temporização (\textit{timeouts})
+    com as larguras de banda de $1Mbps$ e $2Mbps$ com mais de 2 requisições simultâneas e por conta disso essas curvas não aparecem no gráfico. Dessa
+    maneira, as restrições de QoS estariam  focadas em garantir larguras de banda mínimas maiores que $2Mbps$ e para
+    garantir tempos de resposta mínimos são necessários valores de largura de banda maiores que $14Mbps$.
+
+
+    \begin{figure}[H]
+	\centering
+	%\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
+	%\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
+	\includegraphics[width=1.0\linewidth]{figures/results1.png}
+	\caption{Tempo médio de resposta total da coreografia em função do tamanho de resposta do serviço WS1 com larguras de banda de 1Mbps até
+	    16Mbps (intervalos de confiança não são visíveis por terem ficado muito pequenos).}
+	\label{figure:results}
+    \end{figure}
+
+
+
+    \begin{figure}[H]
+	\centering
+	%\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
+	%\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
+	\includegraphics[width=1.0\linewidth]{figures/results1-failure.png}
+	\caption{Tempo médio de resposta total da coreografia em função do tamanho de resposta do serviço WS1 segundo o modelo de falha. A largura de banda varia de 1Mbps até 16Mbps}
+	\label{figure:results_failure}
+    \end{figure}
+
+
+
+%%-----------------------------------------------%%
+%%        Definição de Requisitos de QoS         %%    
+%%-----------------------------------------------%%
+%\section{Monitoramento QoS em Coreografias}%%Simulator
+
+
+%\subsection{Resultados}
+

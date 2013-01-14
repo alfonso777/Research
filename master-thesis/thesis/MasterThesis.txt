@@ -1,0 +1,358 @@
+== Tópicos de pesquisa ==
+Discovery, ranking, selection, failure detection, degradation, 
+SLA-aware choreographies
+MultiLayer QoS Model
+SLA compliance
+SLA violations
+=== Frameworks e ferramentas===
+A seguir, as ferramentas, biblioteca, frameworks que tem a ver com coreografias, QoS, Monitoramento, engines, etc:
+
+- engines: Petals, Apache ODE, Orchestra, Savara, JBPM 5(bpmn 2), Activiti 5 (bpmn 2), apache ODE, Open ESB ?, 
+  Activiti, ActiveBPEL (deprecated)
+
+- projetos:
+  -- SOA4All, Baile Project, Choreos, 
+- Frameworks  : WS-Diamond, Dino frmaework, VRESCo, DAIOS framework, METEOR-S, VieDAME, OpenKnowLedge, eFlow, Dynamo
+   outros: VidRE, DAML-QoS Ontology,  Ws-QoSPolicy
+- Ferramentas: JOpera, QoS Explorer, QUATSCH tool, WFC-PC, WSLA, SOAP-UI, eQoSystem, VCL, Apache CXF, MBT4Chor
+  -- outras ferramentas para: QoS, client side monitoring, servver side monitoring, WPC-based monitoring
+- Bibliotecas: winPCAP, wireshark, jPcap,low level sniffing tcp or proxy based-solutions
+- Outros: 
+
+== Contribuições, gaps, propostas, idéias, etc ==
+- Rodar uma coreografia especificada em BPMN (de fato seria executar os procesos executáveis expressados em BPMN ou
+  transformar o BPMN to bpel para ser rodado em um engine, tal como Apache ODE, Petals ESB, Open ESB, etc) 
+- VCL, integração do modelo QoS em coroegrafias BPMN 2
+- Testes em um estudo de caso mais real
+- Comparação de abordagens de QoS monitoring (client-based, server-based , hybrid-based, etc)
+- Failure Detection em algum abordgane de monitoramento
+- Implementação da abordagem do Rosenberg com tecnologias java, exceto VRESCo ?
+- Implementação de integração de um modelo QoS em coreografias especificadas em BPMN 2, deteção de falhas o alguma
+   abordagem de monitoramento.
+
+== Titulo ===
+%%Monitoramento de atributos QoS em Coroegrafias de Servicos Web
+Reacao e Adaptacao de Coroegrafias de Servicos Web baseado em atributos QoS
+Reacao e Adaptacao ante falhas QoS em Coroegrafias de Servicos Web
+Adatacao Dinamica baseada em atributos QoS em Coroegrafias de Servicos Web
+Monitoramento de coreografias de serviços web baseados em atributos QoS (contratos SLA )
+== Resumo ==
+
+Palavras chave para o resumo
+QoS monitoring, QoS de serviços Web, especificação SLA, modelo Qos integrado à especificação da coreografia
+Explicar o problema, contexto
+Descrever proposta de solução, tecnicas, plataformas ferramentas
+Resultados esperados?, experimentos
+Do trabalho: trabalho, explorar, desenvolver (implementar?) 
+Ex 1: Neste trabalho esperamos propor novas técnicas para o armazenamento distribuído de dados que atenda aos requisitos apresentados,
+realizando a implementação e avaliação experimental destas técnicas.
+
+
+
+===  Objetivos ===
+- Ex1: O objetivo deste trabalho é investigar a utilização de checkpointing como mecanismo de tolerância a
+falhas, de modo a permitir a execução de aplicações paralelas em ambientes dinâmicos e heterogêneos,
+como é o caso de Grades compostas por estações de trabalho compartilhadas. Para tal, teremos que
+resolver diversos desafios.
+
+- Ex2: 
+
+- Finalmente devemos tratar a heterogeneidade ...Isso é importante para ..
+=== Contents==
+= Introduction
+  SOA, web services, SOC, 
+  
+= Basic Concepts 
+  - web services...
+  - SOC
+  - SOA
+  - ESB, JBI 
+  - 
+  - Tools and Frameworks
+  - Conclusion
+  
+= Service Composition
+  - Concepts
+    - Static Composition
+	- Dynamic Composition
+  - Topics : model compatibility, reliability 
+  - Strategies: model driven, business rules, declarative, semantic.
+  - Service Discovery: 
+     -- By search criteria: UDDI (syntactic), user preferences, semantic discovery. 
+	 -- By topology: centralized , peer-to-peer.
+	 -- 
+  - execution ways
+  --> Platform Comparison of web service composition
+  
+  - Formalism 
+    - Petri Nets
+	- OWL-S
+	- Web Components
+	- Algebraic Composition
+	- Models inspection
+	- Roman Model
+	- Mealy machine (state finite machines)
+	- 
+  //- Service Composition in SOA
+  - Orquestration
+  - Choreography  
+  - Conclusion
+
+= Services Choreography =
+  Basic Concepts: validation, simulation
+  Standards and Languages
+  Models and Formalism
+   - table: summary of Choreograhy Models
+   - Automata based models
+   - Petri-Net based models
+   - process algebra based models
+  
+  Topics , challenges and trends
+   - 
+  Tools and Frameworks
+  Related works
+  Conclusion
+ 
+
+ - Definitions:
+  Sinonimos: 
+   - Protocolo de coordenação: Especificação do conjunto de corretas e aceitadas conversações,  
+     -- Conversação: Sequencia de operações, isto é, troca de mensagens, que poderiam ocorrer entre um cliente e um serviço
+         como parte da invocação de um serviço. 
+ 
+= Research     ==
+- QoS Monitoring
+- QoS and choreography
+Inordertoexpresstheuserrequirementsintermsofquality,fromoneside,andthepossibleserviceprovisioninglevelsof
+theserver,ontheotherside,weleverageontheconceptofQoSContract.AQoSContractisstipulatedbetweenaservice
+provider(server)andaserviceconsumer(client)aboutasetofparameters
+
+Table2
+SampleWeb-ServiceQoScontract
+- Purpose
+- Preliminary Results
+- Cronograma
+
+%%= Preliminary Results
+
+
+= Conclusions
+
+-- Future Works
+ - global QoS 
+ - an advanced function provided by our approach is the prediction of future QoS violations. \cite{Qos Real time app}
+= Bibliography
+
+
+= Appendix =
+- Tools:
+  Pi4SOA
+  Savara Project
+  BPEL4Chor
+  Let's Dance ?
+  Apache ODE -
+  Petals ESb -
+  
+- Standards and Languages
+  WSCI
+  WS-CDL
+  BPMN2  
+  Let's Dance
+  BPEl4Chor
+  
+  
+==  
+  
+  
+  
+===  Service Composition == 
+Def.
+
+--
+
+A utilizacao de arquiteturas genericas como ponto de partida para descrever o estado da arte  da composicao  dos servicos web
+nao é uma idea nova [3, 8] ; além disso em [1,2,4-7] foram feitos estudos de estrategias de composicao  mas o estao focado unicamente numa etapa do 
+ciclo de vida da composicao de servicos, contudo em [reportComposition] faz um estado da arte levando en conta o processo de ciclo de vida inteiro.
+
+
+
+
+== Miscelânea ==
+\cite{Rosen2008} :
+- Os serviços são uma boa abordagem para implementar funcionalidade TI
+- Soa é um estilo arquitetural, baseado em serviços como unidade fundamental para construir soluções empresarias a partir de serviços.
+- BPM é uma boa abordagem para implementar processo de negócio flexivéis com base em um conjunto mais estático de recursos empresariais subjacentes.
+- SOA e BPM fornecem uma natural confluência de capacidades e processos.
+Orchestration:
+Is usually simpler to start with; but often harder to scale to more complex processes
+
+Choreography 
+Choreography provides a different approach that is gaining acceptance in scenarios that have complex processes with many interacting parts, and event-based and agent-based systems.
+Fornece uma abordagem diferente que esta ganhando aceitação  em cenários que têm processos complexos com muitas partes interagindo
+e sistemas baseados em agentes e em eventos \cite{Rosen2008}.
+
+Existe uma similaridade no espaço do problema do CEP( Complex Event Processing) a abordagem da coreografia, isto é, como poder gerenciar
+a interação de multiplos eventos independentes(ou participantes) para conseguir um resultado de negócios global e predecível.
+
+Segundo \cite{Rosen2008} existem dois principais abordagens de coreografia: baseados em mensagens e baseado em componentes de trabalho
+relação entre a primeira abordagem e o Cross-Enterprise, é uma abordagem atrativa já que é preciso só especificar as definições da troca de mensagens (sintaxis, semântica e comportamento).	
+A segunda abordagem tem similaridade com os sistemas baseados em agentes.
+
+
+In summary, in choreography \cite{Rosen2008} : 
+- The overall process behavior "emerges" from the working of its parts (bottom up). No 
+global perspective is required 
+- Complex work processes are decomposed into work agendas where each autonomous 
+element controls its own agenda 
+- Easily maps to event and agent based systems 
+- Is usually more difficult to start, but often easier to scale to complex processes 
+- Graphical representations can be derived from the process, i.e. form follows function 
+- Represents the state-of-the-art, and is gaining support with emerging tools.
+
+Use choreography \cite{Rosen2008} :  
+- Where processes may scale to a very high number of component steps 
+- Where opacity of process details is desired among process partners (such as B2B) 
+- Where different process partners may require their own process customizations 
+- Where processes are highly dynamic or goal-seeking 
+ 
+ 
+
+LTSA-WS \cite{Foster2006},WS-CDL Eclipse e Pi4SOA \cite{Zhou2006} foram umas das primeiras implementações
+para suportar a modelagem, simulação e verificação de coroegrafias de serviços web baseados em WS-CDL.
+
+
+Pi4SOA fornece ums ferramenta para desenhar baseado em Eclipse para modelar coreografias, e a possibilidades de gerar serviços
+Java a partir de um documento WS-CDL 
+
+Em \cite{Decker2007} propoe-se BPLEL4CHOR  que é uma extensão de BPEL para modelar coreografias de serviços
+utilizando o modelo de comportamento de interfaces interconectadas.
+
+OpenKnowledge \cite{Besana2009a} é uma plataforma baseda em uma arquitetura peer-to-peer(P2p) para especificar e rodar(\emph{enacting}) coreografias de serviços. Cada peer representa um participante da coroegrafia, esse peer é uma casca que separa o comportamento
+ observável de um participante da sua implementação, a qual pode ser um serviço Web, um serviço Grid, um serviço compostos, entre outros.  Esta plataforma utiliza o LCC( Lightweight Coordination Calculus) \cite{Robertson2005} como a linguagem baseda em \emph{Process Calculus} para especificar e executar as coreografias. A sua arquitetura é capaz de tratar com a heterogeneidade semântica dos seus participantes e  a  descoberta deles.
+
+
+
+
+
+
+
+
+== Monitoring ==
+
+- Em \cite{Ardissono2009} se propoe a construção de um framework que suporte o monitoramento de do progesso de uma execução de uma coreografia de serviços Web, 
+a deteção ceda de falhas e a notificação dos serviços web afetados por essas falhas. Nesse framework, o monitor acompanha a execução dos serviços Web 
+analizando o seu comportamento conversacional, ou seja, durante a execução 	o monitor tem conhecimento das mensagens que são enviadas e recebidas pelos serviços, e o estado da sua execução. O monitor usa essa informação para verficar se o serviço global, realmente está progressando ou avançando,
+isto é, se o fluxo de mensagens entre os serviços é consistente com a coreografia. Caso acontecer uma falha, o monitor avalia se ainda é possível completar a serviço coreografado, e informa aos serviços Web para reagir ante o problema ocorrido. 
+Assume que o monitor não conhece  a implementação dos serviços Web e  o framework confia na análise  das mensagens.
+
+A abordagem em \cite{Ardissono2009} substitui o web service Coordinator com o Monitor de serviços web, para gerenciar o contexto de coordenação entre
+serviços Web. esse monitor revisa proativamente o progresso do serviço coreografado e sua propagação.
+Aí a especificañ{ao da coreografia está baseada na definição realizada
+pela cooperação Web Services, e sobre a composição de tais vistas locais em tempo de invocação de serviço. Assume que o protocolo de interação de cada serviço Web na cooperação é representado como um processo abstrato, especificamente utiliza a representação da "Reconfigurable Petri Net"
+
+
+- 
+
+
+
+
+== O que falta na qualificação ==
+- Simulações antes do que técnicas analíticas (redes de petri, redes de fila, etc ) e por que?
+- In our QoS composition problem, we start with the assumption that the candidate services are 
+  already chosen. Given these services and their QoS behaviour, the QoS composition process tries to derive the orchestration.
+- The QoS models we consider are probabilistic and are much richer than a simple tuple of values. The use
+  of such realistic models however has a price: we are not able to use simple rules like those
+  in Table 2.1 to directly derive the orchestration's QoS.
+  (precisa-se mencionar alguns trabalhos nesse escopo)
+  -- In [HWTS07], leva-se em conta agregação simples de variavéis aleatórias dos parâmetros de QoS, utiliza o PMF dos parâmetros de QoS.
+- Não se leva em conta a monicity em coreografias (caso existir, mas eu acho que sim, mas talvez nçao está modelado).
+- Definir quais padrões ou construções de interação levar em conta, tem que concordar com os casos de estudo.
+- Definir se as distribuições dos parÇametros de QoS são conhecidos ou não, o que repercutirá en outras coisas ....
+- 6.2.2.4 Orchestrations face the Open World paradigm : pagina 121 thesis
+
+
+
+
+== Para a thesis ==
+- Adicionar teoria sobre SLA
+- COnciliar com o ciclo de vida de SLA, establishment, measuring, monitoring, enforcement e ressaltar que não se fará negociação ou outros.
+- Diferenciar SLA focado ao cliente do provedor
+- SLA e terceiras partes , isto é, o monitor externo do cliente e provedor
+- revisar QoS end-to-end, coreografias, SLA, privacidade
+- A composição ou agregação de QoS é realizada con parametros da mesma natureza ou de dominios compatíveis.
+- Agregação de QoS que envolvem atributos ou métricas de QoS de diferentes dimensões não são levadas em consideração.
+- Realizar a diferencia entre SLA em processos de negócio e SLAs em servicio Web
+- Definir  a maneira de definir os quantis no WSLA, segundo Rosario at. 2009 cada quantil é definido como um parametro de SLA.
+- Padrões de interação ou de workflow para coreografias e sobre isso realizar o modelo de agregação de QoS.
+- Definir o Tipo de simulação de Monte-Carlo no estebalecimento de SLAs.
+- Não confundir com predição de QoS que utiliza também probabilidades, mas essa probabilidade é sobre se acontece alguma violação de uma condição 
+em um tempo t. No nosso caso, a probabilidade é a restrição ou condição de QoS do SLA.
+- O triangulo SOA deve-se adicionar o QoS: QoS capability, QoS requirement, QoS ...
+- Pilha de protocolos de QoS
+- Pilha de protocolos com coreografias (wsdl-based ou WS*).
+- Justificativa do uso de simulações.
+- Arquiteura de eventos.
+- Definição de experimentos.  
+- 
+
+
+== Para o conteudo do texto ==
+= Introdução
+  SoC, Future Internet, 
+  CHOReOS
+= Conceitos básicos
+  - SoC, pirámide
+  Internet do Futuro
+
+= Capitulo de Coroegrafias de serviços
+ - Acrescentar teoria de BPMN e se focar em interaction choreography
+ - Acrescentar o que foi removido na quali e ressaltar a falta de madureciemnto nas impementações
+ - Ciclo de vida ou Estapas no processo de desenvolvimento de coreografias, justificar o porque elegir top-down. 
+ - Cenários de uso de coroegrafias: O exemplo de coreografias usando OK.
+ - Refletir acerca do estado atual e necessário para que as linguagens de coreografias evoluam, etc.
+ - Testes de Sw  
+= Qos e Monitor
+ - Modelo de QoS, atributos, parametros, métricas tipos, dependencias, etc
+ - proposta analítica do artigo do CAMAD com os resultados preliminares.
+ - Monitoramento e necessidade de um simulador e justificar porque é preciso um simulador
+ -  SLA, masi conceitos
+ 
+= Simulador
+ - Simuladores e justificativa da seleção do Simgrid
+ - Motivação e orientado a BPMN interaction
+ - Especificação da coroegrafia com o simulador
+ - Infraestrutura ou plataforma, modelo básico de rede, links, serviços, etc host  
+ - Especificação
+ - Deployment
+ - Apresentar o simples mapeamento para os tipos de interação, request e request_response
+ - Monitoramento, eventos, árvore de requisições e acompanhamento e de acordo a isso o calculo de QoS, até chegar no QoS composto final
+
+= Encaixar com o projeto CHOReOS, coisas do Baile Project
+
+
+= Proposta de QoS, falhas, probabilidades 
+
+
+= Experimentos e Resultados 
+Cenario time response, execution time
+
+Comparação com injeção de falhas, que resultam em distribuições de probabilidade
+Resultados
+Análise
+Repercução em restrições de QoS 
+
+= Conclusões
+
+= Apêndice
+Parte analítica
+especificação total da coreografia, plataforma, deployment
+Diagrama de clases  e Arquitetura completa do simulador
+BPMN Diagram resume
+Dei
+
+
+
+== Duvidas
+- Definir que capítulo terá o simulador e qual capítulo a metodologia ou proposta 
+- Onde colocar os resultados do CAMAD
+

@@ -40,6 +40,15 @@
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsthm} %%math
+\usepackage{amsfonts}%%math
+\newtheorem{mydef}{Definição}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
+\renewcommand{\algorithmicensure}{\textbf{Saída:}}
+
 %\usepackage{apalike}
 %\usepackage{jpc}
 
@@ -127,28 +136,29 @@ framexrightmargin=10pt
     \vskip 2cm
     \textsc{
     %Dissertação/Tese apresentada\\[-0.25cm]
-    Texto para Qualificação de Mestrado  apresentada\\[-0.25cm]
-    ao\\[-0.25cm]
-    Instituto de Matemática e Estatística\\[-0.25cm]
-    da\\[-0.25cm]
-    Universidade de São Paulo\\[-0.25cm]
-    %para\\[-0.25cm]
-    %obtenção do título\\[-0.25cm]
-    %de\\[-0.25cm]
-    %Mestre em Ciências
+    DISSERTAÇÃO APRESENTADA\\[-0.25cm]
+      AO\\[-0.25cm]
+      INSTITUTO DE MATEMÁTICA E ESTATÍSTICA\\[-0.25cm]
+      DA\\[-0.25cm]
+    UNIVERSIDADE DE SÃO PAULO\\[-0.25cm]
+      PARA\\[-0.25cm]
+    OBTENÇÃO DO TÍTULO\\[-0.25cm]
+      DE\\[-0.25cm]
+      MESTRE EM CIÊNCIAS
     }
 
     \vskip 1.5cm
-    Programa: Mestrado em Ciência da Computação \\
+    Programa: Ciência da Computação \\
     Orientador: Prof. Dr. Daniel Macêdo Batista\\
-    Co-orientador: Prof. Dr. Marco Dimas Gubitoso\\
+    %Co-orientador: Prof. Dr. Marco Dimas Gubitoso\\
 
    	\vskip 1cm
-    \normalsize{Durante o desenvolvimento deste trabalho o autor recebeu auxílio
-    financeiro da CAPES}
+    \normalsize{Durante o desenvolvimento deste trabalho o autor recebeu auxílio da HP Brasil por
+		meio do Baile e do programa FP7/2007-2012 da Comissão Européia pelo projeto
+                n° 257178 (CHOReOS - Large Scale Choreographies for the Future Internet)}
 
     \vskip 0.5cm
-    \normalsize{São Paulo, Setembro de 2011}
+    \normalsize{São Paulo, Janeiro de 2013}
 \end{center}
 
 % ---------------------------------------------------------------------------- %
@@ -166,17 +176,15 @@ framexrightmargin=10pt
     \vskip 2cm
 
     \begin{flushright}
-    % Este exemplar corresponde à redação\\
-    % final da dissertação/tese devidamente corrigida\\
-    % e defendida por (Nome Completo do Aluno)\\
-    % e aprovada pela Comissão Julgadora.
-    %
-	Proposta de dissertação apresentada ao\\
-	Instituto de Matemática e Estatística da\\
-	Universidade de São Paulo como requisito\\
-        parcial para qualificação de Mestre em \\
-	Ciência da Computação.
-
+     Este exemplar corresponde à redação\\
+     final da dissertação \\%/tese devidamente corrigida\\
+     para realizar o depósito \\
+     antes de ser defendida  \\
+    ante a  Comissão Julgadora. 
+     %e defendida por (Nome Completo do Aluno)\\
+     %e aprovada pela Comissão Julgadora.
+    
+	
     \vskip 2cm
 
     \end{flushright}
@@ -187,7 +195,7 @@ framexrightmargin=10pt
 
     \begin{itemize}
 		\item Prof. Dr. Daniel Macêdo Batista (orientador) - IME-USP
-		\item Prof. Dr. João Eduardo Ferreira  - IME-USP
+		\item Prof. Dr. Nelson Luis Saldanha da Fonseca - IC-Unicamp
 		\item Prof. Dr. Marco Aurélio Gerosa - IME-USP
     \end{itemize}
 
@@ -198,8 +206,55 @@ framexrightmargin=10pt
 
 % ---------------------------------------------------------------------------- %
 % Agradecimentos
-%\chapter*{Agradecimentos}
+\chapter*{Agradecimentos}
 %Agradecimentos ...
+Primeiramente eu quero agradecer à minha família. Á minha mãe Saturnina, pelo grande e constante apoio apesar da distância.
+Ao meu pai Florentino, pela confiança que sempre deposita em mim. Ao meu irmão Fernando, porque ele também é um bom amigo. 
+Aos meus tíos, avos, primos, obrigado a todos vocês pelo carinho e afeto que sempre me dão.
+
+%Aos meus amigos que fiz na minha vida em Arequipa, os vizinhos, a galerda da faculdade e trabalho, antes de eu vir aqui.
+
+Gostaria de expressar meus sinceros agradecimentos ao meu orientador Daniel Macêdo Batista. Ele é uma ótima pessoa, excelente
+orientador e bom amigo. Eu agradeço ao Daniel por todas as dicas, palavras e principalmente por acreditar em mim.
+ %Pelo esforço em apoiar minha pesquisa 
+
+Durante todo este período de mestrado, não somente aprendi e obtive conhecimento da área. Neste anos eu conhecí ótimas pessoas, as quais
+ são de diversas cidades, países, culturas e costumes que ampliaram minha visão do mundo. Estou agradecido e  fico muito contente
+ de tê-las como boas amizades. A Valentina, a Florence, o Rafael, o Everton, a Deysi, o Enrique,  o Marcelo, o Rogerio, o Lucas,
+ o Marcos, o Fabio, o Jacques, Yanik, o Mauricio,  entre outros muitos que eu considero bons amigos.
+
+Quero agradecer também aos meus bons amigos que viemos de Arequipa para iniciar o mestrado aquí, o Carlos e a Rosario. 
+Ao pessoal e funcionários do IME pela amizade oferecida. Ao pessoal de Computação  como o Lucas, o Fabio, o Wesley, o Strauss, o William, o Felps, o Felipe Besson, o Mauricio
+de Diana, o Eduardo, o Glaucus, o Victor, o Cadú, entre outros. Ao pessoal do laborátorio do LIAMF como o Fabio, o Alexandre, o Paulo, a Viviane, o Enrique Bustamante, o Esdras, entre outros;
+o pessoal de Visão como a Jihan, a Maysa, o Daniel, o William. Pessoal de Matemáticas e Estatísticas como a Deysi, o Valentin, o Gerard,
+a Alejandra, o Iván, o Genaro, o Jorgito. 
+Aos meus compatriotas e bons amigos no IME como o Alvaro, o Carlos, a Rosario, o Frank, o Leandro, o Edu, a Ericka, o Juan, o Jesús Mena, a Karina,
+o Daniel, a Edith, o Miguel, o Jesus Mesias, o Caratos, o Mija, o Harry, o Pablito, o Geiser, a Evelyn, o Jorge, a Leissi, entre outros. 
+Aos meus compatriotas e bons amigos da USP como o Edgard, o Dracu, o Erick, o Erick (``el oso''), o Juan Carlos, o Dany, o Giancarlo, o Carlos (cuzqueño),
+ o Bochas, o Luis, o Gabriel, o José ochoa, o Roberto, o Lobito, o Carloncho,  entre outras boas amizades que eu fiz na USP. 
+À equipe Trupicada,  especialmente ao Marcão, por ser o clássico rival  na diversão e nos campeonatos de futsal na USP,
+ mas sobretudo por serem uns amigos bem legais. 
+
+
+Outro grupo de excelentes amigos que gostaria de agradecer são os que conhecí na graduação como o Fabian, o Ysaacx, o Yayo, o Carlos, o DJ, o Robert, 
+ o Ernest. Além do mais, agradeço a boa amizade de amigos que também estão estudando, ou ensinam em outros paises e que compartilham suas boas experiências
+como o Jorge, o Omar, a Claudia, o Yayo, o Jesus Bellido, a Lisney, o Paiche, a Rosa, entre outros.
+
+Párrafo aparte merecem o pessoal do CHOReOS e Baile. Aos professores Daniel, o Fábio, o Alfredo e o Marco, pelos conselhos e incentivos e
+porque sua experiência me serveu no meu aprendizado. Aos membros alunos desses projetos, o Felps, o Cadú, o Felipe, o Gustavo,
+o Eduardo, o Leonardo, o Nelson, o Daniel Cukier, e todos os demais membros dessa excelente galera.
+
+  
+Em especial agradeço ao CNPQ e aos projetos Baile e CHOReos pelo financiamento e incentivo a minha pesquisa. 
+Por fim, quero terminar com uma frase  que sempre levo em consideração:
+\begin{quotation}
+ ``Nunca conheci um homem tão ignorante que fosse impossível aprender algo dele''.
+ Galileo Galilei
+\end{quotation} 
+
+
+%aprendi, ri, sofri, mas principalmente conhecí ótimas pessoas.
+
 
 % ---------------------------------------------------------------------------- %
 % Resumo
@@ -350,7 +405,7 @@ Computação Orientada a Serviços, Acordo de Nível de Serviço (SLA), Internet do F
 \input sections/cap-SLA_choreography
 \input sections/cap-QoS_Monitoring_choreography
 \input sections/cap-methodology
-%\input sections/cap-results
+\input sections/cap-results
 \input sections/cap-conclusions
 
 % cabeçalho para os apêndices

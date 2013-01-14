@@ -237,9 +237,10 @@ de chaves utilizadas para criptografar  mensagens.
         \centering
         \caption{QoS no modelo WSDL estendido}
         \label{table:qos_model_wsdl}
-        \begin{tabular}{ |l|ccccccccc|}
+        \begin{tabular}{ |c|c|c|c|}
       	\hline
 			      \multicolumn{3}{c}{ \textbf{QoS em um serviço Web} } \\
+	\hline
           \textbf{Tipo}      		&      \textbf{Parâmetro de QoS}   &   \textbf{Campo} 		\\
 
        	\hline
@@ -248,16 +249,19 @@ de chaves utilizadas para criptografar  mensagens.
         %\cline{1-1}
         \multirow{2}{*}{ \textbf{Serviço} } 	        & 	\multirow{3}{*}{Disponibilidade}     	&   TTR	   \\
 							&                           			&   TBF	   \\
-							&                           			&   ExpA   \\	
+							&                           			&   ExpA   \\
+       	\hline
 							& 	\multirow{2}{*}{Confiabilidade}		&   TBF	   \\
 							&                          			&   Exp \textit{Failure}\\	
 	\hline
         \multirow{2}{*}{ \textbf{Operação} } 	        & 	\multirow{2}{*}{Latência}	     	&   Tempo de serviço	   \\
 							&                           			&   TBF	   \\
+       	\hline
 							& 	Demanda					&   TBF	   \\
 							&                          			&   Exp \textit{Failure}\\	
 	\hline
 	\multirow{2}{*}{ \textbf{Mensagem} } 	        & 	Protocolo 			    	&   Enviar/Receber	   \\
+       	\hline
 							& 	Tipo de Chave				&   Enviar/Receber	   \\
 
         %\bottomrule
@@ -377,20 +381,6 @@ define principalmente as seguintes três seções:
   %mostra um exemplo de um parâmetro de SLA.
 \end{itemize}
 
-%WSLA fornece de um conjunto de operações, funções e predicados para definir SLOs. Toda vez que um SLO é violado pelo provedor de
- Toda vez que uma restrição é violada pelo provedor de
- serviços, %(o que implica também uma violação do SLA),
-  eventos são disparados para notificar a violação. %para reagir de alguma maneira \cite{Michlmayr2009}.
-   Após a notificação da violação podem ser tomadas ações como punições, adaptação ou %simplesmente realizar uma
-  mudança do provedor de serviços \cite{Michlmayr2009}. No lado do provedor, uma notificação de violação pode servir para
- tomar ações corretivas ou simplesmente selecionar um outro serviço com as mesmas funcionalidades e realizar uma substituição dinâmica. A
- Figura~\ref{fig:SLAExample} apresenta um exemplo de um SLA e os elementos que a compõem.
-
-
-Dado que uma coreografia de serviços é um descrição desde um ponto de vista global das interações do seus participantes, não pode ser executada
-direitamente porque não envolve o aspecto
-interno de um participante. Assim, o SLA precisa ser cumprido também no aspecto interno (comportamento não visível) de um participante. Em consequência,
-uma descrição SLA precisa ser mapeada em politicas concretas de QoS na camada de Orquestração.
 
 \begin{center}
   \lstset{language=XML,
@@ -406,12 +396,42 @@ uma descrição SLA precisa ser mapeada em politicas concretas de QoS na camada de
   \end{lstlisting}
 \end{center}
 
-  \begin{figure}[!h]
+%WSLA fornece de um conjunto de operações, funções e predicados para definir SLOs. Toda vez que um SLO é violado pelo provedor de
+ Toda vez que uma restrição é violada pelo provedor de
+ serviços, %(o que implica também uma violação do SLA),
+  eventos são disparados para notificar a violação. %para reagir de alguma maneira \cite{Michlmayr2009}.
+   Após a notificação da violação podem ser tomadas ações como punições, adaptação ou %simplesmente realizar uma
+  mudança do provedor de serviços \cite{Michlmayr2009}. No lado do provedor, uma notificação de violação pode servir para
+ tomar ações corretivas ou simplesmente selecionar um outro serviço com as mesmas funcionalidades e realizar uma substituição dinâmica. A
+ Figura~\ref{fig:SLAExample} apresenta um exemplo de um SLA e os elementos que a compõem.
+
+
+  \begin{figure}
       \centering
-      \includegraphics[width=.60\textwidth]{figures/SLAExample.png}
+      \includegraphics[width=.50\textwidth]{figures/SLAExample.png}
       \caption{Exemplo de SLA  \cite{Keller2003}}
       \label{fig:SLAExample}
   \end{figure}	
+
+A definição de SLA e QoS joga uma regra crucial em processos de negócios inter-organizacionais. Cada participante oferece serviços a outros
+ particapntes sobre a Internet, dos quais os últimos  precisam  executar seus negócios~\cite{Rosenberg2007}. Por isso, um certo grau  de confiabilidade 
+respeito do tempo de resposta, vazão, \textit{uptime}, entre outros, é desejado  e tem de ser especificado e explicitamente
+expresso nas etapas iniciais da fase de modelagem. A Figura~\ref{fig:choreographySLA} ilustra uma coreografia com três participantes e seus respectivos
+relacionamentos. Para cada relacionamento (interação entre serviços)  um SLA é definido entre os participantes para regular o grau que os
+participantes precisam para cumprir seus objetivos de negócio.
+
+Dado que uma coreografia de serviços é um descrição desde um ponto de vista global das interações do seus participantes, não pode ser executada
+direitamente porque não envolve o aspecto interno de um participante. Assim, o SLA precisa ser cumprido também no aspecto interno
+(comportamento não visível) de um participante. Em consequência, uma descrição SLA precisa ser mapeada em politicas concretas
+ de QoS na camada de Orquestração.
+
+  \begin{figure}
+      \centering
+      \includegraphics[width=1.0\textwidth]{figures/ChoreographySLAs.png}
+      \caption{Definição de SLAs na camada de coreografias de serviços}
+      \label{fig:choreographySLA}
+  \end{figure}	
+
 
 %  \begin{figure}[!h]
  %     \centering
@@ -464,7 +484,7 @@ forneço a distribuição de probabilidade, e garanto que ela será respeitada''.
 
   \begin{figure}[!h]
       \centering
-      \includegraphics[width=.80\textwidth]{figures/HardContractsLimitation.png}
+      \includegraphics[width=.85\textwidth]{figures/HardContractsLimitation.png}
       %\caption{ Tempos de resposta de 20. 000 chamadas de um serviço ~\cite{Rosario2008} } %\texttt{StockQuoteService} }
       \caption{ Registro de medidas do tempo de resposta para um serviço Web (traduzida de \cite{Rosario2008}) } %\texttt{StockQuoteService} }
       \label{fig:hardContractsLimitations}
