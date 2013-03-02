@@ -224,13 +224,14 @@ Nesse contexto, as coreografias são uma abordagem para modelar processos (ou \te
  (orquestração, interna ou executável), Pública (coreografia local, abstrata  ou vista), e Colaborativa (coreografia global,
  inter-organizacional ou \textit{cross-organizacional}), a fim de separar melhor  a densidade de informação de diferentes áreas.
 
+
 %Dentre as várias formas de se compor serviços, as coreografias de serviços Web aparecem como uma maneira eficiente de implementar
 % processos de negócio inter-organizacionais, já que as interações dos
 %participantes de negócios são mutuamente independentes (autônomos e heterogêneos) \cite{Telang2011}
 
  \begin{figure}[!h]
       \centering
-      \includegraphics[width=1.0\textwidth]{./figures/Choreography1.png}
+      \includegraphics[width=1.2\textwidth]{./figures/Choreography1.png}
       \caption{ Coreografia como solução para modelagem de processos de negócio inter-organizacionais}
       \label{fig:Choreography_BP}
   \end{figure}	
@@ -658,7 +659,7 @@ Os modelos de interconexão modelam cada participante como um processo separado, 
  para linguagens de  coreografia neste modelo são colaborações em BPMN 2.0, modelos com vários \textit{pools} em BPMN 1.2, BPMN+,
  ou BPEL4Chor. O comportamento de cada participante pode ser expresso como  um único elemento \textit{pool} do BPMN ou 
 um  processo BPEL abstrato~\cite{Koppa2010}.  Outras possibilidades adicionais para especificar o comportamento de um participante
-  incluem a abordagem Open Net~\cite{aa}. 
+  incluem a abordagem Open Net~\cite{Koppa2010}. 
 
 %No nível mais baixo de abstração, modelos executáveis BPMN ou modelos BPEL executáveis
 %residir. Cada um destes modelos pode ser implantado em um motor de fluxo de trabalho e ser promulgada.
@@ -675,7 +676,7 @@ interno de um processo é modelado. %Na discussão abaixo nos concentramos em pisc
 %A choreography language has to support multi-lateral interactions (requirement R1). Multi- lateral interactions are supported 
 %by the pools and message flows in BPMN collaboration diagrams.
 %Koppa2010
-A Figura ~\ref{fig:Exemplo-InterconectionChor} apresenta um exemplo de  coreografia especificada de acordo com o modelo
+A Figura ~\ref{fig:Example-InterconectionChor} apresenta um exemplo de  coreografia especificada de acordo com o modelo
 de interconexão. O exemplo é acerca de oferta investimentos e está especfificada utilizando a notação BPMN 1.2. Primeiro, 
 um consultor financeiro (participante) oferece um produto a um cliente (outro participante). Posteriormente, o cliente tem 24 horas para decidir se aceita a
 proposta de investimento ou rejeita a proposta. Cada participante é representado por meio de \textbf{pools} nos quais se interconectam atividades.
@@ -755,7 +756,7 @@ Uma tarefa de coreografia é uma atividade atômica em uma coregrafia de processos
       \includegraphics[width=0.6\textwidth]{figures/ChoreographyTask.png}
       %\includegraphics[width=0.7\textwidth]{./figures/BPMNBasicChoroegraphy.png}
       %\caption{Elementos BPMN para modelar coreografias de processos}
-      \caption{Representação de uma tarefa de coreografia }
+      \caption{Representação de uma tarefa de coreografia \cite{OMG2010}}
       \label{fig:ChoreographyTask}
   \end{figure}
 
@@ -775,7 +776,7 @@ captura interações onde ocorrem apenas  um envio de mensagem sem resposta, o que
       \includegraphics[width=1.0\textwidth]{figures/ChoreographyTask1.png}
       %\includegraphics[width=0.7\textwidth]{./figures/BPMNBasicChoroegraphy.png}
       %\caption{Elementos BPMN para modelar coreografias de processos}
-      \caption{Uma tarefa de coreografia simples e seu equivalente em diagrama de colaboração }
+      \caption{Uma tarefa de coreografia simples e seu equivalente em diagrama de colaboração \cite{OMG2010}}
       \label{fig:ChoreographyTask1}
   \end{figure}
 
@@ -784,7 +785,7 @@ captura interações onde ocorrem apenas  um envio de mensagem sem resposta, o que
       \includegraphics[width=1.0\textwidth]{figures/ChoreographyTask2.png}
       %\includegraphics[width=0.7\textwidth]{./figures/BPMNBasicChoroegraphy.png}
       %\caption{Elementos BPMN para modelar coreografias de processos}
-      \caption{Uma tarefa de coreografia simples e seu equivalente em diagrama de colaboração }
+      \caption{Uma tarefa de coreografia simples e seu equivalente em diagrama de colaboração \cite{OMG2010}}
       \label{fig:ChoreographyTask2}
   \end{figure}
  
@@ -794,7 +795,7 @@ captura interações onde ocorrem apenas  um envio de mensagem sem resposta, o que
       \includegraphics[width=0.9\textwidth]{figures/ChoreographyActivity.png}
       %\includegraphics[width=0.7\textwidth]{./figures/BPMNBasicChoroegraphy.png}
       %\caption{Elementos BPMN para modelar coreografias de processos}
-      \caption{Atividades de Coreografia em BPMN: interações atômicas }
+      \caption{Atividades de Coreografia em BPMN: interações atômicas \cite{OMG2010}}
       \label{fig:ChoreographyActivities}
   \end{figure}
 \end{comment}
@@ -812,7 +813,7 @@ atividades de mensagens locais foram substituídos por atividades de interações a
       %\includegraphics[width=.90\textwidth]{Choreography_CaseStudy.png}
       \includegraphics[width=0.7\textwidth]{figures/Example-InteractionChor.png}
       %\caption{Elementos BPMN para modelar coreografias de processos}
-      \caption{Exemplo de modelo de interação de coreografias, oferta de investimento.}%Interconnection model describing investment offers 
+      \caption{Exemplo de modelo de interação de coreografias, oferta de investimento \cite{Koppa2010}. }%Interconnection model describing investment offers 
       \label{fig:Example-InteractionChor}
   \end{figure}
 
@@ -835,4 +836,4 @@ atividades de mensagens locais foram substituídos por atividades de interações a
 
   %Porém, dado que os atuais motores não têm consciência de coreografias, neste trabalho utilizarão tecnologias tais como, WS-CDL, BPEL e WSDL, com um motor BPEL. 
   Portanto, já que os atuais motores não são cientes de de coreografias, neste trabalho desenvolveu-se um simulador de coregrafias para possibilitar o
- ``enactment'' de coreografias. Assim, também o simulador possibilitará a pesquisa em QoS e monitoramento em coreografias, os quais  são alvo deste trabalho.
+ ``enactment'' de coreografias. Assim, o simulador possibilitará a pesquisa em QoS e monitoramento em coreografias, os quais  são alvo deste trabalho.

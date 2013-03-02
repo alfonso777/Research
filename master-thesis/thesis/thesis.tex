@@ -38,6 +38,9 @@
 
 %adicionais
 \usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{mathtools}
+%\usepackage{split}
 \usepackage{listings}
 \usepackage{booktabs}
 \usepackage{multirow}
@@ -48,6 +51,9 @@
 \usepackage{algorithmic}
 \renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
 \renewcommand{\algorithmicensure}{\textbf{Saída:}}
+
+%\usepackage[justification=centering]{caption}
+
 
 %\usepackage{apalike}
 %\usepackage{jpc}
@@ -127,7 +133,8 @@ framexrightmargin=10pt
     \vspace*{2.3cm}
     %\textbf{\Large{Monitoramento de coreografias de serviços Web    \\
      %               baseado em SLA e atributos  QoS    }}\\
-    \textbf{\Large{ Detecção de Violações de SLA em Coreografias de Serviços Web}}\\
+    \textbf{\Large{ Detecção de Violações de SLA em \\
+		    Coreografias de Serviços Web}}\\
 
 
     \vspace*{1.2cm}
@@ -154,7 +161,7 @@ framexrightmargin=10pt
 
    	\vskip 1cm
     \normalsize{Durante o desenvolvimento deste trabalho o autor recebeu auxílio da HP Brasil por
-		meio do Baile e do programa FP7/2007-2012 da Comissão Européia pelo projeto
+		meio do projeto Baile e do programa FP7/2007-2012 da Comissão Européia pelo projeto
                 n° 257178 (CHOReOS - Large Scale Choreographies for the Future Internet)}
 
     \vskip 0.5cm
@@ -169,18 +176,22 @@ framexrightmargin=10pt
 \thispagestyle{empty}
     \begin{center}
         \vspace*{2.3 cm}
-        \textbf{\Large{ Detecção de Violações de SLA em Coreografias de Serviços Web }}\\
+        %\textbf{\Large{ Detecção de Violações de SLA em Coreografias de Serviços Web }}\\
+	\textbf{\Large{ Detecção de Violações de SLA em \\
+		        Coreografias de Serviços Web}}\\
+
         \vspace*{2 cm}
     \end{center}
 
     \vskip 2cm
 
     \begin{flushright}
-     Este exemplar corresponde à redação\\
-     final da dissertação \\%/tese devidamente corrigida\\
+     Este exemplar corresponde\\
+      à redação\\
+     do texto de dissertação \\%/tese devidamente corrigida\\
      para realizar o depósito \\
-     antes de ser defendida  \\
-    ante a  Comissão Julgadora. 
+     %antes de ser defendida  \\
+    %ante a  Comissão Julgadora. 
      %e defendida por (Nome Completo do Aluno)\\
      %e aprovada pela Comissão Julgadora.
     
@@ -208,7 +219,7 @@ framexrightmargin=10pt
 % Agradecimentos
 \chapter*{Agradecimentos}
 %Agradecimentos ...
-Primeiramente eu quero agradecer à minha família. Á minha mãe Saturnina, pelo grande e constante apoio apesar da distância.
+Primeiramente eu quero agradecer à minha família. À minha mãe Saturnina, pelo grande e constante apoio apesar da distância.
 Ao meu pai Florentino, pela confiança que sempre deposita em mim. Ao meu irmão Fernando, porque ele também é um bom amigo. 
 Aos meus tíos, avos, primos, obrigado a todos vocês pelo carinho e afeto que sempre me dão.
 
@@ -221,19 +232,31 @@ orientador e bom amigo. Eu agradeço ao Daniel por todas as dicas, palavras e pri
 Durante todo este período de mestrado, não somente aprendi e obtive conhecimento da área. Neste anos eu conhecí ótimas pessoas, as quais
  são de diversas cidades, países, culturas e costumes que ampliaram minha visão do mundo. Estou agradecido e  fico muito contente
  de tê-las como boas amizades. A Valentina, a Florence, o Rafael, o Everton, a Deysi, o Enrique,  o Marcelo, o Rogerio, o Lucas,
- o Marcos, o Fabio, o Jacques, Yanik, o Mauricio,  entre outros muitos que eu considero bons amigos.
+ o Marcos, o Fabio, o Jacques, Yanik, o Mauricio, entre outros muitos que eu considero bons amigos.
+
+%Quero agradecer também aos meus bons amigos que viemos de Arequipa para iniciar o mestrado aquí, o Carlos e a Rosario. 
+%Ao pessoal e funcionários do IME pela amizade oferecida. Ao pessoal de Computação  como o Lucas, o Fabio, o Wesley, o Strauss, o William, o Felps, o Felipe Besson, o Mauricio
+%de Diana, o Eduardo, o Glaucus, o Victor, entre outros. Ao pessoal do laborátorio do LIAMF como o Fabio, o Alexandre, o Paulo, a Viviane, o Enrique Bustamante, o Esdras, entre outros;
+%o pessoal de Visão como a Jihan, a Maysa, o Daniel, o William. Pessoal de Matemáticas e Estatísticas como a Deysi, o Valentin, o Gerard,
+%a Alejandra, o Iván, o Genaro, o Jorgito. 
+%Aos meus compatriotas e bons amigos no IME como o Alvaro, o Carlos, a Rosario, o Frank, o Leandro, o Edu, a Ericka, o Juan, o Jesús Mena, a Karina,
+%o Daniel, a Edith, o Miguel, o Jesus Mesias, o Caratos, o Mija, o Harry, o Pablito, o Geiser, a Evelyn, o Jorge, a Leissi, entre outros. 
+%Aos meus compatriotas e bons amigos da USP como o Edgard, o Dracu, o Erick, o Erick (``el oso''), o Juan Carlos, o Dany, o Giancarlo, o Carlos (cuzqueño),
+% o Bochas, o Luis, o Gabriel, o José ochoa, o Roberto, o Lobito, o Carloncho,  entre outras boas amizades que eu fiz na USP. 
+%À equipe Trupicada,  especialmente ao Marcão, por ser o clássico rival  na diversão e nos campeonatos de futsal na USP,
+% mas sobretudo por serem uns amigos bem legais. 
 
 Quero agradecer também aos meus bons amigos que viemos de Arequipa para iniciar o mestrado aquí, o Carlos e a Rosario. 
-Ao pessoal e funcionários do IME pela amizade oferecida. Ao pessoal de Computação  como o Lucas, o Fabio, o Wesley, o Strauss, o William, o Felps, o Felipe Besson, o Mauricio
-de Diana, o Eduardo, o Glaucus, o Victor, o Cadú, entre outros. Ao pessoal do laborátorio do LIAMF como o Fabio, o Alexandre, o Paulo, a Viviane, o Enrique Bustamante, o Esdras, entre outros;
-o pessoal de Visão como a Jihan, a Maysa, o Daniel, o William. Pessoal de Matemáticas e Estatísticas como a Deysi, o Valentin, o Gerard,
-a Alejandra, o Iván, o Genaro, o Jorgito. 
+Ao pessoal e funcionários do IME pela amizade oferecida. Ao pessoal de Computação  como o Lucas, o Fabio, o Wesley, o Strauss, o William, o Felps, 
+o Glaucus, o Victor, entre outros. Ao pessoal do laborátorio do LIAMF como o Fabio, o Alexandre, o Paulo, a Viviane, o Esdras, entre outros;
+o pessoal de Visão como a Jihan, a Maysa, e o William. Pessoal de Matemáticas e Estatísticas como a Deysi, o Valentin, o Gerard, o Alberto, 
+o Iván, o Genaro e o Jorgito. 
 Aos meus compatriotas e bons amigos no IME como o Alvaro, o Carlos, a Rosario, o Frank, o Leandro, o Edu, a Ericka, o Juan, o Jesús Mena, a Karina,
 o Daniel, a Edith, o Miguel, o Jesus Mesias, o Caratos, o Mija, o Harry, o Pablito, o Geiser, a Evelyn, o Jorge, a Leissi, entre outros. 
 Aos meus compatriotas e bons amigos da USP como o Edgard, o Dracu, o Erick, o Erick (``el oso''), o Juan Carlos, o Dany, o Giancarlo, o Carlos (cuzqueño),
  o Bochas, o Luis, o Gabriel, o José ochoa, o Roberto, o Lobito, o Carloncho,  entre outras boas amizades que eu fiz na USP. 
-À equipe Trupicada,  especialmente ao Marcão, por ser o clássico rival  na diversão e nos campeonatos de futsal na USP,
- mas sobretudo por serem uns amigos bem legais. 
+%À equipe Trupicada,  especialmente ao Marcão, por ser o clássico rival  na diversão e nos campeonatos de futsal na USP,
+% mas sobretudo por serem uns amigos bem legais. 
 
 
 Outro grupo de excelentes amigos que gostaria de agradecer são os que conhecí na graduação como o Fabian, o Ysaacx, o Yayo, o Carlos, o DJ, o Robert, 
@@ -241,10 +264,10 @@ Outro grupo de excelentes amigos que gostaria de agradecer são os que conhecí na
 como o Jorge, o Omar, a Claudia, o Yayo, o Jesus Bellido, a Lisney, o Paiche, a Rosa, entre outros.
 
 Párrafo aparte merecem o pessoal do CHOReOS e Baile. Aos professores Daniel, o Fábio, o Alfredo e o Marco, pelos conselhos e incentivos e
-porque sua experiência me serveu no meu aprendizado. Aos membros alunos desses projetos, o Felps, o Cadú, o Felipe, o Gustavo,
+porque sua experiência serviu no meu aprendizado. Aos membros alunos desses projetos, tais como o Felps, o Cadú, o Felipe, o Gustavo,
 o Eduardo, o Leonardo, o Nelson, o Daniel Cukier, e todos os demais membros dessa excelente galera.
 
-  
+ 
 Em especial agradeço ao CNPQ e aos projetos Baile e CHOReos pelo financiamento e incentivo a minha pesquisa. 
 Por fim, quero terminar com uma frase  que sempre levo em consideração:
 \begin{quotation}
@@ -306,18 +329,32 @@ Atualmente  coreografias de serviços Web possuem vários desafios de pesquisa,
 
 \vspace{6mm}
 
-\noindent \textbf{Palavras-chave:}  Qualidade de Serviço (QoS), Monitoramento, Coreografias de serviços Web, 
+\noindent \textbf{Palavras-chave:}  Qualidade de Serviço (QoS), Monitoramento de Serviços Web, Coreografias de Serviços Web, 
 Computação Orientada a Serviços, Acordo de Nível de Serviço (SLA), Internet do Futuro.%Arquitetura Orientada a Serviços
  
 \let\cleardoublepage\clearpage
 
 % ---------------------------------------------------------------------------- %
 % Abstract
-%\chapter*{Abstract}
-%Abstract ...
+\chapter*{Abstract}
 
-%\noindent \textbf{Keywords:} Service Oriented Computing, Web Services, Quality of Service, Service Level Agreement,
- % Service oriented Architecture, Service Choreography, QoS Monitoring, SLA Monitoring.
+Web services choreographies  represent a more scalable and flexible way to compose than a centralized approach as the orchestration,
+  and its role in the integration and communication of large-scale systems is vital for
+the goals of SoC (Service Oriented Computing) and Future Internet. 
+Currently Web services choreographies have several research challenges, such as
+   quality of service (QoS) and monitoring of Web services choreography are important research lines. The goal
+  this work is to propose and implement a mechanism for non-intrusive monitoring of Web services choreography based on SLAs
+   in order to define constraints of QoS attributes.
+  This research proposes a mechanism % Based technique probability distributions
+  to: (1) define QoS requirements, (2) specify contracts on probabilistic QoS parameters using SLAs and (2) carry out  monitoring
+  of Web services  choreographies to detect SLA violations.
+
+
+\vspace{6mm}
+
+\noindent \textbf {Keywords:} Quality of Service (QoS), Web Service Monitoring, Web Service Choreography,
+Service-Oriented Computing (SoC), Service Level Agreement (SLA), Future Internet.% Service Oriented Architecture
+
 
 % ---------------------------------------------------------------------------- %
 % Sumário
@@ -420,7 +457,7 @@ Computação Orientada a Serviços, Acordo de Nível de Serviço (SLA), Internet do F
 \backmatter \singlespacing   % espaçamento simples
 %\bibliographystyle{apalike}% citação bibliográfica alpha
 \bibliographystyle{alpha-ime}% citação bibliográfica alpha
-\bibliography{bib14}  % associado ao arquivo: 'bibliografia.bib'
+\bibliography{bib16}  % associado ao arquivo: 'bibliografia.bib'
 
 % ---------------------------------------------------------------------------- %
 % Índice remissivo

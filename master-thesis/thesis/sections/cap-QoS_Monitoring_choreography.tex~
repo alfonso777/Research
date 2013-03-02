@@ -308,7 +308,7 @@ especificar restrições de QoS em SLAs, e nem como realizar monitoramento.
 
 %\begin{comment}
 \section{Considerações Finais}
-No capítulo anterior foram descritos os trabalhos que possuem alguma relação com o monitoramento de atributos de QoS em coreografias de serviços Web. Pode-se 
+Neste capítulor foram descritos os trabalhos que possuem alguma relação com o monitoramento de atributos de QoS em coreografias de serviços Web. Pode-se 
 notar que há poucos trabalhos sobre modelos de QoS em coreografias, e ainda menos, aqueles que agem
  de maneira integrada com orquestrações e serviços Web. Existem poucos trabalhos relacionados com monitoramento de coreografias de 
 serviços Web baseado em atributos de QoS. %, como em \cite{Rosenberg2009}.  
