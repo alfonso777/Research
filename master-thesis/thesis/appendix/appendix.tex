@@ -1,0 +1,247 @@
+
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+
+
+\lstloadlanguages{XML}
+\lstdefinestyle{listXML}{
+    language=XML, extendedchars=true,  belowcaptionskip=5pt, xleftmargin=1.8em, xrightmargin=0.5em, numbers=left,
+    numberstyle=\small\ttfamily\bf, frame=single, breaklines=true, breakatwhitespace=true, breakindent=0pt,
+    emph={}, emphstyle=\color{red}, basicstyle=\small\ttfamily, columns=fullflexible, showstringspaces=false, commentstyle=\color{gray}\upshape,
+    morestring=[b]",
+    morecomment=[s]{<?}{?>},
+    morecomment=[s][\color{orange}]{<!--}{-->},
+    keywordstyle=\color{cyan},
+    stringstyle=\color{black},
+    tagstyle=\color{darkblue},
+    %morekeywords={platform, host, link, route, AS}
+    morekeywords={routing, id, arg, bandwidth, latency, src, dst, symmetrical, value, function, name,  operation, type }
+  }
+
+
+
+
+\chapter{Especificação da Coreografia para o monitoramento no ChorSim}
+\label{ape:chor_specification}
+
+  \begin{lstlisting}[style=listXML]
+<?xml version='1.0'?>
+ <choreography name="CDN application">
+	<services>
+		<service name="WS1" >	
+			<serviceOperation name="method1" />
+			<serviceOperation name="method2" />
+		</service>
+		<service name="WS2" >	
+			<serviceOperation name="method1" />
+			<serviceOperation name="method2" />
+			<serviceOperation name="method3" />
+		</service>
+		<service name="WS3" >	
+			<serviceOperation name="method1" />
+			<serviceOperation name="method2" />
+		</service>
+		<service name="WS4" >	
+			<serviceOperation name="method1" />
+			<serviceOperation name="method2" />
+			<serviceOperation name="method3" />
+		</service>
+		<service name="WS5" >	
+			<serviceOperation name="method1" />
+			<serviceOperation name="method2" />
+		</service>
+	</services>
+	<interactions>
+		<interaction name="interactionWS1-WS3" >
+			<source service="WS1"  operation="method1"   />
+			<target service="WS3" operation="method2"    type="REQUEST_RESPONSE" />
+		</interaction>
+		<!-- <interaction name="interactionWS1-WS3_WS4" >
+			<source service="WS3"  operation="method2"   />
+			<gateway type="parallel" />
+			<target  service="WS5" name="method1"  type="REQUEST_RESPONSE"  />
+			<target  service="WS4" name="method2"  type="REQUEST"  />
+			<gateway type="join" />
+		</interaction>  -->
+		<interaction name="interactionWS2-WS4" >
+			<source service="WS2"  operation="method1"   />
+			<target service="WS4" operation="method3"    type="REQUEST_RESPONSE" />
+		</interaction>
+		<!--<interaction name="interactionWS5-WS2" >
+			<source service="WS5"  operation="method1"   />
+			<target service="WS2" operation="method3"    type="REQUEST_RESPONSE" />
+		</interaction> -->
+		<!-- <interaction name="interactionWS1-WS2" >
+			<source service="WS1"  operation="method1"  />
+			<target service="WS2" operation="method3"    type="REQUEST_RESPONSE" />
+		</interaction> -->
+		<interaction name="interactionWS3-WS5" >
+			<source service="WS3"  operation="method2"  />
+			<target service="WS5" operation="method2"    type="REQUEST_RESPONSE" />
+		</interaction>
+		<!--<interaction name="interactionWS5-WS1" >
+			<source service="WS5"  operation="method2"  />
+			<target service="WS1" operation="method2"    type="REQUEST" />
+		</interaction> -->
+	</interactions>
+ </choreography>   
+  \end{lstlisting}
+
+
+\chapter{Configuração da plataforma para o monitoramento no ChorSim}
+\label{ape:platform}
+
+  \begin{lstlisting}[style=listXML]
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
+<platform version="3">
+<AS  id="AS0"  routing="Full">
+	<host id="Jacquelin" power="137333000"/>
+	<host id="iRMX" power="68667000"/>
+	<host id="Revoada" power="68667000"/>
+	<host id="Bellemarre" power="34333000"/>
+	<host id="Vincent" power="34333000"/>
+	<host id="Dali" power="34333000"/>
+
+	<link id="100" bandwidth="100000" latency="0.02"/>
+	<link id="1000" bandwidth="1000000" latency="0.02"/> -->
+
+	<link id="100Kbps" bandwidth="100000" latency="0.002"/>
+	<link id="1Mbps"   bandwidth="1000000" latency="0.002"/>
+	<link id="3Mbps"   bandwidth="3000000" latency="0.002"/>
+	<link id="5Mbps"   bandwidth="5000000" latency="0.002"/>
+	<link id="10Mbps"  bandwidth="10000000" latency="0.002"/>
+	<link id="20Mbps"  bandwidth="20000000" latency="0.002"/>
+	<link id="40Mbps"  bandwidth="40000000" latency="0.002"/>
+
+
+	<route src="Jacquelin" dst="Bellemarre" symmetrical="NO">
+	    <link_ctn id="1Mbps"/>
+	</route>
+	<route src="Bellemarre" dst="Jacquelin" symmetrical="NO">
+	    <link_ctn id="10Mbps"/>
+	</route>
+
+
+	<route src="Bellemarre" dst="Revoada" symmetrical="NO">
+	    <link_ctn id="1Mbps"/>
+	</route>
+	<route src="Revoada" dst="Bellemarre" symmetrical="NO">
+	    <link_ctn id="20Mbps"/>
+	</route>
+
+
+	<route src="Revoada" dst="Vincent" symmetrical="NO">
+	    <link_ctn id="1Mbps"/>
+	</route>
+	<route src="Vincent" dst="Revoada" symmetrical="NO">
+	    <link_ctn id="40Mbps"/>
+	</route>
+
+      <!-- Finalizing tasks from Jacquelin-->
+	<route src="Jacquelin" dst="Revoada" symmetrical="NO">
+	    <link_ctn id="100Kbps"/>
+	</route>
+	<route src="Jacquelin" dst="Vincent" symmetrical="NO">
+	    <link_ctn id="100Kbps"/>
+	</route>
+
+      </AS>
+      </platform>
+  \end{lstlisting}
+
+
+
+
+\chapter{Configuração da mmplantação para o monitoramento no ChorSim}
+\label{ape:deployment}
+
+  \begin{lstlisting}[style=listXML]
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
+<platform version="3">
+	
+	<process host="Bellemarre" function="br.usp.ime.simulation.datatypes.process.Service">
+
+	    <argument value="50"/><!-- number of threads-->
+	    <argument value="WS1"/><!--service name-->
+	    <argument value="9000"/><!-- degradation mean (1/rate) (ms) -->
+	    
+	    <argument value="method"/><!--method-->
+		<argument value="method1"/><!-- method name -->
+		<argument value="7000000" />  <!-- Method computing amount -->
+		<argument value="100663296" />  <!-- Default response Size 12MB-->
+
+		<argument value="dependency"/><!-- method exec time-->
+			<argument value="WS3"/><!-- service name-->		
+			<argument value="method2"/><!-- operation name-->		
+			<argument value="7000000" />  <!-- Method computing amount -->
+			<argument value="5734400" />  <!-- Request Size 700KB-->
+	
+	    <argument value="method"/><!--method-->
+		<argument value="method2"/><!-- method name -->
+		<argument value="7000000" />  <!-- Method computing amount -->
+		<argument value="200000" />  <!-- Default response size -->
+	</process>
+
+	
+
+	<process host="Revoada" function="br.usp.ime.simulation.datatypes.process.Service">
+
+	    <argument value="50"/><!-- number of threads-->
+	    <argument value="WS3"/><!--service name-->
+	    <argument value="10000"/><!-- degradation mean (1/rate) (ms) -->
+	    
+	    <argument value="method"/><!--method-->
+		<argument value="method1"/><!-- method name -->
+		<argument value="7000000" />  <!-- Method computing size -->
+		<argument value="3800" />  <!-- Default Response size -->
+
+	    <argument value="method"/><!--method-->
+		<argument value="method2"/><!-- method name -->
+		<argument value="7000000" />  <!-- Method computing size -->
+		<argument value="8388608" />  <!-- Default Response Size 1MB-->
+		<argument value="dependency"/><!-- method exec time-->
+			<argument value="WS5"/><!-- service name-->		
+			<argument value="method2"/><!-- operation name-->		
+			<argument value="3000000" />  <!-- Method computing amount -->
+			<argument value="5734400" />  <!-- Request size 700KB-->
+
+	</process>
+
+	<process host="Vincent" function="br.usp.ime.simulation.datatypes.process.Service">
+
+	    <argument value="50"/><!-- number of threads-->
+	    <argument value="WS5"/><!--service name-->
+	    <argument value="9000"/><!-- degradation mean (1/rate) (ms) -->
+	    
+	    <argument value="method"/><!--method-->
+		<argument value="method1"/><!-- method name -->
+		<argument value="7000000" />  <!-- Method compute duration (flops) -->
+		<argument value="20000" />  <!-- Default response size -->
+
+	    <argument value="method"/><!--method-->
+		<argument value="method2"/><!-- method name -->
+		<argument value="7000000" />  <!-- Method computing size -->
+		<argument value="209715200" />  <!-- Response Size 25MB-->
+		
+	</process>
+
+	<process host="Jacquelin"
+		function="br.usp.ime.simulation.choreography.Choreographer">
+		
+		<!-- <argument value="1000" />   Amount of choreography requests (instances) -->
+		<argument value="0" />   <!-- Requests per second -->
+
+		<argument value="WS1" />   <!-- name of service to invoke-->
+		<argument value="method1"/><!-- name of method of service -->
+		<argument value="2048000"/><!-- Request  size  250KB-->
+		<argument value="10" />    <!-- Size of each returned value -->
+	</process>
+
+</platform>   
+  \end{lstlisting}
+
+
+
