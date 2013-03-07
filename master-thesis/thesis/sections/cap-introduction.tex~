@@ -85,7 +85,7 @@ com o objetivo de detectar violações de SLAs entre os participantes da coreograf
  O monitoramento será realizado de maneira não intrusiva, %utilizando  técnicas de ``\textit{probing request}'' e de ``\textit{sniffing}''.
 e é desenvolvido acima do nosso simulador para realizar  \textit{enactment} de coreografias de serviços. Tal simulador possui suporte de QoS, principalmente de 
 desempenho e de rede. Dessa maneira, o monitor é responsável pela coleta e medição dos atributos de QoS dos serviços individuais, e agregá-los de acordo à
-compsição e finalmente verifica a existência de violação de alguma restrição de QoS segundo como está definido no SLA.
+composição e finalmente verifica a existência de violação de alguma restrição de QoS segundo como está definido no contrato.
 
 
 % e utilizando SLAs (Acordo de Nível de Serviço). Neste
@@ -155,7 +155,8 @@ Para o cumprimento dos objetivos deste trabalho, consideram-se várias etapas:
 %medidos dos serviços Web e da composição  dos participantes
  Na etapa (1) construiu-se  um simulador de coreografias por conta da falta de implementações para rodar coreografias com suporte de QoS. Na 
 etapa (2) se definem requisitos de QoS baseados em avaliações de desempenho de coreografias usando modelos de falhas probabilísticos de
- atributos de QoS. Com base nose requsitos de QoS  estebelecem-se SLAs probabilísticos. Para tanto utilizaram-se duas abordagens: 
+ atributos de QoS. Com base nesses requisitos de QoS se estebelecem os contratos  probabilísticos. Utilizaram-se duas abordagens
+ de modo a definir requisitos de QoS: 
  %ou contratos não rígidos  utilizam os quantis das distribuições de probabilidade de um determinado parâmetro de QoS.
              \begin{itemize}
                   \item \textbf{Analítica}:  Usando Redes de Petri Estocásticas Generalizadas (GSPN) como representação intermediária
@@ -227,7 +228,7 @@ As principais contribuições desta pesquisa são:
 %---------------------------------------------%
 \section{Organização da Proposta}
 \label{sec:organization}
-O restante deste texto está organizado da seguinte forma. No Capítulo ~\ref{cap:concepts} são apresentados os aspectos e conceitos básicos, tais como serviços Web,
+O restante deste texto está organizado da seguinte forma. No Capítulo~\ref{cap:concepts} são apresentados os aspectos e conceitos básicos, tais como serviços Web,
  SOA, composição de serviços e Internet do futuro. No Capítulo \ref{cap:service_choreography}
 são descritos os conceitos de coreografia de serviços Web. %assim como os modelos, tópicos de pesquisa, padrões e ferramentas.
 Em seguida, no Capítulo~\ref{cap:chor_scenarios} apresenta alguns cenários onde podem ser aplicadas as coreografias de serviços. 

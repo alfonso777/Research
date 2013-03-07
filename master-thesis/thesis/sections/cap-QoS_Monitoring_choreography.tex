@@ -158,7 +158,7 @@ de orquestração (politicas de QoS) e de coreografias (SLA), utiliza o monitor \t
 %%QoS e SLA em coreografias
 A pesquisa apresentada neste documento propõe uma técnica para realizar monitoramento de coreografias de serviços Web utilizando SLAs probabilísticos, cujas restrições 
 são especificadas por meio de quantis das distribuições de probabilidades dos parâmetros de QoS dos serviços Web. Além disso, o monitoramento 
-que se pretende desenvolver é ``não intrusivo''. %, já que no escopo de coreografias, os participantes possuem infraestruturas de rede e de aplicação heterogênea e de
+que se pretende desenvolver é não intrusivo. %, já que no escopo de coreografias, os participantes possuem infraestruturas de rede e de aplicação heterogênea e de
 % diferentes domínios. 
  Assim, são resumidos a seguir alguns trabalhos relacionados e organizados em duas subseções: Monitoramento baseado em QoS de coreografias de serviços Web
  %e Monitoramento baseado em SLAs probabilísticos ou restrições probabilísticas de QoS.
@@ -213,9 +213,10 @@ probabilísticas derivada do GSPN, métodos analíticos são utilizados para avaliar
  autores \cite{Xia2009} utilizam o método de Monte-Carlo %e a análise de intervalos de confiança 
  para validar os resultados teóricos.
   Um trabalho do \cite{Xia2009} é a utilização da linguagem WSCI, que foi oficialmente descontinuada.  Além disso o foco está no escopo da especificação da coreografia e
- apenas a métrica de tempo de resposta é utilizada. Na pesquisa proposta neste documento, pretende-se 
-utilizar o método de Monte-Carlo para estimar as restrições probabilísticas que compõem um SLA,   %a configuração do monitoramento, %mas não para realizar uma avaliação da coreografia. Além disso, 
- mas esta pesquisa leva em conta outros atributos de QoS além do tempo de resposta.
+ apenas a métrica de tempo de resposta é utilizada. Na pesquisa proposta neste documento, utiliza-se 
+%utilizar o método de Monte-Carlo para estimar as restrições probabilísticas que compõem um SLA,   %a configuração do monitoramento, %mas não para realizar uma avaliação da coreografia. Além disso, 
+ o GSPN com suporte de QoS para avaliar o desempenho de coreografias de modo a definir de requisitos de QoS. Além disso,
+  leva-se em conta outros atributos de QoS além do tempo de resposta.
 %medio vago
 \vspace{4mm}
 
@@ -232,7 +233,7 @@ oferece uma abordagem de monitoramento de coreografias integrada nas três camada
 Linguagens de coreografia de serviços, tais como BPMN, Let's Dance e BPEL4Chor não aparecem em trabalhos relacionados com QoS na literatura. 
 As buscas realizadas durante a escrita deste documento não retornaram nenhuma proposta de integrar  
 %Até hoje, nenhum  propõe 
- um modelo de QoS no BPMN, que é um ``padrão''  para modelar processos de negócios colaborativos, incluindo coreografias. %, lembrando que WS-CDL
+ um modelo de QoS no BPMN, que é um padrão  para modelar processos de negócios colaborativos, incluindo coreografias. %, lembrando que WS-CDL
  %não é padrão, e que o Let's Dance e BPEL4Chor são propostas acadêmicas. 
  Existem várias propostas de modelos de QoS em serviços Web e orquestrações, mas poucas em coreografias,
 e ainda menos nas três camadas e de maneira integrada. Além disso, as poucas abordagens de monitoramento definem restrições de QoS de maneira rígida, o que não reflete 
@@ -308,7 +309,7 @@ especificar restrições de QoS em SLAs, e nem como realizar monitoramento.
 
 %\begin{comment}
 \section{Considerações Finais}
-Neste capítulor foram descritos os trabalhos que possuem alguma relação com o monitoramento de atributos de QoS em coreografias de serviços Web. Pode-se 
+Neste Capítulo foram descritos os trabalhos que possuem alguma relação com o monitoramento de atributos de QoS em coreografias de serviços Web. Pode-se 
 notar que há poucos trabalhos sobre modelos de QoS em coreografias, e ainda menos, aqueles que agem
  de maneira integrada com orquestrações e serviços Web. Existem poucos trabalhos relacionados com monitoramento de coreografias de 
 serviços Web baseado em atributos de QoS. %, como em \cite{Rosenberg2009}.  

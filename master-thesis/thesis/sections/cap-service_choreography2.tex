@@ -211,17 +211,17 @@ um objetivo de negócio. A conseqüência disso, a modelagem e projeto de processos
 Do ponto de vista de processos de negócios, as coreografias descrevem o comportamento externamente observável de uma entidade de negócios em
 processos de negócio inter-organizacionais. A idéia por trás das coreografias está relacionado ao fato de que as entidades de negócios
  freqüentemente consideram seus processos intra-organizacionais como ativos (por exemplo, visão baseada em recursos em gestão estratégica)~\cite{Mendling2005}.
-No entanto, as empresas querem se beneficiar de fortes colaboração com os seus parceiros (participantes).
+No entanto, as empresas querem se beneficiar de fortes colaborações com os seus parceiros (participantes).
 Assim, as linguagens de coreografias são maneiras de definir regras de colaborações entre vários participantes sem revelar 
 as suas operações internas~\cite{Mendling2005}.
 
-Alé disso, a modelagem de processos de negócio inter-organizacionais envolve novos desafios, principalmente, a capacidade de lidar com 
- autonomia, privacidade, heterogeneidade, e com suporte de coordenação por meio de contratos.
+Além disso, a modelagem de processos de negócio inter-organizacionais envolve novos desafios, principalmente, a capacidade de lidar com 
+ autonomia, privacidade, heterogeneidade e com suporte de coordenação por meio de contratos.
 %A modelagem de cenários B2B scenarios foca em conversações entre participantes para estabelecer um contexto de negócios comum
 %para realizar colaborações~\cite{Hettel2008}. 
 Nesse contexto, as coreografias são uma abordagem para modelar processos (ou \textit{workflows}) inter-organizacionais do ponto de
- vista global (ver Figura~\ref{fig:Choreography_BP}). Nesse esquema os processos processo ficam descritos de maneira ``Privada''
- (orquestração, interna ou executável), Pública (coreografia local, abstrata  ou vista), e Colaborativa (coreografia global,
+ vista global (ver Figura~\ref{fig:Choreography_BP}). Nesse esquema os processos processo ficam descritos de maneira ``privada''
+ (orquestração, interna ou executável), ``pública'' (coreografia local, abstrata  ou vista), e ``colaborativa'' (coreografia global,
  inter-organizacional ou \textit{cross-organizacional}), a fim de separar melhor  a densidade de informação de diferentes áreas.
 
 
@@ -534,7 +534,7 @@ para suportar modelagem, verificação, validação e transformação para processos e
 
 
 \textit{OpenKnowledge} \cite{Besana2009} é uma plataforma baseada em uma arquitetura ponto a ponto (P2P)
- para especificar e executar \footnote{Neste caso, o termo executar é válido, já que o LCC é uma linguagem executável de coreografias .} coreografias
+ para especificar e executar\footnote{Neste caso, o termo executar é válido, já que o LCC é uma linguagem executável de coreografias .} coreografias
  de serviços. Cada \emph{peer} representa um participante da coreografia. Esse \emph{peer} é uma \emph{wrapper} que separa o comportamento
  observável de um participante da sua implementação, a qual pode ser um serviço Web, um serviço composto,
 entre outros.  Esta plataforma utiliza o LCC (\textit{Lightweight Coordination Calculus}) \cite{Robertson2005} como a linguagem executável baseada
@@ -554,9 +554,9 @@ no \textit{Process-Calculus} para especificar e executar as coreografias. A sua 
 \section{Coreografias em BPMN}
 
 \subsection{BPMN}
-O BPMN (Notação de Modelagem de Processos de Negócio) surgiu como um padrão para notação para capturar  processos de negócio, 
+O BPMN (Notação de Modelagem de Processos de Negócio) é um padrão que surgiu como uma  notação para capturar  processos de negócio, 
 especialmente no nível da análise de domínios  e design de sistemas alto nível. A notação herda e combina elementos a partir 
-de uma série de anotações previamente propostas para  modelagem de processos de negócios , incluindo a XPDL~\footnote{XPDL: 
+de uma série de anotações previamente propostas para  modelagem de processos de negócios, incluindo a XPDL~\footnote{XPDL: 
 Linguagem de Definição de Processo XML} e diagramas de atividades do UML.%~\footnote{UML: Linguagem}.
 
 %Como os seus antecessores, a idéia chave de BPMN é que os modelos de processos são compostos
@@ -573,7 +573,7 @@ Linguagem de Definição de Processo XML} e diagramas de atividades do UML.%~\foot
 
 O BPMN fornece  uma notação gráfica para modelagem de processos de negócios, com ênfase em controle de fluxo. Ele define um Diagrama
  de Processos de Negócio (BPD), uma espécie de fluxograma que incorpora construções adaptadas para a modelagem de processos de negócios,
-tais como  \textit{AND-split}, \textit{AND-join}, \textit{XOR-split}, \textit{XOR-join}, e escolha diferida (baseada em eventos). Um BPD
+tais como  \textit{AND-split}, \textit{AND-join}, \textit{XOR-split}, \textit{XOR-join} e escolha diferida (baseada em eventos). Um BPD
  é composta de elementos BPMN. A Figura~\ref{fig:BPMN_CoreElements} mostra um subconjunto do núcleo de elementos de BPMN. Há objetos e
  fluxos de seqüência. Um objeto pode ser um evento, uma atividade ou um \textit{gateway}. Uma fluxo de seqüência liga dois objetos em um BPD
  e mostra a relação do fluxo de controle (ou seja, a ordem de execução).
@@ -620,25 +620,25 @@ Para um maior entendimento e informação acerca dos elementos fornecidos por BPMN
 
 \subsection{Coreografia de Processos}
 
-O BPMN é uma linguagem independente de implementação e, especialmente, permite a definição de coreografias interligando diferentes
+O BPMN é uma linguagem independente da implementação e, especialmente, permite a definição de coreografias interligando diferentes
  processos utilizando fluxos de mensagens. Essas coreografias são de alto valor, principalmente em contextos inter-organizacionais, 
  onde diferentes parceiros ou participantes de negócios  acordam seu comportamento de interação antes de interconectar seus sistemas de informação. 
 Descrições de comportamento dos participantes são primeiro utilizadas como vistas da coreografia de acordo com a
   perspectiva de um participante individual. Depois disso, eles servem como especificações para a implementação de novos serviços ou
   a adaptação de serviços existentes~\cite{Pfitzner2008}.
 
-Como já descrevido na seção~\ref{sec:chor_languages}, existem duas maneiras de especificar coreografias de serviços, com modelos de
+Como já descrevido na Seção~\ref{sec:chor_languages}, existem duas maneiras de especificar coreografias de serviços, com modelos de
  interação e com modelos de interconexão. 
 Em ambos os estilos de modelagem, os participantes interagem entre si e as actividades são conectadas. Por um lado, no modelo 
 de interconexão conecta atividades de comunicação pertencentes a dois participantes. Assim, cada troca de mensagem (enviar/receber) é
  expressa usando  uma conexão entre os participantes \cite{Kopp2011}. 
 Por outro lado, os modelos de interação expressam cada troca de mensagem (enviar/receber) como interações atômicas. Em geral, os 
-termos ``modelo de interconexão'' e ``modelo de interacção''  são derivadas da maneira como cada paradigma de modelagem
- expressa a troca de mensagens  e não do fato de se as atividades são conectadas ou são interações gerais
- entre os processos são apresentados \cite{Kopp2011}. 
+termos ``modelo de interconexão'' e ``modelo de interação''  são derivadas da maneira como cada paradigma de modelagem
+ expressa a troca de mensagens  e não do fato de se as atividades são conectadas ou se são interações gerais
+ entre os processos que são apresentados \cite{Kopp2011}. 
 
 %These two metamodels can be seen as different views on the same choreography~\cite{Koppa2010}.
-Essas duas formas de especificar coreografias podem ser considerada como diferentes vistas de uma mesma coreografia~\cite{Kopp2011}.O
+Essas duas formas de especificar coreografias podem ser considerada como diferentes vistas de uma mesma coreografia~\cite{Kopp2011}. O
  padrão BPMN suporta a especificação de coreografias para ambos os modelos, sendo que só a partir  do BPMN versão 2.0 o modelo de
  interação  é suportado. 
 %The current version of BPMN 2.0 [Obj10] supports both, interconnection models and interaction models.
@@ -677,7 +677,7 @@ interno de um processo é modelado. %Na discussão abaixo nos concentramos em pisc
 %by the pools and message flows in BPMN collaboration diagrams.
 %Koppa2010
 A Figura ~\ref{fig:Example-InterconectionChor} apresenta um exemplo de  coreografia especificada de acordo com o modelo
-de interconexão. O exemplo é acerca de oferta investimentos e está especfificada utilizando a notação BPMN 1.2. Primeiro, 
+de interconexão. O exemplo é acerca de oferta de investimentos e está especificada utilizando a notação BPMN 1.2. Primeiro, 
 um consultor financeiro (participante) oferece um produto a um cliente (outro participante). Posteriormente, o cliente tem 24 horas para decidir se aceita a
 proposta de investimento ou rejeita a proposta. Cada participante é representado por meio de \textbf{pools} nos quais se interconectam atividades.
 
@@ -698,14 +698,14 @@ proposta de investimento ou rejeita a proposta. Cada participante é representado
 Os padrões de interação de serviços~\cite{Barros2005a} descrevem um conjunto de cenários recurrentes de coreografias. Eles variam
  de trocas de mensagens simples para cenários envolvendo múltiplos participantes e várias trocas de mensagens. Esses padrões 
 podem ser usados para avaliar linguagens de coreografia. Embora o BPMN permita definir coreografias de acordo com o 
-modelo de interconexão, ele apenas fornece direto suporte para um conjunto limitado de padrões de interação de serviços~\cite{Decker2007a}.
+modelo de interconexão, ele apenas fornece suporte direto para um conjunto limitado de padrões de interação de serviços~\cite{Decker2007a}.
 %Although the BPMN allows to define choreographies through a swimlane concept and a distinction between control flow 
 %and message flow, it only provides direct support for a limited set of the patterns~\cite{Decker2007a}.
 
 Além disso, esta abordagem de modelagem leva as dependências de fluxos de controle a serem redundantes e ter  mais chances de 
   processos incompatíveis. Um exemplo para essa incompatibilidade seria um provedor que aguarda a realização  de um pagamento  antes
-  entregar os bens adquiridos. O comprador, por outro lado, espera que as mercadorias possam ser entregues antes de realmente pagado
-  eles. Ambos os parceiros iria esperar indefinidamente - uma clásica situação de impasse (\textit{deadlock}). Os modelos 
+  de entregar os bens adquiridos. O comprador, por outro lado, espera que as mercadorias possam ser entregues antes de realmente pagado
+  eles. Ambos os parceiros iriam esperar indefinidamente - uma clásica situação de impasse (\textit{deadlock}). Os modelos 
 de interação evitam esses  problemas por meio da  descrição de dependências de fluxos de controle entre as interações~\cite{Decker2008}. Isso
  significa que uma dependência de  fluxo  de controle específico  não é explicitamente atribuído a qualquer um dos participantes no modelo.
 Outra desvantagem de redundância é que os modeladores precisam de mais tempo para criar e entender
@@ -724,7 +724,7 @@ por meio de troca de mensagens. O modelo de interação  para especificar coreogra
 % expressa as trocas de mensagens (enviar/receber) e não do fato de se as atividades são conectadas ou são interações gerais
 %  entre os processos que são modelados. %A versão atual do BPMN 2.0 [Obj10] suporta ambos os modelos, a interligação e modelos de interação.
 
-\cite{Koppa2010}
+%\cite{Koppa2010}
  %In the case of interconnection models, messaging activities of different 
 %processes are interconnected. 
 O bloco básico de construção nos modelos de interação são as ``atividades'' de interação. Essa atividades descrevem
@@ -738,17 +738,17 @@ modelo  ocultam o  comportamento interno dos participantes~\cite{Koppa2010}. BPM
 
  %  Neste artigo será considerado que as coreografias são representadas por modelos de interação porque incorrem em menos redundâncias e erros  com uma modelagem
  %  mais simples que se encaixa adequadamente em metodologias de cima para baixo (\textit{top-down} ) \cite{Decker2008}.
-Alguns elementos BPMN são comuns para ambos os diagramas de processos normais  e diagramas de coreografias (modelo de interação), bem como 
- colaborações (modelos de interconexão). Tais elementos comuns incluem principalemente eventos, gateways, e fluxos de sequência e não incluem
+Alguns elementos BPMN são comuns para  os diagramas de processos normais  e para os diagramas de coreografias (modelo de interação), bem como 
+ colaborações (modelos de interconexão). Tais elementos comuns incluem principalmente eventos, \textit{gateways}, e fluxos de sequência e não incluem
 os ``pools''.  
-. As interações entre os participantes são representadas mediante atividades de coreografias (\textit{choreography activity}).
- Uma atividade de coreografia representa um ponto no fluxo de uma coreografia em que uma interação acontece entre dois ou mais participantes. 
-Uma atividade de coreografia pode se referis a elementos como  ``subcoreografia'',  ``chamada a outra coreografia'' (\textit{callchoreography}) e 
-uma ``tarefa de coreografia'' (\textit{choreography task}), das quais esta última será levada em consideração nesta pesquisa.
+ As interações entre os participantes são representadas mediante atividades de coreografias (\textit{choreography activity}).
+ Uma atividade de coreografia representa um ponto no fluxo de uma coreografia, em que uma interação acontece entre dois ou mais participantes. 
+Uma atividade de coreografia pode se referir a elementos como  ``subcoreografia'',  ``chamada a outra coreografia'' (\textit{callchoreography}) e 
+uma ``tarefa de coreografia'' (\textit{choreography task}), das quais a última será levada em consideração nesta pesquisa.
 
 Uma tarefa de coreografia é uma atividade atômica em uma coregrafia de processos. Representa uma interação em que uma ou duas trocas de
  mensagens acontecem entre dois participantes. A Figura~\ref{fig:ChoreographyTask} mostra uma tarefa de coreografia, em que as duas bandas 
- representam os participantes, a banda em cor branca é do participante iniciador da interação e banda escura é do participante dono
+ representam os participantes, a banda em cor branca é do participante iniciador da interação e a banda escura é do participante dono
  da tarefa que está representada pela banda grande do meio.
 
 \begin{figure}[!h]
@@ -764,7 +764,7 @@ Uma tarefa de coreografia é uma atividade atômica em uma coregrafia de processos
 As tarefas de coreografias são  de um  e de dois sentidos. Uma tarefa de coreografia de um sentido se mostra na Figura~\ref{fig:ChoreographyTask} e
 captura interações onde ocorrem apenas  um envio de mensagem sem resposta, o que pode ser visualizado melhor no seu respectivo diagrama
  de colaboração (Figura~\ref{fig:ChoreographyTask1}). Uma tarefa de coregrafia de dois sentidos captura interações atômicas em que existe reposta.
-  A sua representação contêm as duas mensagens enviadas, como mostrado na Figura~\ref{fig:ChoreographyTask2}) com seu respectivo diagrama de colaboração
+  A sua representação contêm as duas mensagens enviadas, como mostrado na Figura~\ref{fig:ChoreographyTask2} com seu respectivo diagrama de colaboração
  para visualizar melhor a interação. A mensagem de cor branca é a iniciadora (a partir do participante iniciador) e a mensagem de cor preta é a resposta.
   
   
@@ -785,7 +785,7 @@ captura interações onde ocorrem apenas  um envio de mensagem sem resposta, o que
       \includegraphics[width=1.0\textwidth]{figures/ChoreographyTask2.png}
       %\includegraphics[width=0.7\textwidth]{./figures/BPMNBasicChoroegraphy.png}
       %\caption{Elementos BPMN para modelar coreografias de processos}
-      \caption{Uma tarefa de coreografia simples e seu equivalente em diagrama de colaboração \cite{OMG2010}}
+      \caption{Uma tarefa de coreografia de dois sentidos e seu equivalente em diagrama de colaboração \cite{OMG2010}}
       \label{fig:ChoreographyTask2}
   \end{figure}
  
@@ -827,13 +827,14 @@ atividades de mensagens locais foram substituídos por atividades de interações a
 
   Neste capítulo se apresentaram aspectos chave  em coreografia de serviços Web. Dado que as coreografias para serem realizadas, devem ser mapeadas para processos
   de negócio executáveis (tais como BPEL), então o \emph{enactment} das coreografias depende
-  do motor de processos executáveis, mas que não têm consciência de coreografia. Em consequência, deveriam existir motores
-  com consciência dos aspectos envolvidos nas coreografias de serviços Web. Assim, as atuais implementações de ESB (abordagem utilizada pelos motores de BPEL) não
+  do motor de processos executáveis, mas estes não são cientes de coreografia. Em consequência, deveriam existir motores
+  cientes dos aspectos envolvidos nas coreografias de serviços Web. Assim, as atuais implementações de ESB (abordagem utilizada pelos motores de BPEL) não
   oferecem características especificas das coreografias (\cite{Kopp2008}),  por exemplo,
   as implementações de ESB não revisam se as mensagens trafegam ou transitam de acordo à descrição da coreografia, isto é, monitoramento.
   A linguagem \emph{BPEL gold} em \cite{Kopp2010} visa superar  as desvantagens mencionadas, e aborda o problema da necessidade de um
-  ESB com consciência de coreografias. WS-CDL+ \cite{Kang2007} é outro trabalho que visa ser um motor de execução de coreografias.
+  ESB ciente de coreografias. WS-CDL+ \cite{Kang2007} é outro trabalho que visa ser um motor de execução de coreografias.
 
   %Porém, dado que os atuais motores não têm consciência de coreografias, neste trabalho utilizarão tecnologias tais como, WS-CDL, BPEL e WSDL, com um motor BPEL. 
   Portanto, já que os atuais motores não são cientes de de coreografias, neste trabalho desenvolveu-se um simulador de coregrafias para possibilitar o
  ``enactment'' de coreografias. Assim, o simulador possibilitará a pesquisa em QoS e monitoramento em coreografias, os quais  são alvo deste trabalho.
+%% mencionar acerca de BPMN

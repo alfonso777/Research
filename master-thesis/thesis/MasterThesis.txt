@@ -356,3 +356,8 @@ Dei
 - Definir que capítulo terá o simulador e qual capítulo a metodologia ou proposta 
 - Onde colocar os resultados do CAMAD
 
+
+== Pendentes ==
+Figuras: IoF, IoT, BPMN elements, choreography task, QoS model wsdl
+Apendice:
+

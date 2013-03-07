@@ -135,13 +135,13 @@ dentro de um intervalo $[t_0,t_1]$.
           em um domínio de previsão de tempo, um atributo de qualidade poderia ser a precisão da previsão.
   \end{itemize}
 
-  De uma perspectiva mensurável,  as métricas de qualidade podem ser classificados por meio  do método em que os dados podem
+  De uma perspectiva mensurável,  as métricas de qualidade podem ser classificados de acordo com o método em que os dados podem
   ser obtidos. Nesse sentido, três categorias foram identificadas~\cite{Hilari2009}:
 
   \begin{itemize}
       \item \textbf{Métricas anunciadas pelo Provedor}: Métricas em que os seus valores são obtidos pelo anúncio do provedor. Um claro 
       exemplo seria o custo do serviço.
-      \item \textbf{Métricas classificadas pelo Consumidor}: Métricas em que seus valores são dadas a partir das opiniões de usuários. Por 
+      \item \textbf{Métricas classificadas pelo Consumidor}: Métricas em que seus valores são dados a partir das opiniões de usuários. Por 
        exemplo, a reputação do serviço obtido a partir de uma média de opiniões dos clientes.
       \item \textbf{Métricas Observáveis}: Métricas em que os seus valores são obtidos mediante monitoramento ou testes. Um claro exemplo 
       é o tempo de resposta ou a disponibilidade.
@@ -150,7 +150,7 @@ dentro de um intervalo $[t_0,t_1]$.
   Outro tipo de classificação é a partir do fato de que algumas métricas de qualidade podem ser obtida como
   uma função de agregação de outras métricas de qualidade. Por exemplo, o tempo de resposta médio é a
   média de um conjunto de tempos de resposta atuais em diferentes intervalos de tempo. Essas métricas de qualidade são
-  nomeadas métricas derivadas ou calculads, enquanto os outros são nomeados métricas básicas ou atômicas.
+  nomeadas métricas derivadas ou calculadas, enquanto os outros são nomeados métricas básicas ou atômicas.
 
 
 \section{QoS em Sistemas Orientados a Serviços}
@@ -227,7 +227,7 @@ Nesse modelo, os atributos de qualidade no componente serviço  são a confiabilid
 baseada no número esperado de falhas ao longo de um intervalo de tempo e tempo entre falhas.	O atributo de disponibilidade 
  é uma agregação de disponibilidade esperada, tempo para a reparação e o tempo entre a falha. O tempo de reparo é o tempo
  necessário para reparar o serviço após uma falha. A disponibilidade esperada pode ser calculada como a razão entre o 
-tempo de atividade e o tempo total (que inclui o tempo de \textit{uptime}  e \textit{down time}. O atributo de qualidade no
+tempo de atividade e o tempo total (que inclui o tempo de \textit{uptime}  e \textit{down time}). O atributo de qualidade no
 na ``operação'' inclui a sua demanda e  latência. A demanda pode ser computada em termos da taxa de chegada da requisição
 respectiva para essa operação. A latência pode ser especificada em termos do tempo de serviço e o tempo de ida e volta. O 
 atributo de qualidade para ``mensagem'' depende do protocolo utilizado para uma saída segura e entrada (protocolo) e tipo 
@@ -237,8 +237,8 @@ de chaves utilizadas para criptografar  mensagens.
         \centering
         \caption{QoS no modelo WSDL estendido}
         \label{table:qos_model_wsdl}
-        \begin{tabular}{ |c|c|c|c|}
-      	\hline
+        \begin{tabular}{ |c|c|c|}
+      	%\hline
 			      \multicolumn{3}{c}{ \textbf{QoS em um serviço Web} } \\
 	\hline
           \textbf{Tipo}      		&      \textbf{Parâmetro de QoS}   &   \textbf{Campo} 		\\
@@ -250,18 +250,18 @@ de chaves utilizadas para criptografar  mensagens.
         \multirow{2}{*}{ \textbf{Serviço} } 	        & 	\multirow{3}{*}{Disponibilidade}     	&   TTR	   \\
 							&                           			&   TBF	   \\
 							&                           			&   ExpA   \\
-       	\hline
+       	\cline{2-3}%\hline
 							& 	\multirow{2}{*}{Confiabilidade}		&   TBF	   \\
 							&                          			&   Exp \textit{Failure}\\	
 	\hline
         \multirow{2}{*}{ \textbf{Operação} } 	        & 	\multirow{2}{*}{Latência}	     	&   Tempo de serviço	   \\
 							&                           			&   TBF	   \\
-       	\hline
+       	\cline{2-3}%\hline
 							& 	Demanda					&   TBF	   \\
 							&                          			&   Exp \textit{Failure}\\	
 	\hline
 	\multirow{2}{*}{ \textbf{Mensagem} } 	        & 	Protocolo 			    	&   Enviar/Receber	   \\
-       	\hline
+       	\cline{2-3}%\hline
 							& 	Tipo de Chave				&   Enviar/Receber	   \\
 
         %\bottomrule
@@ -318,7 +318,7 @@ que tome as medidas necessárias quando um valor específico for violado.
 
 Para avaliar e validar os valores no SLA, precisa-se de informação de QoS de cada serviço através
  de monitoramento, levando em consideração que os valores dos atributos de QoS medidos devem ser agregados para calcular a QoS da composição. A
-agregação de atributos de QoS é realizada através de um cálculo incremental baseado em padrões de fluxo de trabalho (\textit{workflows})  bem
+agregação de atributos de QoS é realizada por meio de um cálculo incremental baseado em padrões de fluxo de trabalho (\textit{workflows})  bem
 definidos ~\cite{VanDerAalst2003}. Para cada um desses padrões uma regra de agregação de QoS tem que ser aplicada para obter a QoS do padrão. Aplicando
 este processo recursivamente consegue-se a QoS global da composição. %Na implementação não serão utilizados todos os padrões de fluxo de trabalho,porque
 %é mais fácil calcular o QoS global em composições estruturadas que não utilizam todos os padrões, os padrões de composição a utilizar são
@@ -416,7 +416,7 @@ define principalmente as seguintes três seções:
 A definição de SLA e QoS joga uma regra crucial em processos de negócios inter-organizacionais. Cada participante oferece serviços a outros
  particapntes sobre a Internet, dos quais os últimos  precisam  executar seus negócios~\cite{Rosenberg2007}. Por isso, um certo grau  de confiabilidade 
 respeito do tempo de resposta, vazão, \textit{uptime}, entre outros, é desejado  e tem de ser especificado e explicitamente
-expresso nas etapas iniciais da fase de modelagem. A Figura~\ref{choreographySLA} ilustra uma coreografia com três participantes e seus respectivos
+expresso nas etapas iniciais da fase de modelagem. A Figura~\ref{fig:choreographySLA} ilustra uma coreografia com três participantes e seus respectivos
 relacionamentos. Para cada relacionamento (interação entre serviços)  um SLA é definido entre os participantes para regular o grau que os
 participantes precisam para cumprir seus objetivos de negócio.
 
@@ -530,9 +530,9 @@ entretanto, abordagens específicas para coreografias de serviços Web.
 \section{Trabalhos Relacionados: QoS em Coreografias de Serviços Web}
 
 Existem várias abordagens para integrar modelos de QoS em composição de serviços, mas poucos focados em coreografias de serviços. WS-CDL não tem integrado QoS apesar que
-tem demandado uma especificação de QoS no seus requerimentos \cite{Austin2004}. Em
-\cite{Xiangpeng2007a} propõe um modelo formal que incorpora informação de QoS, estendendo a pequena linguagem \textit{Chor}\cite{Yang2006}(que é um
- WS-CDL simplificado) para adicionar informação QoS, sobretudo tempo e custo, em um nível sintático e semântico para obter o QoS global da coreografia.
+tem demandado uma especificação de QoS no seus requerimentos \cite{Austin2004}. Em \cite{Xiangpeng2007a}, propõe-se um modelo formal que incorpora 
+informação de QoS, estendendo a pequena linguagem \textit{Chor}\cite{Yang2006} (que é um  WS-CDL simplificado) para adicionar informação QoS, 
+sobretudo tempo e custo, em um nível sintático e semântico para obter o QoS global da coreografia.
 
 Em \cite{Pandey2008}, propõe-se um modelo formal para estimar o minimo, máximo e a média do costo(atributo não funcional) de uma coreografia. Tal modelo proposto
 adiciona características semânticas para incorporar o atributo costo no seu modelo, que é uma extensão do WS-CDL. Este modelo associa o costo com instâncias de um
@@ -540,15 +540,15 @@ adiciona características semânticas para incorporar o atributo costo no seu mode
 Em \cite{Xia2009}, propõe-se uma abordagem nova para predizer o QoS de uma coreografia de serviços especificada em WSCI. Utiliza uma Rede de Petri Estocástica Generalizada
 (\textit{GSPN} \footnote{GSPN: Generalized Stochastic Petri Net}) como modelo intermediário. A partir do modelo GSPN obtido do mapeamento do modelo WSCI, avaliações
  analíticas da árvore de métricas QoS são realizadas.
-Em  \cite{Pandey2010}, propõe um modelo multidimensional de QoS para coreografias.Tal QoS de coreografia é definido
- em termos de papel (\textit{role}) dominante, relacionamento
+Em  \cite{Pandey2010}, propõe um modelo multidimensional de QoS para coreografias. Tal QoS de coreografia é definido
+ em termos do papel  dominante, relacionamento
 dominante e  interação dominante. Essas características são avaliadas baseadas no QoS dos papéis, operações e mensagens. Sua proposta é desenvolvida como uma
 extensão do metamodelo de WS-CDL para suportar QoS.
 
-Somente em \cite{Rosenberg2009}, propõe um  modelo multicamada de  para integrar QoS e SLA no nível de coreografia, orquestração e serviços.No nível de coreografias
-integra WSLA na linguagem WS-CDL para especificar o acordo do nível de serviço(SLA) entre os participantes. E para realizar seu cumprimento internamente em cada participante
+Somente em \cite{Rosenberg2009}, propõe-se um  modelo multicamada   para integrar QoS e SLA no nível de coreografia, orquestração e serviços. No nível de coreografias
+integra WSLA na linguagem WS-CDL para especificar o acordo do nível de serviço (SLA) entre os participantes. E para realizar seu cumprimento internamente em cada participante
 realiza o mapeamento a políticas QoS na camada de orquestração, que por sua vez utiliza os atributos QoS no nível de serviços. Até hoje, nenhum
-propõe um modelo de QoS para integrá-lo em BPMN, que é o ``padrão''  para modelar processos de negócios colaborativos, incluindo coreografias.
+propõe um modelo de QoS para integrá-lo em BPMN, que é o padrão  para modelar processos de negócios colaborativos, incluindo coreografias.
 %%falta mencionar trabalhos sobre SLA, geralmente no nível de serviços e orquestração, mas em coreografias ainda não, dai seria bom encaixar com o
 %%modelo multicamada
 %\end{comment}

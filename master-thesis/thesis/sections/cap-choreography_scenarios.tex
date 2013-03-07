@@ -1,7 +1,7 @@
 \chapter{Cenários de Coreografias de Serviços}
 \label{cap:chor_scenarios}
 
-O objetivo deste capítulo é mostrar exemplos e cenários onde a utilização de  coreografias fazem sentido. Além disso, apresenta-se também
+O objetivo deste Capítulo é apresentar exemplos e cenários onde a utilização de  coreografias faz sentido. Além disso, apresenta-se também
 uma comparação entre orquestrações e coreografias com foco em desempenho e dessa maneira conhecer em quais situações aplicar coreografias.
 
 
@@ -25,24 +25,24 @@ comuns em aplicações científicas. Passando grandes quantidades dados intermédiar
  montar imagens astronômicas em formato FITS (\textit{Flexible Image Transport System}) em imagens compostas, chamados ``mosaicos'', 
  que preservam a calibração e fidelidade posicional das imagens originais de entrada.
 
- Montage foi desenvolvido para apoiar a investigação científica. Ele permite aos astrônomos criar imagens de regiões do céu que são 
+ Montage foi desenvolvido para apoiar a pesquisa científica. Ele permite aos astrônomos criar imagens de regiões do céu que são 
  demasiado grandes para serem produzidos por câmeras astronômicas. Também cria imagens compostas de uma região do céu que foi medido 
  com diferentes comprimentos de onda e com instrumentos diferentes. A imagem composta aparece como se a superfície tivesse sido medida com
  o mesmo instrumento sobre o mesmo telescópio.
 
 Montagem ilustra várias características de workflows científicos em uso intensivo de dados. Montagem pode resultar em enormes
- necessidades de fluxo de dados. Os dados intermdiários podem ser de três vezes o tamanho dos dados de entrada, por exemplo, um mosaico céu 
+ necessidades de fluxo de dados. Os dados intermediários podem ser de três vezes o tamanho dos dados de entrada, por exemplo, um mosaico céu 
 todo pode resultar em 2-8 TB de movimentação de dados. Tal problema pode ser executado diariamente e Montage é essencialmente
  um grafo acíclico direcionado (DAG).
 
 Montage é usado como cenário em~\cite{Barker2009b}, a fim de demonstrar que as coreografias são melhores do que  orquestrações comuns. Para  
 tanto  usou-se  padrões de fluxo de dados em \textit{workflows}, tais como \textit{fan-in}, \textit{fan-out} e seqüência.
-O  projeto Pegasus \footnote{Projeto Pegasus: \url{http://pegasus.isi.edu} } é um instrumento de gestão de fluxos de trabalho para construir
+O  projeto Pegasus\footnote{Projeto Pegasus: \url{http://pegasus.isi.edu} } é um instrumento de gestão de fluxos de trabalho para construir
  e habilitar os fluxos de trabalho usados no Montage~\cite{Jacob2009}.
 
  \subsection*{Calculando o \textit{redshift}}
 
-Este cenário foi tomado dos casos de uso científicos do AstroGrid~\cite{Barker2009}  e envolve recuperação e análise de dados em grande escala a partir
+Este cenário foi tomado dos casos de uso científicos do AstroGrid~\cite{Barker2009}  e envolve a recuperação e  a análise de dados em grande escala a partir
  de vários recursos distribuídos. Um \textit{redshift} (desvio para o vermelho) é um fenômeno ótico ocasionado pelo afastamento da fonte
  de luz e um caso particular do conhecido efeito Doppler.
 
@@ -66,20 +66,20 @@ O cenário (ver Figura~\ref{fig:RedshiftScenario}) representa um fluxo de trabalh
  reta (RA) e de declinação (DEC)   no sistema, que definem uma área do céu. Essas coordenadas são usadas como entrada para três
  bancos de dados remotos astronômicos. Nenhum dos banco de dados possui uma visão completa dos dados requeridos pelo cientista, já que 
 cada banco de dados armazena apenas  imagens de uma faixa de uma certa onda. Em cada um dos três bancos de dados, a consulta é usada 
-para extrair todas as imagens dentro das coordenadas indicadas que são retornadas ao cientista. As imagens são concatenadas e enviadas 
-para o serviço ``SEextractor'',que é uma ferramenta para processamento. Sextractor digitaliza cada imagem, por sua vez, e usa um 
+para extrair todas as imagens dentroMi cuenta es: das coordenadas indicadas que são retornadas ao cientista. As imagens são concatenadas e enviadas 
+para o serviço \textit{SEextractor}, que é uma ferramenta para processamento. \textit{Sextractor} digitaliza cada imagem, por sua vez, e usa um 
  algoritmo para extrair todos os objetos de interesse (posições de estrelas, galáxias, etc) e produz uma tabela para cada uma das
  bandas, contendo todos os dados. Uma ferramenta de correspondência cruzada (\textit{cross matching}) é, depois,  usado para digitalizar
  todas as imagens e produzir uma  tabela contendo dados sobre todos os objetos de interesse no céu em cinco bandas. Esta tabela é então 
-utilizada como entrada para  o algoritmo denominado ``HyperZ2'' que calcula os \textit{redshifts} fotométricos e os anexa a cada valor da 
+utilizada como entrada para  o algoritmo denominado \textit{HyperZ2} que calcula os \textit{redshifts} fotométricos e os anexa a cada valor da 
 tabela usada como entrada. Esta  tabela final consiste em arquivos multibanda contendo a posição solicitada, bem como uma tabela contendo
- para cada fonte todos os parâmetros  da saída do SExtrator e HyperZ, incluindo posições, magnitudes, classificação estelar e \textit{redshifts} 
-fotométricos e intervalos de confiança, a tabela final é retornada par o usuário.
+ para cada fonte todos os parâmetros  da saída do \textit{SExtrator} e \textit{HyperZ}, incluindo posições, magnitudes, classificação estelar e \textit{redshifts} 
+fotométricos e intervalos de confiança, a tabela final é retornada para o usuário.
 
 
  \subsection*{Pegasus}
 
-Pegasus (Planning for Execution in Grids) é um arcabouço que permite o mapeamento de fluxos de trabalho complexos em recursos distribuídos 
+Pegasus (\textit{Planning for Execution in Grids}) é um arcabouço que permite o mapeamento de fluxos de trabalho complexos em recursos distribuídos 
  como a grade. Em particular, Pegasus mapeia um fluxo de trabalho abstrato para uma forma que pode ser executada na rede usando uma variedade
  de plataformas computacionais. O arcabouço Pegasus permite aos usuários personalizar o tipo de recurso e seleções de dados desemepenhados, 
 bem como para selecionar as fontes de informação.
@@ -87,30 +87,30 @@ bem como para selecionar as fontes de informação.
 Algumas aplicações incluem:
 
 \begin{itemize}
- \item \textbf{Astronomia}: Montage, Galactic Plane.
- \item \textbf{Bioinformática}: DNA sequencing, Epigenomics, SeqWare, Association Mapping and Population Genetics in Vervets.  
- \item \textbf{Análise do genoma}: GADU (the Genome Analysis and Database Update system).
- \item \textbf{Modelagem do clima}: Climate Ensamble
- \item \textbf{Ciência para terremotos}: Southern California Earthquake Center - CyberShake and Broadband.
- \item \textbf{Heliosismologia}: Solar Dynamics Observatory (SDO).
+ \item \textbf{Astronomia}: Montage, \textit{Galactic Plane}.
+ \item \textbf{Bioinformática}: Sequenciamento de DNA, \textit{Epigenomics}, \textit{SeqWare}, \textit{Association Mapping and Population Genetics in Vervets}.  
+ \item \textbf{Análise do genoma}: GADU (\textit{The Genome Analysis and Database Update System}).
+ \item \textbf{Modelagem do clima}: \textit{Climate ensamble}.
+ \item \textbf{Ciência para terremotos}: \textit{CyberShake and Broadband}.
+ \item \textbf{Heliosismologia}: \textit{Solar Dynamics Observatory (SDO)}.
  %\item \textit{Chemistry}: Biochemistry.
  %\item  Neuroscience: Telescience Project.
- \item \textit{Física}: Laser Interferometer Gravitational Wave Observatory (LIGO), Molecular Thermodynamics.
- \item \textbf{Ciencia do Oceano}: Predições no oceano.
+ \item \textit{Física}:  \textit{Laser Interferometer Gravitational Wave Observatory (LIGO)}, Termodinâmica molecular .
+ \item \textbf{Ciência do Oceano}: Predições no oceano.
  %\item Computer Science:. Computer Vision 
  %\item Botany: 
 
 \end{itemize}
 
 
-Assim, as coreografia de serviços podem ser aplicadas nos cenários de fluxo de trabalho uma vez que esta acima cenários são fluxos de 
-trabalho de dados intensivos e complexos ea coreografia abordagem pode ser melhorar vários aspectos deles.
+Assim, as coreografias de serviços podem ser aplicadas nos cenários de fluxo de trabalho mencioandos acima. Já que esses cenários são
+fluxos de trabalho complexos com uso intensivo de dados, a abordagem da coreografia pode melhorar vários aspectos deles.
 
  \subsection*{Uma rede de valor do negócio}
 
-Arfa está visitando ULM (ou algum outro lugar turístico). Ela está gravando filmes e capturando fotos com uma câmera do seu telefone móvel. O 
+Arfa está visitando ULM (ou algum outro lugar turístico). Ela está gravando filmes e capturando fotos com uma câmera do seu aparelho móvel. O 
 dispositivo móvel tem espaço de armazenamento limitado, mas felizmente ela conhece um serviço Web que pode arquivar, melhorar e hospedar seus filmes 
-online assim que ela completa uma gravação. Ela também está muito animada para compartilhar suas experiências com a sua família e amigos. Portanto, 
+online assim que ela complete uma gravação. Ela também está muito animada para compartilhar suas experiências com a sua família e amigos. Portanto, 
 ela quer atualizar alguns blogs com imagens dos lugares e sua descrição histórica. Sua amiga lhe contou sobre um serviço online que pode 
 coletar imagens de seu telefone celular, imprimi-las e enviá-las como cartões postais. Então, ela gostaria de fazer três tarefas: armazenar
  automaticamente e hospedar seus filmes para armazenamento externo de onde ela e seus amigos podem assistir a qualquer hora, usando 
@@ -119,11 +119,11 @@ seus dispositivos móveis ou estáticos; imprimir automaticamente algumas imagens 
 
 A coreografia de SLAs resultante deste fluxo de trabalho simples é mostrada na Figura~\ref{fig:SLA-Choreography_Scenario}. Existem dois 
 serviços, chamados de serviços de hospedagem de vídeo e serviço de pós-foto. O serviço de hospedagem de vídeo baixa o vídeo 
- do dispositivo móvel, e o melhorar e  arquivos. Qualquer usuário autenticado pode reproduzir o vídeo como no \textit{Youtube}. O serviço
+ do dispositivo móvel e  melhora os  arquivos. Qualquer usuário autenticado pode reproduzir o vídeo como no \textit{Youtube}. O serviço
  pós-foto faz SLAs com dois serviços: o serviço de pós-impressão e o serviço  de \textit{E-post}. O serviço \textit{E-Post}  é 
 capaz de fazer a sua tarefa mediante a contratação de  dois serviços, o \textit{Blog-Service} e o \textit{MMS-Service}. O  \textit{Blog-Service}
  pode atualizar automaticamente os blogs com as imagens e gerar automaticamente histórias sobre a  importância histórica com base
- o seu endereço exato. O \textit{MMS-Service} envia as imagens selecionadas para os amigos em seus telefones móveis.
+ no seu endereço exato. O \textit{MMS-Service} envia as imagens selecionadas para os amigos em seus telefones móveis.
 
   \begin{figure}[!h]
       \centering
@@ -136,14 +136,14 @@ capaz de fazer a sua tarefa mediante a contratação de  dois serviços, o \textit{
 
  \subsection*{CDN de fornecimento de conteúdo multimídia}
 
-Um tipo particular de serviço está ganhando interesse em aplicações avançados é acerca do provisionamento de conteúdo em tempo real. O
+Um tipo particular de serviço que está ganhando interesse em aplicações avançadas é acerca do provisionamento de conteúdo em tempo real. O
  provisionamento é frequentemente ativado por meio de  interações de serviços Web, ou seja, o serviço global combina tecnologias
 de serviços Web e fornecimento de conteúdo em tempo real, embora o usuário percebe esta composição como um único serviço. Também
  neste caso, seria importante  medir e controlar a QoS de uma abordagem combinada.
-Eles lidam tanto com a QoS de serviços Web e com o QoS dos objetos entregues, ou seja, o conteúdo de \textit{streaming}
+Eles lidam tanto com a QoS de serviços Web e com o QoS dos objetos entregues, isto é, o conteúdo de \textit{streaming}
  (imagens, vídeos, texto e som, e assim por diante).
 
-O arcabouço em \cite{Buccafurri2008a}, lida com os processos interagindo com diferentes actores e oferecendo serviços de valor 
+O arcabouço em \cite{Buccafurri2008a}, lida com os processos interagindo com diferentes atores e oferecendo serviços de valor 
 agregado, os que são capazes de satisfazer as solicitações do usuário para objetos complexos, tais como objetos de \textit{e-learning}, 
  serviços de saúde clínica, ou serviços de \textit{e-governance}.
 A Figura~\ref{fig:CDN-Choreography_Scenario} mostra o cenário de referência: um usuário requere, e eventualmente recebe, 

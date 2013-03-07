@@ -1,7 +1,7 @@
 \chapter{Conclusões}
 \label{cap:conclusions}
 
-Neste Capítulo final da dissertação, são apresentadas as principais contribuições do trabalho, considerações finais 
+Neste Capítulo final da dissertação, são apresentadas as principais contribuições do trabalho %, considerações finais 
 e sugestões para futuros trabalhos acerca desta pesquisa.
 
 
@@ -13,8 +13,8 @@ A presente pesquisa apresentou diversas abordagens e técnicas das etapas que abr
  o monitoramento com a detecção de violações de contrato em coreografias de serviços Web, que é o objetivo principal. No desenvolvimento de todas as etapas se
 levou em consideração o modelo de interação de coreografias e padrão BMPN 2 que o suporta. 
 
-Na definição de requisitos de Qos em coreografias apresentou-se uma nova metodologia para avaliar o impacto da QoS por meio de simulações em uma GSPN. A
- metodologia inclui um algoritmo para mapear uma especificação de coreografia para uma GSPN que possui características de QoS. 
+Na definição de requisitos de QoS em coreografias apresentou-se uma nova metodologia para avaliar o impacto da QoS por meio de simulações em uma GSPN. A
+ metodologia inclui um algoritmo para mapear uma especificação de coreografia para uma GSPN que possui características para QoS. 
  Desse modo, conseguiu-se achar falhas na comunicação, na integridade das mensagens e gargalhos em diversos pontos das interações entre serviços em etapas
 antecipadas como a modelagem.  
 
@@ -22,11 +22,11 @@ antecipadas como a modelagem.
 Porém, os objetivos foram atingidos por meio de simulações de coreografias, mas a diferencia de usar uma ferramentas analíticas como a GSPN, 
 construiu-se um simulador de coreografias com suporte de QoS chamado de  \textit{ChorSim}.  
  A  construção do simulador leva em consideração elementos do modelo de interação de coreografias (atividades de coreografia, \emph{gateways}, 
- entre outros)que é oferecido  no padrão BPMN2. O simulador permite rodar  coreografias, realizar medições de atributos de QoS atômicos e compostos,
+ entre outros) que é oferecido  no padrão BPMN2. O simulador permite rodar  coreografias, realizar medições de atributos de QoS atômicos e compostos,
  e possui um monitoramento para acompanhar a execução das instâncias de coreografias.
 
 Dessa maneira, é possível simular comportamentos que atualmente não podem ser realizados pela falta de implementações
- maduras e que permitam realizar pesquisas em coreografias de serviços Web, especialmente as relacionadas com QoS e monitoramento.
+ maduras e que permitam realizar pesquisas em coreografias de serviços Web, especialmente as relacionadas com QoS e monitoramento. 
 Atualmente o simulador de coreografias já suporta o estabelecimento do tempo de procesamento nos serviços por meio de 
 distribuições de probabilidade. Porém, os atributos de QoS relacionados com comunicação (largura de banda, latência, entre outros) ainda
  não possuem essa característica porque o  \textit{Simgrid} não a suporta.
@@ -35,8 +35,8 @@ Assim, a definição de requisitos de QoS  se atingiu com base nos resultados das 
 com diferentes comportamento na largura de banda e observando seu impacto no tempo de resposta total.  A partir
  dos resultados das simulações se estabelecer requisitos e restrições de QoS de maneira a definir SLAs iniciais.
 
-No estabelecimento do contrato probabilístico foi possível porque se conseguiu  definir o tempo de processamento por meio de distribuições de
-probabilidade. No estabelecimento do contrato probabilístico e o monitoramento para detecção de violações de SLA se utilizaram
+O estabelecimento do contrato probabilístico foi possível porque se conseguiu  definir o tempo de processamento por meio de distribuições de
+probabilidade. No estabelecimento do contrato probabilístico e no monitoramento para detecção de violações de SLA se utilizaram
  taxas de degradação do desempenho por meio de distribuições exponenciais. Na etapa de monitoramento a configuração de diversas taxas de 
 degradação permitiram definir cenários para mostrar a eficácia da abordagem de detecção de violações de contrato de QoS. 
  Assim, a detecção de violações de SLA está baseada no uso do teste de \textit{Kolmogorov-Smirnov} de apenas um lado, o qual  
@@ -46,7 +46,7 @@ com as taxas de degradação definidas para os diversos cenários.
 
 Finalmente, os resultados não foram comparados com outras propostas já que coreografias de serviços Web é ainda uma linha de pesquisa 
 emergente e há poucos trabalhos com relação a QoS. Não existem infraestruturas maduras o suficiente para rodar  coreografias e, em consequência,  
-  não dá para validar os resultados das simulações.  
+  ainda não dá para validar os resultados das simulações com implementações reais.  
 
 
 %Trabalhos futuros envolvem suporte de mais elementos de coreografias de BPMN2 para poder simular completamente  coreografia
@@ -58,19 +58,22 @@ emergente e há poucos trabalhos com relação a QoS. Não existem infraestruturas m
   \label{sec:FutureWorks}
 
   Esta pesquisa está focada em atributos QoS não determinísticos de desempenho e confiabilidade. Futuros trabalhos podem adicionar outros tipos, tais como o custo,
-  pagamento, segurança, reputação, entre outras. Além disso, o monitoramento poderia incluir predição de QoS baseado no histórico dos valores medidos anteriormente,
-  isto serve de base para realizar, por exemplo,  auto-cura(\textit{self-healing}) em vários níveis (serviços, orquestração e coreografia), melhorar
+  pagamento, segurança, reputação, entre outros. Além disso, o monitoramento poderia incluir predição de QoS baseado no histórico dos valores medidos anteriormente,
+  isto serve de base para realizar, por exemplo,  auto-cura (\textit{self-healing}) em vários níveis (serviços, orquestração e coreografia), melhorar
   a adaptação, etc.
+
+
+
+  Nesta pesquisa somente foram levados em consideração um subconjunto do total de elementos disponíveis para especificar coreografias com o padrão BPMN 2. 
+  Trabalhos futuros deveriam envolver suporte de mais elementos de coreografias de modo a   poder simular completamente uma coreografia  de processos.
 
 
   Dado que o monitoramento baseado em QoS e SLA é a um fator chave para alavancar a adaptação, então trabalhos futuros podem considerar usar o monitoramento como base
   para uma ferramenta que forneça de adaptação dinâmica, reconfiguração e autocura baseada em QoS para coreografias de serviços Web.
 
-  Nesta pesquisa somente foram levados em consideração um subconjunto do total de elementos disponíveis para especificar coreografias com o padrão BPMN 2. 
-  Trabalhos futuros deveriam envolvem suporte de mais elementos de coreografias de modo a   poder simular completamente uma coreografia  de processos.
 
   Atualmente dá para especificar degradações do tempo de processamento dos serviços individuais por meio de distribuições de probabilidade. O suporte
-  para realizar o mesmo com atributos de comunicação (largura de banda, latência, etc) precisarão de adicionar funcionalidade no core do \textit{Simgrid} mesmo.
+  para realizar o mesmo com atributos de comunicação (largura de banda, latência, etc) precisará de adicionar funcionalidade no \textit{core} do \textit{Simgrid} mesmo.
 
   Atualmente, no projeto \textit{CHOReOS} está se implementando um motor de execução de coreografias, o que habilitaria a posibilidade
   de  realizar validações dos resultados obtidos com o simulador. No futuro, estamos considerando utilizar diversos exemplos mais complexos de modo a
