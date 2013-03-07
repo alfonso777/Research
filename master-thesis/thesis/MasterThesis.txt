@@ -301,7 +301,7 @@ em um tempo t. No nosso caso, a probabilidade é a restrição ou condição de QoS d
   SoC, Future Internet, 
   CHOReOS
 = Conceitos básicos
-  - SoC, pirámide
+  - SoC, pirâmide
   Internet do Futuro
 
 = Capitulo de Coroegrafias de serviços
@@ -359,5 +359,10 @@ Dei
 
 == Pendentes ==
 Figuras: IoF, IoT, BPMN elements, choreography task, QoS model wsdl
+Atualizar o gráfico de orquestração Vs coreografias na teste do simulador
+
 Apendice:
+ - platform, deployment, chor specification
+ - choreography example LCC ?
+ - 
 

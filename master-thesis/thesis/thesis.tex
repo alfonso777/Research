@@ -41,7 +41,8 @@
 \usepackage{latexsym}
 \usepackage{mathtools}
 %\usepackage{split}
-\usepackage{listings}
+%\usepackage{listings}
+\usepackage{listings,color}
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{amsthm} %%math
@@ -162,10 +163,10 @@ framexrightmargin=10pt
    	\vskip 1cm
     \normalsize{Durante o desenvolvimento deste trabalho o autor recebeu auxílio da HP Brasil por
 		meio do projeto Baile e do programa FP7/2007-2012 da Comissão Européia pelo projeto
-                n° 257178 (CHOReOS - Large Scale Choreographies for the Future Internet)}
+                n° 257178 (CHOReOS - \textit{Large Scale Choreographies for the Future Internet})}
 
     \vskip 0.5cm
-    \normalsize{São Paulo, Janeiro de 2013}
+    \normalsize{São Paulo, Março de 2013}
 \end{center}
 
 % ---------------------------------------------------------------------------- %
@@ -232,7 +233,7 @@ orientador e bom amigo. Eu agradeço ao Daniel por todas as dicas, palavras e pri
 Durante todo este período de mestrado, não somente aprendi e obtive conhecimento da área. Neste anos eu conhecí ótimas pessoas, as quais
  são de diversas cidades, países, culturas e costumes que ampliaram minha visão do mundo. Estou agradecido e  fico muito contente
  de tê-las como boas amizades. A Valentina, a Florence, o Rafael, o Everton, a Deysi, o Enrique,  o Marcelo, o Rogerio, o Lucas,
- o Marcos, o Fabio, o Jacques, Yanik, o Mauricio, entre outros muitos que eu considero bons amigos.
+ o Marcos, o Fabio, o Jacques, Yanik, entre outros muitos que eu considero bons amigos.
 
 %Quero agradecer também aos meus bons amigos que viemos de Arequipa para iniciar o mestrado aquí, o Carlos e a Rosario. 
 %Ao pessoal e funcionários do IME pela amizade oferecida. Ao pessoal de Computação  como o Lucas, o Fabio, o Wesley, o Strauss, o William, o Felps, o Felipe Besson, o Mauricio
@@ -248,19 +249,22 @@ Durante todo este período de mestrado, não somente aprendi e obtive conhecimento
 
 Quero agradecer também aos meus bons amigos que viemos de Arequipa para iniciar o mestrado aquí, o Carlos e a Rosario. 
 Ao pessoal e funcionários do IME pela amizade oferecida. Ao pessoal de Computação  como o Lucas, o Fabio, o Wesley, o Strauss, o William, o Felps, 
-o Glaucus, o Victor, entre outros. Ao pessoal do laborátorio do LIAMF como o Fabio, o Alexandre, o Paulo, a Viviane, o Esdras, entre outros;
-o pessoal de Visão como a Jihan, a Maysa, e o William. Pessoal de Matemáticas e Estatísticas como a Deysi, o Valentin, o Gerard, o Alberto, 
-o Iván, o Genaro e o Jorgito. 
-Aos meus compatriotas e bons amigos no IME como o Alvaro, o Carlos, a Rosario, o Frank, o Leandro, o Edu, a Ericka, o Juan, o Jesús Mena, a Karina,
+o Glaucus, o Victor, entre outros. Ao pessoal do laborátorio do LIAMF, 
+% como o Fabio, o Alexandre, o Paulo, a Viviane, o Esdras, entre outros;
+ ao pessoal de Visão Computacional, 
+ % como a Jihan, a Maysa, e o William. Pessoal de Matemáticas e Estatísticas como a Deysi, o Valentin, o Gerard, o Alberto,
+ ao pessoal de Matemáticas e Estatísticas.
+% como a Deysi, o Valentin, o Gerard, o Alberto,  %o Iván, o Genaro e o Jorgito. 
+ Aos meus compatriotas e bons amigos no IME como o Alvaro, o Carlos, a Rosario, o Frank, o Leandro, o Edu, a Ericka, o Juan, o Jesús Mena, a Karina,
 o Daniel, a Edith, o Miguel, o Jesus Mesias, o Caratos, o Mija, o Harry, o Pablito, o Geiser, a Evelyn, o Jorge, a Leissi, entre outros. 
-Aos meus compatriotas e bons amigos da USP como o Edgard, o Dracu, o Erick, o Erick (``el oso''), o Juan Carlos, o Dany, o Giancarlo, o Carlos (cuzqueño),
- o Bochas, o Luis, o Gabriel, o José ochoa, o Roberto, o Lobito, o Carloncho,  entre outras boas amizades que eu fiz na USP. 
+ Também eu gostaria de agradecer aos meus compatriotas e bons amigos da Poli-USP e da Física.
+% como o Edgard, o Dracu, o Erick, o Erick (``el oso''), o Juan Carlos, o Dany, o Giancarlo, o Carlos (cuzqueño),
+% o Bochas, o Luis, o Gabriel, o José ochoa, o Roberto, o Lobito, o Carloncho,  entre outras boas amizades que eu fiz na USP. 
 %À equipe Trupicada,  especialmente ao Marcão, por ser o clássico rival  na diversão e nos campeonatos de futsal na USP,
 % mas sobretudo por serem uns amigos bem legais. 
 
-
-Outro grupo de excelentes amigos que gostaria de agradecer são os que conhecí na graduação como o Fabian, o Ysaacx, o Yayo, o Carlos, o DJ, o Robert, 
- o Ernest. Além do mais, agradeço a boa amizade de amigos que também estão estudando, ou ensinam em outros paises e que compartilham suas boas experiências
+Outro grupo de excelentes amigos que gostaria de agradecer são da turma de graduação como o Fabian, o Ysaacx, o Yayo, o Carlos, o DJ, o Robert, 
+ o Ernest. Além do mais, agradeço a boa amizade de amigos que também estão estudando, ou ensinam em outros paises e que compartilham suas boas experiências, tais 
 como o Jorge, o Omar, a Claudia, o Yayo, o Jesus Bellido, a Lisney, o Paiche, a Rosa, entre outros.
 
 Párrafo aparte merecem o pessoal do CHOReOS e Baile. Aos professores Daniel, o Fábio, o Alfredo e o Marco, pelos conselhos e incentivos e
@@ -275,7 +279,7 @@ Por fim, quero terminar com uma frase  que sempre levo em consideração:
  Galileo Galilei
 \end{quotation} 
 
-
+\let\cleardoublepage\clearpage
 %aprendi, ri, sofri, mas principalmente conhecí ótimas pessoas.
 
 
@@ -448,9 +452,9 @@ Service-Oriented Computing (SoC), Service Level Agreement (SLA), Future Internet
 % cabeçalho para os apêndices
 \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\appendixname\ \thechapter}} {\MakeUppercase{#1}} }
 \fancyhead[RE,LO]{}
-%\appendix
+\appendix
 
-%\include{ape-conjuntos}      % associado ao arquivo: 'ape-conjuntos.tex'
+\include{appendix/appendix}      % associado ao arquivo: 'appendix.tex'
 
 % ---------------------------------------------------------------------------- %
 % Bibliografia

@@ -9,7 +9,7 @@
 
   Para atestar a eficácia da proposta, a coreografia apresentada em \cite{Buccafurri2008a} é utilizada. Essa coreografia representa uma aplicação de
   CDN (\textit{Content Delivery Network}) para fornecimento de conteúdo multimídia como audio, vídeo e imagens. 
-A Figura~\ref{fig:scenario} mostra o cenário de referência: um usuário requere, e eventualmente recebe, 
+A Figura~\ref{figure:scenario} mostra o cenário de referência: um usuário requere, e eventualmente recebe, 
 um serviço complexo gerido por meio de uma coreografia de diferentes serviços Web, um dos quais ($WS_3$ na figura) controla o provisionamento
  de conteúdo de  \textit{streaming}. $WS_1$ e $WS_2$ mostram que vários serviços Web são internamente orquestrados. 
 %A Figura ~\ref{figure:scenario} ilustra  a coreografia.  % a simular mostrando os serviços e suas respectivas interações.
@@ -526,7 +526,7 @@ A regra específica para o cumprimento de garantia de QoS precisa  definir os par
  
 Onde $X_{monitoring}$ é o conjunto de amostras dos tempos de resposta do serviço composto $WS_1$. Para habilitar um monitoramento sequencial e
  \textit{on-line} precisa-se computar um conjunto amostras sequenciais de tamanho $N$ que que se sobrepõem. 
-Assim, o conjunto de janelas de  amostras a monitorar seria:  $\{1, \dots , N\}$, $\{p, \dots , p + N\}$, $\dots$ , $\{mp, . . . ,mp + N\}$,
+Assim, o conjunto de janelas de  amostras a monitorar seria:  $\{1, \dots , N\}$, $\{p, \dots , p + N\}$, $\dots$ , $\{mp, \dots ,mp + N\}$,
 e assim por diante, onede $p <=N $ e $m=1, 2,\dots \quad$ . O tamanho de amostras ($N$) para realizar a detecção  é de 100, e o desvio $p$ é 1.
  
 
@@ -595,8 +595,10 @@ mostras os valores das taxas de degradação dos serviços Web para quatro cenários
 
 
 Para cada um dos quatro cenários, o monitoramento se executou com  simulações de $1000$ requisições para o serviço composto $WS_1$. Além disso, a topologia e configuração
-da implantação (largura de banda, latência, capacidade de procesamento, etc) é a mesma como definida no estabelecimento de contrato probabilístico. 
-Assim, os gráficos~\ref{figure:detection1-13_125_115}, \ref{figure:detection2-12_11_12},~\ref{figure:detection4-105_10_105} 
+da implantação (largura de banda, latência, capacidade de procesamento, etc) é a mesma como definida no estabelecimento de contrato probabilístico. Os
+ apêndices~\ref{ape:chor_specification},~\ref{ape:platform} e ~\ref{ape:deployment} 
+ mostram com mais detalhes a especificação da coreografia, da plataforma e da implantação que o ChorSim precisa para rodar as simulações. 
+  Os gráficos~\ref{figure:detection1-13_125_115}, \ref{figure:detection2-12_11_12},~\ref{figure:detection4-105_10_105} 
 e \ref{figure:detection5-9_10_9} mostram as distâncias ($D$) e os \textit{$p^{+}$-values} do teste de \textit{Kolmogorov-Smirnov} utilizado na detecção de violações do
 contrato e ressalta-se os valores de $\lambda$ e $\alpha$ com uma linha horizontal vermelha para cada um. Esses gráficos mostram a distância do teste de Kolmogorov, o qual mostra o quanto flutua a distribuição  dos tempos de reposta respeito do contrato e de acordo com 
 a regra  \eqref{eqn:rule_detection} debe ser menor que $0.15$  para ser cumprida. Os gráficos também mostram os \textit{$p^{+}$-values} para cada uma das

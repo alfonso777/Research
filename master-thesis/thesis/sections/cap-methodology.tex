@@ -438,13 +438,15 @@ compostos  por meio de uma função de acordo com os fluxos de sequência ou \texti
 
   \subsection{Arquitetura}
 
-   A Figura~\ref{fig:chorsim_architecture} mostra a arquitetura do simulador de coreografias (ChorSim) com suporte a QoS, onde
+   A Figura~\ref{fig:chorsim_architecture} mostra a arquitetura do simulador de coreografias (ChorSim\footnote{ O repositório do ChorSim está disponível 
+   em \url{https://github.com/choreos/ChoreographySimulator}})
+ com suporte a QoS, onde
   cada bloco representa um componente do simulador. Um componente depende de um outro componente ou vários componentes que estão embaixo dele.
   Cada um dos componentes serão explicados a seguir. A base do ChorSim está construído sobre o arcabouço
   SimGrid, para suportar a definição de \emph{hosts}, topologia de rede, comunicação entre  serviços e a especificação
   do consumo de recursos. O ``Motor de Execução  de Coreografias'' do  ChorSim permite a criação de instâncias de coreografias
  e iniciar as interações dos diversos serviços envolvidos que resultarão em um grafo de requisições e um outro grafo de informações de QoS.
-
+ 
     
 
       \begin{figure}
@@ -689,7 +691,7 @@ Portanto,  para que um conjunto de amostras $X_{monitoring}$ cumpra o contrato u
   \end{equation}
  
 
-Onde a função $verify$ realiza a verificação do cumprimento do contrato das amostras $X_monitoring$,  $\lambda$ define a zona de tolerância da flutuação
+Onde a função $verify$ realiza a verificação do cumprimento do contrato das amostras $X_{monitoring}$,  $\lambda$ define a zona de tolerância da flutuação
  entre distribuições de probabilidade.
 
 %max(| F1(x)-F2(x) |) %where F1(x) is the proportion of x1 values less than or equal to x and F1(x) is the proportion of x2 values less than or equal to x.
