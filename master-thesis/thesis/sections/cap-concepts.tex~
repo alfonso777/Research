@@ -224,7 +224,7 @@ característica distintiva é a  necessidade de definir (na especificação) a local
 Na Figura \ref{fig:WS_model} se mostra o diagrama de arquitetura dos sistemas baseados em serviços Web, onde se representam os padrões e tecnologias descritas. 
     \begin{figure}[!h]
       \centering
-      \includegraphics[width=.40\textwidth]{figures/webServiceModel.png}
+      \includegraphics[width=.70\textwidth]{figures/webServiceModel.png}
       \caption{ Modelo integral dos serviços Web~\cite{Pelechano2005}}
       \label{fig:WS_model}
     \end{figure}
@@ -805,11 +805,11 @@ Mesmo que possa se conectar qualquer ``coisa'', não significa que as coisas poss
  fazer decisões independentes e, eventualmente, desempenhar um papel ativo na sua própria remoção. As coisas podem interagir, trocar
  informações por elas mesmas. Assim, a forma de comunicação irá mudar de humano-humano para a coisa-humana e  coisa-coisa.  Novos
  aplicativos de negócios deveriam ser criados e podem melhorar a inovação e desenvolvimento da Internet das Coisas. A
- Figura~\ref{fig:IoT_trends}  mostra uma tendência de desenvolvimento aproximada da Internet de Coisas].
+ Figura~\ref{fig:IoT_trends}  mostra uma tendência de desenvolvimento aproximada da Internet de Coisas.
 
    \begin{figure}[!h]
       \centering
-      \includegraphics[width=0.6\textwidth]{figures/IoT-trends.png}
+      \includegraphics[width=1.0\textwidth]{figures/IoT-trends.png}
       \caption{Tendências no Internet do Futuro~\cite{Tan2010} }
       \label{fig:IoT_trends}
     \end{figure}
