@@ -30,7 +30,6 @@ A coreografia é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e
 
   %\{ (ws_1,ws_2), (ws_1,ws_3), (ws_1,ws_4), (ws_2,ws_4), (ws_2,ws_5), (ws_3,ws_5), (ws_4,ws_5) \} $
   %Onde $ws_i$ é um serviço que participa na coreografia.
-
   %subcoreografia
 
   \begin{figure}[h]
@@ -519,7 +518,7 @@ A regra específica para o cumprimento de garantia de QoS precisa  definir os par
    \begin{equation}\label{eqn:rule_detection}
        verify(X_{monitoring}) = 	
       \begin{cases}
-      true,  &  \text{ se } p^{+}>= 0.05 \wedge D < 0.15 \\
+      true,  &  \text{ se } p^{+}>= 0.05 \wedge D^{+} < 0.15 \\
       false, &  \text{ de outra maneira }
       \end{cases}
   \end{equation}

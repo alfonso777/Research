@@ -1,9 +1,6 @@
 \chapter{Metodologia}
 \label{cap:methodology}
 
- %contratos SLA de atributos de QoS de maneira probabilística.
-%, chamados de  contratos não rígidos (\textit{soft contracts}) como em \cite{Rosario2009}.
-
 Os capítulos anteriores apresentaram e descreveram os conceitos básicos acerca de serviços Web, computação orientada a serviços, composição de serviços, tópicos acerca
 de  coreografias, qualidade de serviço, SLA e monitoramento em coreografias de serviços Web. A dissertação de mestrado neste documento tem como
  objetivo o monitoramento  e a detecção de violações de SLAs  baseadas  em restrições probabilísticas de QoS em coreografias de serviços Web. %(resume o objetivo aqui).
@@ -346,8 +343,6 @@ compostos  por meio de uma função de acordo com os fluxos de sequência ou \texti
       \end{algorithmic}
     \end{algorithm}
 
-%%TODO:precisa-se algum parágrafo para terminar a subseção?, dica: definição de requerimentos de QoS
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -527,18 +522,10 @@ dentro de um período.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Especificação de SLAs Probabilísticos}
 
-    %Tipicamente os contratos de QoS são estabelecidos como restrições rígidas (\emph{hard constraints}) dos parâmetros de QoS ~\cite{Rosario2008}, por exemplo,
-    %tempo de resposta menor a 10 ms,
-    %que tem que se cumprir para todos os casos. Mesmo com alguma tolerância (tempo de resposta menos a 10 ms, 95\% dos casos) não refletem o comportamento dinâmico
-    %e não determinístico dos
-    %parâmetros de QoS, dessa maneira as distribuições de probabilidade são melhores ferramentas  ~\cite{Zheng2010}.
 
     Nesta pesquisa, para cada relacionamento existente entre os participantes de uma coreografia serão especificadas restrições de QoS de maneira probabilística.
     %, isto é, restrição não rígidas.
     Tais restrições de QoS tornarão-se um contrato (SLA) probabilístico. %, por conta disso, chama-se de SLA probabilístico e é um contrato não rígido (\emph{soft contract}).
-    %Os SLA probabilísticos consistem em acordos de algumas distribuições de probabilidade para os parâmetros de QoS que se levam em consideração. Assim, utilizando estes
-    %as restrições probabilísticas dos parâmetros de QoS requeridos, e junto com estimativas de valores de  métricas de QoS baseadas em medições, pretende-se
-    % sintetizar os contratos  probabilísticos.
 
     Assim, um contrato é especificado por meio de uma função de distribuição de probabilidade
  $$F(x) = P_r( \delta \leq x) $$  
@@ -685,7 +672,7 @@ Portanto,  para que um conjunto de amostras $X_{monitoring}$ cumpra o contrato u
   \begin{equation}
        verify(X_{monitoring}) = 	
       \begin{cases}
-      true,  & \text{ se } p^{+}>= \alpha \wedge D< \lambda \\
+      true,  & \text{ se } p^{+}>= \alpha \wedge D^{+}< \lambda \\
       false, &  \text{ de outra maneira }
       \end{cases}
   \end{equation}
@@ -729,87 +716,6 @@ Onde a função $verify$ realiza a verificação do cumprimento do contrato das amos
     % um motor de eventos focado em composição de serviços.
 
 
-
-
-\begin{comment}     
-      \begin{figure}[!h]
-	  \centering
-	  \includegraphics[width=1.0\textwidth]{figures/Architecture1.png}
-	  \caption{Arquitetura do monitor de SLA e QoS}
-	  \label{fig:QoS_SLA_Monitoring_Architecture}
-      \end{figure}	
-
-    %%
-
-   A coreografia e a integração com SLA será desenvolvida de ``cima para baixo'' (\textit{top-down}) como é descrito em \cite{Rosenberg2009}. Isto será realizado
-    integrando os SLAs na especificação da coreografia. A partir da especificação da coreografia serão derivados \textit{stubs} das orquestrações que realizam a coreografia,
-    e nesse processo  serão derivadas também  as políticas de QoS a partir dos SLAs. Para cada participante na coreografia também serão gerados documentos WSDL. É
-    importante entender que estes artefatos %(processos BPEL e documentos WSDL)
-    são \textit{stubs} que servem como ponto de partida na implementação de cada participante,  e que  serão executados em um motor BPEL.
-    Esses mapeamentos e transformações são ilustrados na Figura \ref{fig:QoST_SLA_Mapping_Transformation}.
-
-
-      \begin{figure}[!h]
-	  \centering
-	  \includegraphics[width=.90\textwidth]{figures/MappingAndTransformation1_.png}
-	  \caption{Mapeamento e transformação de uma coreografia com integração de QoS e SLA (traduzida de ~\cite{Rosenberg2009})}
-	  \label{fig:QoST_SLA_Mapping_Transformation}
-      \end{figure}	
-
-%%TODO: algoritmo de deteção de violações
-%%TODO: considerações finais
-
-    %%Suporte: eventos, invocação dinâmica de service VReSCO
-    %%Engine, JBoss ESB
-    %%suporte de verificar politicas QoS com o Qos da composição e dos serviços, para a detecção de violações deve ser integrado na engine
-    %%Viedame é a chave pra isso
-
-    %Estudo de Caso: simples ...
-
-    %Avaliações: medição dos atributos,
-    %Avaliação do Monitor: por abordagem
-    %no estudo de caso
-
-
-
-    %O modelo de monitoramento a ser implementado inclui o acompanhamento e verificação do cumprimento do contratos QoS na coreografia e
-    %a reação quando acontecer uma violação de qualquer desses contratos, que consiste em uma forma básica de adaptação. Por tanto o escopo
-    % do trabalho não inclui a reconfiguração da coreografias
-    %caso acontecer uma falha.
-
-    %Também não inclui predição de QoS baseado no histórico, mas isto será
-    %levado em conta em trabalhos futuros assim como o foco na reconfiguração dinâmica de coreografias. Os atributos de QoS a serem utilizados incluem principalmente
-    %métricas de desempenho tais como tempo de resposta, largura de banda, disponibilidade entre outras. Finalmente o estudo de caso estará baseado no \textit{testbed}
-    %para SOA WorldTravel \cite{Budny2008} e para realizar os experimentos serão utilizados PlanetLab\cite{PlanetLab} ou OpenCirrus\cite{OpenCirrus}.
-\end{comment}  
-
-
-%---------------------------------------------%
-%\section{Resultados Preliminares}
-%\label{sec:PreliminaryResults}
-
-\begin{comment}
-  \section{Trabalhos Futuros}
-  \label{sec:FutureWorks}
-
-  O modelo multi-camada utiliza WS-CDL como linguagem de especificação de coreografias, e WS-BPEL para a implementação do processo interno do participantes.
-  Poderia ser interessante estender esse modelo de QoS e SLA para ser integrado com BPMN 2.0, que suporta especificação de coreografias e que também tem a capacidade de especificar processo de negócio executáveis.
-
-  Esta pesquisa está focada em atributos QoS não determinísticos de desempenho e confiabilidade. Futuros trabalhos podem adicionar outros tipos tais como o custo,
-  pagamento, segurança, reputação, entre outras. Além disso, o monitoramento poderia incluir predição de QoS baseado no histórico dos valores medidos anteriormente,
-  isto serve de base para realizar, por exemplo,  auto-cura(\textit{self-healing}) em vários níveis (serviços, orquestração e coreografia), melhorar a adaptação, entre outras.
-
-  Dado que o monitoramento baseado em QoS e SLA é a um fator chave para alavancar a adaptação, então trabalhos futuros podem considerar usar o monitoramento como base
-  para uma ferramenta que forneça de adaptação dinâmica, reconfiguração e autocura baseada em QoS para coreografias de serviços Web.
-
-  %implementações em uma engine comercial, etc
-  %integração no SAVARA, etc
-\end{comment}
-
-
-
-  %\vspace{2cm}
-  
 
 
 \section{Considerações Finais}
