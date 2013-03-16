@@ -101,7 +101,7 @@
 
 \section*{Roteiro}
     \begin{frame}{Roteiro}
-        \tableofcontents
+        \tableofcontents[subsectionstyle=hide]
     \end{frame}
 
 % ------------------------------------------------------------------%
@@ -109,10 +109,21 @@
 {
 	\begin{frame}<beamer>
 		\frametitle{}
-		\tableofcontents[currentsection]
+		\tableofcontents[currentsection,%, currentsubsection
+		  sectionstyle=show/shaded,
+		  %hideothersubsections
+		  %subsectionstyle=hide, 
+		  %hideallsubsections
+		  %subsectionstyle=show/shaded, 
+		]
 	\end{frame}
 }
 
+\AtBeginSubsection[]{
+  \frame{
+  \tableofcontents[currentsection,currentsubsection,hideothersubsections,subsectionstyle=show/shaded ]
+  }
+}
 % ------------------------------------------------------------------%
 % ------------------------------------------------------------------%
 % ---------------------- Problema    -------------------------------%
@@ -311,6 +322,55 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
               \end{figure}	
           }
     \end{frame}
+
+    \begin{frame}{Coreografia de Processos}
+      \begin{itemize}
+	%\item <1-> A Choreography is specified in BPMN 2.0 (Process Choreography).
+	  %\begin{itemize}
+	  %  \item Differs in purpose and behavior from a standard BPMN Process (Process Orchestration).
+	    %\item Formalizes the way business \colorbox{yellow}{Participants} \textbf{coordinate} their \colorbox{yellow}{interactions}.
+	  % \item Formalizes the way business \textcolor{blue}{\textbf{Participants}} \textbf{coordinate} their \textcolor{blue}{\textbf{interactions}}.
+	  %\end{itemize}
+	%\item <2-> Focus on the exchange of information (\colorbox{yellow}{Messages}) between these Participants.
+	%\item <1-> Focus on interactions through \textcolor{blue}{\textbf{messages exchanges}}.
+	\item <1-> Uma Coreografia também é um processo.
+	\item <2-> \textbf{BPMN} (Bussiness Process Model and Notation) é um padrão para modelagem de processo de negócios.
+	\item <2-> \textbf{BPMN} suporta modelagem de coreografias.
+	\item <3-> Duas abordagens de modelagem:
+	  \begin{itemize}
+	    \item <3-> \colorbox{yellow}{Modelo de Interconexão}%: With collaborations diagrams.
+	    \item <4-> \colorbox{yellow}{Modelo de Interação}%:  BPMN Choreographies. using special activities (\textit{Choreography Activity}).
+	  \end{itemize}
+      \end{itemize}
+
+    \end{frame}
+
+
+  \begin{frame}{Modelo de Interconexão }
+      \begin{itemize}
+	\item Vistas públicas interconectadas.	
+	\item Uso de atividades de processos comuns.
+ 	\item Colaborações em BPMN 2.
+      \end{itemize}
+   \begin{figure}[!h]
+	    \centering
+	    \includegraphics[width=0.8\textwidth]{figures/interconnection_choreography.png}
+	    %\caption{BPMN elements for modeling choreographies.}
+    \end{figure}	
+  \end{frame}
+
+  \begin{frame}{ Modelo de Interação}
+    \begin{itemize}
+	  \item Interações \textbf{capturadas globalmente}.	
+	  \item Blocos básicos de construção: \textbf{interações atômicas} entre participantes.
+	  \item Suportado a partir do BPMN 2.
+	\end{itemize}
+    \begin{figure}[!h]
+	      \centering
+	      \includegraphics[width=0.8\textwidth]{figures/interaction_choreography2.png}
+	      %\caption{BPMN elements for modeling choreographies.}
+      \end{figure}	
+  \end{frame}
 
 
     %----- Coreografia de Serviços -----%
@@ -997,12 +1057,12 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
   \begin{frame}{ Modelo de QoS  (I)}
     \begin{itemize} %%Perhaps it's needed use some picture, for example life cycle call service.
-	\item Defining the QoS attributes involved in \textbf{service}, \textbf{network} and \textbf{message} aspects.
+	%\item Os atributos de QoS envolvem: \textbf{service}, \textbf{network} and \textbf{message} aspects.
 	\item QoS attributes:
 	    \begin{itemize}
-	      \item <2->\colorbox{yellow}{In service operation}: \textbf{time to complete the service}.
-	      \item <3->\colorbox{yellow}{In network}: delay and \textbf{communication errors}.
-	      \item <4->\colorbox{yellow}{In message}: \textbf{message format}.
+	      \item <2->\colorbox{yellow}{Serviço}: \textbf{tempo de processamento, tempo de resposta, }.
+	      \item <3->\colorbox{yellow}{Rede}: largura de banda, atraso e \textbf{erros de comunicação}.
+	      \item <4->\colorbox{yellow}{Mensagem}: \textbf{integridade da mensagem}.
 	    \end{itemize}
     \end{itemize}
   \end{frame}
@@ -1033,40 +1093,40 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 \subsection{Definição de requisitos de QoS}
   \begin{frame}{Definição de requisitos de QoS: Analiticamente}
       \begin{enumerate}
-	\item <1-> \textbf{Mapping} of a choreography to a Generalized Stochastic Petri Net (GSPN).
+	\item <1-> \textbf{Mapeamento} de uma coreografia para uma GSPN ( Rede Petri Estocástica Generalizada).
 	    %\begin{itemize}
 	    %  \item The choreography is specified according to ``interaction model''.
 	    %  \item The choreography is specified in BPMN 2.0.
 	    %  \item The resulting GSPN include a QoS model.
 	    %\end{itemize}
 
-	\item <2-> \textbf{Configurations} of the resulting GSPN.
-	\item <3-> \textbf{Simulations} of scenarios.
+	\item <2-> \textbf{Configurações} na GSPN obtida.
+	\item <3-> \textbf{Simulações} dos cenários.
       \end{enumerate}
 
   \end{frame}
   
 
-  \begin{frame}{Mapping BPMN to GSPN (I)}
+  \begin{frame}{Mapeamento de BPMN para GSPN (I)}
       \only<1>{
 	  \begin{figure}[!h]
 	  \centering
 	  \includegraphics[width=0.8\textwidth]{BPMNChoreographyElements2_a.png}
-	  \caption{Mapping of events and gateways elements to modules of Petri nets}
+	  \caption{Mapeamento de eventos e \textit{gateways} para módulos GSPN.}
 	\end{figure}
       }
       \only<2>{
 	\begin{figure}[!h]
 	  \centering
 	  \includegraphics[width=0.8\textwidth]{BPMNChoreographyElements2_b.png}
-	  \caption{Mapping of events and gateways elements to modules of Petri nets}
+	  \caption{Mapeamento de eventos e \textit{gateways} para módulos GSPN.}
 	\end{figure}
       }
     
   \end{frame}
 
 
-  \begin{frame}{Mapping BPMN to GSPN (II)}
+  \begin{frame}{Mapeamento de BPMN para GSPN (II)}
 	\only<1>{	
 	      \begin{figure}[!h]
 		  \centering
@@ -1113,13 +1173,12 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
 
 
-  \begin{frame}{Mapping Algorithm}
+  \begin{frame}{Algoritmo de Mapeamento (I)}
       \begin{algorithm}[H]
 	  %\caption{Mapping a Interconnection Choreography in BPMN onto a GSPN with QoS model}
 	    %\caption{ { \small Mapeamento de uma coreografia especificada em BPMN 2.0 para uma GSPN com o modelo de QoS } }
-	    \caption*{   Mapping of choreography in BPMN 2.0 to  GSPN with QoS model}
+	    \caption*{ Mapeamento de uma coreografia em BPMN 2.0 para uma GSPN com suporte de QoS}
 	    %\label{alg2}
-
 
 	    \begin{algorithmic}%[1]
 	      { \footnotesize		
@@ -1174,7 +1233,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
 
 
- \begin{frame}{ Mapping Algorithm (II)}
+ \begin{frame}{ Algoritmo de Mapeamento (II)}
     \only<1>{	
         \begin{figure}[!h]
             \centering
@@ -1291,6 +1350,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
             }
         \end{equation}
     	
+	\pause
         %\begin{equation}
         %\textcolor{Blue}{
         %    \forall x \in R^{+} : F'_{s,\Delta}(x) \geq F_s(x)
@@ -1302,6 +1362,8 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
                  \exists x \in R^{+} : F'_{s,\Delta}(x) < F_s(x)
             }
         \end{equation}
+
+	\pause
 
         \begin{equation}
             \textcolor{Blue}{
@@ -1321,7 +1383,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	  H_1 : &  \quad \exists x, F_S(x) < F'_S(x) 
 	\end{align}}
       \end{equation}
-      
+      \pause 
     \textbf{Solução:} \textit{One-sided two-sample Kolmogorov-Smirnov test} 
 
       \begin{equation}	\textcolor{Blue}{
@@ -1341,9 +1403,11 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	\end{align} }
       \end{equation*} 
 
+    \pause
     Portanto,  para que um conjunto de amostras \textcolor{Blue}{$X_{monitoring}$} cumpra o contrato uma regra baseada
     em \textcolor{Blue}{$p^{+}$} e \textcolor{Blue}{$D$} deve ser definida:
-   
+
+    \pause
       \begin{equation*}
 	\textcolor{Blue}{
 	  verify(X_{monitoring}) = 	
@@ -1439,14 +1503,14 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
 
 
-    \begin{frame}{ Simulação da GSPN }
+    \begin{frame}{ Simulações na GSPN }
       \begin{itemize}
-	\item <1-> The \textbf{Pipe2} tool was used to \textbf{model} and \textbf{simulate} the \textbf{GSPN}.
-	\item <2-> \textbf{$1$ token} = \textbf{$1$ choreography instance}.
-	\item <2-> \textbf{$100$ tokens} are considered to each scenario at the \textbf{place Start}.
-	\item <2-> \textbf{$100$ concurrent instances} were executed (\textbf{multiple-server semantic}).
-	\item <3-> $1500$ fires and $10$ replications.
-	\item <3-> Confidence level of $95\%$.
+	\item <1-> A ferramenta \textbf{Pipe2} foi usado para \textbf{modelar} e \textbf{simular} a \textbf{GSPN}.
+	\item <2-> \textbf{$1$ token} = \textbf{$1$ instância de coreografia}.
+	\item <2-> \textbf{$100$ tokens} são considerados para cada cenários na posição de inicio (\textbf{Start}).
+	\item <2-> \textbf{$100$ instâncias concorrentes} foram executadas (\textbf{\textit{multiple-server semantic}}).
+	\item <3-> $1500$ disparos e $10$ replicações.
+	\item <3-> Nível de Confiança de $95\%$.
       \end{itemize}
     \end{frame}
 
@@ -1508,7 +1572,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
 
 
-  \begin{frame}{Configuração da simulações em ChorSim}  
+  \begin{frame}{Configuração das simulações em ChorSim (I)}  
       
   Dois cenários:
   Objetivo: 
@@ -1527,7 +1591,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
   
 
-  \begin{frame}{Configuração da simulações em ChorSim}  
+  \begin{frame}{Configuração das simulações em ChorSim (II)}  
       \begin{table}[!h]
 	    \centering
       {\footnotesize
@@ -1568,7 +1632,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
 
   
-  \begin{frame}{Resultados}
+  \begin{frame}{Resultados das simulações}
     \only<1>{
       \begin{figure}[H]
 	  \centering
@@ -1596,7 +1660,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 %%%
 \subsection{Estabelecimento do contrato de QoS}
 
-  \begin{frame}{Cenários}
+  \begin{frame}{Estabelecimento do contrato probabilístico (I)}
       \begin{table}[!h]
 	    \centering
       {\footnotesize
@@ -1618,8 +1682,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
   
 
-  \begin{frame}{Contrato}
-
+  \begin{frame}{Estabelecimento do contrato probabilístico (II)}
     \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/contract.png}
@@ -1651,7 +1714,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
 
 
-  \begin{frame}{Cenários}
+  \begin{frame}{Cenários para o monitoramento}
     \begin{center}
       \begin{table}[h]
 	  \centering
@@ -1682,7 +1745,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
 
 
-  \begin{frame}{Resultados}  
+  \begin{frame}{Resultados da detecção de violações de SLA}  
     \only<1>{
       \begin{figure}[H]
 	  \centering
@@ -1723,7 +1786,17 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 \section{Conclusões e Trabalhos Futuros}
   \begin{frame}{Conclusões}
       \begin{itemize}
-      \item 
+	\item Foram propostas  abordagens e técnicas para definição de requisitos de QoS, estabelecimento de contratos probabilísticos
+	e monitoramento com a detecção de violações de contrato em coreografias de serviços Web.
+	\item O modelo de interação em BPMN2 foi utilizado.
+	\item Construi-se um simulador para suportar \textit{enactment} de coreografias de serviços Web com suporte de QoS.
+	\item Na definição de requisitos, propôs-se uma metodologia usando mapeamento de coreografia para GSPN. Além disso, 
+	apresentou-se avaliações de desempenho usando o ChorSim.
+	\item Apresentou-se uma abordagem para estebelecer contratos probabilísticos usando ChorSim.
+	\item O monitor foi desenvolvido de modo a suportar um monitoramento \textit{online}.
+	\item Foi proposta uma técnica de dominância estocástica para detectar violações de contratos probabilísticos. 
+	  A técnica está baseada no teste de \textit{Kolmogorov-Smirnov} de apenas um lado.
+	\item Os resultados mostram que na regra para detectar violações o \textit{p-value} pode ser suficiente.
       \end{itemize}
 
   \end{frame}
@@ -1731,11 +1804,17 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
   \begin{frame}{Trabalhos Futuros}
       \begin{itemize}
-      \item 
+	\item Suporte de mais atributos de QoS de desempenho e outros como confiabilidade, segurança, entre outros, em todas as etapas.
+	\item Suporte de mais elementos de coreografia de serviços do BPMN2 em todas as etapas.
+%%suporte completo de coreografia de processos, automatização do mapeamento de uma especificação de coreografia em BPMN2 para o enactment no ChorSim
+	\item Pesquisa em  substituição dinâmica, adaptação dinâmica, reconfiguração, autocura, entre outro,  baseada em QoS para coreografias de serviços Web.
+	\item Suporte de definição probabilística de atributos de QoS como largura de banda e latência de rede no ChorSim.
+%%chorsim, monitoramento
+	\item Avaliações das simulações com implementações reais de coreografias.
+	\item Levar em consideração exemplos ou cenários reais e/ou complexos.
       \end{itemize}
   \end{frame}
   
-
 
 
 %Tecnologias: Esper, motor de BPEL, Galaxy Esper
