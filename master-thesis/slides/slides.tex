@@ -127,7 +127,7 @@
 % ------------------------------------------------------------------%
 % ------------------------------------------------------------------%
 % ---------------------- Problema    -------------------------------%
-\section{Problema}
+\section{Conceitos Básicos}
 
 % -----  Serviços Web ----------%
     \begin{frame}{Serviço Web}
@@ -224,7 +224,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
            \item Serviços.
            \item SOA.
            \item Composição de Serviços.
-           \item ...
+           \item QoS.
         \end{itemize}
 
 
@@ -354,7 +354,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
       \end{itemize}
    \begin{figure}[!h]
 	    \centering
-	    \includegraphics[width=0.8\textwidth]{figures/interconnection_choreography.png}
+	    \includegraphics[width=0.6\textwidth]{figures/interconnection_choreography-pt.png}
 	    %\caption{BPMN elements for modeling choreographies.}
     \end{figure}	
   \end{frame}
@@ -367,20 +367,12 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	\end{itemize}
     \begin{figure}[!h]
 	      \centering
-	      \includegraphics[width=0.8\textwidth]{figures/interaction_choreography2.png}
+	      \includegraphics[width=0.7\textwidth]{figures/interaction_choreography2-br.png}
 	      %\caption{BPMN elements for modeling choreographies.}
       \end{figure}	
   \end{frame}
 
 
-    %----- Coreografia de Serviços -----%
-    \begin{frame}{Problema a ser resolvido}
-      \begin{figure}[!h]
-	  \centering
-	  \includegraphics[width=0.8\textwidth]{ChoreographySLAs.png}
-	  \caption{Problema a ser resolvido}
-      \end{figure}	
-    \end{frame}
     %----- Categorização de Coreografias -----%
     %\begin{frame}{Classificação das Linguagens de Coreografias}
     %  \begin{figure}[!h]
@@ -396,9 +388,9 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 % ------------------------------------------------------------------%
 % ------------------------------------------------------------------%
 % -------------------- Objetivos------------------------------------%
-\section{Objetivos}
+\section{Problema}
 
-    \begin{frame}
+    \begin{frame}{Objetivos}
         \begin{block}{Objetivo principal}\vspace{-.3\baselineskip}
         	\begin{itemize}
                   %\item Propor uma técnica de monitoramento ``não intrusivo'' de coreografias de serviços Web usando SLAs.
@@ -429,6 +421,15 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
           %\item <4->Monitoramento em tempo de execução Vs.  verificações e validações estáticas.
           \item <4->\textbf{Contratos probabilísticos} refletem melhor o comportamento dinâmico dos \textbf{atributos de QoS} dos serviços Web.
     	\end{itemize}
+    \end{frame}
+
+    %----- Coreografia de Serviços -----%
+    \begin{frame}{Problema a ser resolvido}
+      \begin{figure}[!h]
+	  \centering
+	  \includegraphics[width=0.8\textwidth]{ChoreographySLAs.png}
+	  \caption{Problema a ser resolvido}
+      \end{figure}	
     \end{frame}
 
 
@@ -535,26 +536,26 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
  %         \end{figure}	
  %     }
 
-%      \only<5>{	
-%          \begin{figure}[!h]
-%              \centering
-%              \includegraphics[width=1.0\textwidth]{ServiceInvocationTimes_3.png}
-%              \caption{Instantes de tempo na utilização de um serviço Web}
-%              %\label{fig:QoST_SLA_Mapping_Transformation}
-%          \end{figure}	
-%      }
-
-%      \only<6>{	
-%          \begin{figure}[!h]
-%              \centering
-%              \includegraphics[width=1.0\textwidth]{ServiceInvocationTimes_5.png}
-%              \caption{Instantes de tempo na utilização de um serviço Web}
-%              %\label{fig:QoST_SLA_Mapping_Transformation}
-%          \end{figure}	
-%      }
-
-
       \only<2>{	
+          \begin{figure}[!h]
+              \centering
+              \includegraphics[width=1.0\textwidth]{ServiceInvocationTimes_3.png}
+              \caption{Instantes de tempo na utilização de um serviço Web}
+              %\label{fig:QoST_SLA_Mapping_Transformation}
+          \end{figure}	
+      }
+
+      \only<3>{	
+          \begin{figure}[!h]
+              \centering
+              \includegraphics[width=1.0\textwidth]{ServiceInvocationTimes_5.png}
+              \caption{Instantes de tempo na utilização de um serviço Web}
+              %\label{fig:QoST_SLA_Mapping_Transformation}
+          \end{figure}	
+      }
+
+
+      \only<4>{	
           \begin{figure}[!h]
               \centering
               \includegraphics[width=1.0\textwidth]{ServiceInvocationTimes_6.png}
@@ -931,6 +932,24 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
    \end{frame}
 
 
+%  \begin{frame}{ Simulador de Coreografias de Serviços Web}
+%      \begin{itemize}
+%	\item <1-> WS-CDL+ (Rosario et al., 2008) e (Rosario et al., 2009)
+%	    \begin{itemize}
+%	      \item motor de execução de coreografias para WS-CDL.
+%	      \item \color{red}{É apenas um protótipo}.
+%	    \end{itemize}
+%	
+%	\item <2-> (Zheng et al., 2010):
+%	    \begin{itemize}
+%	      \item A Função Densidade de Probabilidade (PDF) da QoS. %de um serviço Web é mais adequada e melhor do que outras.
+%	      \item Demonstrações por meio de simulações.
+%	      \item \color{red}{Foco no tempo de resposta e não trata SLAs}.
+%	    \end{itemize}
+ %     \end{itemize}
+
+  % \end{frame}
+
 
 
 
@@ -973,13 +992,27 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
     %  \item <3->\textbf{Detecção de violações de SLAs probabilí­sticos}.
     %  \item <4->\textbf{Atributos de QoS}: tempo de resposta, largura de banda e atraso.
     %\end{itemize}
-
-    \begin{figure}
-	\centering
-	\includegraphics[width=1.0\textwidth]{MonitoringStages.png}
-	\caption{Etapas para atingir o monitoramento de coreografias}
-    \end{figure}	
-
+    \only<1>{	
+		\begin{figure}
+		\centering
+		\includegraphics[width=1.0\textwidth]{MonitoringStages1.png}
+		\caption{Etapas para atingir o monitoramento de coreografias}
+		\end{figure}	
+	}
+    \only<2>{	
+		\begin{figure}
+		\centering
+		\includegraphics[width=1.0\textwidth]{MonitoringStages2.png}
+		\caption{Etapas para atingir o monitoramento de coreografias}
+		\end{figure}	
+	}
+    \only<3>{	
+		\begin{figure}
+		\centering
+		\includegraphics[width=1.0\textwidth]{MonitoringStages3.png}
+		\caption{Etapas para atingir o monitoramento de coreografias}
+		\end{figure}	
+	}	
   \end{frame}
 
   \begin{frame}{Elementos BPMN 2 Suportados }
@@ -1058,7 +1091,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \begin{frame}{ Modelo de QoS  (I)}
     \begin{itemize} %%Perhaps it's needed use some picture, for example life cycle call service.
 	%\item Os atributos de QoS envolvem: \textbf{service}, \textbf{network} and \textbf{message} aspects.
-	\item QoS attributes:
+	\item Atributos de QoS:
 	    \begin{itemize}
 	      \item <2->\colorbox{yellow}{Serviço}: \textbf{tempo de processamento, tempo de resposta, }.
 	      \item <3->\colorbox{yellow}{Rede}: largura de banda, atraso e \textbf{erros de comunicação}.
@@ -1071,7 +1104,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
     \only<1>{	
 	\begin{figure}[h]
 	    \centering
-	    \includegraphics[width=.7\linewidth]{figures/ChorInteractionToServiceInteraction.png}
+	    \includegraphics[width=.6\linewidth]{figures/ChorInteractionToServiceInteraction.png}
 	    \caption{ Interação de serviços a partir de  interações atômicas do BPMN2.}
 	    \label{figure:InteractionBPMNServiceInteraction}
 	\end{figure}
@@ -1130,44 +1163,44 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	\only<1>{	
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_a.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_a-br.png}
 	      \end{figure}
 	  }
 	  \only<2>{	
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_b.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_b-br.png}
 	      \end{figure}
 	  }
 
 	\only<3>{	
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_1.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_1-br.png}
 	      \end{figure}
 	  }
 	\only<4>{	
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_2.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_2-br.png}
 	      \end{figure}
 	  }
       \only<5>{
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_3.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_3-br.png}
 	      \end{figure}
       }
       \only<6>{
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_4.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_4-br.png}
 	      \end{figure}
       }
       \only<7>{
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_5.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNTaskChoreography-QoS_Model_5-br.png}
 	      \end{figure}
       }
   \end{frame}
@@ -1364,12 +1397,13 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
         \end{equation}
 
 	\pause
-
+	%\colorbox{yellow}{\parbox{0.5\textwidth}{
         \begin{equation}
             \textcolor{Blue}{
               sup_{x \in R^+}  (F'_{s,\Delta}(x) - F_s(x) ) \geq \lambda  \footnote{Rosario et al., 2009}
             }
         \end{equation}
+	%}}
   \end{frame}
 
 
@@ -1379,7 +1413,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
       \begin{equation}	\textcolor{Blue}{
 	\begin{align}
 	  H_0 : & \quad \forall x, F_S(x) >=F'_S(x)   \notag\\
-	  contra: \notag\\
+	  contra \notag\\
 	  H_1 : &  \quad \exists x, F_S(x) < F'_S(x) 
 	\end{align}}
       \end{equation}
@@ -1427,13 +1461,13 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 % ------------------------------------------------------------------%
 % -------------    Experimentos e Resultados   ---------------------%
 % ------------------------------------------------------------------%
-\section{Resultados}
-\subsection{Definição de Requisitos de QoS}
+\section{Experimentos e Resultados}
+\subsection{ Definição de Requisitos de QoS Analiticamente}
 
   \begin{frame}{Cenário de Coreografia para a abordagem analítica}
     \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.7\textwidth]{figures/Example-InteractionChor.png}
+	\includegraphics[width=0.7\textwidth]{figures/Example-InteractionChor-br.png}
 	\caption{Exemplo de modelo de interação de coreografias, oferta de investimento. }%Interconnection model describing investment offers 
 	\label{fig:Example-InteractionChor}
     \end{figure}
@@ -1453,25 +1487,43 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
       \only<1>{
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration1.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration1-br.png}
 	      \end{figure}
       }
       \only<2>{
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration2.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration2-br.png}
 	      \end{figure}
       }
       \only<3>{
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration3.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration3-br.png}
 	      \end{figure}
       }
       \only<4>{
 	      \begin{figure}[!h]
 		  \centering
-		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration4.png}
+		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration4-br.png}
+	      \end{figure}
+      }
+      \only<5>{
+	      \begin{figure}[!h]
+		  \centering
+		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration5-br.png}
+	      \end{figure}
+      }
+      \only<6>{
+	      \begin{figure}[!h]
+		  \centering
+		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration6-br.png}
+	      \end{figure}
+      }
+      \only<7>{
+	      \begin{figure}[!h]
+		  \centering
+		  \includegraphics[width=1.0\textwidth]{BPMNChoreographyExample-QoS_configuration7-br.png}
 	      \end{figure}
       }
   \end{frame}
@@ -1488,7 +1540,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
               %\cline{1-3}
 	      \cmidrule(r){2-3}
               %\hline
-              \textbf{Transição}      		&      Cenário 1   &   Cenário 2 		\\
+              \textbf{Transição}      		&      \textbf{Cenário 1}   &  \textbf{ Cenário 2} 		\\
                %\hline
 	      \otoprule
                $T_{latency1}$, $T_{latency2}$, $T_{latency3}$ 	& 	0.99       &   0.94	\\
@@ -1508,9 +1560,9 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	\item <1-> A ferramenta \textbf{Pipe2} foi usado para \textbf{modelar} e \textbf{simular} a \textbf{GSPN}.
 	\item <2-> \textbf{$1$ token} = \textbf{$1$ instância de coreografia}.
 	\item <2-> \textbf{$100$ tokens} são considerados para cada cenários na posição de inicio (\textbf{Start}).
-	\item <2-> \textbf{$100$ instâncias concorrentes} foram executadas (\textbf{\textit{multiple-server semantic}}).
+	\item <2-> \textbf{$100$ instâncias concorrentes} foram executadas (\textit{multiple-server semantic}).
 	\item <3-> $1500$ disparos e $10$ replicações.
-	\item <3-> Nível de Confiança de $95\%$.
+	\item <3-> Nível de confiança de $95\%$.
       \end{itemize}
     \end{frame}
 
@@ -1521,7 +1573,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 		\caption{Resultados das simulações} % (in \%) }
 		\begin{figure}[!h]
 		    \centering
-		    \includegraphics[width=0.9\textwidth]{results0.png}
+		    \includegraphics[width=0.9\textwidth]{results1-gspn.png}
 		\end{figure}
 	  \end{table}
 	}
@@ -1531,7 +1583,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 		\caption{Resultados das simulações} % (in \%) }
 		\begin{figure}[!h]
 		    \centering
-		    \includegraphics[width=0.9\textwidth]{results1.png}
+		    \includegraphics[width=0.9\textwidth]{results2-gspn.png}
 		\end{figure}
 	  \end{table}
 	}
@@ -1541,7 +1593,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 		\caption{Resultados das simulações} % (in \%) }
 		\begin{figure}[!h]
 		    \centering
-		    \includegraphics[width=0.9\textwidth]{results2.png}
+		    \includegraphics[width=0.9\textwidth]{results3-gspn.png}
 		\end{figure}
 	  \end{table}
 	}
@@ -1551,22 +1603,22 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 		\caption{Resultados das simulações} % (in \%) }
 		\begin{figure}[!h]
 		    \centering
-		    \includegraphics[width=0.9\textwidth]{results3.png}
+		    \includegraphics[width=0.9\textwidth]{results4-gspn.png}
 		\end{figure}
 	  \end{table}
 	}
   \end{frame}
 
 
-
+\subsection{Definição de requisitos de QoS usando ChorSim}
 %% Definição de requisitos de QoS usando ChorSim
-  \begin{frame}{Cénario para a abordagem com ChorSim}
+  \begin{frame}{Cénario de coreografia para a abordagem com ChorSim}
     \begin{figure}[h]
 	\centering
 	%\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
 	%\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
 	\includegraphics[width=.8\linewidth]{figures/CDN_choreography-scenario.png}
-	\caption{Coreografia de serviços da aplicação de CDN ~\cite{Buccafurri2008a}}
+	\caption{Coreografia de serviços da aplicação de CDN}
 	\label{figure:scenario}
     \end{figure}
   \end{frame}
@@ -1574,24 +1626,36 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
   \begin{frame}{Configuração das simulações em ChorSim (I)}  
       
-  Dois cenários:
-  Objetivo: 
-  Cenário 1:
-  Cenário 2: 
+      \begin{block}{Objetivo} 
+      Analisar o comportamento do \textbf{tempo de resposta total} do serviço composto $WS_1$ em função do
+      \textbf{tamanho da resposta} de $WS_1$ e diferentes valores de \textbf{largura de banda}.
+      \end{block}
 
-	\begin{figure}[!h]
+      \pause 
+
+    \only<2>{
+      \begin{itemize}
+	\item \textbf{Cenário 1:}   Larguras de banda uniformes.
+	\item \textbf{Cenário 2:}   Larguras de banda váriaveis.
+      \end{itemize}
+     }
+    
+  \end{frame}
+
+  \begin{frame}{Configuração das simulações em ChorSim (II)}  
+	\textbf{Cenario 2:}
+  	\begin{figure}[!h]
 	    \centering
 	    %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
 	    %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
-	    \includegraphics[width=.8\linewidth]{figures/failure_model.png}
-	    \caption{Modelo de falhas que mostra a largura de banda efetiva devido à degradação da largura de banda referencial em um período de $100$ segundos.}
+	    \includegraphics[width=1.0\linewidth]{figures/failure_model.png}
+	    \caption{Cenário 2:Largura de banda efetiva devido à degradação da largura de banda referencial em um período de $100$ segundos.}
     %       \caption{Capacidade variável da Largura de Banda  referencial em um período de tempo de $100$ segundos}
 	    \label{figure:failure_model}
 	\end{figure}
-  \end{frame}
-  
+  \end{frame}  
 
-  \begin{frame}{Configuração das simulações em ChorSim (II)}  
+  \begin{frame}{Configuração das simulações em ChorSim (III)}  
       \begin{table}[!h]
 	    \centering
       {\footnotesize
@@ -1601,16 +1665,17 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 		%%\hline
 			    %%& \multicolumn{2}{c|}{ Average number of tokens } & \multicolumn{2}{c|}{ 95\% Confidence interval  (+/-) }\\
 		\hline
-		Requisições           &  Largura de banda     &   Tamanho da requisição    &  latência       &  \# requisições	  \\
+		\textbf{Requisições}           &  Largura de banda     &   Tamanho da requisição    &  Latência       &  \# requisições	  \\
 		\hline
-		$Cliente$ a $WS_1$    &    $1$Mbps	              &      $1.95$MB        &   $0.002s$      &    De $1$ a $10$     \\
-		$WS_1$ a $WS_3$       &    $1$Mbps	              &      $5.47$MB        &   $0.002s$      &    De $1$ a $10$     \\
-		$WS_3$ a $WS_5$       &    $1$Mbps                  &      $5.47$MB        &   $0.002s$      &    De $1$ a $10$     \\
+		$Cliente$ a $WS_1$    &    $1$Mbps	              &      $1.95$MB        &   $0.002s$      &     $1$ a $10$     \\
+		$WS_1$ a $WS_3$       &    $1$Mbps	              &      $5.47$MB        &   $0.002s$      &     $1$ a $10$     \\
+		$WS_3$ a $WS_5$       &    $1$Mbps                  &      $5.47$MB        &   $0.002s$      &       $1$ a $10$     \\
 		\hline
 		\end{tabular}
       }
       \end{table}
 
+      \pause
       \begin{table}[!h]
 	    \centering
       {\footnotesize
@@ -1620,7 +1685,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 		%%\hline
 			    %%& \multicolumn{2}{c|}{ Average number of tokens } & \multicolumn{2}{c|}{ 95\% Confidence interval  (+/-) }\\
 		\hline
-		Respostas           &  Largura de banda           &   Tamanho de resposta    &  latência         &   \emph{timeout}	  \\
+		\textbf{Respostas}           &  Largura de banda           &   Tamanho de resposta    &  Latência         &   \emph{timeout}	  \\
 		\hline
 		$WS_1$ a $Cliente$  &    $1$Mbps a $16$Mbps	        &    $1$KB a  $100$MB                   &   $0.002s$      &   $1000s$     \\
 		$WS_3$ a $WS_1$     &    $20$Mbps	                &      $8$MB                   &   $0.002s$      &   $1000s$     \\
@@ -1632,25 +1697,28 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
 
   
-  \begin{frame}{Resultados das simulações}
+  \begin{frame}{Resultados das simulações usando ChorSim}
     \only<1>{
+      \framesubtitle{Cenário 1}    
       \begin{figure}[H]
 	  \centering
 	  %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
 	  %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
 	  \includegraphics[width=1.0\linewidth]{figures/results1-normal.png}
-	  \caption{Tempo médio de resposta total da coreografia em função do tamanho de resposta do serviço WS1 com larguras de banda de 1Mbps até
-	      16Mbps (intervalos de confiança não são visíveis por terem ficado muito pequenos).}
+	  \caption{\textbf{Cenario 1:} Tempo médio de resposta total da coreografia em função do tamanho de resposta do serviço $WS_1$ com
+	  larguras de banda de $1Mbps$ até	$16Mbps$}
 	  \label{figure:results}
       \end{figure}
     }
     \only<2>{
+      \framesubtitle{Cenário 2}    
       \begin{figure}[H]
 	  \centering
 	  %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
 	  %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
 	  \includegraphics[width=1.0\linewidth]{figures/results1-failure.png}
-	  \caption{Tempo médio de resposta total da coreografia em função do tamanho de resposta do serviço WS1 segundo o modelo de falha. A largura de banda varia de 1Mbps até 16Mbps}
+	  \caption{\textbf{Cenário 2:} Tempo médio de resposta total da coreografia em função do tamanho de resposta do serviço $WS_1$.
+		    A largura de banda varia de $1Mbps$ até $16Mbps$}
 	  \label{figure:results_failure}
       \end{figure}
     }
@@ -1666,16 +1734,16 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
       {\footnotesize
 	    \caption{Configuração das taxas de degradação dos serviços  para obter o contrato do tempo de resposta para o serviço composto $WS_1$ }
 	    \label{table:contract_configurations}
-	  \begin{tabular}{|c|c|c|}
+	  \begin{tabular}{ccc}
 		%%\hline
 			    %%& \multicolumn{2}{c|}{ Average number of tokens } & \multicolumn{2}{c|}{ 95\% Confidence interval  (+/-) }\\
-		\hline
-		Serviço    &   Distribuição      &     Taxa de degradação ($\lambda$)      \\
-		\hline
+		\toprule
+		\textbf{Serviço}    &   \textbf{Distribuição}      &     \textbf{Taxa de degradação ($\lambda$)}      \\
+		\otoprule
 		$WS_1$     &    Exponencial      &      1/10000      \\
 		$WS_3$     &    Exponencial      &      1/10000      \\
 		$WS_5$     &    Exponencial      &      1/10000      \\
-		\hline
+		\bottomrule
 		\end{tabular}
       }
       \end{table}
@@ -1705,38 +1773,63 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	  \end{cases}
       }
     \end{equation}
+  
+    \pause
+    \begin{itemize}
+      \item \textcolor{Blue}{$X_{monitoring}$}: Conjunto de amostras dos tempos de resposta do serviço composto \textcolor{Blue}{$WS_1$}. 
+      \item Um monitoramento sequencial e  \textit{on-line} precisa  computar  $N$ amostras que que se sobrepõem. 
+      \item Conjunto de janelas de  amostras a monitorar: 
+	    \begin{itemize}
+	     \item [] \textcolor{Blue}{$\{1, \dots , N\}, \{p, \dots , p + N\}, \dots , \{mp, \dots ,mp + N\} \dots$ }
+	     \item [] \textcolor{Blue}{$p <=N $} e \textcolor{Blue}{$m=1, 2,\dots \quad$ }
+	    \end{itemize}
 
-    Onde $X_{monitoring}$ é o conjunto de amostras dos tempos de resposta do serviço composto $WS_1$. Para habilitar um monitoramento sequencial e
-    \textit{on-line} precisa-se computar um conjunto amostras sequenciais de tamanho $N$ que que se sobrepõem. 
-    Assim, o conjunto de janelas de  amostras a monitorar seria:  $\{1, \dots , N\}$, $\{p, \dots , p + N\}$, $\dots$ , $\{mp, \dots ,mp + N\}$,
-    e assim por diante, onede $p <=N $ e $m=1, 2,\dots \quad$ . O tamanho de amostras ($N$) para realizar a detecção  é de 100, e o desvio $p$ é 1.
-    
+      \item Configuração: \textcolor{Blue}{$N = 100$}, e o desvio \textcolor{Blue}{$p=1$}.
+    \end{itemize}
+
   \end{frame}
 
 
+%\colorbox{green!25}{}
+%\colorbox{red!25}{$3.10\%$}
   \begin{frame}{Cenários para o monitoramento}
     \begin{center}
       \begin{table}[h]
 	  \centering
 	\caption{ Estabelecimento das taxas de degradação de tempo de processamento dos serviços para os cenários.  }
 	\begin{center}
-	  \begin{tabular}{|c|c|c|c|}
-	    \hline
+	  \begin{tabular}{ cccc}
+	    %\hline
 	    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+	    \toprule
+			&   \multicolumn{3}{c}{ \textbf{Taxa de degradação ($\lambda$)} } \\
+	    %\cline{1-4}
+	    %\cmidrule{1-4}
+	    \textbf{Cenário}    &    $WS_1$	  &	  $WS_3$ 	& 	 $WS_5$ \\
+	    %\otoprule
+	    \cmidrule[1pt](r){1-1} \cmidrule[1pt](l){2-4}
+	    %\rowcolor{yellow!35}
 	    
-			&   \multicolumn{3}{|c|}{ Taxa de degradação ($\lambda$) } \\
-	    \cline{1-4}
-	    Cenário     &    $WS_1$	  &	  $WS_3$ 	& 	 $WS_5$ \\
-	    \hline
 	    %25\% & 2.5 ms \\
 	    %50\% & 4.5 ms \\
-	    Cenário 1 &	1/13000  	 & 	1/12500		&	1/11500	\\
-	    Cenário 2 &	1/12000  	 & 	1/11000		&	1/12000	\\
+	    %\rowcolor{red!25}
+	    %\midrule
+	    Cenário 1 &		\cellcolor{red!25} 1/13000  	 & 	\cellcolor{red!25} 1/12500		&	\cellcolor{red!25} 1/11500	\\
+	    %\rowcolor{red!25}
+	    Cenário 2 &		\cellcolor{red!25} 1/12000  	 & 	\cellcolor{red!25} 1/11000		&	\cellcolor{red!25} 1/12000	\\
 	    %Cenário 3 &	1/11000  	 & 	1/10500		&	1/11000	\\
 	    %Cenário 4 &	1/10000  	 & 	1/11000		&	1/10000	\\
-	    Cenário 3 &	1/10500  	 & 	1/10000		&	1/10500	\\
-	    Cenário 4 &	1/9000  	 & 	1/10000		&	1/9000	\\
-	    \hline
+	    \midrule
+	    %\rowcolor{green!25}
+	    Cenário 3 &		\cellcolor{green!25} 1/10500  	 & 	\cellcolor{green!25} 1/10000		&	\cellcolor{green!25} 1/10500	\\
+	    %\rowcolor{green!25}
+	    Cenário 4 &		\cellcolor{green!25} 1/9000  	 & 	\cellcolor{green!25} 1/10000		&	\cellcolor{green!25} 1/9000	\\
+	    %\hline
+	    %\midrule
+	    \cmidrule[1pt](r){1-1} \cmidrule[1pt](l){2-4}
+	    \textbf{Contrato}  &	\cellcolor{yellow!49} 1/10000		&	\cellcolor{yellow!49} 1/10000		&	\cellcolor{yellow!49} 1/10000 \\
+	    \bottomrule
+      
 	  \end{tabular}
 	  \label{table:scenarios_rates}
 	  \end{center}
@@ -1745,46 +1838,91 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \end{frame}
 
 
-  \begin{frame}{Resultados da detecção de violações de SLA}  
-    \only<1>{
-      \begin{figure}[H]
-	  \centering
-	  \includegraphics[width=1.0\linewidth]{figures/detection_13_125_115.png}
-	  \caption{ Monitoramento e detecção de violações de SLA para o cenário 1.  }
-	  \label{figure:detection1-13_125_115}
-      \end{figure}
-    }
-    \only<2>{
-      \begin{figure}[H]
-	    \centering
-	    \includegraphics[width=1.0\linewidth]{figures/detection_12_11_12.png}
-	    \caption{ Monitoramento e detecção de violações de SLA para o cenário 2 }
-	    \label{figure:detection2-12_11_12}
-	\end{figure}
-    }
-    \only<3>{
-      \begin{figure}[H]
-	  \centering
-	  \includegraphics[width=1.0\linewidth]{figures/detection_105_10_105.png}
-	  \caption{ Monitoramento e detecção de violações de SLA para o cenário 3 }
-	  \label{figure:detection4-105_10_105}
-      \end{figure}
-    }
-    \only<4>{
-      \begin{figure}[H]
-	  \centering
-	  \includegraphics[width=1.0\linewidth]{figures/detection_9_10_9.png}
-	  \caption{ Monitoramento e detecção de violações de SLA para o cenário 4 }
-	  \label{figure:detection5-9_10_9}
-      \end{figure}
-    }
+  \begin{frame}{Resultados da detecção de violações de SLA }  
+	\framesubtitle{Cenário \textbf{1}}    
+	\only<1>{
+	  \begin{figure}[H]
+	      \centering
+	      \includegraphics[width=0.6\linewidth]{figures/detection1-pie-13_125_115.png}
+	      \caption{ Violações de SLA para o cenário 1.  }
+	      \label{figure:detection1-13_125_115}
+	  \end{figure}
+	}
+	\only<2>{
+	  \begin{figure}[H]
+	      \centering
+	      \includegraphics[width=1.0\linewidth]{figures/detection_13_125_115.png}
+	      \caption{ Monitoramento e detecção de violações de SLA para o cenário 1.  }
+	      \label{figure:detection1-13_125_115}
+	  \end{figure}
+	}
+    \end{frame}
 
-  \end{frame}
-  
+  \begin{frame}{Resultados da detecção de violações de SLA }  
+	\framesubtitle{Cenário 2}    
+	\only<1>{
+	  \begin{figure}[H]
+	      \centering
+	    \includegraphics[width=0.6\linewidth]{figures/detection2-pie-12_11_12.png}
+	      \caption{ Violações de SLA para o cenário 2.  }
+	      \label{figure:detection1-12_11_12}
+	  \end{figure}
+	}
+	\only<2>{
+	  \begin{figure}[H]
+	      \centering
+	      \includegraphics[width=1.0\linewidth]{figures/detection_12_11_12.png}
+	      \caption{ Monitoramento e detecção de violações de SLA para o cenário 2.  }
+	      \label{figure:detection1-12_11_12}
+	  \end{figure}
+	}
+    \end{frame}
+
+
+  \begin{frame}{Resultados da detecção de violações de SLA }  
+	\framesubtitle{Cenário 3}    
+	\only<1>{
+	  \begin{figure}[H]
+	      \centering
+	  \includegraphics[width=0.5\linewidth]{figures/detection4-pie-105_10_105.png}
+	      \caption{ Violações de SLA para o cenário 3.  }
+	      \label{figure:detection1-105_10_105}
+	  \end{figure}
+	}
+	\only<2>{
+	  \begin{figure}[H]
+	      \centering
+	  \includegraphics[width=1.0\linewidth]{figures/detection_105_10_105.png}
+	      \caption{ Monitoramento e detecção de violações de SLA para o cenário 3.  }
+	      \label{figure:detection1-105_10_105}
+	  \end{figure}
+	}
+    \end{frame}
+
+  \begin{frame}{Resultados da detecção de violações de SLA }  
+	\framesubtitle{Cenário 4}    
+	\only<1>{
+	  \begin{figure}[H]
+	      \centering
+	  \includegraphics[width=0.6\linewidth]{figures/detection5-pie-9_10_9.png}
+	      \caption{ Violações de SLA para o cenário 4.  }
+	      \label{figure:detection1-13_125_115}
+	  \end{figure}
+	}
+	\only<2>{
+	  \begin{figure}[H]
+	      \centering
+	      \includegraphics[width=1.0\linewidth]{figures/detection_9_10_9.png}
+	      \caption{ Monitoramento e detecção de violações de SLA para o cenário 4.  }
+	      \label{figure:detection1-13_125_115}
+	  \end{figure}
+	}
+    \end{frame}
+    
 
 
 \section{Conclusões e Trabalhos Futuros}
-  \begin{frame}{Conclusões}
+  \begin{frame}{Conclusões (I)}
       \begin{itemize}
 	\item Foram propostas  abordagens e técnicas para definição de requisitos de QoS, estabelecimento de contratos probabilísticos
 	e monitoramento com a detecção de violações de contrato em coreografias de serviços Web.
@@ -1792,15 +1930,19 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	\item Construi-se um simulador para suportar \textit{enactment} de coreografias de serviços Web com suporte de QoS.
 	\item Na definição de requisitos, propôs-se uma metodologia usando mapeamento de coreografia para GSPN. Além disso, 
 	apresentou-se avaliações de desempenho usando o ChorSim.
+      \end{itemize}
+
+  \end{frame}
+
+  \begin{frame}{Conclusões (II)}
+      \begin{itemize}
 	\item Apresentou-se uma abordagem para estebelecer contratos probabilísticos usando ChorSim.
 	\item O monitor foi desenvolvido de modo a suportar um monitoramento \textit{online}.
 	\item Foi proposta uma técnica de dominância estocástica para detectar violações de contratos probabilísticos. 
 	  A técnica está baseada no teste de \textit{Kolmogorov-Smirnov} de apenas um lado.
 	\item Os resultados mostram que na regra para detectar violações o \textit{p-value} pode ser suficiente.
       \end{itemize}
-
   \end{frame}
-
 
   \begin{frame}{Trabalhos Futuros}
       \begin{itemize}
@@ -1883,12 +2025,16 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
 %--------Envolvimento --------------
     \begin{frame}{Envolvimento}
-      \begin{figure}[!h]
-          \centering
-          \includegraphics[width=0.6\textwidth]{./figures/CHOReOSProject.png}
-          %\caption{Desenvolvimento das Coreografias \cite{Rosenberg2007}}
-          %\label{fig:QoST_SLA_Mapping_Transformation}
-      \end{figure}	
+      	\begin{figure}[!h]
+	    \centering
+	    \includegraphics[scale=0.6]{CHOReOSProject.png}
+	\end{figure}
+
+	\begin{figure}[!h]
+	    \centering
+	    \includegraphics[width=0.3\textwidth]{hp_logo_2.png}
+	\end{figure}
+	
     \end{frame}
 
 %----------- Obrigado -------------
@@ -1900,7 +2046,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 %	\fbox{\textbf{\Large{Muito Obrigado}}}
 	\makebox[\textwidth]{
 	  \color{Blue}{
-	    \textbf{\huge{Obrigado}}	
+	    \textbf{\huge{Obrigado!}}	
 	    %\end{center}
 	   }
     }
