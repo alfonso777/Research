@@ -223,8 +223,8 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
         \begin{itemize}
            \item Serviços.
            \item SOA.
-           \item Composição de Serviços.
-           \item QoS.
+           \item \colorbox{yellow}{Composição de Serviços}.
+           \item \colorbox{yellow}{QoS}.
         \end{itemize}
 
 
@@ -244,17 +244,17 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
 
 % -----  Composição de Serviços ----------%
-    \begin{frame}{Composição de Serviços}
-        \begin{itemize}
-          \item \textbf{Serviço Composto}: Um serviço construído a partir de outros serviços. O serviço composto também é um serviço.
-          \item \textbf{Composição de Serviços}: Processo de  obter serviços compostos combinando e vinculando outros serviços.
-          \item <1->Abordagens:
-                \begin{itemize}
-                  \item <2->\colorbox{yellow}{\textbf{Orquestração de Serviços}}.
-                  \item <3->\colorbox{yellow}{\textbf{Coreografia de Serviços}}.
-                \end{itemize}
-        \end{itemize}
-    \end{frame}
+%    \begin{frame}{Composição de Serviços}
+%        \begin{itemize}
+%          \item \textbf{Serviço Composto}: Um serviço construído a partir de outros serviços. O serviço composto também é um serviço.
+%          \item \textbf{Composição de Serviços}: Processo de  obter serviços compostos combinando e vinculando outros serviços.
+%          \item <1->Abordagens:
+%                \begin{itemize}
+%                  \item <2->\colorbox{yellow}{\textbf{Orquestração de Serviços}}.
+%                  \item <3->\colorbox{yellow}{\textbf{Coreografia de Serviços}}.
+%                \end{itemize}
+%        \end{itemize}
+%    \end{frame}
 
     %----- Orquestração de Serviços -----%
     \begin{frame}{Orquestração de Serviços}
@@ -932,23 +932,37 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
    \end{frame}
 
 
-%  \begin{frame}{ Simulador de Coreografias de Serviços Web}
-%      \begin{itemize}
-%	\item <1-> WS-CDL+ (Rosario et al., 2008) e (Rosario et al., 2009)
-%	    \begin{itemize}
-%	      \item motor de execução de coreografias para WS-CDL.
-%	      \item \color{red}{É apenas um protótipo}.
-%	    \end{itemize}
-%	
-%	\item <2-> (Zheng et al., 2010):
-%	    \begin{itemize}
-%	      \item A Função Densidade de Probabilidade (PDF) da QoS. %de um serviço Web é mais adequada e melhor do que outras.
-%	      \item Demonstrações por meio de simulações.
-%	      \item \color{red}{Foco no tempo de resposta e não trata SLAs}.
-%	    \end{itemize}
- %     \end{itemize}
+  \begin{frame}{ Simulador e Infraestrutura de Coreografias }
+      \begin{itemize}
+	\item <1-> WS-CDL+ (Z. Kang et al., 2007) 
+	    \begin{itemize}
+	      \item motor de execução de coreografias para WS-CDL.
+	      \item \color{red}{É apenas um protótipo}.
+	    \end{itemize}
+	
+	\item <2-> Pi4SOA (X. Zhou et al. 2006):
+	    \begin{itemize}
+	      \item Modelagem e verficação de coreografias. 
+	      \item \color{red}{Foco na modelagem e simulações para verificar inconsistencias na especificação}.
+	    \end{itemize}
 
-  % \end{frame}
+	\item <3-> Open Knowledge (A. Barker et al. 2009):
+	    \begin{itemize}
+	      \item Rodar sistemas distribuídos em uma arquitetura P2P. 
+	      \item \color{red}{Roda coreografias de maneira limitada por conta do LCC}.%além que é do escopo acadêmico
+	      %\item \color{red}{Roda coreografias de maneira limitada por conta do LCC}.
+	    \end{itemize}
+
+	\item <3-> BPEL gold (L. Engler 2009):
+	    \begin{itemize}
+	      \item Propõe o conceito de \textit{Choreography-aware Service Bus} (CSB). 
+	      \item Propõe a BPELgold: uma linguagem específica da implementação.
+	      \item \color{red}{A implementação  é um protótipo}.%além que é do escopo acadêmico
+	      %\item \color{red}{Roda coreografias de maneira limitada por conta do LCC}.
+	    \end{itemize}  
+     \end{itemize}
+
+  \end{frame}
 
 
 
@@ -1801,13 +1815,14 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	  \begin{tabular}{ cccc}
 	    %\hline
 	    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-	    \toprule
+	    \toprule[1pt]
 			&   \multicolumn{3}{c}{ \textbf{Taxa de degradação ($\lambda$)} } \\
 	    %\cline{1-4}
 	    %\cmidrule{1-4}
 	    \textbf{Cenário}    &    $WS_1$	  &	  $WS_3$ 	& 	 $WS_5$ \\
 	    %\otoprule
-	    \cmidrule[1pt](r){1-1} \cmidrule[1pt](l){2-4}
+	    \midrule[1pt]
+	    %\cmidrule[1pt](r){1-1} \cmidrule[1pt](l){2-4}
 	    %\rowcolor{yellow!35}
 	    
 	    %25\% & 2.5 ms \\
@@ -1825,10 +1840,10 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	    %\rowcolor{green!25}
 	    Cenário 4 &		\cellcolor{green!25} 1/9000  	 & 	\cellcolor{green!25} 1/10000		&	\cellcolor{green!25} 1/9000	\\
 	    %\hline
-	    %\midrule
-	    \cmidrule[1pt](r){1-1} \cmidrule[1pt](l){2-4}
+	    \midrule[1pt]
+	    %\cmidrule[1pt](r){1-1} \cmidrule[1pt](l){2-4}
 	    \textbf{Contrato}  &	\cellcolor{yellow!49} 1/10000		&	\cellcolor{yellow!49} 1/10000		&	\cellcolor{yellow!49} 1/10000 \\
-	    \bottomrule
+	    \bottomrule[1pt]
       
 	  \end{tabular}
 	  \label{table:scenarios_rates}
@@ -1837,8 +1852,31 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
     \end{center}
   \end{frame}
 
-
-  \begin{frame}{Resultados da detecção de violações de SLA }  
+  \begin{frame}{Resultados da detecção de violações de SLA (I)} 
+  	\only<1>{
+	  \begin{figure}[H]
+	      \centering
+	      \includegraphics[width=1.0\linewidth]{figures/KS-Comparison.png}
+	      \caption{ Comparação do ECDF do contrato com o ECDF do cenário 1 e 4. O tamanho das amostras dos cenários é 100. }
+	  \end{figure}
+	}
+  	\only<2>{
+	  \begin{figure}[H]
+	      \centering
+	      \includegraphics[width=1.0\linewidth]{figures/KS-Comparison_1.png}
+	      \caption{ Comparação do ECDF do contrato com o ECDF do cenário 1}
+	  \end{figure}
+	}
+  	\only<3>{
+	  \begin{figure}[H]
+	      \centering
+	      \includegraphics[width=1.0\linewidth]{figures/KS-Comparison_2.png}
+	      \caption{ Comparação do ECDF do contrato com o ECDF do cenário 4}
+	  \end{figure}
+	}
+  \end{frame}
+ 
+  \begin{frame}{Resultados da detecção de violações de SLA (II) - \textit{Online}}  
 	\framesubtitle{Cenário \textbf{1}}    
 	\only<1>{
 	  \begin{figure}[H]
@@ -1859,7 +1897,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
     \end{frame}
 
   \begin{frame}{Resultados da detecção de violações de SLA }  
-	\framesubtitle{Cenário 2}    
+	\framesubtitle{Cenário \textbf{2}}    
 	\only<1>{
 	  \begin{figure}[H]
 	      \centering
@@ -1880,7 +1918,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
 
   \begin{frame}{Resultados da detecção de violações de SLA }  
-	\framesubtitle{Cenário 3}    
+	\framesubtitle{Cenário \textbf{3}}    
 	\only<1>{
 	  \begin{figure}[H]
 	      \centering
@@ -1900,7 +1938,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
     \end{frame}
 
   \begin{frame}{Resultados da detecção de violações de SLA }  
-	\framesubtitle{Cenário 4}    
+	\framesubtitle{Cenário \textbf{4}}    
 	\only<1>{
 	  \begin{figure}[H]
 	      \centering

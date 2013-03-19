@@ -1,0 +1,305 @@
+==Falta:
+Traduzir mapeamento chor task to gspn module  ok
+Traduzir configuration gspn resultante    ok
+melhorar especificacao do cenário com chorsim (usar grafo, etc)    falta
+adicionar exemplo de KS na deteccao    ok
+ressaltar o contrato e melhorar a apresentacao das degradacoes na deteccao  ok
+adicionar os grafico pie das deteccoes    ok
+Na taxonomia mencionar tempo de reposta tb pelo menos   ok
+Hacer el talking da apresentacao
+
+=== Slides Description ==
+Cumprimentar à banca
+Roteiro
+= Problema: esta seção tem a fnalidade de apresentar os conceitos básico e contextualizar o problema
+
+4: Serviço Web
+	Um serviço Web é uma aplicação fornecida sobre uma rede, mas que permite a interação de maquina a maquina de uma maneira
+	interoperável. Existem varios tipos como: baseado em SOAP, XML-rpc, Restful
+	
+5: SOA
+	Estilo de arquitetura cujo principio fundamental prega que as funcionalidades de um sistema sejam fornecidas por meio de
+	serviços. Tem a vantagem de baixo acoplamento, interoperável, integração.
+6: Triângulo SOA
+	SOA utililiza principalmente a tecnologia de serviços Web como base para sua implementação, //desta maneira o funcionamento básico é assim:
+	Assim, a arquitetura básica possui
+	Tres entidades:
+		- Provedor: quem fornece os serviços por meio de descrições de funcionalidades,  um mesmo serviço pode ser provisto de formas diferentes
+		  Descreve e publica o serviço	
+  		- Cliente: Localiza serviços ou provedores de serviços a través do registro de serviços.
+		- Registro: Mantém um registro sobre os serviços e sua localização.
+	Os padrões utilizados em WS são WSDL, SOAP, UDDI básicamente, base da pilha de protocolos
+	//mudanças para p2p, descoberta direta, etc
+7: SOC
+	Paradigma de computação que utiliza os serviços Web como blocos de construção básicos para desenvolvimento
+	rápido, de baixo custo, e de baixo acoplamento de sistemas distribuídos heterogêneos.
+	É a evolução do paradigma baseados em componentes, objetos distribuidos, etc. Traz consigo um conjunto de metodologias e desafios de pesqusia 
+	para sua adopção e concretização.
+
+	A maior innovação é a mudança do paradigma orientado a objetos para orientado a serviços.
+
+	Elementos Chave=: Serviços como bloco básicos, SOA como arquitetura, Composição de Serviços para o reúso, etc
+
+8: Composição de Serviços
+...
+
+Importante porque um único serviço não é suficiente para cumprir diversos requerimentos e executar tarefas complexas.
+Importante para promover o reuso de serviços (já existentes) pelo qual acelera o desenvolvimento, 
+//e como  forma de fornecer serviços para satisfacer necessidades específicas.
+Tópico com varios desafios de pesquisa , por exemplo, seleção, descoberta, optimização, automatização, adaptação, etc.
+
+Duas abordagens principais: _ ,  _
+
+9: Orquestração de serviços
+   É uma maneira de implementar processos de negócio onde uma entidade unica ( orquestrador ) que geralmente é um serviço coordena a execução 
+de outros serviços Web segundo o fluxo de processo correspondente.
+   BPEL, BPMN
+   Motor BPEL ou outro	
+   Foco e linguagens de execução de processos	
+
+10: Coreografia de serviços Web
+    Pelo contrário em coroegrafias de serviços não existe um ponto de controle, os serviços idealmente interagem de maneira p2p.
+    A descri{ao e colaboração é realizada do ponto de vista global de todos os seus participantes.
+
+10: Coreografia de serviços Web
+Mas na prática, são úteis para implementar processos de negócios inter-organizacionais, nos quais
+cada organização é mapeada para participantes, cada um deles possue uma implementação a través de orquestrações de serviços que implementam os processo de negócios respectivos.
+ Padrões:WSCDL, BPEL4Chor, Let's Dance,  BPMN2 (padrão).
+ Não é executável, Utiliza-se Enactment de coreografias em lugar de execução (exceto LCC do OpenKnowledge), pelo qual 
+ precisa ser mapeado para orquestrações que o realizem.  
+ 
+
+11: Problema:
+
+//Contratos probabilisticos.
+
+  Dada uma coreografia de serviços, por exemplo, conformada pelos seguintes participantes. 
+- Na Interação entre o participante 1(cliente) e o participante 2 (provedor de um serviço de compra de passagem de avião), 
+- Uma forma básica para garantir um atributo de QoS como o tempo de reposta, poderia ser dada pela condição tempo de resposta menor que 100 ms. Porém, 
+  por conta da heterogeneidade e diferenças de infraestruturas de rede e aplicações, entre o cliente e fornecedor, essa condição pode ser insuficiente, por exemplo, o tempo de resposta 
+  poderia se tornar 1s por causa da queda da rede do provedor, mas que é o suficiente para violar as garantias, isto do lado do provedor.
+  //O cliente também pode precisar utilizar o serviço a cada 2 segundos.  
+  Para esses casos seria melhor especificar condições de QoS de uma maneira mais flexível, por exemplo de maneira probabilistica.
+
+	Então, o problema a ser resolvido nesta pesquisa de mestrado é como garantir o cumprimento de Garantias de QoS
+        em coreografias de serviço Web?, para tanto:
+	Precisa-se uma maneira de especificar essas garantias, por exemplo com SLAs.
+	Precisa-se também uma maneira de saber o estado da QoS, para tanto, seria necessário um monitoramento, que também 
+	realize uma verificação para detectar violações das garantias de QoS. 
+	Tudo isto no contexto das coreografias de serviços Web.
+
+	
+== Objetivos
+Apresentar a finalidade deste trabalho
+13: Objetivos
+Por conta do problema apresentado, o objetivo principal é ...
+
+
+14: Justificativa
+Coreografia é importante por ser uma abordagem considerada para a Internet do Futuro por conta da
+característica de ULS (Ultra Large Scale).
+	É mais indicada para alavancar integrações de sistemas de maneira escalável em larga escala que outras abordagens como as orquestrações.
+	QoS: Caracteristica fundamental em composição de serviços e no SOC, sobre tudo como fator chave na adaptação.
+	Monitoramento: Para possuir informação precisa da QoS que habilite a composição com conciencia de QoS e otimização.
+	É a base para a reação, sobre tudo através da detecão de violações de garantias de QoS.
+	Contratos probabilisticos ... são importantes porque são uma maneira de definir garantias de QoS de maneira flexível.
+		,forma de definir garantias de QoS uma maneira mais real como será descrito mais diante
+
+15: Conceitos Avanzados
+
+
+16: Problema a ser resolvido
+Aqui estão envolvidos vários conceitos avanzados para entender melhor a pesquisa, tais como: QoS, SLA, SLAs probabilísticos,
+e o Monitoramento
+
+17: Qualidade de Serviço
+Por um lado , Um serviço, se refere âs operações que o sistema executa, por exemplo, compra ou reserva de passagens. 
+Enquanto que a qualidade de serviço se refere aos atributos não funcionais associados a um serviço,
+por exemplo quao rápida é a resposta de um serviço, o custo, quao confiável, etc.
+
+É importante em composição de serviços, dando lugar a composição de serviços com consciencia de QoS 
+ (sendo critério principal para a seleção, descoberta, etc ...).
+
+
+18: Taxonomia
+- Os atributos de QoS podem ser classificados de várias maneiras, por exemplo na figura ... se mostra uma taxonomia
+  onde são divididos em Desempenho, Disponibilidade, Segurança e Custo. Os atributos de QoS podem ser também deterministicos, 
+  quando seu valor é definido em tempo de projeto, como o custo preço segurança, ou não determinísticos, em que os valores são conhecidos em tempo de execução, geralemnte os de desempenho sçao desta caracteristica, que são o foco da pesquisa, por exemplo, o atraso de rede e a largura de banda.
+
+- É importante que a QoS seja monitorada e avaliada em diversos níveis (do mais baixo(serviços e infraestrutura) até o nível da coreografia inteira
+
+
+19: 
+A estimativa de atributos de QoS na camada mais baixa se baseia no calculo de instantes de tempo, que estão envolvidos na
+invocação de um serviço Web. Tal como é mostrado na figura ... e onde estão envolvidos o Consumidor, a Rede e o Provedor.
+Desta maneira são calculados atributos, tais como tempo de processamento, wrapping, latencia, tempo de resposta, e neste exemplo
+mostra se o tempo de ida e volta que é o tempo total que envolve a requisição do serviço até a recepção da rpta.
+
+Também, esses instantes de tempo são calculados ou estimados por um monitor e também são a base de eventos de mais baixo nível,
+por exemplo se recebeu a requisição de uma operação, o cliente recebeu a resposta do provedor, etc.
+
+Exemplo: 
+
+20: SLA
+
+um acordo formal entres duas partes é chamado de contrato
+e um SLA é um contrato formal para especificar garantias de QoS entre duas partes.
+Importante para uma diferenciação de serviços (vantagem competitiva).
+Existem vários padrões, mas principalmente está composto de :
+
+punições
+datas
+horarios
+etc
+
+22: Agregação de QoS
+É a maneira de obter os valores de QoS representativos da composição, por meio dos valores dos atributos de
+QoS dos serviços básicos componentes. 
+
+Não existe uma solução geral, porque depende da caracteristica do atributo de QoS e o modelo de composição utilizado.
+...
+
+
+24: Contratos Rígidos
+- A maioria do contratos são especificados de maneira absoluta, por exemplo:  ...
+ o que é chamado de contrato rígido.
+ porque tem que ser cumprido para todos os casos (100% dos casos).
+
+- Não refletem o comportamento dinâmico no tempo de vários atributos de QoS dos serviços Web, especialmente os de desempenho.
+
+
+
+25: Gráfico 
+-
+- Os contratos rígidos definem garantias de QoS pensando no pior caso, utilizando recursos adicionais para suportálo, Daí que o provedor estaria desperdiciando recursos, que poderiam ser utilizados para prover ou melhorar outros serviços.
+
+
+26: Contratos Não Rígidos
+-
+- Uma solução para definir condições que representem melhor o comportamento de um atributo de QoS no tempo
+é utilizando contratos probabilísticos. Nesse caso, as condições de QoS são distribuições de probabilidade dos atributos de QoS.
+Que na prática são quantis que representam a distribuição.
+- As restrições podem ser compostas, as abordagens existentes estão focadas em orquestrações e tempo de resposta,
+  não havendo abordagens para coreografias.
+
+
+27: Monitoramento
+O monitoramento é amplamente usado em várias disciplinas de sistemas distrubuídos, mas especialmente em SOC.
+É o processo de observar, coletar(medir ou estimar), informação acerca da execução de uma aplicação. Más neste contexto, 
+o seu alvo é a informação de QoS dos serviços Web.
+
+Em uma composição de serviços e nesta pesquisa suas responsabilidades são:
+-
+- Não intrusivo, quer dizer que não precisa conhecer a implementação ou comportamento interno de um serviço ou partipante,
+o comportamento observável deveria ser suficiente.
+
+28: 
+
+Intrusivo: O monitoramento é implementado no servidor, sendo mais preciso para medir alguns parâmetros de QoS como o tempo de execução
+  de um serviço. Não muito indicado para um monitoramento da coregrafia.
+
+Não Intrusivo:
+ Intercepção:  Onde interceptam, processam e direcionam as mensagens trocadas entre um provedor e um consumidor ou cliente.
+	Atúa como um proxy tratando todas as requisições e medindo os atributos de QoS, o que pode se tornar-um gargalo e o que o faz 
+	não escalável. Nesse sentido, um monitor utilizando somente está técnica não seria muito útil para coreografias.
+
+ Probe Request: Envia requisições de teste ao provedor em tempos regulares, inclusive pode se fazer passar pelo cliente.
+  É flexível com relação a sua localização, pode estar no lado  cliente, no provedor ou no meio (ou mais ideal para coreografias). 
+
+ Sniffing: Utiliza técnicas de análise de pacotes de rede. Principalemente utilizado para estimar atributos de QoS de rede.
+
+29: Camadas do Monitoramento
+O monitoramento em uma aplicação baseada em serviços possue várias camadas:
+
+
+30: QoS multi-camada 
+O monitoramento em composição de serviços, e especificamente de coreografias, também possue várias camadas.
+//Então, o monitoramento baseado em serviços
+O monitor é implementado na camada de execução, junto com o motor de composição (bpel), 
+o monitoramento estima valores de qoS dos serviços básicos, na seguinte camada calcula QoS dos serviços compostos
+por meio de algoritmos de agregação de QoS, e no caso de orquestrações definem-se politicas de QoS, que são asserções.
+Finalmente na camada de coroegrafia se definem os SLA baseados nos QoS das camadas de baixo, e que o monitor de coroegrafias 
+ tem que cumprir.
+
+
+=== Trabalhos relacionados 
+Dado que se deu a conhecer o problema e os conceitos avanzados para este pesquisa, vou passar a revisar rápidamente os trabalahos relacionados.
+...
+== Monitoramento de coreografias
+- Xianpeng 2007, Pandey no 2008 e no 2010
+- Wetzstein no 2010
+  Monitoramento de processo inter-organizacionais
+- Ui Haq no 2010
+  Agregação Probabilística
+  Framework baseado em regras.
+- Xia no 2009
+  GSPN
+- Rosenberg 2009
+  QoS multicamada, com SLA na camada de coroegrafias.
+
+
+== Monitoramento probabilístico
+ Rosario no 2008 e no 2009
+
+ Zheng no 2010
+ Função Densidade de Probabilidade (PDF) como uma melhor forma de reprentar o comporatemento dinamico de QoS e é mais precisa 
+que outras distruibuições como o T location-scale ou as normais.
+foco em tempo de rpta e não trata SLAs
+
+=== Contribuições
+Agora Dado o problema, os conceitos e os trabalahso relacionados, as contribuições desta pesquisa são as seguintes. 
+- Propor uma arquitetura para detectar violações de SLAs
+- Definir ou estabelecer os SLA com garantias expresadas como distruibuições de probabilidade
+  -- Precisa-se Agregação de QoS probabilistica.
+  -- Simulações pelo Método de monte-carlo. 
+- Monitoramento Nao Intrusivo
+  -- Medição de métricas de QoS e agregação probabilística.
+  -- Verificar o cumprimento das garantias.
+- Atributos de QoS:
+
+=== Proposta
+A seguir,  a proposta para atignir os objetivos e concretizar as contribuições.
+
+37 : Resumo da Proposta
+ - Estabelecimento
+ - Monitor não intrusivo baseado em eventos
+ - Com os dois ponto anteriores é possível realizar a detecção de violações de SLA
+ - Atributos de QoS:
+ 
+38: Arquitetura
+
+39: Estabelecimento de SLA probabilísticos
+   um atributo de QoS é caracterizado como uma variavel aleatória
+   Fs é a distruiciçao de probailidade de um serviço S
+  
+   O procedimento é da seguinte maneira:
+   - Condições Iniciais:
+		
+   - Simulação
+	
+   - com Fq
+   - Obter os quantis de Fq, os quais será a restrição de QoS que estará no SLA.	
+
+40: Monitoramento Probabilistico
+   
+
+(1) distribuição empirica
+(2) condição de violação
+(3) zona de tolerancia
+
+41: Implementação
+
+42: Estudo de Caso:
+
+43: Desenvolvimento de coroegrafias
+   WSCDl- WSLA --> BPEL e WSDL, e politicas de QoS
+
+45: cronograma:
+
+46: Envolvimento 
+====================
+Message Correlation is
+a means of associating a message within a specific conversational context.
+
+Message correlation may be realized
+by including message identifiers to enable messages to be identified.
