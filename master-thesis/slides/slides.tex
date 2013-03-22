@@ -68,15 +68,15 @@
 % -------------------------------------------------------------- %
 
 
+
 \title[Defesa de Mestrado]
-	%{Monitoramento de coreografias de serviços Web baseado em restrições probabilísticas de QoS  usando SLA}
     {Detecção de Violações de SLA em Coreografias de Serviços Web}
+
 \author[V. A. Phocco-Diaz]
 	{
 		{\bf Candidato} \\
 		Victoriano Alfonso Phocco Diaz \\%\footnote{O aluno recebeu apoio financeiro do CNPq, processo 133147/2009-6} \\ [1ex]
 		{\bf Orientador} \\  Daniel Macêdo Batista 	\\
-		%%{\bf Co-orientador} \\  Marco Dimas Gubitoso 	
 	}
 \institute[IME-USP]
 	{Instituto de Matemática e Estatística \\
@@ -84,9 +84,15 @@
 	 Universidade de São Paulo  \\  [1ex]
 	 %\texttt{alfonso7@ime.usp.br}
 	}
+
 \date[Março 2013]{Março de 2013}
 %\date[]{}
 
+% logo of my university
+\titlegraphic{
+   \includegraphics[width=1.8cm, height=2.2cm]{usp_logo.png}\hspace*{4.75cm}~%
+   \includegraphics[width=1.3cm, height=1.8cm]{logoIME_Texto.png}
+}
 
 
 %%% Slides ---------------------------------
@@ -96,7 +102,7 @@
 
 % --- the titlepage frame ------------------------------------------%
 \begin{frame}[plain]
-\titlepage
+  \titlepage
 \end{frame}
 
 \section*{Roteiro}
@@ -130,17 +136,17 @@
 \section{Conceitos Básicos}
 
 % -----  Serviços Web ----------%
-    \begin{frame}{Serviço Web}
-    	Definição pela W3C [W3C,2004]: %\cite{W3C2004}:
-    	\begin{block}{Serviço Web}\vspace{-.3\baselineskip}
-        	 \begin{quote}
-                 A Web service is a software system designed to support interoperable machine-to-machine interaction over a network. It has an
- interface described in a machine-processable format (specifically WSDL). Other systems interact with the Web service in a manner
-prescribed by its description using SOAP messages, typically conveyed using HTTP with an XML serialization in conjunction with other Web-related standards.
-        	 \end{quote}
-    	\end{block}
+%    \begin{frame}{Serviço Web}
+%    	Definição pela W3C [W3C,2004]: %\cite{W3C2004}:
+%    	\begin{block}{Serviço Web}\vspace{-.3\baselineskip}
+%        	 \begin{quote}
+%                 A Web service is a software system designed to support interoperable machine-to-machine interaction over a network. It has an
+% interface described in a machine-processable format (specifically WSDL). Other systems interact with the Web service in a manner
+%prescribed by its description using SOAP messages, typically conveyed using HTTP with an XML serialization in conjunction with other Web-related standards.
+%        	 \end{quote}
+%    	\end{block}
 	%%Tecnologias
-     \tiny{
+%     \tiny{
         %\begin{thebibliography}{1}
         %  \beamertemplatearticlebibitems
           %\bibitem[W3C,2004]{W3C2004}
@@ -149,8 +155,8 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
             %\newblock {\em Bootstrapping Performance and Dependability Attributes of Web Services}.
             %\newblock IEEE International Conference on Web Services (ICWS'06). 2006:205-212.
        %\end{thebibliography}
-      }
-    \end{frame}
+%      }
+%    \end{frame}
 
 % -----  SOA ----------%
     \begin{frame}{SOA (1/2)}
@@ -159,16 +165,6 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	    aplicações devem ser disponibilizadas na forma de serviços [SOA, 2006]. %\cite{SOA2006}.
             \end{block}
 
-            \tiny{
-                %\begin{thebibliography}{0}
-                 %         \beamertemplatearticlebibitems
-                 % \bibitem[SOA,2006]{SOA2006}
-                  %  SOA Working Group of The Open Group. {\em Definition of SOA}.
-                  %  2006. \url{http://www.opengroup.org/projects/soa/}.Último acesso em 01-10-2011.
-                    %\newblock {\em Bootstrapping Performance and Dependability Attributes of Web Services}.
-                    %\newblock IEEE International Conference on Web Services (ICWS'06). 2006:205-212.
-               %\end{thebibliography}
-            }
     \end{frame}
 
     \begin{frame}{SOA (2/2)}
@@ -221,24 +217,16 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
         Elementos Chave:
 
         \begin{itemize}
-           \item Serviços.
-           \item SOA.
-           \item \colorbox{yellow}{Composição de Serviços}.
-           \item \colorbox{yellow}{QoS}.
+           \item <1->Serviços.
+           \item <1->SOA.
+           \item <2->\colorbox{yellow}{Composição de Serviços}.
+                \begin{itemize}
+                  \item <3->\colorbox{yellow}{\textbf{Orquestração de Serviços}}.
+                  \item <4->\colorbox{yellow}{\textbf{Coreografia de Serviços}}.
+                \end{itemize}
+           %\item <5->\colorbox{yellow}{QoS}.
         \end{itemize}
 
-
-        \tiny{
-            %\begin{thebibliography}{3}
-             %         \beamertemplatearticlebibitems
-             % \bibitem[Papazoglou et al., 2006]{Papazoglou2007}
-             %   Papazoglou MP, Traverso P, Dustdar S, Leymann F. {\em Service-Oriented Computing: a Research Roadmap}.
-             %   International Journal of Cooperative Information Systems. 2008;17(02):223.
-                %\newblock {\em Bootstrapping Performance and Dependability Attributes of Web Services}.
-                %\newblock IEEE International Conference on Web Services (ICWS'06). 2006:205-212.
-           %\end{thebibliography}
-        }
-        	
       %Adicionar padrões
     \end{frame}
 
@@ -383,33 +371,42 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
     %\end{frame}
 
 
-
-
 % ------------------------------------------------------------------%
 % ------------------------------------------------------------------%
 % -------------------- Objetivos------------------------------------%
 \section{Problema}
+
+    %----- Coreografia de Serviços -----%
+    \begin{frame}{Problema a ser resolvido}
+      \begin{figure}[!h]
+	  \centering
+	  \includegraphics[width=0.8\textwidth]{ChoreographySLAs.png}
+	  \caption{Problema a ser resolvido}
+      \end{figure}	
+    \end{frame}
 
     \begin{frame}{Objetivos}
         \begin{block}{Objetivo principal}\vspace{-.3\baselineskip}
         	\begin{itemize}
                   %\item Propor uma técnica de monitoramento ``não intrusivo'' de coreografias de serviços Web usando SLAs.
         		  %\item Propor uma técnica para definir SLAs baseado em restrições probabilísticas de QoS.
-                  \item Detectar violações de SLAs em coreografias de serviços web.
+                  \item Detectar violações de contratos probabilísticas de QoS em coreografias de serviços Web
             \end{itemize}
         \end{block}
         \begin{block}{Objetivos secundários}\vspace{-.3\baselineskip}
         	\begin{itemize}
         	      %\item Realizar a implementação do monitoramento ``não intrusivo''.
-		  \item	Propor uma técnica para definir SLAs baseada em restrições probabilísticas de QoS.
-                  \item Propor e implementar uma técnica de monitoramento ``não intrusivo'' de coreografias
-                    de serviços Web usando SLAs.
+		  \item	Propor mecanismos para definir requisitos de QoS.
+                  \item Propor uma técnica de monitoramento de coreografias de serviços Web com restrições de QoS
+definidas probabilisticamente.
                   %\item Realizar avaliações da técnica de monitoramento.
-                  \item Avaliar o desempenho das propostas. %técnica de monitoramento.
+		  \item Desenvolver um simulador de coreografias de serviços Web com suporte à definição de atributos de QoS
+                  \item Realizar avaliações do mecanismo de monitoramento de coreografias. %técnica de monitoramento.
         	\end{itemize}
         \end{block}
     \end{frame}
 
+\begin{comment}
     \begin{frame}{Justificativa}
     	\begin{itemize}
           \item <1->Importância da \textbf{coreografia} de serviços Web.
@@ -422,15 +419,15 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
           \item <4->\textbf{Contratos probabilísticos} refletem melhor o comportamento dinâmico dos \textbf{atributos de QoS} dos serviços Web.
     	\end{itemize}
     \end{frame}
-
+\end{comment}
     %----- Coreografia de Serviços -----%
-    \begin{frame}{Problema a ser resolvido}
-      \begin{figure}[!h]
-	  \centering
-	  \includegraphics[width=0.8\textwidth]{ChoreographySLAs.png}
-	  \caption{Problema a ser resolvido}
-      \end{figure}	
-    \end{frame}
+%    \begin{frame}{Problema a ser resolvido}
+%      \begin{figure}[!h]
+%	  \centering
+%	  \includegraphics[width=0.8\textwidth]{ChoreographySLAs.png}
+%	  \caption{Problema a ser resolvido}
+%      \end{figure}	
+%    \end{frame}
 
 
 
@@ -440,15 +437,6 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 % ------------- Monitoramento baseado em QoS -----------------------%
 % ------------------------------------------------------------------%
 \section{QoS e Monitoramento em Coreografias de Serviços Web }
-
-    %----- Coreografia de Serviços -----%
-    \begin{frame}{Problema a ser resolvido}
-      \begin{figure}[!h]
-	  \centering
-	  \includegraphics[width=0.8\textwidth]{ChoreographySLAs.png}
-	  \caption{Problema a ser resolvido}
-      \end{figure}	
-    \end{frame}
 
 %\subsection{ QoS e SLA}
 %----- Qualidade de Serviços -----
@@ -593,6 +581,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
     \end{frame}
 
   %%SLA Example
+\begin{comment}
    \begin{frame}{ Exemplo de SLA}
      \only<1>{	
           \begin{figure}[!h]
@@ -622,7 +611,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
 
    \end{frame}
-
+\end{comment}
 
   %%QoS Agregation
    \begin{frame}{Agregação de QoS}
@@ -636,13 +625,14 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
             \item Somas, Máximos, Mínimos, Médias, etc.
             \item Analíticas: Redes de Petri, Redes de Fila, etc.
             \item Heurísticas: Algoritmos Genéticos.
-            \item \textbf{Simulação}.
+            \item \colorbox{yellow}{\textbf{Simulação}}.
           \end{itemize}
 
         \end{itemize}
     \end{frame}
 
 %%QoS Aggregation example
+\begin{comment}
     \begin{frame}{Exemplo de Agregação de QoS}
       \begin{figure}[!h]
           \centering
@@ -651,7 +641,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
           %\label{fig:QoST_SLA_Mapping_Transformation}
       \end{figure}	
     \end{frame}
-
+\end{comment}
 
 % ------------------------------------------------------------------%
 % ---------------- SLAs probabilísticos ----------------------------%
@@ -759,28 +749,9 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
     \end{frame}
 
 %----- Abordagens de Monitoramento  -----------------------------------
+
     \begin{frame}{Abordagens de Monitoramento }
-	\only<1>{	
-	  Monitoramento Intrusivo: \textbf{Instrumentação}
-          \begin{figure}[!h]
-              \centering
-              \includegraphics[width=0.8\textwidth]{MonitoringApproaches_1.png}
-              \caption{Monitoramento por Instrumentação}
-              %\label{fig:QoST_SLA_Mapping_Transformation}
-          \end{figure}	
-        }
-
-        \only<2>{	
-	  Monitoramento Não Intrusivo: \textbf{Interceptação}
-          \begin{figure}[!h]
-              \centering
-              \includegraphics[width=0.8\textwidth]{MonitoringApproaches_2.png}
-              \caption{Monitoramento por Interceptação}
-              %\label{fig:QoST_SLA_Mapping_Transformation}
-          \end{figure}	
-        }
-
-        \only<3>{	
+  %      \only<1>{	
 	  Monitoramento Não Intrusivo: \textbf{\textit{Probe-Request}}
           \begin{figure}[!h]
               \centering
@@ -788,57 +759,32 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
               \caption{Monitoramento mediante Probe-Request}
               %\label{fig:QoST_SLA_Mapping_Transformation}
           \end{figure}	
-        }
-
-        \only<4>{	
-	  Monitoramento Não Intrusivo: \textbf{\textit{Sniffing}}
-          \begin{figure}[!h]
-              \centering
-              \includegraphics[width=0.8\textwidth]{MonitoringApproaches_4.png}
-              \caption{Monitoramento mediante sniffing}
-              %\label{fig:QoST_SLA_Mapping_Transformation}
-          \end{figure}	
-        }
-
+  %      }
     \end{frame}
 
 
-  % ---- Monitoramento e Adaptação %
-%  \begin{frame} {Monitoramento e Adaptação}
-%      \only<1>{	
-%          \begin{figure}[!h]
-%              \centering
-%              \includegraphics[width=0.7\textwidth]{ConceptualingMonitoringAdaptation_1.png}
-%              \caption{Monitoramento e Adaptação}
-              %\label{fig:QoST_SLA_Mapping_Transformation}
-%          \end{figure}	
-%        }
-%  \end{frame}
-
+\begin{comment}
   % ---- Monitoramento e Adaptação %
   \begin{frame} {Camadas no Monitoramento }
       \only<1>{	
           \begin{figure}[!h]
               \centering
               \includegraphics[width=0.8\textwidth]{MonitoringLayers_1.png}
-              \caption{Camadas do Monitoramento}
-              %\label{fig:QoST_SLA_Mapping_Transformation}
+              \caption{Camadas de Monitoramento}
           \end{figure}	
         }
       \only<2>{	
           \begin{figure}[!h]
               \centering
               \includegraphics[width=0.85\textwidth]{MonitoringLayers_2.png}
-              \caption{Camadas do Monitoramento}
-              %\label{fig:QoST_SLA_Mapping_Transformation}
-          \end{figure}	
+              \caption{Camadas de Monitoramento}
+         \end{figure}	
         }
       \only<3>{	
           \begin{figure}[!h]
               \centering
               \includegraphics[width=0.8\textwidth]{MonitoringLayers_3.png}
-              \caption{Camadas do Monitoramento}
-              %\label{fig:QoST_SLA_Mapping_Transformation}
+              \caption{Camadas de Monitoramento}
           \end{figure}	
         }
       \only<4>{	
@@ -846,7 +792,6 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
               \centering
               \includegraphics[width=0.8\textwidth]{MonitoringLayers_4.png}
               \caption{Camadas do Monitoramento}
-              %\label{fig:QoST_SLA_Mapping_Transformation}
           \end{figure}	
         }
   \end{frame}
@@ -857,195 +802,26 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
           \begin{figure}[!h]
               \centering
               \includegraphics[width=0.65\textwidth]{./figures/Choreography-MultiTier.png}
-              \caption{Integração de QoS e SLA multi-camada em coreografias } %(baseado em [[Rosenberg et al., 2009]])}
+              \caption{Integração de QoS e SLA multi-camada em coreografias (baseado em [[Rosenberg et al., 2009]]) } %(baseado em [[Rosenberg et al., 2009]])}
               %\label{fig:QoST_SLA_Mapping_Transformation}
           \end{figure}	
   \end{frame}
-
+\end{comment}
 
 
 % ------------------------------------------------------------------%
 % ------------- Trabalhos Relacionados -----------------------%
 % ------------------------------------------------------------------%
-\section{Trabalhos Relacionados}
-%QoS
-%Monitoramento
-  \begin{frame}{ Monitoramento de Coreografias de Serviços Web Baseado em QoS }
-
-      \begin{itemize}
-	\item <1-> \small{ (Xiangpeng et al.,2007), (Pandey and Chaudhary, 2008) e (Pandey, 2010)} :
-	 \begin{itemize}
-	    \item Métodos formais para especificar QoS em coreografias.
-	    \item \color{red} {Focado somente na linguagem}.
-	 \end{itemize}
-	\item <2-> \small{ (Wetzstein et al., 2010)}:
-	    \begin{itemize}
-	      \item Monitoramento de processos inter-organizacionais.
-	      \item \color{red} {Foco em KPIs e não em QoS}.
-	    \end{itemize}
-      %\end{itemize}
-  %\end{frame}
-
-
-  %\begin{frame}{ Monitoramento de Coreografias de Serviços Web Baseado em QoS (2/2)}
-   %   \begin{itemize}
-	\item <3-> \small{ (Ul Haq et al., 2010) }:
-	    \begin{itemize}
-	      \item Agregações hierárquicas de SLAs em coreografias.
-	      \item Framework baseado em regras.
-	      \item \color{red}{Foco em processos de negócio e KPIs}.
-	    \end{itemize}
-	\item <4-> \small{ (Xia et al., 2009) }:
-	    \begin{itemize}
-	      \item Predição analítica de QoS em coreografias em \color{red}{WSCI}. %\footnote{Redes de Petri Generalizadas}.
-	      \item \color{red}{Foco na linguagem}.
-	      %\item \color{Teórico e não trata SLAs}.
-	    \end{itemize}
-	\item <5-> \small{ (Rosenberg, 2009) }:
-	    \begin{itemize}
-	      \item Modelo multi-camada  de QoS para coreografias de serviços Web.
-	      \item \color{red}{Sem uma técnica para estabelecer SLAs}.
-          \item \color{red}{Foco em restrições rígidas}.
-	    \end{itemize}
-      \end{itemize}
-
-   \end{frame}
-
-  \begin{frame}{ Monitoramento de Serviços Usando SLAs Probabilísticos}
-      \begin{itemize}
-	\item <1-> (Rosario et al., 2008) e (Rosario et al., 2009)
-	    \begin{itemize}
-	      \item Método de Monte-Carlo para definir SLAs em orquestrações.
-	      \item \color{red}{Foco no tempo de resposta}.
-	      \item Monitoramento de SLAs probabilísticos em \color{red}{orquestrações} de serviços usando \color{red}{Orc}.
-	      %\item Não está baseada em eventos e não possui uma implementação com motores BPEL.
-	    \end{itemize}
-	
-	\item <2-> (Zheng et al., 2010):
-	    \begin{itemize}
-	      \item A Função Densidade de Probabilidade (PDF) da QoS. %de um serviço Web é mais adequada e melhor do que outras.
-	      \item Demonstrações por meio de simulações.
-	      \item \color{red}{Foco no tempo de resposta e não trata SLAs}.
-	    \end{itemize}
-      \end{itemize}
-
-   \end{frame}
-
-
-  \begin{frame}{ Simulador e Infraestrutura de Coreografias }
-      \begin{itemize}
-	\item <1-> WS-CDL+ (Z. Kang et al., 2007) 
-	    \begin{itemize}
-	      \item motor de execução de coreografias para WS-CDL.
-	      \item \color{red}{É apenas um protótipo}.
-	    \end{itemize}
-	
-	\item <2-> Pi4SOA (X. Zhou et al. 2006):
-	    \begin{itemize}
-	      \item Modelagem e verficação de coreografias. 
-	      \item \color{red}{Foco na modelagem e simulações para verificar inconsistencias na especificação}.
-	    \end{itemize}
-
-	\item <3-> Open Knowledge (A. Barker et al. 2009):
-	    \begin{itemize}
-	      \item Rodar sistemas distribuídos em uma arquitetura P2P. 
-	      \item \color{red}{Roda coreografias de maneira limitada por conta do LCC}.%além que é do escopo acadêmico
-	      %\item \color{red}{Roda coreografias de maneira limitada por conta do LCC}.
-	    \end{itemize}
-
-	\item <3-> BPEL gold (L. Engler 2009):
-	    \begin{itemize}
-	      \item Propõe o conceito de \textit{Choreography-aware Service Bus} (CSB). 
-	      \item Propõe a BPELgold: uma linguagem específica da implementação.
-	      \item \color{red}{A implementação  é um protótipo}.%além que é do escopo acadêmico
-	      %\item \color{red}{Roda coreografias de maneira limitada por conta do LCC}.
-	    \end{itemize}  
-     \end{itemize}
-
-  \end{frame}
-
-
+%\section{Trabalhos Relacionados}
 
 
 % ------------------------------------------------------------------%
 % -------------        PROPOSTA    ---------------------------------%
 % ------------------------------------------------------------------%
-\section{Proposta}
-%\section{Metodologia}
-
+\section{Mecanismos}
 \subsection{Visão Geral}
-%---------- Proposta ----------------
-   \begin{frame}{Contribuições}
 
-      \begin{itemize}
-	  \item <1->  Desenvolvimento de um simulador de coreografias com suporte de QoS.
-          \item <2-> Mecanismos para definir requisitos de QoS em coreografias de serviços Web. Para tanto utilizaram-se duas abordagens:
-             \begin{itemize}
-                  \item \textbf{Analítica}:  Usando Redes de Petri Estocásticas Generalizadas (GSPN) como representação intermediária
-		    da especificação de uma coreografia.
-                  \item \textbf{Simulações}: Por meio de avaliações de desempenho e modelos de falha usando o simulador de coreografias.
-                  %\item Parâmetros envolvidos: número de quantis, qual distribuição de probabilidade, tamanho da zona de tolerância, entre outros.
-            \end{itemize}
-
-         \item <3-> Definição de restrições  probabilísticas de QoS entre os serviços de uma  coreografia de serviços Web.
-	 \item <4-> Proposta de um mecanismo de monitoramento de coreografias para detectar violações de SLA com restrições de QoS probabilísticas.
-	 \item <5->\textbf{Atributos de QoS}: tempo de resposta, tempo de processamento, largura de banda e latência de rede.
-         %\item Atributos de QoS: tempo de resposta, latência de rede e largura de banda (monitoramento passivo).
-         %\item <5->Implementação do monitoramento.
-       \end{itemize}
-
-
-   \end{frame}
-
-
-
-  \begin{frame}{Etapas}
-    %\begin{itemize}
-    %  \item <1->\textbf{Estabelecimento de SLAs} probabilí­sticos para coreografias de serviços Web.
-    %  \item <2->\textbf{Monitor não instrusivo} baseado em eventos para coreografias de serviços Web.
-    %  \item <3->\textbf{Detecção de violações de SLAs probabilí­sticos}.
-    %  \item <4->\textbf{Atributos de QoS}: tempo de resposta, largura de banda e atraso.
-    %\end{itemize}
-    \only<1>{	
-		\begin{figure}
-		\centering
-		\includegraphics[width=1.0\textwidth]{MonitoringStages1.png}
-		\caption{Etapas para atingir o monitoramento de coreografias}
-		\end{figure}	
-	}
-    \only<2>{	
-		\begin{figure}
-		\centering
-		\includegraphics[width=1.0\textwidth]{MonitoringStages2.png}
-		\caption{Etapas para atingir o monitoramento de coreografias}
-		\end{figure}	
-	}
-    \only<3>{	
-		\begin{figure}
-		\centering
-		\includegraphics[width=1.0\textwidth]{MonitoringStages3.png}
-		\caption{Etapas para atingir o monitoramento de coreografias}
-		\end{figure}	
-	}	
-  \end{frame}
-
-  \begin{frame}{Elementos BPMN 2 Suportados }
-      \begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.7\textwidth]{./figures/BPMNBasicChoroegraphy.png}
-	\caption{Elementos BPMN suportados.}
-	\label{fig:ChoreographyElements}
-    \end{figure}
-
-  \end{frame}
-
-
-%----- Monitoramento de Coreografias de Serviços -----------
-    %\begin{frame}{Monitoramento de Coreografias de Serviços}
     \begin{frame}{Arquitetura do monitoramento para detectar violações de SLA}
-    %\begin{picture}(0,0)(10,10)
-    %	\includegraphics[width=110mm, height=90mm ]{MonitoringOverview.png}
-    %\end{picture}
       \only<1>{	
           \begin{figure}
               \centering
@@ -1102,13 +878,69 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
       }
     \end{frame}
 
+
+    \begin{frame}{Etapas}
+      \only<1>{	
+		  \begin{figure}
+		  \centering
+		  \includegraphics[width=1.0\textwidth]{MonitoringStages1.png}
+		  \caption{Etapas para atingir o monitoramento de coreografias}
+		  \end{figure}	
+	  }
+      \only<2>{	
+		  \begin{figure}
+		  \centering
+		  \includegraphics[width=1.0\textwidth]{MonitoringStages2.png}
+		  \caption{Etapas para atingir o monitoramento de coreografias}
+		  \end{figure}	
+	  }
+      \only<3>{	
+		  \begin{figure}
+		  \centering
+		  \includegraphics[width=1.0\textwidth]{MonitoringStages3.png}
+		  \caption{Etapas para atingir o monitoramento de coreografias}
+		  \end{figure}	
+	  }	
+    \end{frame}
+
+   \begin{frame}{Contribuições}
+
+      \begin{itemize}
+          \item <1-> Mecanismos para \textbf{definir requisitos de QoS} em coreografias de serviços Web. Para tanto, utilizaram-se duas abordagens:
+             \begin{itemize}
+                  \item <2->\textbf{Analítica}:  Usando Redes de Petri Estocásticas Generalizadas (GSPN).
+                  \item <3->\textbf{Simulações}: Por meio de avaliações de desempenho usando o simulador de coreografias.
+	    \end{itemize}
+
+         \item <4-> \textbf{Estabelecimento de contratos  probabilísticos} de QoS entre os serviços em   coreografias de serviços Web.
+	 \item <5-> Técnicas de monitoramento de coreografias para \textbf{detectar violações de SLA} com restrições de QoS probabilísticas.
+	 \item <6->  Desenvolvimento de um \textbf{simulador de coreografias} com suporte de \textbf{QoS}.
+	 \item <7->\textbf{Atributos de QoS}: tempo de resposta, tempo de processamento, largura de banda e latência de rede.
+       \end{itemize}
+
+   \end{frame}
+
+
+
+  \begin{frame}{Elementos do BPMN 2 Suportados }
+      \begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.9\textwidth]{./figures/BPMNBasicChoroegraphy.png}
+	\caption{Elementos BPMN suportados.}
+	\label{fig:ChoreographyElements}
+    \end{figure}
+
+  \end{frame}
+
+
+
   \begin{frame}{ Modelo de QoS  (I)}
     \begin{itemize} %%Perhaps it's needed use some picture, for example life cycle call service.
 	%\item Os atributos de QoS envolvem: \textbf{service}, \textbf{network} and \textbf{message} aspects.
 	\item Atributos de QoS:
 	    \begin{itemize}
-	      \item <2->\colorbox{yellow}{Serviço}: \textbf{tempo de processamento, tempo de resposta, }.
-	      \item <3->\colorbox{yellow}{Rede}: largura de banda, atraso e \textbf{erros de comunicação}.
+	      \item <2->\colorbox{yellow}{Serviço}: \textbf{tempo de processamento, tempo de resposta }.
+	      \item <3->\colorbox{yellow}{Rede}: \textbf{largura de banda}, \textbf{atraso} e erros de comunicação.
 	      \item <4->\colorbox{yellow}{Mensagem}: \textbf{integridade da mensagem}.
 	    \end{itemize}
     \end{itemize}
@@ -1136,7 +968,6 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
 %%Formulas?
 
-
 \subsection{Definição de requisitos de QoS}
   \begin{frame}{Definição de requisitos de QoS: Analiticamente}
       \begin{enumerate}
@@ -1146,8 +977,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	    %  \item The choreography is specified in BPMN 2.0.
 	    %  \item The resulting GSPN include a QoS model.
 	    %\end{itemize}
-
-	\item <2-> \textbf{Configurações} na GSPN obtida.
+	\item <2-> \textbf{Configurações} da GSPN obtida de acordo com cenários.
 	\item <3-> \textbf{Simulações} dos cenários.
       \end{enumerate}
 
@@ -1236,44 +1066,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 			    \visible<2->{ \ENSURE Generalized Stochastic Petri Net \textcolor{componentColor}{ \textbf{$GSPN_{QoS}$} }.  }
 			    \vspace*{3 mm}	
 	      }	
-		{ \tiny	
-			  \visible<3->{
-		      \STATE \textcolor{componentColor}{ \textbf{$CT_i \in \mathcal{T} $, $G_j \in \mathcal{G} $}} and \textcolor{componentColor}{ \textbf{$E_k \in \mathcal{E}$}. where  $i, j, k \in \mathbb{N} $}.
-			    %\STATE Let $PNQoS(CT_i)$ a respective GSPN including QoS from type of $CT_i$ and according to mapping rules (Figure \ref{fig:MappingTaskChoreographiesQoS1}).
-			    %\STATE Let $PNQoS(CT_i)$ be a respective GSPN including QoS from type $CT_i$ and according to mapping rules (Figure \ref{fig:MappingTaskChoreographiesQoS1}).
-		      
-	      %	      \visible<4->{ \STATE \textcolor{componentColor}{ $PNQoS(CT_i)$, $PNQoS(G_j)$, $PNQoS(E_k)$   } are functions of the type %of \textcolor{componentColor}{ $CT_i$, $G_j$, $E_k$} respectively that return a GSPN according to mapping rules. }
 
-			    \STATE \textcolor{componentColor}{ $PNQoS(CT_i)$, $PNQoS(G_j)$, $PNQoS(E_k)$   } are functions return a GSPN according to mapping rules.
-
-			    \STATE \textcolor{componentColor}{ {\normalsize \textbf{$\oplus$}} } as the operator composition that returns other GSPN. 
-			    \vspace*{3 mm}
-			    \STATE $\textcolor{componentColor}{GSPN_{QoS} } \leftarrow  Empty\  Petri\  Net$
-
-			    %\FOR { $CT_i \in T $ }
-			    % \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PNQoS(CT_i)$
-			    %\ENDFOR
-
-			  \FOR { $\textcolor{componentColor}{ CT_i} \in \textcolor{componentColor}{\mathcal{T}} $ }
-			      \STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{ GSPN_{QoS} } \oplus \textcolor{componentColor}{ PNQoS(CT_i) } $  		
-			      \STATE Add a arrival \textbf{timed Transition} at beginning of the \textcolor{componentColor}{$GSPN_{QoS}$}.
-			  \ENDFOR
-			    %\vspace*{3 mm}
-			  \FOR{ $\textcolor{componentColor}{G_j} \in \textcolor{componentColor}{\mathcal{G}} $ } 			
-			      \STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{GSPN_{QoS}} \oplus \textcolor{componentColor}{ PN(G_j) }$	
-			  \ENDFOR	
-			  %\vspace*{3 mm}
-			  \FOR{ $\textcolor{componentColor}{ E_k } \in \textcolor{componentColor}{ \mathcal{E} } $ }					 	
-			      \STATE $\textcolor{componentColor}{ GSPN_{QoS} } \leftarrow \textcolor{componentColor}{ GSPN_{QoS} } \oplus \textcolor{componentColor}{ PN(E_k) }$  	
-			  \ENDFOR
-
-			  \STATE Add a starting Place and \textbf{immediate Transition} at the beginning of the \textcolor{componentColor}{ $GSPN_{QoS}$}.	
-			  \STATE Add a ending Place and \textbf{immediate Transition} at the end of the \textcolor{componentColor}{$GSPN_{QoS}$}.	
-
-			  \RETURN \textcolor{componentColor}{$GSPN_{QoS}$}
-		}
-	      }	
-	
 	\end{algorithmic}
 
       \end{algorithm}
@@ -1311,9 +1104,10 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
 
 %\subsection{ChorSim: Simulador de Coreografias}
-  \begin{frame}{ChorSim: Simulador de Coreografias}
-  
+  \begin{frame}{Definição de Requisitos por meio de simulações}
+     
      \only<1>{
+	\framesubtitle{ChorSim: Simulador de Coreografias} 
 	\begin{figure}[!h]
 	  \centering
 	  \includegraphics[width=.6\linewidth]{figures/ServiceDependency_Events_QoS.png}
@@ -1323,6 +1117,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	\end{figure}
     }
     \only<2>{
+      \framesubtitle{Arquitetura do ChorSim} 
       \begin{figure}
 	  \centering
 	  \includegraphics[width=0.7\textwidth]{figures/Architecture-Simulator.png}
@@ -1351,22 +1146,22 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
       \item <1->\textbf{Condições Iniciais}:
 	  \begin{itemize}
 	    \item <1-> Configurar a plataforma e a implantação no ChorSim.
-	    \item <2-> Estimar a função de distribuição acumulada \textcolor{Blue}{$Fs_i$} para cada  serviço \textcolor{Blue}{$S_i$}.
+	    \item <2-> Definir e estimar a \textbf{fda} \textcolor{Blue}{$Fs_i$} para cada  serviço \textcolor{Blue}{$S_i$}.
 	    %\item <3-> Definir os quantis que representem todo \textcolor{Blue}{$Fs_i$}.
 	  \end{itemize}
 
       \item <3-> \textbf{Simulação usando \textbf{ChorSim}}:
 	  \begin{enumerate}
-	  \item <3-> \label{a} Para cada invocação de um serviço \textcolor{Blue}{$s_i$} na interação de um participante
-	    provedor A com um outro participante cliente B, um valor do parâmetro de QoS \textcolor{Blue}{$q$}
+	  \item <3-> \label{a} Para cada invocação de um serviço \textcolor{Blue}{$s_i$},  um valor \textcolor{Blue}{$q_i$} do parâmetro de QoS 
 	    é obtido a partir da simulação em ChorSim.%de \textcolor{Blue}{$Fs_i(x)$}.
-	  \item <4-> \label{b} \textbf{Agregação}: Estimar o valor do parâmetro de QoS do serviço composto $S$ a partir dos valores obtidos
-	  no passo anterior usando o ChorSim. %precisa de um modelo (ex.: modelo de execução de ordens parciais)
+	  \item <4-> \label{b} \textbf{Agregação}: Estimar o valor \textcolor{Blue}{$Q$} do parâmetro de QoS do serviço composto \textcolor{Blue}{$S$} 
+	  a partir dos valores obtidos 	  no passo anterior usando o ChorSim. %precisa de um modelo (ex.: modelo de execução de ordens parciais)
 
-	  \item <5-> Rodar as simulações dos passos 2.1 e 2.2 várias vezes, o suficiente para estimar  empiricamente \textcolor{Blue}{$F_S$}.%end-to-end
+	  \item <5-> Rodar as simulações dos passos 2.1 e 2.2 várias vezes, o suficiente para estimar \textcolor{Blue}{$F_S$}
+	  empiricamente a partir dos valores \textcolor{Blue}{$Q$} estimados .%end-to-end
 	  \end{enumerate}
 
-	\item <6-> A partir de \textcolor{Blue}{$F_S$}  se selecionam quantis para definir o contrato.
+	\item <6-> A partir da \textbf{fda}  \textcolor{Blue}{$F_S$}  se selecionam quantis para definir o contrato.
 
      % simulação com o método de Monte-Carlo:
     \end{enumerate}
@@ -1381,13 +1176,13 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   \begin{frame} { Monitoramento }
 
       \begin{itemize}
-	\item \textcolor{Blue}{$F_S$}:  Distribuição de probabilidade do contrato.
+	\item \textcolor{Blue}{$F_S$}:  Função de distribuição acumulada do \textbf{contrato}.
 	\item \textcolor{Blue}{$\Delta$}: Um conjunto finito de amostras dos valores de um parâmetro de QoS do serviço \textcolor{Blue}{$S$}.
 	%\item \textcolor{Blue}{$f'_{si}$}: Distribuição de probabilidade empírica de um serviço.
 	%\item Agregação de QoS.
-	\item \textcolor{Blue}{$F'_S$}: Distribuição de Probabilidade após a agregação usando ChorSim.
+	\item \textcolor{Blue}{$F'_S$}: Função de distribuição acumulada  estimada usando ChorSim.
 	%\item \textcolor{Blue}{$F_s$} : Função Distribuição de Probabilidade parâmetro de QoS \textcolor{Blue}{$p$} do %serviço composto \textcolor{Blue}{$S$}.
-	\item \textcolor{Blue}{$\lambda$}: Zona de Tolerância.
+	\item \textcolor{Blue}{$\lambda$}: Zona de tolerância.
       \end{itemize}
 
 
@@ -1432,16 +1227,37 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	\end{align}}
       \end{equation}
       \pause 
-    \textbf{Solução:} \textit{One-sided two-sample Kolmogorov-Smirnov test} 
-
-      \begin{equation}	\textcolor{Blue}{
-	  [D,p] = kstest(X_{contract}, X_{monitoring}, KS_{side})
+    \textbf{Solução:} Teste de Kolmogorov-Smirnov de apenas um lado %de duas amostras%\textit{One-sided two-sample Kolmogorov-Smirnov test} 
+     \only<2>{
+	\begin{equation}	\textcolor{Blue}{
+	    [D,p] = kstest(X_{contract}, X_{monitoring}, KS_{side})
+	  }
+	\end{equation}
+      }
+      \only<3>{
+	  \begin{equation*} 	\textcolor{Blue}{
+	    \begin{align}
+	      [D^{+},p^{+}] & = kstest(X_{contract}, X_{monitoring}, greater) %\notag\\
+	     % [D^{-},p^{-}] & = kstest(X_{contract}, X_{monitoring}, less)
+	    \end{align} }
+	  \end{equation*} 
+      }
+      \pause
+      \begin{equation*}
+	\textcolor{Blue}{
+	  verify(X_{monitoring}) = 	
+	  \begin{cases}
+	  true,  & \text{ se } p^{+}>= \alpha \wedge D^{+}< \lambda \\
+	  false, &  \text{ de outra maneira }
+	  \end{cases}
 	}
-      \end{equation}
+      \end{equation*}
+
   \end{frame}
 
-%%TODO: precisa-se explica ro que é KS com graficos e tudo o mais?
 
+\begin{comment}
+%%TODO: precisa-se explica ro que é KS com graficos e tudo o mais?
   \begin{frame}{Detecção de Violações de SLA (II)}
     Então, para a detecção de violações usam-se:
       \begin{equation*} 	\textcolor{Blue}{
@@ -1466,9 +1282,8 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	}
       \end{equation*}
     
-
   \end{frame}
-
+\end{comment}
 
 
 
@@ -1497,7 +1312,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
 
 
-  \begin{frame}{ Configuração (I)}
+  \begin{frame}{ Configuração }
       \only<1>{
 	      \begin{figure}[!h]
 		  \centering
@@ -1542,36 +1357,10 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
       }
   \end{frame}
 
-  \begin{frame}{ Configuração (II) }
-        \begin{table}[!h]
-            \centering
-            \caption{Pesos dos cenários 1 e 2}
-            \label{table:transitionsConfigurations}
-            \begin{tabular}{ lcc}
-              %\cline{1-3}
-	      \toprule	
-        		    &   \multicolumn{2}{c}{ \textbf{Pesos} } \\
-              %\cline{1-3}
-	      \cmidrule(r){2-3}
-              %\hline
-              \textbf{Transição}      		&      \textbf{Cenário 1}   &  \textbf{ Cenário 2} 		\\
-               %\hline
-	      \otoprule
-               $T_{latency1}$, $T_{latency2}$, $T_{latency3}$ 	& 	0.99       &   0.94	\\
-               $T_{cerr1}$, $T_{cerr2}$, $T_{cerr3}$      	&  	0.01 	   &   0.06	\\
-               $T_{receive}$, $T_{receive2}$, $T_{receive3}$  &  	99  	   &    97	\\
-               $T_{merr1}$, $T_{merr2}$, $T_{merr3}$   &   1 	   &    3	\\
-               $T_{arrival2}$, $T_{arrival3}$   &  0.5  &	0.5	\\
-              \bottomrule
-            \end{tabular}
-        \end{table}
 
-  \end{frame}
-
-
-    \begin{frame}{ Simulações na GSPN }
+   \begin{frame}{ Simulações na GSPN }
       \begin{itemize}
-	\item <1-> A ferramenta \textbf{Pipe2} foi usado para \textbf{modelar} e \textbf{simular} a \textbf{GSPN}.
+	\item <1-> A ferramenta \textbf{Pipe2} foi usada para \textbf{modelar} e \textbf{simular} a \textbf{GSPN}.
 	\item <2-> \textbf{$1$ token} = \textbf{$1$ instância de coreografia}.
 	\item <2-> \textbf{$100$ tokens} são considerados para cada cenários na posição de inicio (\textbf{Start}).
 	\item <2-> \textbf{$100$ instâncias concorrentes} foram executadas (\textit{multiple-server semantic}).
@@ -1626,7 +1415,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
 \subsection{Definição de requisitos de QoS usando ChorSim}
 %% Definição de requisitos de QoS usando ChorSim
-  \begin{frame}{Cénario de coreografia para a abordagem com ChorSim}
+  \begin{frame}{Cenário de coreografia para a abordagem com ChorSim}
     \begin{figure}[h]
 	\centering
 	%\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
@@ -1650,14 +1439,14 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
     \only<2>{
       \begin{itemize}
 	\item \textbf{Cenário 1:}   Larguras de banda uniformes.
-	\item \textbf{Cenário 2:}   Larguras de banda váriaveis.
+	\item \textbf{Cenário 2:}   Larguras de banda variáveis.
       \end{itemize}
      }
     
   \end{frame}
 
   \begin{frame}{Configuração das simulações em ChorSim (II)}  
-	\textbf{Cenario 2:}
+	\textbf{Cenário 2:}
   	\begin{figure}[!h]
 	    \centering
 	    %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
@@ -1719,7 +1508,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	  %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
 	  %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
 	  \includegraphics[width=1.0\linewidth]{figures/results1-normal.png}
-	  \caption{\textbf{Cenario 1:} Tempo médio de resposta total da coreografia em função do tamanho de resposta do serviço $WS_1$ com
+	  \caption{\textbf{Cenário 1:} Tempo médio de resposta total da coreografia em função do tamanho de resposta do serviço $WS_1$ com
 	  larguras de banda de $1Mbps$ até	$16Mbps$}
 	  \label{figure:results}
       \end{figure}
@@ -1791,13 +1580,14 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
     \pause
     \begin{itemize}
       \item \textcolor{Blue}{$X_{monitoring}$}: Conjunto de amostras dos tempos de resposta do serviço composto \textcolor{Blue}{$WS_1$}. 
-      \item Um monitoramento sequencial e  \textit{on-line} precisa  computar  $N$ amostras que que se sobrepõem. 
+    \pause
+      \item Um monitoramento sequencial e  \textit{on-line} precisa  computar  \textcolor{Blue}{$N$} amostras que que se sobrepõem. 
       \item Conjunto de janelas de  amostras a monitorar: 
 	    \begin{itemize}
 	     \item [] \textcolor{Blue}{$\{1, \dots , N\}, \{p, \dots , p + N\}, \dots , \{mp, \dots ,mp + N\} \dots$ }
 	     \item [] \textcolor{Blue}{$p <=N $} e \textcolor{Blue}{$m=1, 2,\dots \quad$ }
 	    \end{itemize}
-
+     \pause
       \item Configuração: \textcolor{Blue}{$N = 100$}, e o desvio \textcolor{Blue}{$p=1$}.
     \end{itemize}
 
@@ -1824,16 +1614,11 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	    \midrule[1pt]
 	    %\cmidrule[1pt](r){1-1} \cmidrule[1pt](l){2-4}
 	    %\rowcolor{yellow!35}
-	    
-	    %25\% & 2.5 ms \\
-	    %50\% & 4.5 ms \\
 	    %\rowcolor{red!25}
 	    %\midrule
 	    Cenário 1 &		\cellcolor{red!25} 1/13000  	 & 	\cellcolor{red!25} 1/12500		&	\cellcolor{red!25} 1/11500	\\
 	    %\rowcolor{red!25}
 	    Cenário 2 &		\cellcolor{red!25} 1/12000  	 & 	\cellcolor{red!25} 1/11000		&	\cellcolor{red!25} 1/12000	\\
-	    %Cenário 3 &	1/11000  	 & 	1/10500		&	1/11000	\\
-	    %Cenário 4 &	1/10000  	 & 	1/11000		&	1/10000	\\
 	    \midrule
 	    %\rowcolor{green!25}
 	    Cenário 3 &		\cellcolor{green!25} 1/10500  	 & 	\cellcolor{green!25} 1/10000		&	\cellcolor{green!25} 1/10500	\\
@@ -1863,14 +1648,14 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
   	\only<2>{
 	  \begin{figure}[H]
 	      \centering
-	      \includegraphics[width=1.0\linewidth]{figures/KS-Comparison_1.png}
+	      \includegraphics[width=1.0\linewidth]{figures/KS-Comparison1.png}
 	      \caption{ Comparação do ECDF do contrato com o ECDF do cenário 1}
 	  \end{figure}
 	}
   	\only<3>{
 	  \begin{figure}[H]
 	      \centering
-	      \includegraphics[width=1.0\linewidth]{figures/KS-Comparison_2.png}
+	      \includegraphics[width=1.0\linewidth]{figures/KS-Comparison2.png}
 	      \caption{ Comparação do ECDF do contrato com o ECDF do cenário 4}
 	  \end{figure}
 	}
@@ -1896,6 +1681,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	}
     \end{frame}
 
+\begin{comment}
   \begin{frame}{Resultados da detecção de violações de SLA }  
 	\framesubtitle{Cenário \textbf{2}}    
 	\only<1>{
@@ -1915,6 +1701,7 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	  \end{figure}
 	}
     \end{frame}
+\end{comment}
 
 
   \begin{frame}{Resultados da detecção de violações de SLA }  
@@ -1965,16 +1752,16 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	\item Foram propostas  abordagens e técnicas para definição de requisitos de QoS, estabelecimento de contratos probabilísticos
 	e monitoramento com a detecção de violações de contrato em coreografias de serviços Web.
 	\item O modelo de interação em BPMN2 foi utilizado.
-	\item Construi-se um simulador para suportar \textit{enactment} de coreografias de serviços Web com suporte de QoS.
-	\item Na definição de requisitos, propôs-se uma metodologia usando mapeamento de coreografia para GSPN. Além disso, 
-	apresentou-se avaliações de desempenho usando o ChorSim.
+	\item Foi construído um simulador para suportar \textit{enactment} de coreografias de serviços Web com suporte de QoS.
+	\item Na definição de requisitos, foi proposta uma metodologia usando mapeamento de coreografia para GSPN. Além disso, 
+	apresentou-se avaliações de desempenho usando o ChorSim também.
       \end{itemize}
 
   \end{frame}
 
   \begin{frame}{Conclusões (II)}
       \begin{itemize}
-	\item Apresentou-se uma abordagem para estebelecer contratos probabilísticos usando ChorSim.
+	\item Apresentou-se uma abordagem para estabelecer contratos probabilísticos usando ChorSim.
 	\item O monitor foi desenvolvido de modo a suportar um monitoramento \textit{online}.
 	\item Foi proposta uma técnica de dominância estocástica para detectar violações de contratos probabilísticos. 
 	  A técnica está baseada no teste de \textit{Kolmogorov-Smirnov} de apenas um lado.
@@ -1987,21 +1774,25 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 	\item Suporte de mais atributos de QoS de desempenho e outros como confiabilidade, segurança, entre outros, em todas as etapas.
 	\item Suporte de mais elementos de coreografia de serviços do BPMN2 em todas as etapas.
 %%suporte completo de coreografia de processos, automatização do mapeamento de uma especificação de coreografia em BPMN2 para o enactment no ChorSim
-	\item Pesquisa em  substituição dinâmica, adaptação dinâmica, reconfiguração, autocura, entre outro,  baseada em QoS para coreografias de serviços Web.
+	\item Pesquisa em  substituição dinâmica, adaptação, reconfiguração, autocura, entre outros,  baseada em QoS para coreografias de serviços Web.
 	\item Suporte de definição probabilística de atributos de QoS como largura de banda e latência de rede no ChorSim.
 %%chorsim, monitoramento
-	\item Avaliações das simulações com implementações reais de coreografias.
+	\item Avaliações e validações das simulações com implementações reais de coreografias.
 	\item Levar em consideração exemplos ou cenários reais e/ou complexos.
       \end{itemize}
   \end{frame}
   
 
 
-%Tecnologias: Esper, motor de BPEL, Galaxy Esper
-% Frameworks
-
-%CHOReoS Project%
-%Trabalhos futuros
+  \begin{frame}{Publicações}
+      \begin{thebibliography}{1}
+        \beamertemplatearticlebibitems
+	\bibitem[CAMAD,2012]{APDIAZ2012}
+	    A. Diaz, D. Batista
+	  \newblock {\em A methodology to define QoS and SLA requirements in service choreographies}.
+	  \newblock  IEEE 17th International Workshop on Computer Aided Modeling and Design of Communication Links and Networks (CAMAD'12). 2012:201-205
+      \end{thebibliography}
+  \end{frame}
 
 
 
@@ -2070,7 +1861,12 @@ prescribed by its description using SOAP messages, typically conveyed using HTTP
 
 	\begin{figure}[!h]
 	    \centering
-	    \includegraphics[width=0.3\textwidth]{hp_logo_2.png}
+	    \includegraphics[width=0.28\textwidth]{hp_logo_2.png}
+	\end{figure}
+	
+	\begin{figure}[!h]
+	    \centering
+	    \includegraphics[width=0.2\textwidth]{logo_cnpq.jpg}
 	\end{figure}
 	
     \end{frame}

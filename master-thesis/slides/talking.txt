@@ -1,0 +1,517 @@
+=== Slides Description ==
+Cumprimentar à banca
+O conteudo da apresentação é o seguinte:
+...
+Roteiro
+
+= Conceitos básicos: esta seção tem a fnalidade de apresentar os conceitos básico e contextualizar o problema
+
+4: Serviço Web
+	Um serviço Web é uma aplicação fornecida sobre uma rede, mas que permite a interação de maquina a maquina de uma maneira
+	interoperável. Existem varios tipos como: baseado em SOAP, XML-rpc, Restful
+	
+5: SOA
+	Um dos principais tópicos da pesquisa tem a ver com serviços Web, que permite prover funcionalidade sobre a rede de maneira interoperável.
+%Os serviços Web se encaixam dentro de  SOA e SoC.
+O que é SoA.
+SoA é	um estilo de arquitetura de software  cujo principio fundamental prega que as funcionalidades de um sistema sejam fornecidas por meio de
+	serviços. Tem a vantagem de baixo acoplamento, interoperável, integração.
+
+6: Triângulo SOA
+	SOA utililiza principalmente a tecnologia de serviços Web como base para sua implementação, //desta maneira o funcionamento básico é assim:
+	Assim, a arquitetura básica possui
+	Tres entidades:
+		- Provedor: quem fornece os serviços por meio de descrições de funcionalidades %,  um mesmo serviço pode ser provisto de formas diferentes
+		  Descreve e publica o serviço	
+		- Registro: Mantém um registro sobre os serviços e sua localização.
+  		- Cliente: Localiza serviços ou provedores de serviços por meio do registro de serviços.
+
+	Os padrões utilizados em WS são WSDL, SOAP, UDDI básicamente, base da pilha de protocolos WS*
+	//mudanças para p2p, descoberta direta, etc
+7: SOC
+	Paradigma de computação que utiliza "serviços"  como blocos de construção básicos para desenvolvimento
+	rápido, de baixo custo, e de baixo acoplamento de sistemas distribuídos heterogêneos.
+	%É a evolução do paradigma baseados em componentes, objetos distribuidos, etc.
+	Traz consigo um conjunto de metodologias e desafios de pesqusia para sua adopção e concretização.
+
+	%A maior innovação é a mudança do paradigma orientado a objetos para orientado a serviços.
+	Para tanto possui os seguintes elementos chave:	
+	Serviços como bloco básicos, SOA como estilo arquitetural, 
+	Mas , um serviço só não é suficiente para dar solução a um problemas, por isso é importante compor serviços para gerar um novo e útil serviço
+        So, There are two ways to compose services: Orquestração e Coreografia
+	Composição de Serviços para o reúso, QoS, entre outros.
+
+%8: Composição de Serviços
+...
+
+Importante porque um único serviço não é suficiente para cumprir diversos requerimentos e executar tarefas complexas.
+Importante para promover o reuso de serviços (já existentes) pelo qual acelera o desenvolvimento, 
+//e como  forma de fornecer serviços para satisfacer necessidades específicas.
+Tópico com varios desafios de pesquisa , por exemplo, seleção, descoberta, optimização, automatização, adaptação, etc.
+
+Duas abordagens principais: _ ,  _
+
+9: Orquestração de serviços
+   Bom e o que é orquestração, orquestração é 	
+   uma maneira de implementar processos de negócio por meio de uma composição centralizada, onde uma entidade unica ( orquestrador )
+	 é quem coordena a execução de outros serviços Web segundo o fluxo dos processos.
+   BPEL, BPMN
+   Motor BPEL ou outro	
+   Foco e linguagens de execução de processos	
+
+10: Coreografia de serviços Web
+    Pelo contrário em coreografias, é uma composição decentralizada de serviços, onde não existe um ponto de controle, os serviços idealmente interagem de maneira p2p.
+    A descriçao e colaboração é realizada do ponto de vista global de todos os seus participantes.
+
+10: Coreografia de serviços Web
+    Coreografias tem a ver mais com processo de negocios interogranizacionais. Por conta de ter um papel mais de integração	
+
+Mas na prática, são úteis para implementar processos de negócios inter-organizacionais, nos quais
+cada organização é mapeada para participantes, cada um deles possue uma implementação a través de orquestrações de serviços que implementam os processo de negócios respectivos.
+ Padrões:WSCDL, BPEL4Chor, Let's Dance,  BPMN2 (padrão).
+ Não é executável, Utiliza-se Enactment de coreografias em lugar de execução (exceto LCC do OpenKnowledge), pelo qual 
+ precisa ser mapeado para orquestrações que o realizem.  
+ 
+= Coreografia de processos
+ Assim, uma coreografia tb é processo. E o BPMN, que é o padrão para modelagem de processos de negocios, suporta  também a modelagem de coreografias
+ Há duas abordagens:
+  Modelo de Interconexao e o modelo de interacao
+
+= Modelo de Interconexao
+interconecta vistas públicas.
+usa elementos de processo comuns
+e no BPMN 2 é chamado de colaboração.
+
+
+= Modelo de interação
+Já no modelo de interação, os blocos de construção são as "interações" entre os participantes.
+Este tipo de modelo é suportado no BPMN a apartir da versão 2.0 e é chamado de diagrama de coreografia 
+
+= 
+ Problema:
+
+Agora, vamos contextualiza o problema:
+
+  Dada uma coreografia de serviços, por exemplo, conformada pelos seguintes participantes. 
+- Na Interação entre o participante 1(cliente) e o participante 2 (provedor de um serviço de compra de passagem de avião), 
+- Uma forma básica para garantir um atributo de QoS como o tempo de reposta, poderia ser dada pela condição tempo de resposta menor que 100 ms. Porém, 
+  por conta da heterogeneidade e diferenças de infraestruturas de rede e aplicações, entre o cliente e fornecedor, essa condição pode ser insuficiente, por exemplo, o tempo de resposta 
+  poderia se tornar 1s por causa da queda da rede do provedor, mas que é o suficiente para violar as garantias, isto do lado do provedor.
+  //O cliente também pode precisar utilizar o serviço a cada 2 segundos.  
+  Para esses casos seria melhor especificar condições de QoS de uma maneira mais flexível, por exemplo de maneira probabilistica.
+
+	Então, o problema a ser resolvido nesta pesquisa de mestrado é como garantir o cumprimento de Garantias de QoS
+        em coreografias de serviço Web?, para tanto:
+	Precisa-se uma maneira de especificar essas garantias, por exemplo com SLAs.
+	Precisa-se também uma maneira de saber o estado da QoS, para tanto, seria necessário um monitoramento, que também 
+	realize uma verificação para detectar violações das garantias de QoS. 
+	Tudo isto no contexto das coreografias de serviços Web.
+
+	
+== Objetivos
+Apresentar a finalidade deste trabalho
+13: Objetivos
+Por conta do problema apresentado, o objetivo principal é ...
+
+
+14: Justificativa
+Coreografia é importante por ser uma abordagem considerada para a Internet do Futuro por conta da
+característica de ULS (Ultra Large Scale).
+	É mais indicada para alavancar integrações de sistemas de maneira escalável em larga escala que outras abordagens como as orquestrações.
+	QoS: Caracteristica fundamental em composição de serviços e no SOC, sobre tudo como fator chave na adaptação.
+	Monitoramento: Para possuir informação precisa da QoS que habilite a composição com conciencia de QoS e otimização.
+	É a base para a reação, sobre tudo através da detecão de violações de garantias de QoS.
+	Contratos probabilisticos ... são importantes porque são uma maneira de definir garantias de QoS de maneira flexível.
+		,forma de definir garantias de QoS uma maneira mais real como será descrito mais diante
+
+15: Conceitos Avanzados
+
+
+16: Problema a ser resolvido
+Aqui estão envolvidos vários conceitos avanzados para entender melhor a pesquisa, tais como: QoS, SLA, SLAs probabilísticos,
+e o Monitoramento
+
+17: Qualidade de Serviço
+Por um lado , Um serviço, se refere âs operações que o sistema executa, por exemplo, compra ou reserva de passagens. 
+Enquanto que a qualidade de serviço se refere aos atributos não funcionais associados a um serviço,
+por exemplo quao rápida é a resposta de um serviço, o custo, quao confiável, etc.
+
+É importante em composição de serviços, dando lugar a composição de serviços ciente de QoS 
+ (sendo critério principal para a seleção, descoberta, etc ...).
+
+
+18: Taxonomia
+- Os atributos de QoS podem ser classificados de várias maneiras, por exemplo na figura ... se mostra uma taxonomia
+  onde são divididos em Desempenho, Disponibilidade, Segurança e Custo. Os atributos de QoS podem ser também deterministicos, 
+  quando seu valor é definido em tempo de projeto, como o custo preço segurança, ou não determinísticos, em que os valores são conhecidos em tempo de execução, geralemnte os de desempenho sçao desta caracteristica, que são o foco da pesquisa, por exemplo, o atraso de rede e a largura de banda.
+
+- É importante que a QoS seja monitorada e avaliada em diversos níveis (do mais baixo(serviços e infraestrutura) até o nível da coreografia inteira
+
+
+19: 
+A estimativa de atributos de QoS na camada mais baixa se baseia no calculo de instantes de tempo, que estão envolvidos na
+invocação de um serviço Web. Tal como é mostrado na figura ... e onde estão envolvidos o Consumidor, a Rede e o Provedor.
+Desta maneira são calculados atributos, tais como tempo de processamento, wrapping, latencia, tempo de resposta, e neste exemplo
+mostra se o tempo de ida e volta que é o tempo total que envolve a requisição do serviço até a recepção da rpta.
+
+Também, esses instantes de tempo são calculados ou estimados por um monitor e também são a base de eventos de mais baixo nível,
+por exemplo se recebeu a requisição de uma operação, o cliente recebeu a resposta do provedor, etc.
+
+Exemplo: 
+
+20: SLA
+
+um acordo formal entres duas partes é chamado de contrato
+e um SLA é um contrato formal para especificar garantias de QoS entre duas partes.
+Importante para uma diferenciação de serviços (vantagem competitiva).
+Existem vários padrões, mas principalmente está composto de :
+
+punições
+datas
+horarios
+etc
+
+22: Agregação de QoS
+É a maneira de obter os valores de QoS representativos da composição, por meio dos valores dos atributos de
+QoS dos serviços básicos componentes. 
+
+Não existe uma solução geral, porque depende da caracteristica do atributo de QoS e o modelo de composição utilizado.
+...
+
+
+24: Contratos Rígidos
+- A maioria do contratos são especificados de maneira absoluta, por exemplo:  ...
+ o que é chamado de contrato rígido.
+ porque tem que ser cumprido para todos os casos (100% dos casos).
+
+- Não refletem o comportamento dinâmico no tempo de vários atributos de QoS dos serviços Web, especialmente os de desempenho.
+
+
+
+25: Gráfico 
+-
+- Os contratos rígidos definem garantias de QoS pensando no pior caso, utilizando recursos adicionais para suportálo, Daí que o provedor estaria desperdiciando recursos, que poderiam ser utilizados para prover ou melhorar outros serviços.
+
+
+26: Contratos Não Rígidos
+-
+- Uma solução para definir condições que representem melhor o comportamento de um atributo de QoS no tempo
+é utilizando contratos probabilísticos. Nesse caso, as condições de QoS são distribuições de probabilidade dos atributos de QoS.
+Que na prática são quantis que representam a distribuição.
+- As restrições podem ser compostas, as abordagens existentes estão focadas em orquestrações e tempo de resposta,
+  não havendo abordagens para coreografias.
+
+
+27: Monitoramento
+O monitoramento é amplamente usado em várias disciplinas de sistemas distrubuídos, mas especialmente em SOC.
+É o processo de observar, coletar(medir ou estimar), informação acerca da execução de uma aplicação. Más neste contexto, 
+o seu alvo é a informação de QoS dos serviços Web.
+
+Em uma composição de serviços e nesta pesquisa suas responsabilidades são:
+-
+- Não intrusivo, quer dizer que não precisa conhecer a implementação ou comportamento interno de um serviço ou partipante,
+o comportamento observável deveria ser suficiente.
+
+28: 
+
+ Probe Request: Envia requisições de teste ao provedor em tempos regulares, inclusive pode se fazer passar pelo cliente.
+  É flexível com relação a sua localização, pode estar no lado  cliente, no provedor ou no meio (ou mais ideal para coreografias). 
+
+29: Camadas do Monitoramento
+O monitoramento em uma aplicação baseada em serviços possue várias camadas:
+
+
+30: QoS multi-camada 
+O monitoramento em composição de serviços, e especificamente de coreografias, também possue várias camadas.
+//Então, o monitoramento baseado em serviços
+O monitor é implementado na camada de execução, junto com o motor de composição (bpel), 
+o monitoramento estima valores de qoS dos serviços básicos, na seguinte camada calcula QoS dos serviços compostos
+por meio de algoritmos de agregação de QoS, e no caso de orquestrações definem-se politicas de QoS, que são asserções.
+Finalmente na camada de coroegrafia se definem os SLA baseados nos QoS das camadas de baixo, e que o monitor de coroegrafias 
+ tem que cumprir.
+
+
+
+== Proposta ===
+= Visão Geral
+= Arquitetura geral
+Agora vou apresentar uma visão geral da arquitetura e funcionamento do monitoramento. 
+Primeiro especifica-se uma coreografia, por exemplo na figura são definidos 3 participantes,
+cada um oferece serviços (caixas pretas) que estão relacionados. 
+Cada um pode ter diversas implementações (inclusive orquestrações) e também monitores locais.
+Daí, nas interações de serviços definidas se definem requerimentos de QoS que se tornan contratos de QoS, mas nesta proposta
+são probabilisticos. Dessa maneira, vários contratos podem ser definidos em outras interações de serviços.
+
+Depois, para garantir o cumprimento desses contratos precisa-se de un monitoramento global da coreografia. Tal monitor, mede e coleta as métricas de QoS, realiza agregação se for necessário, e detecta violações de SLA.
+Se for detectado, se deve reagir de alguma maneira: notificação, adaptação, substituição, etc
+
+
+= Etapas
+Então, definiram-se 3 etapas até atingir o monitoramento.
+A primeira é a definição de requisitos de QoS por meio de avaliações de desempenho, 
+usaram-se duas bordagens: analítica e simulações.
+A segunda etapa é o estabelecimento de contratos por meio de simulações, inclui parte da configuração de parâmetros de monitoramento.
+E a última etapa é o monitoramento propriamente dito.
+ 
+
+=== Contribuições
+Após apresentar os conceitos e contextualizar o problema, vamos a presentar as contribuições, que dito seja de passagem estão de acordo com as etapas descritas no slide anterior. 
+
+- Definição de requisitos de QoS em coreografias por meio de avaliações de desempenho. Para tanto, foram propostas uma abordagem
+  analítica que usa uma Rede de Petri Estocástica Generalizada (GSPN)
+ a segunda abordagem está baseda em simulações usando um simulador de coreografias. 
+
+- A outra contribuição é no estabelecimento de contratos probabilísticos.
+  -- etambém está baseadas no uso do simulador de coreografias. 
+
+- Outra contribuição é a proposta de técnicas de monitoramento e especialmente de detecção de violações de garantias de QoS em coreografias
+
+- Além do mais, desenvolveu-se um simulador para rodar coreografias com caracteristicas de QoS e suportar as etapás já mencionadas, já que no existem infraestruturas ou tecnologias maduras o suficiente para rodar coreografias o que era um impedimento para atingir os objetivos.
+% O monitoramento foi desenvolvido acima deste simulador.
+
+- Por fim, os  atributos de QoS levados em consideração são:
+
+
+= Elementos BPMN 2 suportados
+E os elementos BPMN 2 para coreografias do modelo de interação suportados  são os seguintes:
+Atividades de coreografia que representam as interações
+Eventos tais como o evento de inicio, de finalização, temporizador, de mensagem.
+ Gateways para decições e concorrencia.
+E finalmente o fluxo de sequência.
+
+
+= Modelo de QoS I
+O modelo de qos envolve tres aspectos, Serviço: com atributos como tempo de resposta e de execução
+,na rede, com atributos como a largura de banda e atraso com erros de comunicação
+e na mensagem, com a integridade desta.
+
+= Modelo de QoS II
+Nesta figura se mostra a interação de serviços correspondente a cada tipo de atividade de coreografia, o primeiro de um sentido e o o segundo de dois sentidos.
+
+= Modelo de QoS II
+Para o calculo dos atributos de QoS como tempo de resposta  se usam os instantes de tempo envolvidos na interação de serviços. 
+
+
+== Definição de requisitos de QoS 
+Bom, vamos a apresentar a primeira etapa, definição ...
+
+A primeira abordagem é a analítica, There are no approaches for evaluating choreographies with focus in QoS in earlier stages of development.
+
+neste caso se definiram 3 passos:
+O primeiro passo é mapear uma coreografia especificada em BPMN 2 para uma GSPN, tal GSPN inclui caracteristicas de QoS.
+O segundo passo é  configurar os pesos das transições de acordo com a a definição de cenários.
+O ultimo paso é realiza as simulações  e realizar as análises respectivas.
+
+= Mapeamento
+Assim, para realizar o passó 1, é importante mapear elementos BPMN individuais para módulos de redes de petri.
+Por exemplo,  a figura mostras o mapeamento de eventos e gateways
+
+= Mapeamento 
+Mas, as interações são mais importantes para serem mapeadas.
+A figura mostra o mapeamento de uma atividade de coreografia para um módulo de rede de petri.
+A qual envolve os dos participantes e a comunicação. A QoS é suportada por meio de elementos da GSPN como as posições e
+as transições immediatas e temporizadas.
+
+Desse modo, são suportados os erros de comunicação, integridade da mensagem e a operação de serviço.
+
+= Algoritmo de Mapeamento
+Para realizar o mapeamento da coreografia, um algoritmo foi desenvolvido:
+Este algoritmo recebe como entrada uma especificação de coreografia em BPMN2
+e retorna como saída uma GSPN com caracteristicas de QoS.
+
+= Ilustração do algoritmo
+Básicamente o algoritmo funciona assim:
+Mapeiam-se os eementos BPMN individuais para módulo de GSPN de acordo com as regras de mapeamento já descritas.
+Esses módulo de GSPN devem ser compostos, para tanto utiliza-se o operador de composição que de acordo com o tipo de gateway gera um novo 
+módulo de GSPN.
+Dessa forma, substituindo e compondo a coreografia toda é mapeada.
+Por fim,  se adicionam os eventos de inicio e finalização porque é um processo.
+
+= ChorSim
+Como eu já  disse, um simulador de coreografias noemado ChorSim, foi desenvolvido para alavancar e atingir os objetivos propostos.
+A segunda e terceira etapa usam simulações em ChorSim. 
+No ChorSim,  a coleta e medição de valores dos atributos de QoS são realizados de acordo com eventos. Por exemplo,
+na figura,  o evento em 1 se refere a chegada de uma requisição, 0 2 a uma nova requisição para um outro serviço por conta das dependências,
+o (3) é o recebimento da resposta de um serviço, e o 4 é o evento de envio da mensagem de resposta.
+
+= Arquitetura do ChorSim
+Agora, a figura mostra a arquitetura do ChorSim.
+O motor de execução do Chorsim está construído sobre do arcabouço de sistemas distribuidos SimGrid, usando principalmente o módulo MSG para java.
+para rodar a coreografia, o chorSIM precisa uma especificação da coreografia, a definição da plataforma, que inclui os hosts com seu respectivo poder computacional, a topologia de rede, a definição de largura de banda, atraso, entre outros.
+Também precisa-se definir  a implantação, onde se especificam os serviços que vaõ interagir com os tamanhos das mensagens e dependencias.
+O monitor utiliza tres componentes principais: O registro de serviços para saber os serviços que estã interagindo, o Modelo de coreografias para verificar se as interações estão de acordo com a especificação.E o gerenciador de requisições que gera um grafo de requisições, que é útil para realizar agregações e o avanço da coreografia. 
+
+
+=== Estabelecimento de contrato
+= Estabelecimento de SLA probabilísticos
+   um atributo de QoS é caracterizado como uma variavel aleatória
+   Fs é a função de distribuição acumulada de um serviço S do parâmetro de QoS delta, e representa 
+   o comportamento dinámico e váriavel da operação de um serviço.	   
+
+   O procedimento para estabelecer o contrato probabilístico é da seguinte maneira:
+   - Condições Iniciais:
+		
+   - Simulação
+	
+   - com Fq
+   - Obter os quantis de Fq, os quais será a restrição de QoS que estará no SLA.	
+
+== Monitoramento
+= Monitoramento Probabilistico
+Para o  monitoramento precisa-se 
+do Fs que é o fda do contrato 
+delta : que é o conjunto de amostras dos valores de um parâmetro de QoS de um serviço S
+essas
+F's como mostra a equação (1): é  o FDA empírico, estimado pelo conjunto de amostras Delta do parametro de QoS delta menor
+dos serviço S 
+
+Então, para uma violação do contrato se dá quando existe um x real de tal maneira que o fda estimado ou monitorado 
+ seja menor do fda do contrato.
+
+Que é equivalente a equação 3, onde se leva em consideração o parâmetro lambda que representa a zona de tolerancia por conta das flutuações
+que podem acontecer pelos fda's.
+
+
+= Detecção de violações I
+Assim, o problema de detecção de violações pode ser visto como um problema de dominância estocástica
+E o seria decidir entre duas hipótesis
+A hipótese nula H0 representa o contrato cumprido e a hipotese alternativa uma violação do contrato.
+Já que os comportamentos dos atributos de QoS dos serviços pode ter diversas distribuições de probabilidade.
+Para tanto, o teste de KS de apenas um lado de duas amostras,  foi escolhido para resolver esse problema. 
+Neste caso os dois conjunto de amostras são do contrato Xcontract e do monitorado Xmonitoring
+A escolha foi feita já que é um teste parametrico e por isso  pode lidar com diversas distribuições não necessariamente gaussianas como a normal, exponencial, log, etc 
+ Este tipo de teste não reporta intervalo de confiança já que não compara a mediana ou média. E tem mais precisão na forma da distribuição.
+D é a maior distancia entre as duas distribuições e p é o p-value. 
+
+
+= Detecção II
+O KSside é um parametro que indica se o primeiro conjunto tem que ser maior, menor ou igual do que o segundo. neste só pode ser usado ou greater ou less
+Assim, a regra para verfiicar se o contrato está se cumprindo é
+verdadeira se p value é maior do que alpha e D+ menor lambda.
+Onde alhpa é o nivel de significancia, geralmente é 0.05
+
+
+
+=== Experimentos e Resultados == 
+A aplicação das técnicas e abordagens já mencionadas são materia da seção, experimentos e resultados
+== Definição de requisitos 
+Primeiro a Definição de requisitos de QoS de maneira analítica.
+Aí, se usou uma coreografia que tenha os 3 tipos de elementos de BPMn básicos, tais como eventos, atividades de coreografia e gateways (neste caso de decisão exclusiva)
+A coreografia é acerca de de oferta de investimento no mercado de ações. A coreografia possui dois participantes, o cliente e o assesor financeiro.
+Assim, primeiro, o assessor financeiro oferece um investimento para um cliente, e depois de um tempo, o cliente decide aceitar ou rejeitar
+a proposta e assim o processo finaliza.
+
+= GSPN obtida
+Daí, após mapear essa coreografia, que é o passo 1,  obtemos a GSPN com caracteristicas de Qos como mostra a figura
+
+= Configuração
+Neste  passo se estabelecem valores para os  pesos no caso de transições imediatas e  taxas de disparo nas transições temporizadas.
+Se definiram  dois cenários o primeiro de cor verde com menor chance de falhas e o segundo de cor vermelho com maior chance de falhas.
+Por exemplo na figura se mostra o estabelecimento de valores na primeira interação, para a latencia, recebimento e execução do serviço, erros 
+de comunicação, erros na mensagem, e probabilidade na decisão exclusiva.
+
+= Os valores completos estão especificados nessa tabela.
+
+= Simulações
+O passo final é reaizar as simulações, e para tanto foi usada a ferramenta Pipe2 para a modelagem e simulação.
+1 token equiavel a uma  requsiição e instancia de coreografia 
+A Marcação inicial possui 100 tokens  na posição de Inicio (Start) e representam 100 requisições concurrentes 
+foram realizados 1500 disparos e 10 replicações.
+o nível de confiança é de 95%
+
+== Os Resultados ==
+Os resutados resumidamente se mostram na presente tabela.
+As posições Merr representam formatos de mensagens inválidas. E houveram menos instancias que nao terminaram o processo
+no cenário 1 do que  no cenário 2.
+
+As posições Cerr representam os errso de comunicação, que causaram, novamente que no cenário 2 haja mais instancias perdidas do que no cenário 1
+Finalmente, foram identificados pontos de gargalho na posição Ci1 que reteve mais instancias do que os outros Ci's
+Este tipo de resultados pode ser útil para definir restrições de QoS, decições de planejamento de recurso de rede, e ajudar a especificar SLA iniciais
+
+
+= Def QoS usando ChorSim
+Na definição de requsisito de QoS também se realizaram experimentos com o ChorSim.
+Más desta vez e para as etapas posteriores usa-se uma coreografia acerca de uma aplicação de tipo CDN, isto é, de fornecimento de objetos multimidia e de streaming como imagenes, áudio e vídeo. A coreografia toda possui 5 serviços Web, mas para o experimento vai se usar 3 deles
+de modo a atender a requisição que faz um usuario ao serviço WS1, que é um intermediário, que depende do serviço WS3, o qual fornece parte do objeto 
+multimidia e que depende do serviço WS5 que gera a outra parte do objeto.
+É importante avaliar o desempenho levando em consideração os atributos de rede.
+
+= Configuração
+Assim o objetivo neste experimento é analisar o tempo de resposta total do serviço WS1 em função do tamanho da resposta com diferentes valores de largura de banda.
+
+Se definiram 2 cenários, o primeiro com largura de banda uniforme e o segundo com lagura de banda váriável. No segundo cenário,
+já que nã é possivel definir a largura de banda por meio de distribuições de probabilidade, se optou por usar larguras de banda variáveis
+em periodos de tempo. Desse modo, a figura mostra a variação da largura de banda ao longo de um período de 100 segundos.
+
+
+= Configuração III
+A seguir a configuração de valores,
+A tabela de cima mostra que foram definidos vaores  largura de banda é de 1 Mbps para todas as requisições, e se realizarão
+simulações cauma uma com  requisiçõs incrementais de 1 a 10 
+Já na tabela de baixo mostra os valores de largura de banda para as respotas, neste caso são maiores porque retornma quantidades de dados grandes.
+O que se varia aqui é a largura de banda do serviço WS1 de 1 a 16Mbps
+
+= Resultados
+Obtivemos os seguintes resultados,
+no cenário 1,  a figura mostra  as médias dos tempos de rpta total do serviço WS1 em função dos tamanhos de respota do serviço WS1 com larguras de banda de 1Mbps até 16Mbps.
+Neste cenário em todas as larguras de banda o tempo de reposta minimó é de 100ms
+Quanto maior é a largura de banda, o tempo resposta estabiliza-se a partir de 5Mbps, curvas vermelhas
+
+*Análise 
+poder oferecer tempos de resposta menores que 200ms desde que se tenha uma infraestrutura para
+suportar uma largura de banda de mais de 5Mbps.
+
+No cenário 2. O tempo de resposta inicial é diferente, sobretudo  com larguras de banda pequenas, já com larguras de banda maiores
+se aproxima a um tempo de reposta minimó é de 120 ms.
+Na figura não se mostram as larguras de banda de 1 e 2 Mbps, por conta de timeouts.
+
+Quanto maior é a largura de banda, os tempos resposta se aproximam mais e estabiliza-se a partir 10 Mbps, curvas vermelhas
+
+* Análise
+Dessa maneira, as restrições de QoS estariam focadas em garantir larguras de banda mínimas maiores que 2Mbps e para garantir tempos de
+resposta mínimos são necessários valores de largura de banda maiores que 14Mbp
+
+
+= Estabelecimento do Contrato
+Na Segunda etapa, o Estabelecimento do Contrato, a diferencia da largura de banda, se consegui definir o tempo de processamento 
+por meio de distribuições de probabilidade. Assim, optou-se definir comportamentos dinamicos que de degradam ao longo do tempo,
+por isso se escolheram distribuiçõs exponenciais.
+
+Desse modo, a tabela mostra as taxas de degradação para o tempo de processamento de cada serviço.
+Cada um tem 10000, que degrada ?
+
+Dái, após realizar várias simulações e obter valores amostras de tempos de reposta do WS1, se obteve a seguinte fda 
+definido dessa maneira o contrato, a figura mostra também os quantis de 90, 95, 98 e 99 % da ECDF estimada.
+
+= Finalmente o monitoramento
+primeiro precisa se configurar.
+A regra para detectar violações de SLA ficou como mostra a equação 5, o nível de significancia alpha é 0.05  que é um valor comum
+e a distancia de kolmogorv deve ser menor do que uma zona de tolerancia de 0.15. 
+
+Além disso, para habilitar um monitoramento online e sequencial, o monitor precisa usar varias conjunto de N amostras que se sobrepoem 
+de acordo com um desvio p.
+Para os experimentos N = 100 e o desvio = 1
+
+== Cenários 
+Se definiram 4 cenários para o monitoramento, e como mostra a tabela se especificam as taxas de degradação para cada um dos serviços.
+Os dos primeiros, em cor vermelho, possuem taxas de degradação que fazem ter o tempo processamento maior do que no contrato
+Já o terceiro, de cor verde ainda possui taxas que fazem o processamento um pouco pior do que no contrato
+E o ultimo cenário tem taxas que fariam ter processamento mais rápido do que o prometido no contrato.
+Nas pŕoximas figuras veremos quanto isso se reflete na detecçã de violações de contrato. 
+
+= Resultados I
+Para ilustrar um pouco a técnica, na vamos mostrar o comportamento do tempo de resposta por meio de fda empiricos estimados com 100 amostras monitoradas dos cenario 1 e 4.
+O fds empirico do contrato está em verde, em azul é do cenario 4 e em vermelho o cenario 1
+Podemos notar que gráficamente o fda empirico de cenario 1 é menor do que o contrato, essa medida é dada por D+, e neste caso é maior do que azona de tolerancia, portanto  há uma violação do contrato.
+
+Já no cenário 1, seu fda gráficamente é maior do que o contrato daí a existencia do D-, mas existem pequenas partes onde é menor, mostrado por D+, mas que já que é menor do que  lambda, entaõ o contrato é cumprido.
+
+= Resultados II
+Agora vamos mostrar os resultados do monitoramento online para 1000 requisições.
+No cenário 1, se obteve 92.33% como esperado as violações foram muitas.
+Mas quando e onde foram detectadas?
+No gráfico da ezquerda se mestra o valor da distancia de kolmogorov D e na direita o p-value
+Os dois são paramteros que definem a regra de cumprimento do contrato.
+Pois bem, no cenário 4 houve violações em porque ...
+
+
