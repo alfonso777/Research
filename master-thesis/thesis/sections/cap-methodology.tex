@@ -1,14 +1,13 @@
-\chapter{Metodologia}
+\chapter{Mecanismo para Detecção de Violações de SLAs em Coreografias de Serviços Web}
 \label{cap:methodology}
 
 Os capítulos anteriores apresentaram e descreveram os conceitos básicos acerca de serviços Web, computação orientada a serviços, composição de serviços, tópicos acerca
-de  coreografias, qualidade de serviço, SLA e monitoramento em coreografias de serviços Web. A dissertação de mestrado neste documento tem como
+de  coreografias, qualidade de serviço, SLA e monitoramento em coreografias de serviços Web. A presente dissertação tem como
  objetivo o monitoramento  e a detecção de violações de SLAs  baseadas  em restrições probabilísticas de QoS em coreografias de serviços Web. %(resume o objetivo aqui).
  %As seções a seguir apresentam ...  (explica a organização do capítulo sobre a proposta aqui)
-Assim, as seções a seguir apresentam com mais detalhe a proposta. Primeiro uma visão geral na definição de restrições de QoS e o monitoramento
-de coreografias. Depois, apresenta-se a construção do simulador de coreografias para alavancar esta pesquisa. Finalmente,   apresentam-se
-as técnicas para definir os requerimentos de QoS e monitoramento para realizar a detecção de violações de SLA em coreografias.
-
+Assim, as seções a seguir apresentam com mais detalhe a proposta. Primeiro uma visão geral na definição de restrições de QoS e o monitoramento de coreografias. Depois, descreve-se a construção do simulador de
+coreografias necessário para a avaliação de desempenho do mecanismo. Finalmente, apresentam-se
+as técnicas para definir os requisitos de QoS e monitoramento para realizar a detecção de violações de SLA em coreografias.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%              Visão Geral            %%%%%%%%%
@@ -24,16 +23,15 @@ as técnicas para definir os requerimentos de QoS e monitoramento para realizar a
   \end{figure}
 \end{center}
 
-
 A Figura \ref{fig:MonitoringOverview} ilustra a arquitetura para a definição de SLAs e monitoramento de coreografias de serviços. 
 Apresenta-se uma coreografia de três participantes (A, B e C) que interagem entre si. Cada um 
-dos participantes possui uma implementação local por meio de orquestrações de serviços, que por sua vez ``realizam'' a coreografia. Um SLA é definido por cada dupla
+dos participantes possui uma implementação local por meio de orquestrações de serviços, que por sua vez realizam a coreografia. Um SLA é definido por cada dupla
 de participantes que interagem. Por exemplo, na interação dos participantes A e B foi definido um SLA (SLA 1) composto pelas restrições de QoS (rótulo 1
  da Figura \ref{fig:MonitoringOverview}) do
  tempo de resposta no fornecimento das operações que acontecem nessas interações. Tais restrições são definidas de maneira probabilística utilizando uma
 distribuição de probabilidade. Desta maneira, podem-se definir SLAs probabilísticos para cada dupla de participantes que interagem (SLA 2 e SLA 3) de acordo com a
  especificação da coreografia. Cabe ressaltar
-que as restrições de QoS definidas no SLA de um serviço podem ser o resultado da agregação de QoS de otros serviços oferecidos por outros participantes de acordo 
+que as restrições de QoS definidas no SLA de um serviço podem ser o resultado da agregação de QoS de outros serviços oferecidos por outros participantes de acordo 
 com as suas dependências.
  %segundo os padrões de interação de coreografias.
 
@@ -43,13 +41,11 @@ vez que os SLAs probabilísticos tenham sido definidos. Em tempo de execução, o m
  distribuição agregada com a distribuição de
 probabilidade especificada no SLA. Dessa maneira, o monitor realiza as verificações necessárias para detectar violações de SLA.
 
+\section{Características}
 
-
-\section{Preliminares}
-
-  O modelo de interação para especificar coreografias foi adoptado nesta pesquisa. Escolheu-se essa abordagem já que esse modelo representa 
-  melhor as interações entre participantes e porque possui menos complexidade do que no modelo de interconexão. Assim, o padrão BPMN2 é levado 
-em consideração por suportar o modelo interação. A Figura~\ref{fig:ChoreographyElements} mostra os elementos BPMN considerados no desenvolvimento
+  O modelo de interação para especificar coreografias foi adotado nesta pesquisa. Escolheu-se essa abordagem já que esse modelo representa 
+  melhor as interações entre participantes e porque possui menos complexidade do que o modelo de interconexão. Assim, o padrão BPMN2 é levado 
+em consideração por suportar o modelo de interação. A Figura~\ref{fig:ChoreographyElements} mostra os elementos BPMN considerados no desenvolvimento
  desta pesquisa. Considerou-se somente um subconjunto do total de elementos, já que são suficientes para avaliar as técnicas e abordagens propostas. 
    %To the reader interested, in \cite{OMG2011} all the elements allowed in BPMN choreographies are presented.
  
@@ -68,36 +64,34 @@ em consideração por suportar o modelo interação. A Figura~\ref{fig:ChoreographyE
   \begin{figure}[h]
       \centering
       \includegraphics[width=.9\linewidth]{figures/MonitoringStages.png}
-      \caption{ Interação de serviços a partir de  interações atômicas do BPMN2.}
+      \caption{Etapas para realização do monitoramento.}
       \label{figure:MonitoringStages}
   \end{figure}
 
   A Figura~\ref{figure:MonitoringStages} mostra as três principais etapas envolvidas para realizar o monitoramento de coreografias. Primeiro,
-  precisa-se definir os requerimentos de QoS por meio de métodos análiticos ou simulações. Depois, especifica-se o contrato de QoS (SLA) por meio de
+  precisa-se definir os requisitos de QoS por meio de métodos analíticos ou simulações. Depois, especifica-se o contrato de QoS (SLA) por meio de
   alguma distribuição de probabilidade. Por fim, configuram-se os parâmetros de monitoramento, se realiza a coleta e agregação de QoS, e se realizam
   as verificações para detectar as violações de SLAs.
-  Dessa maneira, para atingir o objetivo de realizar a detecção de violações de SLAs em coreografias de serviços Web, desenvolveu-se as seguintes atividades nesta pesquisa:
+  Dessa maneira, para atingir o objetivo de realizar a detecção de violações de SLAs em coreografias de serviços Web, desenvolveu-se as seguintes atividades:
 
   \begin{itemize}
-      \item Definição de requerimentos de QoS de maneira análitica, por meio da avaliação de desempenho de coreografias usando Redes de
+      \item Definição de requisitos de QoS de maneira analítica, por meio da avaliação de desempenho de coreografias usando Redes de
 	    Petri Estocásticas Generalizadas (GSPN).
-      \item Construção de um simulador para rodar coreografias de serviços. O simulador de coreografias possui suporte de QoS, e acima dele um
+      \item Construção de um simulador para rodar coreografias de serviços. O simulador de coreografias possui suporte a QoS, e acima dele um
 	  monitor centralizado foi desenvolvido.
-      \item Definição de requerimentos de QoS de maneira probabilística usando o simulador de coreografias. 
-      \item Especificação de contratos probabilística baseado nos requerimentos definidos.
+      \item Definição de requisitos de QoS de maneira probabilística usando o simulador de coreografias. 
+      \item Especificação de contratos probabilísticos baseados nos requisitos de QoS.
       \item Monitoramento de SLAs probabilísticos e a detecção de violações de SLA.
   \end{itemize}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%    Modelo de QoS e Falhas    %%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Modelo de QoS} \label{qos-model}
 
-    Os atributos de QoS considerados neste trabalho estão envolvidos em interações de serviços, isto é, de acordo a um modelo
-   de requisição e resposta para um serviço (individual ou composto). %tanto individual (atômica quanto de maneira composto
-    Essas interações entre serviços estão baseadas nas interações atômicas (atividades de coreografia) do
+    Os atributos de QoS considerados neste trabalho estão envolvidos em interações de serviços, isto é, de acordo com um modelo
+   de requisição e resposta para um serviço. %tanto individual (atômica quanto de maneira composto
+    Essas interações entre serviços estão baseadas nas interações atômicas do
    BPMN2. A Figura~\ref{figure:InteractionBPMNServiceInteraction} mostra o mapeamento das atividades de
    coreografia para seu equivalente em interações de serviço, de maneira a definir aí o modelo de QoS (atributos, métricas, cálculos, entre outros).
 
@@ -112,8 +106,7 @@ em consideração por suportar o modelo interação. A Figura~\ref{fig:ChoreographyE
     A Figura~\ref{figure:QoSInvocationService} mostra os atributos de QoS básicos envolvidos em uma invocação de um
     serviço tais como, o tempo de comunicação na requisição, o tempo de execução, o tempo de comunicação na resposta
      e o tempo de resposta. O tempo de comunicação depende de atributos de QoS de rede como a largura de banda
-    e a latência de rede; o tempo de resposta depende do tempo de execução e do tempo de comunicação (de requisição e de
-   resposta). Além do mais, no caso de serviços compostos o cálculo dos atributos de QoS depende das medidas dos
+    e a latência de rede; o tempo de resposta depende do tempo de execução e do tempo de comunicação. Além do mais, no caso de serviços compostos o cálculo dos atributos de QoS depende das medidas dos
     outros atributos de QoS e das dependências com outros serviços. %A seguir, as equações para calcular os atributos de QoS já mencionados.
 
     \begin{figure}[h]
@@ -135,13 +128,13 @@ em consideração por suportar o modelo interação. A Figura~\ref{fig:ChoreographyE
 
       %\subsection{Agregação de QoS }
       \begin{itemize} %[label={}]
-	  \item \textbf{Tempo de execução efetivo}: $ t_{execução} = t_{Rcomposto} + t_{execução\_individual}$. Onde
-            $t_{Rcomposto}$ é o tempo de resposta acumulado
-	  dos serviços que são  dependências do serviço atual, e $t_{\text{Execução}\_individual}$ é o tempo de execução do serviço atual.
+	  \item \textbf{Tempo de execução efetivo}: $ t_{\text{execução}} = t_{\text{Rcomposto}} + t_{\text{execução\_individual}}$. Onde
+            $t_{\text{Rcomposto}}$ é o tempo de resposta acumulado
+	  dos serviços que são  dependências do serviço atual, e $t_{\text{execução}\_individual}$ é o tempo de execução do serviço atual.
 	  \item \textbf{Tempo de resposta composto}: \\
-	      $ t_{Rcomposto} = F( aggregationType, dado, t_{R1}, ..., t_{Rk})$.  Onde os $t_{R1},..., t_{Rk}$  são os tempos de resposta
+	      $ t_{\text{Rcomposto}} = F( aggregationType, dado, t_{R1}, ..., t_{Rk})$.  Onde os $t_{R1},..., t_{Rk}$  são os tempos de resposta
 		dos serviços que são dependências do serviço atual, $F$ é a função de agregação que depende do tipo de  padrão de \emph{workflow}
-		 $aggregationType$, e $data$ é a informação associada. Os \emph{gateways} atualmente suportados são
+		 $aggregationType$, e $dado$ é a informação associada. Os \emph{gateways} atualmente suportados são
 		a sequência, paralelismo e a decisão exclusiva (ver Figura~\ref{fig:ChoreographyElements}):
 	      \begin{itemize}
 		\item \textbf{Sequência}: $F( SEQUENCE, dado, t_{R1}) = t_{R1}$. Onde $t_{R1}$ é o serviço em sequência do serviço atual.
@@ -156,7 +149,7 @@ em consideração por suportar o modelo interação. A Figura~\ref{fig:ChoreographyE
   \subsection{Modelo de Falhas} \label{fault-model}
     Um modelo de falhas descreve os tipos de falhas que podem ocorrer em um sistema enquanto está sendo executado, e ajuda a
     determinar quais mecanismos de tolerância a falhas deveriam ser aplicados~\cite{Liu2010a}. Levando em consideração o trabalho em~\cite{Liu2010a},
-      as falhas para  serviços Web podem-se classificar em quatro tipos: lógicas, de sistema, de conteúdo e
+      as falhas para  serviços Web podem ser classificadas em quatro tipos: lógicas, de sistema, de conteúdo e
     de nível de serviço (SLA). A seguir, uma breve descrição desses tipos:
 
     \begin{itemize}
@@ -179,39 +172,41 @@ em consideração por suportar o modelo interação. A Figura~\ref{fig:ChoreographyE
 %%%%%%----------------------------------------------------%%%%%
 \section{Definição de requisitos de QoS analiticamente}
    
- Antes de desenvolver a pesquisa  sobre a infraestrutura para rodar coreografias (simulador), desenvolveu-se uma maneira de definir requisitos
- de QoS de maneira analítica usando GSPNs (Rede de Petri Estocástica Generalizada). Assim, uma nova metodologia para avaliar o
-   desempenho de coreografias para  definir requisitos de QoS foi proposta. A avaliação é realizada na fase de modelagem da coreografia usando
- GSPNs. A proposta baseia-se na execução dos seguintes passos:
-
+ Antes do desenvolvimento do simulador de coreografias, desenvolveu-se uma maneira de definir requisitos
+ de QoS de maneira analítica usando GSPNs (Rede de Petri Estocástica Generalizada). Assim, uma metodologia para avaliar o
+   desempenho de coreografias para  definir requisitos de QoS foi proposta. A avaliação é realizada na fase de modelagem da coreografia. A metodologia consiste na execução dos seguintes passos:
 
   %%precisa de um background em GSPN
   \begin{enumerate}
-
     \item Mapeamento de uma coreografia especificada em BPMN 2.0 para uma GSPN. A GSPN inclui a representação intermediária da coreografia
-   e o modelo de QoS que leva em consideração as  restrições de tempo e comunicação das interações entre os participantes (cada participante
-   representa um \textit{peer} que está ativo durante o \textit{enactment} da coreografia).
+   e o modelo de QoS que leva em consideração as  restrições de tempo e comunicação das interações entre os participantes. Cada participante
+   representa um \textit{peer} que está ativo durante o \textit{enactment} da coreografia.
 
     \item Definição de pesos nas transições com restrições de tempo na GSPN. Nesta etapa, as distribuições de probabilidade e pesos
    nas interações relacionadas com a comunicação e troca de mensagens são definidas.
 
+%%FIX:
   \item Simulações de cenários, um cenário com uma configuração mínima de falhas e outro cenário com uma maior possibilidade de falhas. As simulações 
    são utilizadas já que as coreografias no mundo real representam processos complexos, que geram complexas redes de Petri com muitos estados
-     que  tornam difícil  realizar avaliações analíticas~\cite{Oliveira2009}.
+     que  tornam difícil  realizar avaliações analíticas~\cite{Oliveira2009}. A partir dos resultados e analises das simulações podem-se estimar e planejar
+  recursos, capacidade e outros requisitos em etapas antecipadas do desenvolvimento da coreografia visando melhorar a QoS.  
+%We are solving:  resources planing before, during the development of choreography,
+%where to guarantee of QoS, especially in communications aspects, is important.
+
   %The simulations are employed to retrieve approximated performance measures with certain confidence level
   \end{enumerate}
 
-\subsection{ Definição formal de coreografias specificadas em BPMN }   \label{subsec:formalization}
- 
+\subsection{ Definição formal de coreografias especificadas em BPMN }   \label{subsec:formalization}
+ %%FIX:
  %, choreographies of BPMN processes can be defined as explained below:
- Com base na Figura~\ref{fig:ChoreographyElements}  e no trabalho apresentado em \cite{Dijkman2007}, as coreografias de processos especificadas em BPMN2
-podem ser definidas como:
+ A definição de coreografias está baseado no trabalho apresentado em \cite{Dijkman2007} acerca da definição de processos BPMN. Assim, 
+  as coreografias de processos especificadas em BPMN2 podem ser definidas segundo a Definição 1. %na Figura~\ref{fig:ChoreographyElements}
 %. Para tanto, a seguir vamos definir o \textit{core process choreography BPMN} (baseado em \cite{Dijkman2007}).
 
 
     \begin{mydef}
       Uma coreografia de processos em BPMN2 é a tupla: \\
-       $PC = (\mathcal{O, A, E, G, T}, \{e^S\}, \mathcal{E}^I, \{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T}, \mathcal{G}^F, \mathcal{G}^J,$
+       $PC = (\mathcal{O, A, E, G, T}, e^S, \mathcal{E}^I, e^E, \mathcal{E}^{I_M}, \mathcal{E}^{I_T}, \mathcal{G}^F, \mathcal{G}^J,$
        $\mathcal{G}^X, \mathcal{G}^M, \mathcal{G}^V, \mathcal{F} )$ onde:
       \begin{itemize}
 	\item $\mathcal{O}$ é conjunto de ``objetos'', que é particionado em três conjuntos disjuntos: atividades ($\mathcal{A}$), eventos $\mathcal{E}$
@@ -219,12 +214,12 @@ podem ser definidas como:
 
 	\item $\mathcal{A}$ é conjunto de atividades de coreografia (\textit{choreography tasks}) $\mathcal{T}$, \textit{sub-coreografias} e
 	  \textit{call Choreographies}. No entanto, \textit{sub-coreografias} e \textit{call choreographies} não são levados em consideração
-	  nesta pesquisa. Por isso, $\mathcal{A}$ é igual que o conjunto $\mathcal{T}$.
+	  neste trabalho. Por isso, $\mathcal{A}=\mathcal{T}$.
 
 	\item $\mathcal{E}$ é conjunto de eventos. Os eventos são particionados em três conjuntos disjuntos: eventos de Inicio {$e^\mathcal{S}$}, eventos
 	Intermediários $\mathcal{E^I}$ e eventos de Finalização {$e^\mathcal{E}$}.
 
-	\item $\mathcal{E^I}$ é  particionado nos conjuntos disjuntos de eventos de  menssagens $\mathcal{E}^{I_M}$ e eventos de temporizador 
+	\item $\mathcal{E^I}$ é  particionado nos conjuntos disjuntos de eventos de  mensagens $\mathcal{E}^{I_M}$ e eventos de temporizador 
 	    (\textit{timer}) $\mathcal{E}^{I_T}$.
 
 	\item $\mathcal{G}$ é o conjunto de \textit{gateways} e é  particionado em cinco conjuntos disjuntos de  \textit{\textit{gateways}: ``parallel forks''}
@@ -237,23 +232,22 @@ podem ser definidas como:
 
  
   Para analisar o comportamento não funcional em coreografias é necessário definir os atributos de QoS a considerar. Para tanto,   
-  consideraram-se atributos de QoS para três entidades: serviço, rede e mensagens. No serviço, o atributo de qoS considerado é o
-  tempo necessário para completar uma requisição (tempo de resposta).   Na rede, consideram-se os atributos como o atraso de rede e os
-  erros de comunicação, já que influem significantemente no tempo de resposta em uma coreografia. Nas mensagens, considera-se o  formato
-  da mensagem, já que necesitam ser validados.
+  consideraram-se atributos de QoS para três entidades: serviço, rede e mensagens. No serviço, o atributo de QoS considerado é o
+  tempo necessário para completar uma requisição.   Na rede, consideram-se os atributos como o atraso de rede e os
+  erros de comunicação, já que eles influenciam significantemente no tempo de resposta em uma coreografia. Nas mensagens, considera-se o  formato
+  da mensagem.
 
 %Uma coreografia de processos é um grafo orientado com nós (objetos) $ \mathcal{O}$ e arestas (fluxos de sequencias) $\mathcal{F}$. para qualquer
 % nó $x \in \mathcal{O}$, os nós de entrada de $x$ são dados por $in(x) = \{ y \in \mathcal{O} | y\mathcal{F}x\}$ e os nós de saída são dados por
 % $out(x) = \{ y \in \mathcal{O} | x\mathcal{F}y\}$.
 
-\subsection{ Mapeamento de coreografias em BPMN 2.0 para GSPNs} \label{subsec:mapping}
+\subsection{Mapeamento de coreografias em BPMN 2.0 para GSPNs} \label{subsec:mapping}
 
 A Figura~\ref{fig:MappingEventsAndGateways} apresenta o mapeamento de \textit{gateways} e eventos para seus respectivos módulos de rede de Petri. 
- A Figura~\ref{fig:MappingTaskChoreographiesQoS1} apresenta o mapeamento dos dois tipos de tarefas de coreografia (blocos de construção 
- de coreografias já que geram mensagens e invocações de serviços). Nessa Figura, as posições $A$,
+ A Figura~\ref{fig:MappingTaskChoreographiesQoS1} apresenta o mapeamento dos dois tipos de tarefas de coreografia. Nessa Figura, as posições $A$,
 $A_2$ e $B$ representam os participantes. As posições $C_{init}$, $C_{end}$, $C_{init2}$, $C_{end2}$, $C_{endOk}$ e $C_{endOk2}$ representam
 o começo, o final e a correta validação da comunicação entre dois participantes. As transições  $T_{send}$ e $T_{receive}$ representam
-as ações de envio e recebimento de mensagens. As transições $T_{msg}$ representam a transmisão de mensagens por um canal de comunicação.
+as ações de envio e recebimento de mensagens. As demais transições $T$ representam a transmissão de mensagens por um canal de comunicação.
 
 % Esses módulos de redes de Petri devem ser compostos de acordo à sequência de fluxo e os \textit{gateways} presentes na
 % modelagem da coreografia tal como está ilustrada na Figura \ref{fig:MappingEventsAndGateways}. Uma rede de Petri composta representa uma
@@ -274,15 +268,15 @@ as ações de envio e recebimento de mensagens. As transições $T_{msg}$ representa
       \includegraphics[width=1.0\textwidth]{./figures/BPMNChoreographies1-QoS.png}
       %\caption{GSPN modules of task choreograpies including the QoS model}
       %\caption{  Mapping of two different choreography tasks with the QoS model}
-      \caption{  Mapeamento de dois tipos de tarefas de coreografia para módulos de redes de Petri com suporte de QoS}
+      \caption{  Mapeamento de dois tipos de tarefas de coreografia para módulos de redes de Petri com suporte a QoS}
       \label{fig:MappingTaskChoreographiesQoS1}
   \end{figure}
 
 
 O passo 1 da metodologia é realizada pelo Algoritmo~\ref{alg2}. O algoritmo mapeia uma coreografia de processos especificados em BPMN 2.0 para uma
-GSPN incluindo o modelo de QoS. Cada elemento BPMN é mapeado  para seu respectivo modulo de rede de Petri (módulo GSPN) e esses módulos são
+GSPN incluindo o modelo de QoS. Cada elemento BPMN é mapeado  para seu respectivo módulo de rede de Petri e esses módulos são
 compostos  por meio de uma função de acordo com os fluxos de sequência ou \textit{gateways} que os conectam. Finalmente, os eventos de
- Inicio e de Finalização são adicionados na rede Petri atualmente construída.
+ Início e de Finalização são adicionados na rede de Petri construída.
 
 %Basicamente, a GSPN da coreografia toda é obtida mediante a composição dos módulos de GSPN.
 
@@ -290,16 +284,16 @@ compostos  por meio de uma função de acordo com os fluxos de sequência ou \texti
      %\textbf{Output:} Rede de Petri Estocástica Generalizada $GSPN$. \\
     \begin{algorithm}[!h]
       %\caption{Mapping a Interconnection Choreography in BPMN onto a GSPN with QoS model}
-      \caption{ { \small Mapeamento de uma coreografia especificada em BPMN 2.0 para uma GSPN com suporte de QoS } }
+      \caption{ { \small Mapeamento de uma coreografia especificada em BPMN 2.0 para uma GSPN com suporte a QoS } }
       %\caption{ { \small Mapping of choreography specified in BPMN 2.0 to a GSPN with QoS model} }
       \label{alg2}
       \begin{algorithmic}
       { \small
 	%\REQUIRE Process Choreography $\mathcal{PC}$ in BPMN 2.0.
-	\REQUIRE Coreografia de Processos $PC = (\mathcal{O, A, E, G, T}, \{e^S\}, \mathcal{E}^I,$ $\{e^E\}, \mathcal{E}^{I_M}, \mathcal{E}^{I_T},
+	\REQUIRE Coreografia de Processos $PC = (\mathcal{O, A, E, G, T}, e^S, \mathcal{E}^I,$ $e^E, \mathcal{E}^{I_M}, \mathcal{E}^{I_T},
          \mathcal{G}^F, \mathcal{G}^J,$ $\mathcal{G}^X, \mathcal{G}^M, \mathcal{G}^V, \mathcal{F} )$ em BPMN 2.0.
 
-	\ENSURE \textbf{$GSPN_{QoS}$}, uma rede de Petri estocástica generalizada com suporte de QoS.
+	\ENSURE \textbf{$GSPN_{QoS}$}, uma rede de Petri estocástica generalizada com suporte a QoS.
 	
 	\STATE Considerar $CT_i \in \mathcal{T} $, $G_j \in \mathcal{G} $ e $E_k \in \mathcal{E}$. $i, j, k \in \mathbb{N} $
 	%\STATE Let $PNQoS(CT_i)$ a respective GSPN including QoS from type of $CT_i$ and according to mapping rules (Figure \ref{fig:MappingTaskChoreographiesQoS1}).
@@ -307,10 +301,10 @@ compostos  por meio de uma função de acordo com os fluxos de sequência ou \texti
 	\STATE Seja $PNQoS(CT_i)$  uma função que de acordo com o tipo de $CT_i$ e de acordo com regras de mapeamento
 	  como ilustrado na Figura~\ref{fig:MappingTaskChoreographiesQoS1} retorna uma GSPN incluindo QoS.
 	\STATE Seja $PNQoS(G_j)$ uma função que de acordo com o tipo de $G_j$ e de acordo com regras de mapeamento
-	  como ilustrado na Figura~\ref{fig:MappingEventsAndGateways} retorna uma GSPN com suporte de QoS.
+	  como ilustrado na Figura~\ref{fig:MappingEventsAndGateways} retorna uma GSPN com suporte a QoS.
 	\STATE Seja $PNQoS(E_k)$ uma função que de acordo com o tipo de $E_k$ e de acordo com regras de mapeamento
- 	  como ilustrado na Figura~\ref{fig:MappingEventsAndGateways} retorna uma GSPN com suporte de QoS.
-	\STATE Seja $\oplus$ o operador binario de composição de dois módulos de GSPNs e que retorna outra GSPN.
+ 	  como ilustrado na Figura~\ref{fig:MappingEventsAndGateways} retorna uma GSPN com suporte a QoS.
+	\STATE Seja $\oplus$ o operador binário de composição de dois módulos de GSPNs e que retorna outra GSPN.
 
 
 	\STATE $GSPN_{QoS} \leftarrow  Empty\  Petri\  Net$
@@ -326,17 +320,17 @@ compostos  por meio de uma função de acordo com os fluxos de sequência ou \texti
 	\ENDFOR
 
 	\FOR{ $G_j \in \mathcal{G} $ }
-          \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PN(G_j)$
+          \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PNQoS(G_j)$
 	\ENDFOR
 
 	\FOR{ $E_k \in \mathcal{E} $ }
-          \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PN(E_k)$
+          \STATE $GSPN_{QoS} \leftarrow GSPN_{QoS} \oplus PNQoS(E_k)$
 	\ENDFOR
 
 	%\STATE Add a starting Place and immediate Transition at the beginning of the $GSPN_{QoS}$.
-	\STATE Adicionar uma posição de Inicio e uma transição immediata no começo de $GSPN_{QoS}$.
+	\STATE Adicionar uma posição de início e uma transição imediata no começo de $GSPN_{QoS}$.
         %\STATE Add a ending Place and immediate Transition at the end of the $GSPN_{QoS}$.
-	\STATE Adicionar uma posição de finalização e uma transição immediata no final de $GSPN_{QoS}$.
+	\STATE Adicionar uma posição de finalização e uma transição imediata no final de $GSPN_{QoS}$.
 
 	\RETURN $GSPN_{QoS}$
       }
@@ -349,52 +343,48 @@ compostos  por meio de uma função de acordo com os fluxos de sequência ou \texti
 %%%        Simulador de Coreografias      %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulador de Coreografias de Serviços}
-  Atualmente,  implementar e executar uma coreografia de serviços real  é uma tarefa complexa já que as  tecnologias para suportar esse paradigma de
-    composição de serviços  estão ainda imaturas, especialmente pela falta de motores de execução cientes de coreografia~\cite{Kopp2010}. Assim,
-    os mecanismos para medir parâmetros de QoS, e estabelecer requisitos de QoS não estão bem desenvolvidos para coreografias.
+%  Atualmente,  implementar e executar uma coreografia de serviços real  é uma tarefa complexa já que as  tecnologias para suportar esse paradigma de
+%    composição de serviços  estão ainda imaturas, especialmente pela falta de motores de execução cientes de coreografia~\cite{Kopp2010}. Assim,
+%    os mecanismos para medir parâmetros de QoS, e estabelecer requisitos de QoS não estão bem desenvolvidos para coreografias.
 
-  \subsection{Trabalhos Relacionados}
+%  \subsection{Trabalhos Relacionados}
 
-    Existem poucas infraestruturas para implementação de coreografias de serviços Web~\cite{Barker2009b}. O Pi4SOA~\cite{Zhou2006} é um
-    arcabouço que fornece  um editor para modelagem de coreografias em WS-CDL\footnote{WSCDL: Linguagem de especificação de coreografias proposto pela W3C},
-    e realiza verificações, validações e simulações. Porém,
-      não  suporta  execução de coreografias e as suas simulações servem apenas para encontrar inconsistências na especificação.
-    O WS-CDL+~\cite{Kang2007} é uma proposta de um motor de execução de coreografias especificadas em WS-CDL, mas foi implementado na forma
-    de protótipo e somente a versão $1.0$ foi lançada. O OpenKnowledge~\cite{Barker2009b} é um arcabouço que fornece a capacidade  de rodar
-    sistemas distribuídos em uma  arquitetura P2P (ponto a ponto), podendo rodar coreografias também, mas de maneira limitada.
+%    Existem poucas infraestruturas para implementação de coreografias de serviços Web~\cite{Barker2009b}. O Pi4SOA~\cite{Zhou2006} é um
+%    arcabouço que fornece  um editor para modelagem de coreografias em WS-CDL\footnote{WSCDL: Linguagem de especificação de coreografias proposto pela W3C},
+ %   e realiza verificações, validações e simulações. Porém,
+ %     não  suporta  execução de coreografias e as suas simulações servem apenas para encontrar inconsistências na especificação.
+ %   O WS-CDL+~\cite{Kang2007} é uma proposta de um motor de execução de coreografias especificadas em WS-CDL, mas foi implementado na forma
+ %   de protótipo e somente a versão $1.0$ foi lançada. O OpenKnowledge~\cite{Barker2009b} é um arcabouço que fornece a capacidade  de rodar
+ %   sistemas distribuídos em uma  arquitetura P2P (ponto a ponto), podendo rodar coreografias também, mas de maneira limitada.
 
-    Muitos simuladores para sistemas e ambientes distribuídos foram propostos. Por exemplo, o arcabouço GridSim~\cite{Buyya2002}, 
+    Existem diversos simuladores para sistemas e ambientes distribuídos. Por exemplo, o arcabouço GridSim~\cite{Buyya2002}, 
     o Pi4SOA~\cite{Zhou2006} e o arcabouço SimGrid~\cite{Casanova2008}. O arcabouço GridSim~\cite{Buyya2002} é um motor de simulação
     de ambientes distribuídos baseado em eventos. Ele implementa entidades para emular usuários. As requisições dos usuários são escalonadas
     por meio de um \textit{broker} que os aloca nos recursos de simulação. O SimGrid~\cite{Casanova2008} é um arcabouço para simular
     diversos sistemas distribuídos e permite avaliar  mecanismos de \textit{clusters} e grades.%%TODO: extender a descrição do Simgrid
 
-    Como podemos notar, não há soluções baseadas em simulações para apoiar a execução de coreografias e menos ainda com suporte a QoS.
-    Por conta disso, em~\cite{Guimaraes2012} se desenvolveu um protótipo de um simulador  para demonstrar que coreografias são mais eficientes
+    Não há soluções baseadas em simulações para apoiar a execução de coreografias e menos ainda com suporte a QoS.
+    Por conta disso, em~\cite{Guimaraes2012} foi apresentado um protótipo de um simulador para demonstrar que coreografias são mais eficientes
     do que orquestrações de serviços. Contudo, esse simulador não suporta experimentos de coreografias com o objetivo de avaliar mecanismos
     relacionados com QoS ou SLA.
-
   
-    Nosso trabalho diferencia-se dos demais por apresentar um novo simulador para coreografias de
-    serviços Web que permite a avaliação de mecanismos de garantia de QoS e de SLA. Além disso, também é apresentada uma metodologia para estabelecer requisitos
-    de QoS  para coreografias de serviço. %% tirei modelo de falhas daqui
+    O simulador apresentado nesta dissertação diferencia-se daquele apresentado em \cite{Guimaraes2012} por dar suporte à avaliação de mecanismos
+    de garantia de QoS e de SLA. %Além disso, também é apresentada uma metodologia para estabelecer requisitos
+    %de QoS  para coreografias de serviço. %% tirei modelo de falhas daqui
 
-
-  \subsection{Desenvolvimento}
+%  \subsection{Desenvolvimento}
   A Figura~\ref{figure:QoSAttributosEvents} mostra as requisições enviadas e as respostas  de um serviço composto.  Essas interações
-  (requisições e respostas) são registradas mediante eventos por parte de um serviço ou cliente solicitador (eventos $1$ e $4$)
+  são registradas mediante eventos por parte de um serviço ou cliente solicitante (eventos $1$ e $4$)
   e eventos por parte das dependências (eventos $2$ e $3$). Os eventos indicam quando e quais  atributos de QoS
-  devem ser medidos e garantem a ordem para garantir valores consistentes. %, e é por isso que o gerenciamento de  eventos complexos %são importantes nos atuais \emph{middlewares} para composição de serviços.
-  Os atributos de QoS  com as  suas métricas e tipos de falhas associadas são apresentados na Tabela~\ref{table:QoSmodel}.
+  devem ser medidos e a correta ordem para garantir valores consistentes. %, e é por isso que o gerenciamento de  eventos complexos %são importantes nos atuais \emph{middlewares} para composição de serviços.
+  Os atributos de QoS  com as  suas métricas e tipos de falhas associadas são apresentados na Tabela~\ref{table:QoSmodel}. São esses atributos que são suportados pelo simulador.
   %TODO: descrever os atributos de QoS da Figura de acordo com os eventos
-
-  
 
    \begin{figure}[!h]
        \centering
       \includegraphics[width=.6\linewidth]{figures/ServiceDependency_Events_QoS.png}
-      \caption{Atributos de QoS calculados em um evento dado. (1) Recebendo requisições de um cliente ou serviço. (2) enviando
-      requisições para um outro serviço. (3) recebendo resposta de um outro serviço (dependência). (4) enviando resposta para um cliente ou serviço solicitador.}
+      \caption{Atributos de QoS calculados. (1) Recebendo requisições de um cliente ou serviço. (2) enviando
+      requisições para um outro serviço. (3) recebendo resposta de um outro serviço. (4) enviando resposta para um cliente ou serviço solicitante.}
       \label{figure:QoSAttributosEvents}
   \end{figure}
 
@@ -419,30 +409,29 @@ compostos  por meio de uma função de acordo com os fluxos de sequência ou \texti
       }
     \end{table}
 
-
-  A simulação é utilizada pois a implementação e a execução de coreografias de serviços Web reais ainda é difícil por conta da
- imaturidade das tecnologias~\cite{Kopp2010}. % de suporte, principalmente
+%  A simulação é utilizada pois a implementação e a execução de coreografias de serviços Web reais ainda é difícil por conta da
+% imaturidade das tecnologias~\cite{Kopp2010}. % de suporte, principalmente
 %pela falta de um motor de execução ciente de coreografias \cite{Kopp2010}.
-    Porém, implementar um simulador por completo é uma tarefa complexa. Por conta  disso, decidiu-se usar um arcabouço de simulação existente,  o
+   Pelo fato da implementação de um simulador por completo ser uma tarefa complexa, decidiu-se estender um arcabouço de simulação já existente, o
    SimGrid~\cite{Casanova2008}. Como o SimGrid permite a simulação de ambientes distribuídos, ele é suficiente para servir como base
-  para o nosso simulador de coreografias com suporte a avaliação de desempenho de atributos de  QoS.
+  para o nosso simulador de coreografias, chamado de ChorSim.
 
 %Desde o SimGrid permite a simulação de ambientes distribuídos,  ele foi usado como base para implementar nosso simulador.
 
-
-
   \subsection{Arquitetura}
 
-   A Figura~\ref{fig:chorsim_architecture} mostra a arquitetura do simulador de coreografias (ChorSim\footnote{ O repositório do ChorSim está disponível 
-   em \url{https://github.com/choreos/ChoreographySimulator}})
- com suporte a QoS, onde
-  cada bloco representa um componente do simulador. Um componente depende de um outro componente ou vários componentes que estão embaixo dele.
-  Cada um dos componentes serão explicados a seguir. A base do ChorSim está construído sobre o arcabouço
+   A Figura~\ref{fig:chorsim_architecture} exibe a arquitetura do ChorSim \footnote{ O repositório está disponível 
+   em \url{https://github.com/choreos/ChoreographySimulator}}. Cada
+  bloco representa um componente do simulador. Um componente depende de um outro componente ou vários componentes que estão embaixo dele.
+
+  A base do ChorSim está construído sobre o arcabouço
   SimGrid, para suportar a definição de \emph{hosts}, topologia de rede, comunicação entre  serviços e a especificação
-  do consumo de recursos. O ``Motor de Execução  de Coreografias'' do  ChorSim permite a criação de instâncias de coreografias
- e iniciar as interações dos diversos serviços envolvidos que resultarão em um grafo de requisições e um outro grafo de informações de QoS.
- 
-    
+  do consumo de recursos. O ``Motor de Execução  de Coreografias'' do  ChorSim permite criar instâncias de coreografias
+ e iniciar as interações dos diversos serviços envolvidos que resultarão em um grafo de requisições e um grafo de informações de QoS. A topologia do ambiente físico onde a coreografia é realizada é configurada por meio de um arquivo XML de especificação de plataforma.
+%A   topologia de cenário coreografia é composta por cinco hosts e cada host implanta um único serviço. a rede
+%    foi simulado por meio de conexões e rotas entre os hosts para suportar interações entre serviços.
+  Os serviços foram modelados como um conjunto de \textit{threads} que recebem uma tarefa enviada através da rede, a executam e
+  em seguida enviam outra tarefa através da rede para atuar como uma resposta da requisição.
 
       \begin{figure}
 	\centering
@@ -451,12 +440,6 @@ compostos  por meio de uma função de acordo com os fluxos de sequência ou \texti
 	\caption{Arquitetura do simulador de coreografias.}
 	\label{fig:chorsim_architecture}
       \end{figure}
-
-  A topologia da coreografia (host, canais de comunicação e links) é configurada por meio de um arquivo XML de especificação de plataforma.
-%A   topologia de cenário coreografia é composta por cinco hosts e cada host implanta um único serviço. a rede
-%    foi simulado por meio de conexões e rotas entre os hosts para suportar interações entre serviços.
-  Os serviços foram modelados como um conjunto de \textit{threads} que recebem uma tarefa enviada através da rede, a executam e
-  em seguida enviam outra tarefa através da rede para atuar como uma resposta da requisição.
 
 O ``Modelo de Coreografias'' é construído a partir de uma especificação baseada em XML que define  os
   serviços participantes, suas dependências e suas interações. Os recursos computacionais  necessários para executar, a quantidade de \textit{threads}, o tamanho médio das respostas dadas nas interações dos serviços e suas operações  são configurados por meio  de um arquivo XML de implantação, que está especificado de acordo como o modelo de coreografias. O arquivo de implantação
@@ -486,35 +469,23 @@ O ``Modelo de Coreografias'' é construído a partir de uma especificação baseada 
 
 
 
-  %%%%%%%%%     Definição de requerimentos de QoS      %%%%%%%%%
-  \subsection{Definição de requerimentos de QoS}
+  %%%%%%%%%     Definição de requisitos de QoS      %%%%%%%%%
+  \subsection{Definição de requisitos de QoS}
 
- Injeção de falhas é amplamente utilizado para validar a mecanismo de tolerância a falhas em sistemas computacionais. Em um ambiente de  computação distribuída, 
- os esforços de pesquisa têm desenvolvido maneiras sistemáticas de identificar falhas em tempo de design e assim projetar mecanismos de 
- gestão de falhas. 
- Simulações baseadas em dados reais são muitas vezes inadequadas, já que os dados podem não estar disponíveis e sua coleta pode exigir longos
-  períodos de tempo de observação. Em vez disso, injeção de falhas é uma maneira prática e eficiente de validação, visto que consiste na
-  inserção de falhas no sistema tanto no software e nos níveis de hardware~\cite{Fugini2009}. Com base nisso, utilizou-se injeção de falhas
-  no simulador de coreografias  (\textit{ChorSim}) para obter maior diversidade nas medidas dos atributos de QoS (tempos de resposta, largura de banda)
- dos serviços individuais  e do serviço composto. 
- 
+ Injeção de falhas é amplamente utilizada para validar mecanismos de tolerância a falhas em sistemas computacionais. Em um ambiente de  computação distribuída, os esforços de pesquisa têm desenvolvido maneiras sistemáticas de identificar falhas em tempo de design e assim projetar mecanismos de gestão de falhas.  Simulações baseadas em dados reais são muitas vezes inadequadas, já que os dados podem não estar disponíveis e sua coleta pode exigir longos períodos de tempo de observação. Nesse contexto, a injeção de falhas é uma maneira prática e eficiente de validação, visto que consiste na inserção de falhas no sistema tanto no software quanto no hardware~\cite{Fugini2009}. Com base nisso, utilizou-se injeção de falhas no ChorSim para obter maior diversidade nas medidas dos atributos de QoS dos serviços individuais  e do serviço composto. 
 
-Para definir quais requerimentos de QoS são necessários para definir um contrato, precisa-se realizar diversas simulações con diversas configurações
-para procurar gargalhos, cargas de trabalho , degradações, entre outros, acerca de determinados atributos de QoS.  Além disso, para obter comportamentos
- mais realistas pode se usar distribuições de probabilidade. Porém, o SimGrid\footnote{A última versão do Simgrid é a 3.8} não suporta
+Para definir quais requeisitos de QoS são necessários para definir um contrato, precisa-se realizar diversas simulações com diversas configurações
+em busca de gargalos, degradações, entre outros, acerca de determinados atributos de QoS. Além disso, para obter comportamentos
+ mais realistas deve-se usar distribuições de probabilidade. Porém, o SimGrid\footnote{A última versão do Simgrid é a 3.8} não suporta
  a geração de eventos probabilísticos,  por isso também não suporta a especificação  de recursos computacionais nem de rede por meio de 
-distruibuições de probabilidade.
+distribuições de probabilidade.
 
-Mesmo assim, no ChorSim conseguiu-se adicionar a funcionalidade de usar distribuições de probabilidade para serem utilizados para definir somente comportamentos
-dinâmicos no tempo de  execução ou de processamento de serviços.  Outros atributos como a largura de banda e latência foram excluídos  para serem
- definidos como distribuições de probabilidade, porque os modelos que os suportam estão bem atrelados com a implementação do SimGrid.
- Contudo, para definir um comportamento   variável da largura de banda suportado pelo SimGrid usou-se a periodicidade. Assim, 
- diversos valores de largura de banda são definidos em  intervalos de tempo que estão definidos em um  período de tiempo. Dessa maneira, no próximo Capítulo
- se mostrarão os experimentos realizados com tempos de execução definidos como distribuições de probabilidade e largura de banda definidos com valores váriaveis
-dentro de um período.
+No ChorSim foi adicionado o suporte a distribuições de probabilidade para serem utilizadas na definição dos comportamentos
+dinâmicos do tempo de execução e do processamento de serviços. Atributos como a largura de banda e latência não puderam ser modificados para suportarem distribuições de probabilidade porque as suas implementações estão bem atreladas ao núcleo do SimGrid.
+Portanto, para definir um comportamento dinâmico da largura de banda usou-se diversos valores para diversos intervalos. 
+ Diversos valores de largura de banda são definidos em diferentes intervalos de tempo de modo a representarem a distribuição de probabilidade requerida.
 
 %%TODO: precisa de exemplos aquí?
-
 
 %\section{Detecção de violações de SLA}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -523,52 +494,50 @@ dentro de um período.
 \section{Especificação de SLAs Probabilísticos}
 
 
-    Nesta pesquisa, para cada relacionamento existente entre os participantes de uma coreografia serão especificadas restrições de QoS de maneira probabilística.
+    No mecanismo proposto, para cada relacionamento entre os participantes de uma coreografia serão especificadas restrições de QoS de maneira probabilística.
     %, isto é, restrição não rígidas.
-    Tais restrições de QoS tornarão-se um contrato (SLA) probabilístico. %, por conta disso, chama-se de SLA probabilístico e é um contrato não rígido (\emph{soft contract}).
+    Tais restrições de QoS tornarão-se um SLA probabilístico. %, por conta disso, chama-se de SLA probabilístico e é um contrato não rígido (\emph{soft contract}).
 
     Assim, um contrato é especificado por meio de uma função de distribuição de probabilidade
  $$F(x) = P_r( \delta \leq x) $$  
-   Onde $P_r$ é a probabilidade correspondente a uma restrição sobre algúm parámetro de QoS. Assim, $\delta$ é um parâmetro de QoS (por exemplo, a 
-  largura de banda efetiva), e $x \geq 0$. Então, o contrato ou restrição  será estabelecido
+   Onde $P_r$ é a probabilidade correspondente a uma restrição sobre algum parâmetro de QoS. $\delta$ é um parâmetro de QoS (por exemplo, a 
+  largura de banda efetiva), e $x \geq 0$. O contrato ou restrição  será estabelecido
     como um conjunto finito  de \textit{quantis}  dos parâmetros de QoS. %, que definem uma distribuição de probabilidade desses parâmetros de QoS.
     A forma de definir essas restrições utilizando quantis será baseada no trabalho apresentado em \cite{Rosario2008}, o qual propõe uma técnica para especificar
     SLAs probabilísticos entre serviços utilizados em uma orquestração.
     %Por exemplo, quantis de  25\%, 50\%, 90\%, 95\% e 98\% correspondem a tempos de resposta máximos de
     %2.5ms, 4.5ms, 6.4ms, 13.8ms, e 23.5ms respectivamente.
 
-    Esta pesquisa  realizará a agregação das distribuição de probabilidade dos parâmetros de QoS de acordo com os padrões de interação de coreografia, de modo
+    A agregação das distribuição de probabilidade dos parâmetros de QoS é realizada de acordo com os padrões de interação de coreografia, de modo
     que a restrição ou contrato  fique estabelecida no SLA de uma dupla de participantes da coreografia. Para estimar os quantis
-    a utilizar nas restrições de QoS nos SLAs dos participantes, precisa-se compor as distribuições  de probabilidade das restrições de QoS dos serviços individuais
+    a serem utilizados nos SLAs dos participantes, precisa-se compor as distribuições de probabilidade das restrições de QoS dos serviços individuais
    que são dependências do serviço composto. %    dos serviços atômicos de algum parâmetro de QoS.
 
    %%TODO: 
-    Pretende-se modificar o procedimento  do método de Monte-Carlo para orquestrações proposto
-    em \cite{Rosario2009}, para suportar também os padrões de interação das coreografias além de orquestrações. %%definir quais padrões de interação
-    O conjunto de restrições de QoS por meio de quantis, comporão um SLA, os quais 
-    serão descritos utilizando o padrão WSLA \cite{Keller2003}, introduzindo nele um conjunto de quantis por cada restrição de QoS que for acordada.
-
-
+    % Pretende-se modificar o procedimento  do método de Monte-Carlo para orquestrações proposto
+    % em \cite{Rosario2009}, para suportar também os padrões de interação das coreografias além de orquestrações. %%definir quais padrões de interação
+    % O conjunto de restrições de QoS por meio de quantis, comporão um SLA, os quais 
+    % serão descritos utilizando o padrão WSLA \cite{Keller2003}, introduzindo nele um conjunto de quantis por cada restrição de QoS que for acordada.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%     Monitoramento e Detecção de Violações de SLA    %%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Monitoramento e Detecção de Violações de SLA}
 %%TODO: descrição da técnica, da distancia e uso do one-side two sample de kolmogorov, etc
-    O monitor proposto nesta pesquisa deverá continuamente detectar possíveis violações de SLA. O  monitor deve atingir o menor número
-    de alarmes falsos e detectar o maior número de violações de SLA certas. O monitoramento usa métodos estatísticos para
-    verificar se o desempenho observado se desvia do desempenho acordado no SLA.
+    O monitor proposto nesta pesquisa visa detectar violações de SLA. O  monitor deve atingir o menor número
+    de alarmes falsos e detectar o maior número de violações de SLA corretas. O monitoramento usa métodos estatísticos para
+    verificar se o desempenho observado desvia daquele acordado no SLA.
 
-    O objetivo será medir os valores das métricas de QoS de um serviço $S$ de um participante. Depois os valores serão comparados com a restrição
+    O monitor mede os valores das métricas de QoS de um serviço $S$ de um participante. Depois os valores são comparados com a restrição
     de QoS $F_s$ definida no SLA não rígido. $F_s$ é a distribuição mediante quantis do parâmetro  $\delta$ de $S$. Seja $\Delta$ um conjunto finito
-    de amostras dos valores medidos de algum parâmetro de $S$. As seguintes equações de \cite{Rosario2009} são utilizadas para ilustrar o que se pretende fazer:
+    de amostras dos valores medidos de algum parâmetro de $S$. As seguintes equações de \cite{Rosario2009} são utilizadas no monitor:
 
     \begin{equation}
     F'_{s,\Delta}(x) = \frac{ | \{\delta, \delta \in \Delta \leq x  \}|}{|\Delta|}
     \end{equation}
 
 
-     Onde $F'_{s,\Delta}(x)$ é a função distribuição de probabilidade empírica, que define a proporção das amostras dos valores medidos coletado pelo monitor do
+     Onde $F'_{s,\Delta}(x)$ é a função distribuição de probabilidade empírica, que define a proporção das amostras dos valores medidos coletados pelo monitor do
     parâmetro $\delta$ que são menores que $x$ dentro do conjunto $\Delta$. Daí, informalmente a restrição é cumprida se:
 
     \begin{equation}
@@ -582,7 +551,7 @@ dentro de um período.
     \end{equation}
 
     Dado que em (2) e (3), $F'_{s,\Delta}(x)$  pode variar aleatoriamente ao redor de  $F_s(x)$, especialmente quando $\Delta$ é bem pequeno, precisa-se 
-    de uma zona de tolerância para tais desvios. Desta maneira a condição de violação pode ser formulada como:
+    de uma zona de tolerância para tais desvios. Desta maneira a condição de violação é formulada como:
 
     \begin{equation}
       sup_{x \in R^+}  (F'_{s,\Delta}(x) - F_s(x) ) \geq \lambda
@@ -593,7 +562,7 @@ dentro de um período.
 
     Nesses pontos descritos acima, precisa-se calibrar alguns parâmetros tais como o tamanho de $\Delta$ e o valor adequado de $\lambda$. Antes de utilizar
     essas fórmulas, precisa-se também de um método para agregar os quantis dos valores medidos dos parâmetros de QoS dos serviços individuais até achar
-    os valores acumulados da coreografia. Para tanto, esta pesquisa levará em consideração  padrões de interação de coreografias \cite{Barros2005a}.
+    os valores acumulados da coreografia. Para tanto, serão levados em consideração padrões de interação de coreografias \cite{Barros2005a}.
 
     %%Além do tempo de resposta, esta pesquisa pretende abranger parâmetros de rede  como o atraso  e a largura de banda, que são importantes porque
     %%os participantes podem possuir diferentes infraestruturas de aplicação e de rede.
@@ -615,11 +584,11 @@ dentro de um período.
 %rejected since the observed test statistic 0.044 is not greater than the critical value 0.136. The inter-arrival time mean and
 %probability distribution were known because the execution of the Web process was controlled by a testing engine.
 
-Os testes estatísticos de dominância estocástica estabelecem o quadro matemático adequado para declarar corretamente e resolver o problema de monitoramento. Aquí, 
+Os testes estatísticos de dominância estocástica estabelecem o quadro matemático adequado para declarar corretamente e resolver o problema de monitoramento. Aqui, 
 o problema é estabelecido a seguir: 
 
  Seja $F_S$ a função de distribuição cumulativa prometida pelo contrato de um serviço $S$, e seja $F'_S$ a função de distribuição cumulativa atual
- do serviço $S$. O problema é  decidir entre duas hipóteses:
+ do serviço $S$. O problema é decidir entre duas hipóteses:
 
   \begin{align}
   %%\begin{equation*}
@@ -631,26 +600,25 @@ o problema é estabelecido a seguir:
   %%\end{equation*}
   \end{align}
 
-
 Onde na hipótese nula ($H_0$) o contrato é cumprido e na hipótese alternativa ($H_1$) o contrato é violado. Dado que  o comportamento dos atributos de QoS
-dos serviços individuais pode ter diversas distribuições de probabilidade, o comportamento de um serviço  composto pode resultar também bem diferente. Assim,
-O teste de Kolmogorov-Smirnov de apenas um lado de dois amostras\footnote{Tradução de ``One-sided two-sample Kolmogorov-Smirnov test'' } é 
+dos serviços individuais pode ter diversas distribuições de probabilidade, o comportamento de um serviço composto pode resultar também em diversas distribuições de probabilidade. Assim,
+o teste de Kolmogorov-Smirnov de apenas um lado de duas amostras\footnote{Tradução de ``One-sided two-sample Kolmogorov-Smirnov test'' } é 
 utilizado para aceitar ou rejeitar $H_0$:
       
       \begin{equation}
 	[d,p] = kstest(X_{contract}, X_{monitoring}, KS_{side})
       \end{equation}
 
-Onde $kstest$ é a função que desempenha o teste de Kolmogorov-Smirnov (KS)de um lado de dois amostras, que compara as distribuições
+Onde $kstest$ é a função que desempenha o teste que compara as distribuições
 dos valores nos vetores $X_{contract}$ e $X_{monitoring}$. O vetor $X_{contract}$ corresponde ao contrato e o vetor $X_{monitoring}$ é o conjunto de amostras dos valores
-de um atributo de QoS (por exemplo, tempo de reposta) obtidos por meio da composição de valores dos serviços individuais usando o simulador de coreografias. 
-A hipótese nula consiste em que $X_{contract}$ e $X_{monitoring}$ são da mesma distribuição continua e a hipótese alternativa consite em que
+de um atributo de QoS obtidos por meio da composição de valores dos serviços individuais usando o simulador de coreografias. 
+A hipótese nula consiste em que $X_{contract}$ e $X_{monitoring}$ são da mesma distribuição contínua e a hipótese alternativa consiste em que
 $X_{contract}$ e $X_{monitoring}$ são de  diferentes distribuições. %%The result h is 1 if the test rejects the null hypothesis at the 5% significance level; 0 otherwise.
- O argumento $KS_{side}$ é um parametro cujo valor pode ser \emph{greater}, \emph{less} ou \emph{two-sided}. Para a detecção de violações usamos 
-os valores $greater$ e $less$. Por outro lado,  $d$ é a distancia entre as duas distribuições cumulativas de $X_{contract}$ e $X_{monitoring}$
+ O argumento $KS_{side}$ é um parâmetro cujo valor pode ser \emph{greater}, \emph{less} ou \emph{two-sided}. Para a detecção de violações usamos 
+os valores $greater$ e $less$. $d$ é a distância entre as duas distribuições cumulativas de $X_{contract}$ e $X_{monitoring}$
  e $p$ é o ``\textit{p-value}'' do teste estatístico que tem valores entre $[0,1]$.
 
-Então, para a detecção de vioalções usam-se:
+Então, para a detecção de violações usam-se:
      \begin{align} 
       [D^{+},p^{+}] & = kstest(X_{contract}, X_{monitoring}, greater) %\mspace{150mu}
       \notag\\
@@ -678,27 +646,25 @@ Portanto,  para que um conjunto de amostras $X_{monitoring}$ cumpra o contrato u
   \end{equation}
  
 
-Onde a função $verify$ realiza a verificação do cumprimento do contrato das amostras $X_{monitoring}$,  $\lambda$ define a zona de tolerância da flutuação
+Onde a função $verify$ realiza a verificação do cumprimento do contrato das amostras $X_{monitoring}$, e $\lambda$ define a zona de tolerância da flutuação
  entre distribuições de probabilidade.
 
 %max(| F1(x)-F2(x) |) %where F1(x) is the proportion of x1 values less than or equal to x and F1(x) is the proportion of x2 values less than or equal to x.
 %h = kstest2(x1,x2,alpha) specifies the significance level alpha for the test. The default is 0.05.
 %[h,p] = kstest2(...) also returns the asymptotic p value p. The asymptotic p value becomes very accurate for large sample sizes, and is believed to be reasonably accurate for sample sizes n1 and n2 such that (n1*n2)/(n1 + n2) >= 4.
 
- As principais características e  motivos para usar  o test de Kolmogorov-Smirnov (KS) são~\cite{Simard2011}:
+ As principais características e  motivos para usar  o teste de Kolmogorov-Smirnov (KS) são~\cite{Simard2011}:
   \begin{itemize}
     \item É um teste não-paramétrico, que compara as distribuições cumulativas de dois conjuntos de dados.
     \item	Dado que o teste é não-paramétrico, não assume que os dados são coletados a partir de distribuições gaussianas (ou quaisquer outras distribuições definidas).
-    \item	Os resultados não mudam se transformam todos os valores para logaritmos ou recíprocos ou qualquer outra transformação. O teste de KS relata  a diferença máxima
-	entre duas distribuições cumulativas, e calcula um \textit{p-value} a partir delas e dos tamanhos das amostras. Uma transformação vai esticar  o
-	    eixo X da distribuição de freqüência, mas não pode alterar a distância máxima entre duas distribuições de freqüência. 
-    \item	Porque testa para mais desvios a partir da hipótese nula do que outros testes como o \textit{Mann-Whitney}. O teste de KS tem menos 
-    poder para detectar desvios na mediana, mas tem mais poder para detectar mudanças na forma da distribuição.
-    \item Já que o teste	não compara algúm parâmetro em particular (por exemplo, média ou mediana), o teste de KS não reporta intervalo de confiança.
+    \item	Os resultados não mudam se todos os valores são ``transformados'' por meio de logaritmos ou transformações similares.%O teste de KS relata  a diferença máxima
+%	entre duas distribuições cumulativas, e calcula um \textit{p-value} a partir delas e dos tamanhos das amostras.  
+    \item	%Porque testa para mais desvios a partir da hipótese nula do que outros testes como o \textit{Mann-Whitney}. O teste de KS
+    Porque tem baixa precisão
+    para detectar desvios na mediana, mas tem mais precisão para detectar mudanças na forma da distribuição do que testes similares como o \textit{Mann-Whitney}.
   \end{itemize}
-  
 
-
+É importante observar que como o teste não compara média ou mediana, ele não reporta intervalo de confiança.
 
     %%---------- Desenvolvimento do monitor -----------------
     %%-------------------------------------------------------
@@ -715,28 +681,20 @@ Onde a função $verify$ realiza a verificação do cumprimento do contrato das amos
     %de processamento de eventos e o armazenamento dos valores de QoS dos serviços, já que é uma plataforma disponível que fornece de um modelo de QoS para serviços Web e
     % um motor de eventos focado em composição de serviços.
 
+\section{Considerações}
 
-
-
-\section{Considerações Finais}
-
-Neste capítulo apresentaram-se  as descrições das etapas que abrangem da definição de requisitos de QoS, estabelecimento do contrato de SLA, até
- o monitoramento com a detecção de violações de contrato em coreografias de serviços Web. Na definição de requisitos de QoS se propus usar um mapeamento 
-de  um subconjunto do total de elementos da especificação de coreografia em BPMN 2 para uma  GSPN  (Rede de Petri  Estocástica Generalizada).
+Neste capítulo apresentaram-se a definição de requisitos de QoS, o estabelecimento do contrato de SLA, e o 
+ monitoramento com a detecção de violações de contrato em coreografias de serviços Web. Na definição de requisitos de QoS é utilizado um mapeamento 
+de um subconjunto dos elementos da especificação de coreografia em BPMN2 para uma GSPN.
   Essa GSPN  é uma representação intermediária da coreografia com suporte de QoS. O alvo é realizar avaliações  de desempenho e
- a partir deles  definir requisitos de QoS em etapas antecipadas como a modelagem.
+ a partir delas definir requisitos de QoS em etapas antecipadas como a modelagem.
 
-Na definição de requisitos também foi proposto  realizar simulações, mas dessa vez utilizando um simulador de coreografias com suporte de QoS 
-chamado de \textit{ChorSim}. Construiu-se um simulador de  coreografias para alavancar a pesquisa de QoS em coreografias de serviços, já que
-  coreografias de serviços é ainda uma linha de pesquisa emergente e  há poucos trabalhos com relação  a QoS, onde não existem 
-infraestruturas maduras o suficiente para rodar  coreografias. 
-Além do mais, cabe ressaltar que o modelo de falhas não está descrito com detalhe, já que não é o foco e  as falhas são utilizadas para definir
- cenários nas etapas da definição de requisitos e no monitoramento. 
+Na definição de requisitos também são realizadas simulações utilizando um simulador de coreografias com suporte a QoS 
+chamado de ChorSim. Esse simulador também corresponde a uma contribuição da dissertação. 
+É importante observar que o modelo de falhas apresentado neste capítulo não está descrito com detalhe, já que não é o foco do trabalho. O contrato probabilístico para garantir QoS  é definido por meio de uma função de distribuição acumulada a partir dos valores estimados do 
+atributo de QoS alvo utilizando o ChorSim.
 
-O contrato probabilístico para garantir a QoS  é definido por meio de uma função de distribuição acumulada a partir dos valores estimados do 
-atributo de QoS alvo  utilizando o \textit{ChorSim}. Na etapa de monitoramento descreveu-se a configuração do monitor e a técnica
+Na etapa de monitoramento descreveu-se a configuração do monitor e a técnica
  utilizada para detectar violações de SLA, a qual está baseada no uso do teste de \textit{Kolmogorov-Smirnov} de apenas um lado. Esse teste 
-permite calcular quão próxima uma distruibuição está de outra e já que é de tipo não paramétrico podem ser testados diversos
+permite calcular quão próxima uma distribuição está de outra e já que é de tipo não paramétrico podem ser testados diversos
 tipos de distribuições.  
-
-

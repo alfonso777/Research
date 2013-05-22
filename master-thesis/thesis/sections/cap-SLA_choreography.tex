@@ -3,33 +3,32 @@
 \label{cap:SLA_choreography}
 
 %---------------------------------------------%
-\section{Qualidade de Serviço}
-\label{sec:QoS}
+%\section{Qualidade de Serviço}
+%\label{sec:QoS}
 % QoS de serviços
-Um fator  chave para habilitar  um comportamento adaptativo em sistemas orientados a serviços, e
+Um fator  chave para possibilitar  um comportamento adaptativo em sistemas orientados a serviços, e
 especificamente em composição de serviços, é a disponibilidade de métricas de Qualidade de Serviço (QoS) \cite{Rosenberg2009}.
 O termo QoS  surge no escopo das redes de computadores, onde é definido em \cite{Crawley1998} como um
-``conjunto de requisitos de serviços  para ser cumprido pela rede enquanto ela realiza o transporte de um fluxo''. Na comunidade da SOC, a
+``conjunto de requisitos de serviços a serem cumpridos pela rede enquanto ela realiza o transporte de um fluxo''. Na comunidade de SOC, a
 QoS abrange todos os atributos ou propriedades não funcionais de um serviço, por exemplo, atributos que tem relação com desempenho, confiabilidade,
  segurança e custos.
 
-QoS tem um papel crucial em sistemas orientados a serviços, por exemplo nas seguintes linhas \cite{Michlmayr2009}: seleção, descoberta, adaptabilidade,
-monitoramento e composição de serviços ciente  de QoS (\textit{QoS-aware}), entre outras. A QoS habilita
- enlace dinâmico com consciência de QoS a serviços concretos  em tempo de execução, habilita também a otimização de serviços compostos, em termos
-do QoS da composição toda e da adaptação dinâmica de serviços quando acontecerem  mudanças \cite{Rosenberg2009}.
+QoS tem um papel crucial em sistemas orientados a serviços, por exemplo, nas seguintes linhas \cite{Michlmayr2009}: seleção, descoberta, adaptabilidade,
+monitoramento e composição de serviços ciente de QoS (\textit{QoS-aware}). Uma qualide do serviço permite
+ a otimização de serviços compostos, em termos
+da QoS de toda a composição e da adaptação dinâmica de serviços quando acontecerem  mudanças \cite{Rosenberg2009}.
 
 Os atributos de QoS podem ser classificados como determinísticos e não determinísticos \cite{Halima2008a}. Os atributos determinísticos
 indicam que o valor do atributo é conhecido antes que o serviço seja invocado (p. ex.: custo e segurança), enquanto que nos atributos não
 determinísticos os valores não são conhecidos antes da invocação do serviço (p. ex.: tempo de resposta e disponibilidade).
  Tratar com atributos não determinísticos é mais
  complexo, dado que requerem a realização de cálculos baseados na coleta de dados
-feita  em  um monitoramento em tempo de execução. Esses atributos não determinísticos serão o foco neste trabalho, dado que sãos fatores importantes
-para a realização da adaptação dinâmica em sistemas orientados a serviços \cite{Rosenberg2009}. Assim,  para os atributos de QoS não
- determinísticos, as abordagens de monitoramento podem ser usadas para  medir  continuamente valores de atributos de QoS. %atuais.
+feita  em  um monitoramento em tempo de execução. Esses atributos não determinísticos são o foco nesta dissertação, dado que são fatores importantes
+para a realização da adaptação dinâmica em sistemas orientados a serviços \cite{Rosenberg2009}. Para os atributos de QoS não
+ determinísticos, abordagens de monitoramento são necessárias para avaliar continuamente os valores de atributos de QoS. %atuais.
 
-
-Um atributo de QoS pode ser também  estático ou dinâmico \cite{Sathya2010}. O valor de um  atributo de QoS estático é definido (na especificação 
-ou no projeto), enquanto que o valor de um atributo de QoS dinâmico requer medição e atualização periódica.
+Um atributo de QoS pode ser também  estático ou dinâmico \cite{Sathya2010}. O valor de um  atributo de QoS estático é definido na especificação 
+ou no projeto, enquanto que o valor de um atributo de QoS dinâmico requer medição e atualização periódica.
  %principalmente em tempo de execução.
  %%Serviços com funcionalidades similares e compatíveis podem ser oferecidos em diferentes níveis de QoS, por exemplo, rede, aplicação, requisitos, entre outros.
 
@@ -45,11 +44,9 @@ ou no projeto), enquanto que o valor de um atributo de QoS dinâmico requer mediç
 %Contudo, se utilizará a taxonomia proposta em  \cite{Aalst2005} por ser mais simples, usada em coreografias com consciência de SLA(\textit{SLA-aware}) e
  %por oferecer mais  detalhes na definição dos atributos.
 A Figura~\ref{fig:QoSTaxonomy1} exibe uma taxonomia de atributos de QoS que será utilizada
- como referência nesta pesquisa. O foco do trabalho será em atributos de desempenho como o tempo de resposta, atraso e largura de banda.
+ como referência nesta dissertação. O foco do trabalho será em atributos de desempenho como o tempo de resposta, atraso e largura de banda.
 Para o cálculo e estimativa de valores dos atributos de desempenho  serão utilizados os instantes de tempo mostrados 
- na Figura~\ref{fig:QoSTimestamps}.%. A seguir as fórmulas para calcular alguns dos atributos baseados nesses instantes e tempo \cite{Rosenberg2006}:
-
-
+ na Figura~\ref{fig:QoSTimestamps}, que representa a linha do tempo da invocação de um serviço. A lista a seguir descreve os principais atributos de desempenho de QoS relacionados com a Figura~\ref{fig:QoSTimestamps}:%. A seguir as fórmulas para calcular alguns dos atributos baseados nesses instantes e tempo \cite{Rosenberg2006}:
 
   \begin{figure}[!h]
       \centering
@@ -58,9 +55,8 @@ Para o cálculo e estimativa de valores dos atributos de desempenho  serão utiliz
       \label{fig:QoSTaxonomy1}
   \end{figure}
 
-
-A lista a seguir apresenta uma breve descrição sobre alguns atributos de desempenho de QoS. As variáveis apresentadas nas descrições são
- apresentadas  na Figura \ref{fig:QoSTimestamps}, que representa a linha do tempo da invocação de um serviço genérico.
+%A lista a seguir apresenta uma breve descrição sobre alguns atributos de desempenho de QoS. As variáveis apresentadas nas descrições são
+% apresentadas  na Figura \ref{fig:QoSTimestamps}, que representa a linha do tempo da invocação de um serviço genérico.
 
   \begin{figure}[!h]
       \centering
@@ -69,9 +65,8 @@ A lista a seguir apresenta uma breve descrição sobre alguns atributos de desempe
       \label{fig:QoSTimestamps}
   \end{figure}	
 
-\subsubsection*{Atributos de Desempenho  de QoS}
 \begin{itemize}
- \item \textbf{Tempo de Processamento}:  Tempo necessário para executar uma operação requerida de um serviço. Dado um serviço $s$ e uma operação $o$, o tempo de
+ \item \textbf{Tempo de Processamento}:  Tempo necessário para executar uma operação de um serviço. Dado um serviço $s$ e uma operação $o$, o tempo de
 processamento  é dado por:
     $$q_{pt}(s,o) = t_{p2} - t_{p1}$$
 
@@ -81,51 +76,45 @@ processamento  é dado por:
   	  \item  No lado do Provedor: $$q_{wp}(s,o) = t_{p1} - t_{p0} + t_{p3} - t_{p2}$$
 	  \item  No lado do Cliente:  $$q_{wp}(c,s,o) = t_{c1} - t_{c0} + t_{c3} - t_{c2}$$
     \end{itemize}
-  \item \textbf{Tempo de execução}: Tempo que o provedor de serviço precisa para processar uma requisição.
+  \item \textbf{Tempo de execução}: Tempo que o provedor de serviço gasta para processar uma requisição.
 	$$q_{ex}(s,o) = q_{pt} + q_{wp}$$
-  \item \textbf{Atraso  ou atraso de rede}: Representa o tempo que uma requisição de um serviço demora desde o cliente até
+  \item \textbf{Atraso  ou atraso de rede médio}: Representa o tempo que uma requisição de um serviço demora desde o cliente até
     o provedor. É influenciado pelo tipo de conexão de rede, roteamento, utilização da rede, largura de banda e tamanho da requisição.
 	$$q_l(c,s,o) = \frac{t_{p0} - t_{c1} + t_{c2} - t_{p3}}{2}$$
   \item \textbf{Tempo de Resposta:} Tempo necessário para enviar uma mensagem de um cliente $c$ até um fornecedor do serviço $s$ e até que a mensagem de resposta retorne
-    de volta ao cliente.
-  	$$q_{rt}(c,s,o) = q_{ex}(s,o) + 2*q_l(s,o)$$
-  \item \textbf{\textit{Round Trip Time}}: Tempo total que é consumido, isto é, tempo de resposta mais o \textit{wrapping time}.
-	$$q_{rtt}(c,s,o) = q_{wc}(s,o)+ q_{rt}(s,o)$$
+    para o cliente.
+  	$$q_{rt}(c,s,o) = q_{ex}(s,o) + 2*q_l(c,s,o)$$
+%  \item \textbf{\textit{Round Trip Time}}: Tempo total que é consumido, isto é, tempo de resposta mais o \textit{wrapping time}.
+%	$$q_{rtt}(c,s,o) = q_{wc}(s,o)+ q_{rt}(s,o)$$
   \item \textbf{Taxa de Transferência}: Número de requisições $r$ por operação $o$ que foram processadas por $s$ e retornadas ao cliente $c$ com sucesso
 dentro de um intervalo $[t_0,t_1]$.
 	$$q_{tp}(c,s,o) = \frac{r}{t_1 - t_0}$$
   Depende principalmente do poder do \textit{hardware} e da largura de banda do fornecedor de serviço.
 \end{itemize}
 
-\subsubsection*{Atributos de Confiabilidade de QoS }
+A lista a seguir descreve os principais atributos de confiabilidade de QoS:
+
 \begin{itemize}
- \item \textbf{Disponibilidade}:  Define a probabilidade de se um serviço $s$ está apto e rodando para produzir resultados corretos dentro de um intervalo $[t_0,t_1]$.
-      $$q_{av}(s) = 1- \frac{t_d}{t_1-t_0}$$
- \item \textbf{Precisão}:  É a taxa de sucesso produzido pelo serviço $s$.
+% \item \textbf{Disponibilidade}:  Define a probabilidade de um serviço $s$ estar disponível para produzir resultados corretos dentro de um intervalo $[t_0,t_1]$.
+%      $$q_{av}(s) = 1 - \frac{t_d}{t_1-t_0}$$
+ \item \textbf{Precisão}:  É a taxa de sucesso do serviço $s$. ${r_f}$ é a quantidade de requisições que obtiveram resultados incorretos e ${r_t}$ é a quantidade de requisições totais ao serviço.
       $$q_{ac}(s) = 1- \frac{r_f}{r_t}$$
 	
-  \item \textbf{Robustez}: Probabilidade que um sistema possa reagir adequadamente a mensagens de entrada inválidas, incompletas ou conflitantes.
+  \item \textbf{Robustez}: Probabilidade de um sistema reagir adequadamente a mensagens de entrada inválidas, incompletas ou conflitantes.
 	$$q_{ro}(s) = \frac{1}{r_t}\sum_{i=1}^{n}{f(resp_i(s))}$$
-	Onde $resp_i(s)$ é uma função auxiliar, que é a $i-ésima$ reposta produzida por um serviço $s$. $n$ é o numero total de requisições para $s$. $f(m)$
-	representa se a resposta de uma mensagem $m$ é válida ou inválida para uma entrada dada, é calculada com a seguinte fórmula.
-	$$
-	 f(m) =
-	  \begin{cases}
-	     1  : isValid(m) \\
-	     0  : \lnot isValid(m)
-	  \end{cases}
-	$$
+	Onde $resp_i(s)$ é uma função auxiliar, que é a $i-ésima$ resposta produzida por um serviço $s$. $n$ é o numero total de requisições para $s$. $f(m)$
+	representa se a resposta de uma mensagem $m$ é válida (retorna 1) ou inválida (retorna 0).
 
 \end{itemize}
 
 %A taxonomia de atributos de QoS e suas formulas para calculá-los será o que conforma o modelo de QoS para os serviços Web nesta camada. Nesta camada é importante
 %diferenciar quais atributos  são medíveis no lado do provedor e quais no lado do cliente, já que isso afeta na abordagem a utilizar no monitoramento.
 
+%  \section{Outros atributos e métricas de QoS}
 
-  \subsection{Topologia de atributos e métricas de QoS}
-  Além das taxonomias mencionadas, os atributos de qualidade e métricas também podem ser classificados de diferentes perspectivas.
+  Além da taxonomia apresentada na Figura~\ref{fig:QoSTaxonomy1}, os atributos de qualidade e métricas também podem ser classificados de diferentes perspectivas.
 
-  A partir de uma perspectiva de domínio. Os atributos de qualidade são classificados como atributos  independentes de domínio ou
+  A partir de uma perspectiva de domínio, os atributos de qualidade são classificados como atributos  independentes de domínio ou
   específicos de domínio~\cite{Hilari2009}:
 
   \begin{itemize}
@@ -135,23 +124,22 @@ dentro de um intervalo $[t_0,t_1]$.
           em um domínio de previsão de tempo, um atributo de qualidade poderia ser a precisão da previsão.
   \end{itemize}
 
-  De uma perspectiva mensurável,  as métricas de qualidade podem ser classificados de acordo com o método em que os dados podem
+  As métricas de qualidade podem ser classificadas de acordo com o método em que os dados podem
   ser obtidos. Nesse sentido, três categorias foram identificadas~\cite{Hilari2009}:
 
   \begin{itemize}
-      \item \textbf{Métricas anunciadas pelo Provedor}: Métricas em que os seus valores são obtidos pelo anúncio do provedor. Um claro 
+      \item \textbf{Métricas anunciadas pelo Provedor}: Os valores dessas métricas são obtidos pelo anúncio do provedor. Um 
       exemplo seria o custo do serviço.
-      \item \textbf{Métricas classificadas pelo Consumidor}: Métricas em que seus valores são dados a partir das opiniões de usuários. Por 
+      \item \textbf{Métricas classificadas pelo Consumidor}: Os valores valores dessas métricas são definidos a partir das opiniões de usuários. Por 
        exemplo, a reputação do serviço obtido a partir de uma média de opiniões dos clientes.
-      \item \textbf{Métricas Observáveis}: Métricas em que os seus valores são obtidos mediante monitoramento ou testes. Um claro exemplo 
+      \item \textbf{Métricas Observáveis}: Os valores dessas métricas são obtidos mediante monitoramento ou testes. Um exemplo 
       é o tempo de resposta ou a disponibilidade.
   \end{itemize}
 
-  Outro tipo de classificação é a partir do fato de que algumas métricas de qualidade podem ser obtida como
-  uma função de agregação de outras métricas de qualidade. Por exemplo, o tempo de resposta médio é a
+  Outro tipo de classificação é a partir do fato de que algumas métricas de qualidade podem ser obtidas via
+  alguma função de agregação que receba outras métricas de qualidade. Por exemplo, o tempo de resposta médio é a
   média de um conjunto de tempos de resposta atuais em diferentes intervalos de tempo. Essas métricas de qualidade são
-  nomeadas métricas derivadas ou calculadas, enquanto os outros são nomeados métricas básicas ou atômicas.
-
+  nomeadas métricas derivadas ou calculadas, enquanto as outras são nomeadas métricas básicas ou atômicas.
 
 \section{QoS em Sistemas Orientados a Serviços}
 
@@ -161,8 +149,8 @@ dentro de um intervalo $[t_0,t_1]$.
 
     Em tais ambientes, a garantia de QoS pode ser afetada por diversos fatores incluindo o hardware, a infraestrutura de rede,
  %(capacidades dos aparelhos   de computação, conectividade de rede)
-    o nível de qualidade oferecido pelos serviços de aplicação e pelas
-    características do usuário final (mobilidade por exemplo). Isso implica que, a fim de se obter uma avaliação exata da
+    o nível de qualidade oferecido pelos serviços de aplicação e por
+    características do usuário final como mobilidade, por exemplo. Isso implica que, a fim de se obter uma avaliação exata da
     QoS, nenhum destes aspectos devem ser negligenciados na fase de modelagem de QoS. Parâmetros que devem ser considerados
     em um modelo de QoS para coreografias são similares àqueles considerados em sistemas P2P~\cite{Mabrouk2009}:  (i) o
     ambiente do serviço e o hardware e infraestrutura de rede subjacente, (ii) os serviços disponíveis, e (iii) os usuários finais.
@@ -175,10 +163,9 @@ ou em tempo de execução. %, com diferentes modelos de QoS e técnicas.
 Isto pode dificultar a escolha de uma abordagem para a avaliação de QoS de uma aplicação.
 
 No contexto de uma coreografia de serviços Web, é proposto em \cite{Rosenberg2009} um modelo de QoS multi-camada que permite
-integrar coerentemente informação de QoS em vários níveis de abstração (Figura \ref{fig:QoS_SLA_MultiLayer}): a camada de coreografia, a camada de orquestração e a camada de
- serviços. A seguir é apresentada uma descrição resumida de cada camada desse modelo. % multicamada para integrar QoS nos níveis de abstração que será implementado neste
+integrar coerentemente informação de QoS em vários níveis de abstração: a camada de coreografia, a camada de orquestração e a camada de
+ serviços. A Figura \ref{fig:QoS_SLA_MultiLayer} ilustra o modelo com todas as camadas. A seguir é apresentada uma descrição resumida de cada camada. % multicamada para integrar QoS nos níveis de abstração que será implementado neste
 %trabalho para realizar o monitoramento de coreografias.
-
 
   \begin{figure}[!h]
       \centering
@@ -191,8 +178,8 @@ integrar coerentemente informação de QoS em vários níveis de abstração (Figura \
 \subsubsection{Camada de Serviços}
 
 Os serviços em sistemas orientados a serviços, podem ser invocados por usuários que na maioria dos casos são desconhecidos
- em tempo de projeto e implantação. Por isso, é importante que um serviço forneça uma descrição dos aspectos não funcionais, além dos funcionais
-(por exemplo, em um documento WSDL). Esta camada representa todos os serviços atômicos dentro de um sistema orientado a serviços. Nesta camada
+ em tempo de projeto e implantação. Por isso, é importante que um serviço forneça uma descrição dos aspectos não funcionais, além dos 
+funcionais, por exemplo, em um documento WSDL. Essa camada representa todos os serviços atômicos dentro de um sistema orientado a serviços. Nesta camada
  são definidos os atributos  de QoS tais como tempo de resposta, disponibilidade, largura de banda, etc.
 
 Os atributos definidos nesta camada serão utilizados nas camadas superiores (orquestração ou coreografia) para, através de cálculos de agregação de QoS,
@@ -210,15 +197,15 @@ Os atributos definidos nesta camada serão utilizados nas camadas superiores (orq
 
 %%  Fig. 2 Overview of Quality Assurance Techniques for Service-Based  Applications  \cite{Jamoussi2010}
 
-A Figura~\ref{fig:QoS_Enabled_WSDL} descreve os componentes de um serviço Web usando um diagrama de classes UML. Esse componentes incluem o
+A Figura~\ref{fig:QoS_Enabled_WSDL} descreve os componentes de um serviço Web usando um diagrama de classes UML. Esses componentes incluem o
 nome do serviço Web e suas mensagens, operações, \textit{port}, \textit{portType} e \textit{bindings} associados. Os atributos de qualidade de 
-serviço associados com o serviço, operação do serviço e as mensagens são resumidas na Tabela~\ref{table:qos_model_wsdl}.
+serviço associados com o serviço, operação do serviço e as mensagens são resumidos na Tabela~\ref{table:qos_model_wsdl}.
 
 
   \begin{figure}[!h]
       \centering
       \includegraphics[width=1.0\textwidth]{./figures/QoS-Model-WSDL.png}
-      \caption{ QoS habilitada no modelo de serviços Web de acordo com WSDL~\cite{Pandey2010} }
+      \caption{ QoS do modelo de serviços Web de acordo com WSDL~\cite{Pandey2010} }
       \label{fig:QoS_Enabled_WSDL}
   \end{figure}	
 
@@ -227,11 +214,11 @@ Nesse modelo, os atributos de qualidade no componente serviço  são a confiabilid
 baseada no número esperado de falhas ao longo de um intervalo de tempo e tempo entre falhas.	O atributo de disponibilidade 
  é uma agregação de disponibilidade esperada, tempo para a reparação e o tempo entre a falha. O tempo de reparo é o tempo
  necessário para reparar o serviço após uma falha. A disponibilidade esperada pode ser calculada como a razão entre o 
-tempo de atividade e o tempo total (que inclui o tempo de \textit{uptime}  e \textit{down time}). O atributo de qualidade no
-na ``operação'' inclui a sua demanda e  latência. A demanda pode ser computada em termos da taxa de chegada da requisição
+tempo de atividade e o tempo total que inclui o tempo de \textit{uptime}  e \textit{down time}. O atributo de qualidade
+na operação inclui a sua demanda e  latência. A demanda pode ser computada em termos da taxa de chegada da requisição
 respectiva para essa operação. A latência pode ser especificada em termos do tempo de serviço e o tempo de ida e volta. O 
-atributo de qualidade para ``mensagem'' depende do protocolo utilizado para uma saída segura e entrada (protocolo) e tipo 
-de chaves utilizadas para criptografar  mensagens.
+atributo de qualidade para mensagem depende do protocolo utilizado e do tipo 
+de chaves utilizadas para criptografar mensagens.
 
     \begin{table}[!h]
         \centering
@@ -319,7 +306,7 @@ que tome as medidas necessárias quando um valor específico for violado.
 Para avaliar e validar os valores no SLA, precisa-se de informação de QoS de cada serviço através
  de monitoramento, levando em consideração que os valores dos atributos de QoS medidos devem ser agregados para calcular a QoS da composição. A
 agregação de atributos de QoS é realizada por meio de um cálculo incremental baseado em padrões de fluxo de trabalho (\textit{workflows})  bem
-definidos ~\cite{VanDerAalst2003}. Para cada um desses padrões uma regra de agregação de QoS tem que ser aplicada para obter a QoS do padrão. Aplicando
+definidos~\cite{VanDerAalst2003}. Para cada um desses padrões uma regra de agregação de QoS tem que ser aplicada para obter a QoS do padrão. Aplicando
 este processo recursivamente consegue-se a QoS global da composição. %Na implementação não serão utilizados todos os padrões de fluxo de trabalho,porque
 %é mais fácil calcular o QoS global em composições estruturadas que não utilizam todos os padrões, os padrões de composição a utilizar são
 
@@ -413,16 +400,15 @@ define principalmente as seguintes três seções:
       \label{fig:SLAExample}
   \end{figure}	
 
-A definição de SLA e QoS joga uma regra crucial em processos de negócios inter-organizacionais. Cada participante oferece serviços a outros
- particapntes sobre a Internet, dos quais os últimos  precisam  executar seus negócios~\cite{Rosenberg2007}. Por isso, um certo grau  de confiabilidade 
-respeito do tempo de resposta, vazão, \textit{uptime}, entre outros, é desejado  e tem de ser especificado e explicitamente
+A definição de SLA e QoS modifica os processos de negócios inter-organizacionais. Cada participante oferece serviços a outros
+ participantes sobre a Internet, dos quais os últimos  precisam  executar seus negócios~\cite{Rosenberg2007}. Por isso, um certo grau  de confiabilidade 
+com relação ao tempo de resposta, vazão, \textit{uptime}, entre outros, é desejado  e tem de ser especificado e explicitamente
 expresso nas etapas iniciais da fase de modelagem. A Figura~\ref{fig:choreographySLA} ilustra uma coreografia com três participantes e seus respectivos
-relacionamentos. Para cada relacionamento (interação entre serviços)  um SLA é definido entre os participantes para regular o grau que os
-participantes precisam para cumprir seus objetivos de negócio.
+relacionamentos. Para cada interação entre serviços um SLA é definido entre os participantes para definir o que os
+participantes precisam realizar para cumprir seus objetivos de negócio.
 
-Dado que uma coreografia de serviços é um descrição desde um ponto de vista global das interações do seus participantes, não pode ser executada
-direitamente porque não envolve o aspecto interno de um participante. Assim, o SLA precisa ser cumprido também no aspecto interno
-(comportamento não visível) de um participante. Em consequência, uma descrição SLA precisa ser mapeada em politicas concretas
+Dado que uma coreografia de serviços é um descrição de um ponto de vista global das interações dos seus participantes, ela não pode ser executada
+diretamente porque não envolve o aspecto interno de um participante. Assim, o SLA precisa ser cumprido também no aspecto interno, chamado de comportamento não-visível, de um participante. Em consequência, uma descrição SLA precisa ser mapeada em politicas concretas
  de QoS na camada de Orquestração.
 
   \begin{figure}
@@ -466,7 +452,7 @@ direitamente porque não envolve o aspecto interno de um participante. Assim, o S
 %-----------------------------------------------------------%
 \section{SLAs Probabilísticos}
 
-Tipicamente, as restrições de QoS são estabelecidas de maneira rígida (\emph{hard contracts}), isto é, com limites absolutos \cite{Rosario2008}. Por exemplo,
+Tipicamente, as restrições de QoS são estabelecidas de maneira rígida, isto é, com limites absolutos \cite{Rosario2008}. Por exemplo,
 o tempo  de resposta de um serviço Web tem de ser menor que $10 ms$. %, desse jeito, essa restrição tem que ser garantida para todos os casos.
 Porém, o comportamento dinâmico de parâmetros de QoS, como o tempo de resposta, dificulta as suas representações por restrições rígidas. A Figura
  \ref{fig:hardContractsLimitations} mostra um histograma da distribuição de probabilidade dos tempos de resposta medidos  para um serviço %\texttt{StockQuoteService}
@@ -518,7 +504,7 @@ $13794 ms$ e $23506 ms$ respectivamente. Assim, o quantil $95\%$  expressa que e
 
 Uma vez calculadas as distribuições de probabilidade dos parâmetros de QoS, estes precisam ser agregados segundo a composição. Atualmente existem poucas pesquisas
 acerca de restrições probabilísticas de QoS em serviços Web  \cite{Hwang2007}, \cite{Rosario2008}, \cite{Rosario2009} e \cite{Zheng2010}.  Não há,
-entretanto, abordagens específicas para coreografias de serviços Web.
+entretanto, abordagens específicas para coreografias de serviços Web.%%TODO: quais os desafio inerentes?
 %somente tempo de resposta
 
 
@@ -529,26 +515,27 @@ entretanto, abordagens específicas para coreografias de serviços Web.
 %\begin{comment}
 \section{Trabalhos Relacionados: QoS em Coreografias de Serviços Web}
 
-Existem várias abordagens para integrar modelos de QoS em composição de serviços, mas poucos focados em coreografias de serviços. WS-CDL não tem integrado QoS apesar que
-tem demandado uma especificação de QoS no seus requerimentos \cite{Austin2004}. Em \cite{Xiangpeng2007a}, propõe-se um modelo formal que incorpora 
-informação de QoS, estendendo a pequena linguagem \textit{Chor}\cite{Yang2006} (que é um  WS-CDL simplificado) para adicionar informação QoS, 
-sobretudo tempo e custo, em um nível sintático e semântico para obter o QoS global da coreografia.
+Existem várias abordagens para integrar modelos de QoS em composição
+de serviços, mas poucos focados em coreografias de serviços. WS-CDL
+não tem suporte a QoS integrado \cite{Austin2004}. Em \cite{Xiangpeng2007a}, propõe-se um modelo formal que incorpora 
+informação de QoS, estendendo a  linguagem
+\textit{Chor}\cite{Yang2006}, que é um  WS-CDL simplificado, para adicionar informação de QoS, 
+sobretudo tempo e custo, em um nível sintático e semântico para obter a QoS global da coreografia.
 
-Em \cite{Pandey2008}, propõe-se um modelo formal para estimar o minimo, máximo e a média do costo(atributo não funcional) de uma coreografia. Tal modelo proposto
-adiciona características semânticas para incorporar o atributo costo no seu modelo, que é uma extensão do WS-CDL. Este modelo associa o costo com instâncias de um
- papel(\textit{role instance}) em lugar de \textit{role type} do WS-CDL.
-Em \cite{Xia2009}, propõe-se uma abordagem nova para predizer o QoS de uma coreografia de serviços especificada em WSCI. Utiliza uma Rede de Petri Estocástica Generalizada
-(\textit{GSPN} \footnote{GSPN: Generalized Stochastic Petri Net}) como modelo intermediário. A partir do modelo GSPN obtido do mapeamento do modelo WSCI, avaliações
+Em \cite{Pandey2008}, propõe-se um modelo formal para estimar o mínimo, máximo e a média do custo de uma coreografia. Tal modelo proposto
+adiciona características semânticas para incorporar o atributo custo no seu modelo, que é uma extensão do WS-CDL. Este modelo associa o custo com instâncias de um papel. 
+Em \cite{Xia2009}, propõe-se uma abordagem para predizer a QoS de uma coreografia de serviços especificada em WSCI. Uma Rede de Petri Estocástica Generalizada
+(\textit{GSPN} \footnote{GSPN: Generalized Stochastic Petri Net}) é utilizada como modelo intermediário. A partir do modelo GSPN obtido do mapeamento do modelo WSCI, avaliações
  analíticas da árvore de métricas QoS são realizadas.
-Em  \cite{Pandey2010}, propõe um modelo multidimensional de QoS para coreografias. Tal QoS de coreografia é definido
+Em  \cite{Pandey2010}, é proposto um modelo multidimensional de QoS para coreografias. Tal QoS de coreografia é definido
  em termos do papel  dominante, relacionamento
-dominante e  interação dominante. Essas características são avaliadas baseadas no QoS dos papéis, operações e mensagens. Sua proposta é desenvolvida como uma
+dominante e  interação dominante. Essas características são avaliadas baseadas na QoS dos papéis, operações e mensagens. Sua proposta é desenvolvida como uma
 extensão do metamodelo de WS-CDL para suportar QoS.
 
 Somente em \cite{Rosenberg2009}, propõe-se um  modelo multicamada   para integrar QoS e SLA no nível de coreografia, orquestração e serviços. No nível de coreografias
 integra WSLA na linguagem WS-CDL para especificar o acordo do nível de serviço (SLA) entre os participantes. E para realizar seu cumprimento internamente em cada participante
-realiza o mapeamento a políticas QoS na camada de orquestração, que por sua vez utiliza os atributos QoS no nível de serviços. Até hoje, nenhum
-propõe um modelo de QoS para integrá-lo em BPMN, que é o padrão  para modelar processos de negócios colaborativos, incluindo coreografias.
+realiza o mapeamento a políticas QoS na camada de orquestração, que por sua vez utiliza os atributos QoS no nível de serviços. Até o presente momento, nenhum
+trabalho propõe um modelo de QoS para integrá-lo em BPMN, que é o padrão  para modelar processos de negócios colaborativos, incluindo coreografias.
 %%falta mencionar trabalhos sobre SLA, geralmente no nível de serviços e orquestração, mas em coreografias ainda não, dai seria bom encaixar com o
 %%modelo multicamada
 %\end{comment}

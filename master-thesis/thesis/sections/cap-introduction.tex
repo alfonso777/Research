@@ -2,14 +2,11 @@
 \label{cap:introduction}
 
 O modo de desenvolver aplicações e sistemas complexos tem evoluído com o passar do tempo até convergir, atualmente,
-para arquiteturas de software  e modelos de computação orientados a serviços, o que é chamado de Computação Orientada
- a Serviços (SOC). SOC é um paradigma que utiliza serviços como base para construir e suportar um desenvolvimento
+para arquiteturas de software  e modelos de computação orientados a serviços, o que é chamado de SOC. SOC é um paradigma que
+ utiliza serviços como base para construir e dar suporte a um desenvolvimento
  rápido, de baixo custo, de baixo acoplamento  e de fácil  composição de aplicações heterogêneas distribuídas~\cite{Papazoglou2008}.
-Essas composições podem ser realizadas principalmente de duas formas: orquestração e coreografias, das quais
- a coreografia de serviços é mais colaborativa e especifica a composição desde uma perspectiva global. Dada a
-natureza distribuída e  colaborativa de uma coreografia de serviços, ela é  indicada como a melhor alternativa
-de integração de sistemas complexos e heterogêneos em larga escala~\cite{Vincent2010}.% do que orquestrações
-
+Essas composições podem ser realizadas principalmente de duas formas: orquestração e coreografia, das quais
+ a coreografia de serviços é mais colaborativa e especifica a composição desde uma perspectiva global. 
 %%SOC abrange muitas disciplinas e é enormemente complexo ...
 
 %O paradigma SOC considera todas as funções de negócio  como serviços de software modulares e baseadas em padrões. O
@@ -36,29 +33,30 @@ várias ferramentas tais como \textit{QoS Explorer}~\cite{Hughes2006} que está fo
 
 
 
-Atualmente existem duas principais abordagens para compor serviços, a orquestração e a coreografia. A orquestração de serviços é uma
+A orquestração de serviços é uma
  composição centralizada, já que uma entidade denominada \textit{orquestrador} é responsável por coordenar a comunicação dos serviços
  participantes. %que por sua vez também pode ser um serviço.
  Por outro lado, a coreografia de serviços %, a diferencia da orquestração,
  é uma composição descentralizada já que é uma descrição  de interações %observáveis externamente
  ponto a ponto entre os serviços participantes, ou seja, nesse modelo, não há a figura de um controlador central~\cite{Barker2009}.
 
-
-Devido ao número crescente de dispositivos móveis que se conectam à Internet, uma abordagem orientada a serviços centralizada como a orquestração
+Dada a
+natureza distribuída e  colaborativa de uma coreografia de serviços, ela é  indicada como a melhor alternativa
+de integração de sistemas complexos e heterogêneos em larga escala~\cite{Vincent2010}.% do que orquestrações
+Além disso, devido ao número crescente de dispositivos móveis que se conectam à Internet, uma abordagem orientada a serviços centralizada como a orquestração
 pode não ser escalável em termos de largura de banda  para lidar com o número cada vez  mais crescente de dispositivos e
 serviços. Nesse cenário, uma abordagem descentralizada, como a coreografia, pode se tornar a mais
 adequada para as características da Internet do Futuro~\cite{Stuttgart2012}. %\cite{Tan2010}.
 
-
 %Justificação % importante mas foi comentado, por sugestão do Daniel
 Por outro lado, um fator chave para a realização de comportamento adaptativo para sistemas orientados a serviços, e especificamente em composição de serviços, é
-a disponibilidade e suporte de informação de QoS (Qualidade de Serviço)~\cite{Rosenberg2009}.
+a disponibilidade e suporte de informação de QoS~\cite{Rosenberg2009}.
 A característica distribuída das coreografias de serviços Web torna necessário que haja adaptação, a fim de que os requisitos de QoS das aplicações sejam
 atendidos. Como consequência, o monitoramento de QoS torna-se importante, porque observa, coleta e reporta
 informações de QoS em tempo de execução e durante a evolução do sistema baseado em serviços~\cite{Jamoussi2010}.
 A partir do monitoramento %, com as medições de QoS
-é possível alavancar a ligação dinâmica, seleção, composição, adaptação, autocura (\textit{self-healing}), otimização, entre outros,  de
- serviços Web baseada na QoS~\cite{Rosenberg2009}.
+é possível alavancar a seleção, composição, adaptação, auto-cura (\textit{self-healing}) e otimização de
+ serviços Web baseadas em QoS~\cite{Rosenberg2009}.
 %. Quando se integram serviços dentro de processos de negócio complexos, é importante levar
 %em consideração os atributos de QoS em vários
 %níveis,tais como rede, serviços, orquestração (fluxos de trabalho) e coreografias. As coreografias de serviços são importantes, porque são
@@ -66,16 +64,17 @@ A partir do monitoramento %, com as medições de QoS
 %no topo da pilha de protocolos dos serviços Web, como uma forma de composição de serviços, e está acima da orquestração.
 
  A forma mais trivial de representar os requisitos de QoS é através de contratos rígidos, em que as métricas devem ser respeitadas à risca em 100\%
-dos casos (por exemplo, atraso $<\ 10ms$). Entretanto, esses contratos não representam o comportamento dinâmico dos atributos de QoS dos serviços Web.
+dos casos, por exemplo, atraso $<\ 10ms$. Entretanto, esses contratos não representam o comportamento dinâmico dos atributos de QoS dos serviços Web.
 %Por outro lado, os contratos rígidos são mais comuns para definir restrições de QoS, embora não representem o comportamento dinâmico dos atributos de QoS
 % dos serviços Web ~\cite{Rosario2008}.
 %Para tanto, os contratos não rígidos e baseados em probabilidades são abordados nesta pesquisa como uma melhor forma de definir restrições de  QoS.
-Porém, uma melhor forma de representar os requisitos de QoS é através de contratos não rígidos e baseados em probabilidade. Neste caso os requisitos estipulam
-distribuições de probabilidade relacionadas com os valores dos requisitos de QoS (por exemplo, atraso $<\ 10ms$ em 95\% das vezes em que a métrica for
- monitorada). Além disso, assim como ocorre em outros sistemas em redes~\cite{Batista2010}, é importante que o monitoramento das métricas de QoS
+Portanto, uma melhor forma de representar os requisitos de QoS é através de contratos não rígidos e baseados em probabilidade. Neste caso os requisitos estipulam
+distribuições de probabilidade relacionadas com os valores dos
+requisitos de QoS, por exemplo, atraso $<\ 10ms$ em 95\% das vezes em que a métrica for
+ monitorada. Além disso, assim como ocorre em outros sistemas em redes~\cite{Batista2010}, é importante que o monitoramento das métricas de QoS
  seja feito de forma não intrusiva e que retorne valores bem próximos dos valores reais.
 
-No entanto, atualmente,  implementar e executar uma coreografia de serviço real  é uma tarefa complexa já que a  tecnologia para suportar esse paradigma de
+Atualmente,  implementar e executar uma coreografia de serviços real  é uma tarefa complexa já que a  tecnologia para dar suporte a esse paradigma de
 composição de serviços  está imatura, especialmente pela falta de motores de execução cientes de coreografia~\cite{Kopp2010}. Assim,
  os mecanismos para medir parâmetros de QoS, e estabelecer requisitos de QoS não estão bem desenvolvidos para coreografias.
 
@@ -83,11 +82,10 @@ composição de serviços  está imatura, especialmente pela falta de motores de exe
 Esta pesquisa  propõe  um monitoramento de coreografias de serviços Web  baseado em restrições de atributos de QoS de maneira probabilística
 com o objetivo de detectar violações de SLAs entre os participantes da coreografia.
  O monitoramento será realizado de maneira não intrusiva, %utilizando  técnicas de ``\textit{probing request}'' e de ``\textit{sniffing}''.
-e é desenvolvido acima do nosso simulador para realizar  \textit{enactment} de coreografias de serviços. Tal simulador possui suporte de QoS, principalmente de
-de tempo de processamento, tempo de resposta e atributos de rede. Desse modo, o monitor é responsável pela coleta e medição dos atributos de QoS dos
- serviços individuais, e de agregá-los de acordo à
-composição e finalmente verificar a existência de violação de alguma restrição de QoS segundo como está definido no contrato.
-
+e é desenvolvido acima de um simulador para realizar  \textit{enactment} de coreografias de serviços. Tal simulador possui suporte de QoS, principalmente
+atributos relacionados com tempo de processamento, tempo de resposta e atributos de rede. O monitor é responsável pela coleta e medição dos atributos de QoS dos
+ serviços individuais, e por agregar as medidas de acordo com a
+composição e, finalmente, por verificar a existência de violação de alguma restrição de QoS segundo contratos pré-estabelecidos.
 
 % e utilizando SLAs (Acordo de Nível de Serviço). Neste
  %trabalho se aborda também a maneira de realizar o monitoramento de coreografias de maneira não intrusiva, utilizando  técnicas de ``Probing request'' e de``sniffing''.
@@ -108,7 +106,7 @@ composição e finalmente verificar a existência de violação de alguma restrição d
 O  objetivo principal deste trabalho é :
 
 \begin{itemize}
- \item Detectar violações de SLAs %em coreografias de serviços Web baseadas em restrições probabilísticas  de QoS .
+ \item Propor mecanismos de modo a detectar violações de SLAs %em coreografias de serviços Web baseadas em restrições probabilísticas  de QoS .
       baseadas em restrições probabilísticas de QoS em coreografias de serviços Web.
 \end{itemize}
 
@@ -118,8 +116,8 @@ Os objetivos secundários deste trabalho são:
   \item Propor mecanismos para definir requisitos de QoS em coreografias de serviços Web. % de maneira não rígida utilizando SLAs probabilísticos
  %baseados em restrições que utilizam distribuições de probabilidade. % em lugar de restrições rígidas (\emph{hard constraints}) que usam valores absolutos.
   \item Propor uma técnica de monitoramento de coreografias de serviços Web  com restrições de QoS definidas probabilisticamente. %por meio de  SLAs  probabilísticos.
-  \item Desenvolver um simulador de coreografias de serviços Web com suporte de QoS.
-  \item Realizar avaliações do mecanismo de monitoramento de coreografias com simulações e medições. % na implementação.
+  \item Desenvolver um simulador de coreografias de serviços Web com suporte à definição de atributos de QoS.
+  \item Realizar avaliações do mecanismo de monitoramento de coreografias. % na implementação.
   %\item Avaliar o desempenho de Verificar o cumprimento dos contratos QoS dos participantes na coreografia.
   %\item Reagir caso acontecer uma violação nos contratos QoS no provedor de serviço.  %%%
 
@@ -146,7 +144,7 @@ Os objetivos secundários deste trabalho são:
 
 Para o cumprimento dos objetivos deste trabalho, consideram-se várias etapas:
 \begin{enumerate}
-  \item Desenvolvimento de um simulador de coreografias de serviços Web com suporte de QoS.
+  \item Desenvolvimento de um simulador de coreografias de serviços Web com suporte à definição de atributos de QoS.
   \item Definição de requisitos de QoS e estabelecimento de contratos entre os serviços participantes que interagem em uma coreografia.
   %\item Estabelecimento de SLA por meio de restrições de QoS probabilísticas.
  %a definição dos SLAs entre toda dupla de participantes que interagem na coreografia e a configuração de monitoramento.
@@ -154,31 +152,34 @@ Para o cumprimento dos objetivos deste trabalho, consideram-se várias etapas:
 \end{enumerate}
 
 %medidos dos serviços Web e da composição  dos participantes
- Na etapa (1) construiu-se  um simulador de coreografias por conta da falta de implementações para rodar coreografias com suporte de QoS. Na
+ Na etapa (1) construiu-se  um simulador de coreografias por conta da falta de implementações para rodar coreografias com suporte a QoS. Na
 etapa (2) se definem requisitos de QoS baseados em avaliações de desempenho de coreografias usando modelos de falhas probabilísticos de
- atributos de QoS. Com base nesses requisitos de QoS se estebelecem os contratos  probabilísticos. Utilizaram-se duas abordagens
- de modo a definir requisitos de QoS:
+ atributos de QoS. Com base nesses requisitos de QoS se estabelecem os contratos  probabilísticos. Foram utilizadas duas abordagens
+ para definir requisitos de QoS:
  %ou contratos não rígidos  utilizam os quantis das distribuições de probabilidade de um determinado parâmetro de QoS.
              \begin{itemize}
-                  \item \textbf{Analítica}:  Usando Redes de Petri Estocásticas Generalizadas (GSPN) como representação intermediária
+                  \item \textbf{Analítica}:  Usando GSPN como representação intermediária
 		    da especificação de uma coreografia e adicionando características de QoS.
                   \item \textbf{Simulações}: Por meio de avaliações de desempenho usando o simulador de coreografias. %modelos de falhas?
                   %\item Parâmetros envolvidos: número de quantis, qual distribuição de probabilidade, tamanho da zona de tolerância, entre outros.
             \end{itemize}
 
-Na etapa (3),  o monitoramento utiliza os quantis das distribuições de probabilidade empírica (de acordo com os valores medidos dos
-parâmetros de QoS), e os compara com os quantis definidos nos SLAs para verificar alguma violação do contrato. Os parâmetros de QoS que
- serão utilizados são o tempo de resposta, o tempo de processamento, o atraso de rede e a largura de banda efetiva das interações  entre os serviços.%latência de rede e a largura de banda.
-A reação (punição, adaptação, reconfiguração, entre outros) ante a detecção de alguma violação de um SLA não está no escopo desta
+Na etapa (3),  o monitoramento utiliza os quantis das distribuições de
+probabilidade empíricas, de acordo com os valores medidos dos
+parâmetros de QoS, e os compara com os quantis definidos nos SLAs para verificar alguma violação do contrato. Os parâmetros de QoS que
+ serão utilizados são o tempo de resposta, o tempo de processamento, o atraso de rede e a largura de banda efetiva das interações  entre os serviços. %latência de rede e a largura de banda.
+ A reação (punição, adaptação, reconfiguração, entre outros) ante a detecção de alguma violação de um SLA não está no escopo desta
 pesquisa.%, porque antes disso, é fundamental detectar as falhas por meio do monitoramento da coreografia. %para realizar uma adaptação ou  uma auto-cura (\textit{self-healing}). %Também não inclui predição de QoS baseado no histórico, mas isto será
 
 
  Esta pesquisa foi desenvolvida no contexto e apoio de dois projetos:
  \begin{itemize}
     \item O projeto CHOReOS~\footnote{Projeto CHOReOS: \url{http://www.choreos.eu}} -  Coreografias de larga escala para o Internet do futuro.
-    \item O projeto Baile~\footnote{Projeto Baile: \url{http://ccsl.ime.usp.br/baile/}} - Habilitando coreografias escaláveis de serviços na núvem.
+    \item O projeto Baile~\footnote{Projeto Baile: \url{http://ccsl.ime.usp.br/baile/}} - Habilitando coreografias escaláveis de serviços na nuvem.
     %Enabling Scalable Cloud Service Choreographies
  \end{itemize}
+
+%TODO: escrever mais acerca a relacao da tese com os choreos, deliverables, etc
 
 %\textit{European Community's Seventh Framework Programme} FP7/2007-2013 sob o acordo número 257178 (Projeto CHOReOS - Coreografias de Larga
  %Escala para o Internet do Futuro - \url{http://www.choreos.eu}).
@@ -232,12 +233,11 @@ As principais contribuições desta pesquisa são:
 O restante deste texto está organizado da seguinte forma. No Capítulo~\ref{cap:concepts} são apresentados os aspectos e conceitos básicos, tais como serviços Web,
  SOA, composição de serviços e Internet do futuro. No Capítulo \ref{cap:service_choreography}
 são descritos os conceitos de coreografia de serviços Web. %assim como os modelos, tópicos de pesquisa, padrões e ferramentas.
-Em seguida, o Capítulo~\ref{cap:chor_scenarios} apresenta alguns cenários onde podem ser aplicadas as coreografias de serviços.
  No Capítulo~\ref{cap:SLA_choreography} são descritos os fundamentos de QoS, SLA e
 monitoramento em coreografias de serviços, além de serem resumidos os trabalhos relacionados a esta pesquisa. %Depois, no capítulo ~\ref{cap:QoS_Monitoring_choreography}
  %são descritos os aspectos de monitoramento de coreografia baseado em SLA que serão abordados no trabalho, e também se analisam os trabalhos relacionados a esta pesquisa.
-Depois, no Capítulo~\ref{cap:methodology} se apresentam as abordagens, técnicas e algoritmos para atingir os objetivos desta pesquisa.
- O Capítulo~\ref{cap:results} descreve os experimentos realizados e se apresentam as análises dos resultados. Finalmente,
+No Capítulo~\ref{cap:methodology} são descritas as técnicas e algoritmos para atingir os objetivos desta pesquisa.
+ O Capítulo~\ref{cap:results} descreve os experimentos realizados e analisa os resultados encontrados.
  o Capítulo~\ref{cap:conclusions} apresenta as conclusões, considerações finais e os trabalhos futuros.
 %as ferramentas e tecnologias a utilizar, as avaliações, trabalhos futuros e o cronograma
  %de trabalho. %Finalmente, as conclusões e trabalhos futuros são dados no capítulo ~\ref{cap:conclusions}.

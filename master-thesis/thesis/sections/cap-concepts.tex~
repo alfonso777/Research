@@ -1,7 +1,8 @@
 \chapter{Conceitos Básicos}
 \label{cap:concepts}
 
-
+Este capítulo apresenta conceitos básicos necessários para a
+compreensão da dissertação.
 
 %----------- Serviços Web-------------%
 %-------------------------------------%
@@ -11,9 +12,10 @@
 Os serviços Web foram  propostos para facilitar a comunicação entre componentes de arquiteturas heterogêneas, oferecendo uma
  visão destas arquiteturas baseada em serviços e totalmente compatível com a Internet. O surgimento dos serviços Web, e da  SOA, %\cite{Huhns2005}
  implicaram o estabelecimento de novos mecanismos de B2B, B2C e
-B2E.  A organização responsável pela definição dessas normativas ou padrões %, e garantir esse comportamento,
- é o WS-I~\cite{wsi2005}(\textit{Web Services Interoperability Organization}). Esta organização possibilita
- que os sistemas desenvolvidos em diferentes plataformas e diferentes linguagens de programação possam interagir. 
+B2E.  A organização responsável pela definição de normativas e
+padrões que permitem que sistemas desenvolvidos em diferentes plataformas e diferentes linguagens de programação possam interagir %, e garantir esse comportamento,
+é a WS-I~\cite{wsi2005}(\textit{Web Services Interoperability
+Organization}).
 
 % A SOA tem por objetivo estender a ideia de serviço Web, de modo que uma invocação, totalmente
  %transparente para o usuário, implique a execução de mais de um ou mais serviços Web.
@@ -32,10 +34,8 @@ B2E.  A organização responsável pela definição dessas normativas ou padrões %, e
     \item  Um provedor de informação ou capacidades, expostas em uma rede através de interfaces, protocolos consistentes e padrões~\cite{MIcrosoftWS2006}. 
   \end{itemize}
 \end{comment}
- 
 
-
-O modelo de serviços Web acrescenta o desenvolvimento de aplicações distribuídas. A arquitetura de serviços Web permite que os serviços
+A arquitetura de serviços Web permite que os serviços
  sejam descritos de forma dinâmica, publicados, descobertos e invocados em um ambiente de
  computação distribuída, utilizando os padrões WSDL\footnote{WSDL : \url{http://www.w3.org/TR/wsdl}}, 
 UDDI\footnote{UDDI: \url{http://uddi.xml.org/}}, SOAP\footnote{ SOAP:\url{www.w3.org/TR/soap/}} e XML, respectivamente. 
@@ -44,10 +44,10 @@ Segundo~\cite{Newcomer2002}, os serviços Web representam o próximo passo na evol
  e representam uma revolução, afastando-se da tradicional arquitetura cliente-servidor para as novas arquiteturas
  ponto a ponto. 
 
-Os serviços Web estão baseados em um conjunto de normativas (WSDL, UDDI, XML e SOAP) que permite aos
-programadores implementarem aplicações distribuídas. %, usando muitas ferramentas diferentes para criar aplicativos que usam uma combinação
+%Os serviços Web estão baseados em um conjunto de normativas (WSDL, UDDI, XML e SOAP) que permite aos
+%programadores implementarem aplicações distribuídas. %, usando muitas ferramentas diferentes para criar aplicativos que usam uma combinação
 %de módulos de software, que são chamados desde diversos sistemas que se encontram distribuídos em diferentes regiões geográficas. 
-Assim, os serviços Web são aplicações auto-contidas e modulares que podem ser: 
+Os serviços Web são aplicações auto-contidas e modulares que podem ser: 
 
 \begin{itemize}
  \item Descritas por uma linguagem de descrição de serviços, como a linguagem WSDL. 
@@ -61,18 +61,18 @@ localização e ligação (\textit{binding}) do serviço que atenda os parâmetros de 
 \end{itemize}
 
 
-A Figura~\ref{fig:WS_Triangle} mostra e ilustra os componentes que estão envolvidos no modelo de uma  arquitetura de serviços Web. A 
+A Figura~\ref{fig:WS_Triangle} ilustra os componentes que estão envolvidos no modelo de uma  arquitetura de serviços Web. A 
 seguir a descrição desses elementos~\cite{Tortosa2006}:
  
 \begin{itemize}
-  \item\textbf{Serviço}: A ``aplicação'' publicada para ser utilizada pelos solicitantes que cumpram os requisitos especificados
-  pelo provedor de serviços. Obviamente, a execução é realizada em uma plataforma acessível na rede. %O serviço é descrito
+  \item\textbf{Serviço}: A aplicação publicada para ser utilizada pelos solicitantes que cumpram os requisitos especificados
+  pelo provedor de serviços. Obviamente, a execução é realizada em uma plataforma acessível via rede. %O serviço é descrito
   %através da linguagem de descrição de serviço, por exemplo WSDL. Essa descrição e as políticas de uso foram previamente publicados em um registro.
-  \item\textbf{Provedor do serviço}: Do ponto de vista comercial, é quem fornece o serviço. Do ponto de vista da arquitetura, é a plataforma que fornece o serviço. 
+  \item\textbf{Provedor do serviço}: Do ponto de vista comercial, é quem fornece o serviço. Do ponto de vista da arquitetura, é a plataforma que fornece o serviço. 
   \item\textbf{Registro de serviços }: É um repositório de descrições, em que os provedores publicam seus serviços e as formas de acessá-los. Também
 permite aos solicitantes realizarem diferentes tipos de buscas. %, obtendo deles os elementos necessários para localizá-los e usá-los. 
-  \item\textbf{Solicitante do serviço}: Do ponto de vista comercial, é a empresa que precisa de um determinado serviço. Do ponto de vista da arquitetura, é
- o aplicativo cliente que invoca um serviço de busca.                                                                                                                                                                                              
+  \item\textbf{Solicitante do serviço}: Do ponto de vista comercial, é a empresa que precisa de um determinado serviço. Do ponto de vista da arquitetura, é
+ o aplicativo cliente que invoca um serviço de busca.                                                                                                                             
 \end{itemize}
 
 
@@ -86,33 +86,35 @@ permite aos solicitantes realizarem diferentes tipos de buscas. %, obtendo deles
 
 As operações que podem ser realizadas com os serviços Web são: 
 \begin{itemize}
-  \item \textbf{Publicar/Cancelar}: Um provedor de serviços pode publicar um determinado serviço comercial (\textit{e-business}) em um ou mais registros de serviços
- e cancelar essa publicação em qualquer momento. 
-  \item \textbf{Procurar}: Os  solicitantes dos serviços (clientes) podem interagir com um ou mais registros para encontrar um conjunto de serviços
+  \item \textbf{Publicar/Cancelar}: Um provedor de serviços pode publicar um determinado serviço comercial em um ou mais registros de serviços
+ e cancelar essa publicação em qualquer momento.
+  \item \textbf{Procurar}: Os  solicitantes dos serviços podem interagir com um ou mais registros para encontrar um conjunto de serviços
  %com os quais possam interagir para encontrar soluções para seus problemas. 
  que solucione seus problemas. 
   
-  \item \textbf{Ligação (\textit{binding})}: Os solicitantes  negociam com os provedores de serviços a forma de  acesso e invocação dos seus
-   serviços comerciais. 
+  \item \textbf{Ligação (\textit{binding})}: Os solicitantes  negociam com os provedores de serviços a forma de  acesso e invocação dos seus
+   serviços comerciais. 
 \end{itemize}
 
 
 Atualmente, as aplicações que estão sendo desenvolvidas têm a capacidade de procurar  e selecionar serviços de forma dinâmica em tempo real, com base
  em parâmetros como custos, qualidade ou disponibilidade. Isto é uma grande vantagem na hora de utilizar sistemas baseados em  serviços Web, já que
- o sistema automaticamente escolhe o serviço que melhor se adapte às suas necessidades ~\cite{Wang2004}.% e, portanto, o desempenho do sistema será acrescentado \cite{Wang2004}. 
+ o sistema automaticamente escolhe o serviço que melhor se adapte às
+necessidades do solicitante~\cite{Wang2004}.% e, portanto, o desempenho do sistema será acrescentado \cite{Wang2004}.
 
-Entre as razões pelas quais os serviços Web possuem um papel importante na implementação de sistemas distribuídos estão~\cite{Tortosa2006}: 
+Entre as razões pelas quais os serviços Web possuem um papel importante na implementação de sistemas distribuídos estão~\cite{Tortosa2006}:
 \begin{itemize}
-  \item \textbf{Interoperabilidade:} Qualquer serviço Web pode interagir com qualquer outro serviço. O protocolo padrão SOAP permite que qualquer serviço
-possa ser oferecido ou utilizado independentemente da linguagem ou ambiente em que é desenvolvido. 
-  \item  \textbf{Onipresença:} Os serviços Web se comunicam usando HTTP e XML. Qualquer dispositivo que trabalha com estas tecnologias pode ser
+  \item \textbf{Interoperabilidade:} Os serviços Web podem interagir com outro serviços. O protocolo padrão SOAP permite que os serviços
+possam ser oferecidos ou utilizados independentemente da linguagem ou ambiente em que são desenvolvidos.
+  \item  \textbf{Onipresença:} Os serviços Web se comunicam usando HTTP e XML. Qualquer dispositivo que trabalha com estas tecnologias pode ser
 o cliente e acessar os serviços Web. Por exemplo, uma máquina de venda de refrigerantes pode se comunicar com o serviço Web de um provedor local
- e solicitar uma ordem de fornecimento através de uma rede de acesso sem fio. 
-  \item \textbf{Barreira mínima de participação:} Os conceitos por trás dos serviços Web são fáceis de compreender e existe uma gama de ferramentas de desenvolvimento
-, como os oferecidos pela IBM, \textit{Sun Microsystems}, \textit{Apache}, \textit{Systinet}, entre outras. Todos eles permitem que os
-desenvolvedores criem e implementem rapidamente serviços Web. 
-  \item \textbf{Suporte da indústria:} As principais empresas de TI suportam os serviços Web baseados em SOAP, e serviços Web baseados na arquitetura 
-  REST \footnote{REST: \emph{Representational State Transfer}}, conhecidos como serviços Web \textit{RESTFul}  ~\cite{Peng2009}, e tecnologias derivadas dos serviços Web.                                                                                                                      
+ e solicitar uma ordem de fornecimento através de uma rede de acesso
+sem fio existente.
+  \item \textbf{Barreira mínima de participação:} Os conceitos por trás dos serviços Web são não dífíceis de compreender e existe uma gama de
+ferramentas de desenvolvimento, como os oferecidos pela IBM, \textit{Sun Microsystems}, \textit{Apache}, \textit{Systinet}, entre
+outras. Tais ferramentas permitem que os desenvolvedores criem e implementem serviços Web de maneira rápida.
+  \item \textbf{Suporte da indústria:} As principais empresas de TI suportam os serviços Web baseados em SOAP, e serviços Web baseados na arquitetura 
+  REST, conhecidos como serviços Web \textit{RESTFul}~\cite{Peng2009}, e tecnologias derivadas dos serviços Web.
 \end{itemize}
 
 
@@ -181,58 +183,52 @@ Distribuído
 
 
 %\subsection{Serviços Web RestFul}
-\subsection{Padrões e tecnologias básicos}
-A infra-estrutura mínima exigida pelos serviços  Web pode ser definida em termos de~\cite{Pelechano2005}: 
+%\subsection{Padrões e tecnologias básicos}
+A infraestrutura mínima exigida pelos serviços  Web pode ser definida em termos de~\cite{Pelechano2005}: 
 \begin{itemize}
-  \item O que vai na "rede": Formatos e protocolos de comunicação. 
-  \item O que descreve e vai na rede: Linguagens de descrição de serviços. 
+  \item O que é transferido pela rede: Formatos e protocolos de comunicação. 
+  \item O que é descrito para ser transferido via rede: Linguagens de descrição de serviços. 
   \item O que permite encontrar e armazenar essas descrições: Descoberta de serviços. 
 \end{itemize}
 
-Os serviços Web baseiam o seu desempenho global e as características nas seguintes  normativas e protocolos~\cite{WSAlonso2004}: 
+Os serviços Web baseiam-se nas seguintes normativas e protocolos~\cite{WSAlonso2004}: 
 
 \begin{itemize}
-  \item \textbf{XML} (\emph{eXtensible Markup Language})~\cite{W3CXML1998}, publicado em 1998 e tem revolucionado a maneira de estruturar, descrever e
- trocar informação. Independentemente
- das muitas maneiras atuais de usar XML, todos as tecnologias de serviços Web são baseados em XML.É a padrão central desta arquitetura, sobre a qual o resto de padrões
- se apoiam. O desenho de XML deriva de duas fontes principais: SGML (\emph{Standard Generalized Markup Language})~\cite{ISOSGML1986} e
- HTML(\emph{HyperText Markup Language})~\cite{ISOHTML2000}.
+  \item \textbf{XML}~\cite{W3CXML1998}, publicado em 1998, mudou e impactou a maneira de estruturar, descrever e
+ trocar informação. Independentemente
+ das muitas maneiras atuais de usar XML, ainda muitas das tecnologias de serviços Web são baseadas em XML apesar do acrescentamento dos serviços RESTful.
+ É o padrão central desta arquitetura, 
+sobre a qual o resto de padrões  se apoiam. O projeto  do XML deriva de duas fontes principais: SGML (\emph{Standard Generalized Markup
+ Language})~\cite{ISOSGML1986}. %e HTML(\emph{HyperText Markup Language})~\cite{ISOHTML2000}.
  
-  \item \textbf{UDDI} (\emph{Universal Description, Discovery and Integration})~\cite{UDDI2005}, é um diretório que contém um registro/repositório de
+  \item \textbf{UDDI}~\cite{UDDI2005}, é um diretório que contém um registro/repositório de
  descrições de serviços Web. Este
  padrão permite que as empresas se registrem em um tipo de diretório da Internet, que as ajuda a anunciar seus serviços, de modo que outras empresas possam
 localizar os seus serviços e realizar transações na web. O processo de registro e consulta se realizam usando os mecanismos baseados em XML e HTTP(S). Portanto, a
  especificação UDDI tem dois objetivos principais, primeiro, servir de suporte aos desenvolvedores para encontrar informações sobre os serviços  Web e poder construir
 os clientes; e por outro lado, facilitando a ligação dinâmica de serviços Web, permitindo consultar referências e acessar serviços de interesse. 
 
-  \item \textbf{SOAP} (\emph{Simple Object Access Protocol})~\cite{W3CSOAP2003}, é um padrão do W3C\footnote{W3C:
-   World Wide Web Consortium, \url{www.w3.org/} }, que define
-  um protocolo que da suporte para a interação (dados + funcionalidade)  entre aplicações em ambientes heterogêneos distribuídos, é interoperável
- (independente da plataforma, linguagem de programação, independente do hardware e  protocolos). SOAP define a forma de organizar informações XML de uma forma estruturada e
- tipada para ser trocada entre diferentes sistemas. O protocolo SOAP simplifica
- o acesso a objetos, permitindo que as aplicações possam invocar métodos de objetos ou funções que residem  em sistemas remotos. 
+  \item \textbf{SOAP}~\cite{W3CSOAP2003}, é um padrão do W3C\footnote{\url{www.w3.org/} }, que define
+  um protocolo que dá suporte para a interação (dados + funcionalidade) entre aplicações em ambientes heterogêneos distribuídos. SOAP define a 
+ forma de organizar informações em XML para permitir a troca entre diferentes sistemas. O protocolo SOAP simplifica
+ o acesso a objetos, permitindo que as aplicações possam invocar métodos de objetos ou funções que residem  em sistemas remotos.
 
-  \item \textbf{WSDL}(Web Service Description Language)~\cite{W3CWSDL2001}, criado originalmente pela IBM, Microsoft e Ariba. Tem um papel e um propósito semelhante a IDL 
+  \item \textbf{WSDL}~\cite{W3CWSDL2001}, criada pela IBM, Microsoft e Ariba, tem papel e propósito semelhante à IDL 
 (\emph{Interface Definition Language}) das plataformas de \textit{middleware}. Um arquivo WSDL é um documento XML que descreve os serviços Web, particularmente suas
- interfaces. Uma  característica que o diferencia do IDL, é que o WSDL deve definir os mecanismos de acesso (protocolos) para os serviços web. Outra
-característica distintiva é a  necessidade de definir (na especificação) a localização  de um serviço (\emph{endpoints}). A separação das interfaces e os enlaces de
- protocolo, e a necessidade para incluir as informações de localização permite a definição de especificações modulares. WSDL permite definir interfaces de
- forma mais complexa e expressiva, permitindo definições de interações  assíncronas e de diferentes paradigmas de interação, e a possibilidade de misturar ou
- ou agrupar operações.
+ interfaces. Uma  característica que o diferencia da IDL, é que a WSDL deve definir os mecanismos de acesso (protocolos) para os serviços web. Outra
+característica distintiva é a  necessidade de definir na especificação a localização  de um serviço (\emph{endpoints}). A separação das interfaces e dos
+ protocolos, e a necessidade de incluir as informações de localização, permite a definição de especificações modulares. % WSDL permite definir interfaces de
+% forma mais complexa e expressiva, permitindo definições de interações  assíncronas e de diferentes paradigmas de interação, e a possibilidade de misturar ou
+% ou agrupar operações.
 \end{itemize}
 
-Na Figura \ref{fig:WS_model} se mostra o diagrama de arquitetura dos sistemas baseados em serviços Web, onde se representam os padrões e tecnologias descritas. 
-    \begin{figure}[!h]
-      \centering
-      \includegraphics[width=.70\textwidth]{figures/webServiceModel.png}
-      \caption{ Modelo integral dos serviços Web~\cite{Pelechano2005}}
-      \label{fig:WS_model}
-    \end{figure}
-
-
-
-
-
+%Na Figura \ref{fig:WS_model} é apresentado o diagrama de arquitetura dos sistemas baseados em serviços Web, onde se representam os padrões e tecnologias descritas. 
+%    \begin{figure}[!h]
+%      \centering
+%      \includegraphics[width=.70\textwidth]{figures/webServiceModel.png}
+%      \caption{ Modelo integral dos serviços Web~\cite{Pelechano2005}}
+%      \label{fig:WS_model}
+%    \end{figure}
 
 %%--- comment ----
 \begin{comment}
@@ -270,7 +266,7 @@ Dentre destes protocolos de padrões destacam-se alguns muito necessários para a 
 \end{itemize}
 
 
-O grau de consenso da indústria no escopo dos protocolos dos serviços Web é elevado (pelo menos em termos de infra-estrutura básica). Apesar de
+O grau de consenso da indústria no escopo dos protocolos dos serviços Web é elevado (pelo menos em termos de infraestrutura básica). Apesar de
  propostas alternativas que têm sido desenvolvidas em algumas áreas, a formação de grupos de trabalho no W3C ou OASIS, muitas vezes levam  à convergência de todas as partes interessadas. 
 
 Existem atualmente algumas áreas onde se mantêm propostas alternativas, por exemplo, \emph{Reliable Messaging}, Orquestração e coordenação de transações. Essas alternativas
@@ -323,8 +319,8 @@ Embora os protocolos propostos para os serviços Web tem sido uma área de trabalh
 
 Integrar produtos de diferentes provedores e de diferentes tecnologias é uma tarefa difícil, por isso cada vez mais as aplicações estão orientadas a
  serviços. Isto pode ser visto  na Figura~\ref{fig:sw_architecture_evolution}, na qual se apresenta a evolução das arquiteturas de software,
-paradigmas de programação, metodologias de desenvolvimento e também os modelos de computação tanto no hardware quanto nas redes, convergindo para 
-a computação orientada a serviços (\textit{Service Oriented Computing } - SOC).
+paradigmas de programação, metodologias de desenvolvimento e também os modelos de computação tanto no hardware quanto via rede, convergindo para 
+a SOC.
 
     \begin{figure}[!h]
       \centering
@@ -337,18 +333,13 @@ a computação orientada a serviços (\textit{Service Oriented Computing } - SOC).
 % de aplicações distribuídas.
 
 O paradigma da SOC utiliza os serviços como blocos de construção para suportar o desenvolvimento de maneira rápida, interoperável, 
-evolutiva, de baixo custo  e de fácil composição de aplicações distribuídas. Serviços são entidades computacionais
- autônomos que que podem ser utilizados independentemente da plataforma. Os serviços podem  ser descritos, publicados,
- descobertos, e dinamicamente montados para o desenvolvimento massivo de sistemas  distribuídos, interoperáveis
- e evoluíveis. Os serviços desempenham funções que podem variar de responder requisições simples para a execução
- de processos de negócios sofisticados quem  exigem relações P2P entre várias camadas  de consumidores e provedores de serviços.
+evolutiva, de baixo custo  e de fácil composição de aplicações distribuídas. Os serviços desempenham funções que podem variar de responder requisições simples até a execução
+ de processos de negócios sofisticados que exijam relações P2P entre várias camadas de consumidores e provedores de serviços.
 
-Qualquer troço de código e qualquer componente de um aplicativo implantado em um sistema pode ser reutilizado e transformado
- em um serviço disponibilazado na  rede. Serviços refletem uma abordagem "orientada a serviços" na programação, com base
- na idéia de composição de  aplicativos pela descoberta e invocação de serviços disponíveis na rede  ao invés de construir
- novos aplicativos ou invocar aplicativos específicos. Os  serviços são mais frequentemente construídos  de maneira
- independente do contexto em que que são utilizados. Isso significa que o provedor e consumidor de serviços são baixamente
-acoplados.
+Trechos de código e  componentes de algum aplicativo implantado em um sistema pode ser reutilizado e transformado
+ em um serviço disponibilizado na rede. Os  serviços geralmente são implementados de maneira
+ independente do contexto em que serão utilizados. Isso significa que entre o provedor e o consumidor de serviços há um baixo 
+acoplamento.
 
 
 \begin{comment}
@@ -359,15 +350,12 @@ acoplados.
   \end{itemize}
 \end{comment}
 
-
-A abordagem  "orientada a serviços"  é independente de linguagens de programação específicas ou sistemas operacionais. Isso permite que
- as organizações  exponham suas funcionalidades essenciais por meio da Internet ou de uma variedade de redes, por exemplo, cabo, UMTS,
-XDSL, Bluetooth, etc usando  linguagens (baseadas em XML) e protocolos padrão, e
-implementando uma interface auto-descriptiva.  Atualmente, os serviços Web  são a tecnologia mais promisoria baseada no conceito de  
-SOC. A promessa visionária de SOC consiste em  construir facilmente  componentes de aplicação dentro de uma  rede de serviços
+A abordagem  orientada a serviços  é independente de linguagens de programação ou sistemas operacionais. Isso permite que
+ as organizações exponham suas funcionalidades essenciais por meio da Internet e de uma variedade de tecnologias de redes usando, por exemplo,  
+linguagens baseadas em XML e protocolos padrão, e
+implementando uma interface auto-descritiva. A promessa visionária de SOC consiste em  construir facilmente  componentes de aplicação dentro de uma  rede de serviços
  de baixo acoplamento, a fim de que se possa criar processos de negócios dinâmicos e aplicações ágeis que cubram diversas 
 organizações e plataformas de computação~\cite{Papazoglou2008}.
-
 
 \begin{comment}
   \begin{figure}[!h]
@@ -384,128 +372,117 @@ organizações e plataformas de computação~\cite{Papazoglou2008}.
 %\begin{comment}
 \subsection{Conceito de SOA}
 
-A chave para concretizar a visão da SOC é a arquitetura orientada a serviços (SOA). SOA é uma maneira lógica de desenhar sistemas de software para
-fornecer serviços para aplicações de usuário final ou outros serviços distribuídos em uma rede, por meio de interfaces publicadas e detectáveis (isto é,  que possam
-ser descobertas) . Uma aplicação  SOA bem construída, baseada em padrões, pode fortalecer  uma organização com uma infra-estrutura flexível e com
- um ambiente de processamento. Isto por causa de um provisionamento independente,funções de aplicações reutilizáveis como serviços, e provendo uma base
- robusta para alavancar esses serviços~\cite{PapazoglouSOC2007a}.
+A chave para concretizar a visão da SOC é a SOA. A SOA descreve um maneira lógica com o objetivo de projetar sistemas de software para
+fornecer serviços para aplicações de usuário final ou para outros serviços distribuídos em uma rede, por meio de interfaces publicadas e detectáveis, isto é, que possam
+ser descobertas. % Uma aplicação SOA bem construída, baseada em padrões, pode fortalecer  uma organização com uma infra-estrutura flexível e com
+% um ambiente de processamento. Isto por causa de um provisionamento independente,funções de aplicações reutilizáveis como serviços, e provendo uma base
+% robusta para alavancar esses serviços~\cite{PapazoglouSOC2007a}.
 
-
-Uma Arquitetura Orientada a a Serviços (SOA) é uma abordagem emergente que orienta os requerimentos de baixo acoplamento, baseado em padrões e uma computação
-distribuída independente de protocolos~\cite{Papazoglou2007}. Na Figura~\ref{fig:soc_roadmap} mostra um roteiro de pesquisas em SOA segundo~\cite{PapazoglouSOC2007a}),
-que separa a funcionalidade em três planos. Serviços básicos na base da pirâmide, composição de serviços no meio e gerenciamento de serviços
+A SOA orienta os requisitos de baixo acoplamento, baseando-se em padrões e em computação
+distribuída independente de protocolos~\cite{Papazoglou2007}. A Figura~\ref{fig:soc_roadmap} mostra um roteiro para o desenvolvimento de SOA segundo~\cite{PapazoglouSOC2007a}). A pirâmide da figura
+separa as funcionalidades da arquitetura em três planos. Serviços básicos na base da pirâmide, composição de serviços no meio e gerenciamento de serviços
  com monitoramento no topo da pirâmide. Esta divisão lógica está baseada na necessidade de separar:
 
 \begin{itemize}
- \item Capacidades de serviços básicos fornecidos por uma infraestrutura de \emph{middleware}, e uma SOA convencional de funcionalidades de serviços avançada
-  necessária para dinamicamente compor serviços.
+ \item Capacidades de serviços básicos fornecidos por uma infraestrutura de \emph{middleware}, e uma SOA convencional de funcionalidades de serviços avançadas necessárias para dinamicamente compor serviços.
   \item Serviços de negócio de serviços focados em sistemas.
   \item Composição de serviços de gerenciamento de serviços.
 \end{itemize}
 
-
    \begin{figure}[!h]
       \centering
       \includegraphics[width=1.0\textwidth]{figures/SOC_roadmap.png}
-      \caption{Roteiro de pesquisas em SOC e SOA \cite{PapazoglouSOC2007a} }
+      \caption{Roteiro para o desenvolvimento de SOA \cite{PapazoglouSOC2007a} }
       \label{fig:soc_roadmap}
     \end{figure}
 %\end{comment}
 
 
 %\begin{comment}
-\subsection{Serviços Web e SOA}
-
-Este ponto é justificado porque os serviços Web podem se tornar uma parte vital de uma arquitetura orientada a serviços.
-Dentro de um processo de negócio pode ser necessário utilizar  funcionalidades de diferentes sistemas e de diferentes localizações, para realizar essas
-funções se utilizam os serviços Web, estes também têm de ser identificados durante o processo de análise de uma arquitetura orientada a serviços. Cada serviço
- deve ser bem definido por uma interface (WSDL) para que possa ser publicado, localizado e invocado. Dependendo do processo de negócio, o serviço pode ser
- publicado para que outras empresas podem usá-lo, ou internamente, para uso em processos de negócio internos de uma empresa particular. 
-Os serviços Web são uma tecnologia altamente adaptável às necessidades de implementação de uma arquitetura orientada a serviços. Essencialmente, os serviços
- Web são a implementação de uma especificação bem definida de uma funcionalidade, isto é, são  aplicações  modulares que fornecem uma lógica de processos
- de negócio como um serviço que pode ser publicado, localizado e invocado através da Internet~\cite{IBMWS2006}. Baseado no padrão XML~\cite{W3CXML1998}, os serviços
- Web podem ser desenvolvidos utilizando qualquer linguagem de programação, qualquer protocolo e qualquer plataforma. Os Serviços Web podem ser localizados
-e utilizados a qualquer momento em qualquer localização  e usando  qualquer protocolo e plataforma. 
-Mas é importante notar que os serviços Web não são a única tecnologia usada para implementar um SOA. Existem muitos exemplos de organizações que utilizam com
- sucesso SOA, no qual se utilizam (além dos serviços Web) outras tecnologias de troca de mensagens e de funções de  acesso remoto, usando o padrão XML, como o protocolo
- XML-RPC \cite{XMLRPC1999}, que funciona exatamente como o protocolo RPC (Remote Procedure Call), através de um túnel de HTTP.
-%\end{comment}
+% \subsection{Serviços Web e SOA}
+% 
+% Este ponto é justificado porque os serviços Web podem se tornar uma parte vital de uma arquitetura orientada a serviços.
+% Dentro de um processo de negócio pode ser necessário utilizar  funcionalidades de diferentes sistemas e de diferentes localizações, para realizar essas
+% funções se utilizam os serviços Web, estes também têm de ser identificados durante o processo de análise de uma arquitetura orientada a serviços. Cada serviço
+%  deve ser bem definido por uma interface (WSDL) para que possa ser publicado, localizado e invocado. Dependendo do processo de negócio, o serviço pode ser
+%  publicado para que outras empresas podem usá-lo, ou internamente, para uso em processos de negócio internos de uma empresa particular. 
+% Os serviços Web são uma tecnologia altamente adaptável às necessidades de implementação de uma arquitetura orientada a serviços. Essencialmente, os serviços
+%  Web são a implementação de uma especificação bem definida de uma funcionalidade, isto é, são  aplicações  modulares que fornecem uma lógica de processos
+%  de negócio como um serviço que pode ser publicado, localizado e invocado através da Internet~\cite{IBMWS2006}. Baseado no padrão XML~\cite{W3CXML1998}, os serviços
+%  Web podem ser desenvolvidos utilizando qualquer linguagem de programação, qualquer protocolo e qualquer plataforma. Os Serviços Web podem ser localizados
+% e utilizados a qualquer momento em qualquer localização  e usando  qualquer protocolo e plataforma. 
+% Mas é importante notar que os serviços Web não são a única tecnologia usada para implementar um SOA. Existem muitos exemplos de organizações que utilizam com
+%  sucesso SOA, no qual se utilizam (além dos serviços Web) outras tecnologias de troca de mensagens e de funções de  acesso remoto, usando o padrão XML, como o protocolo
+%  XML-RPC \cite{XMLRPC1999}, que funciona exatamente como o protocolo RPC (Remote Procedure Call), através de um túnel de HTTP.
+% %\end{comment}
 
 %\begin{comment}
-\subsection{Padrões de Desenho}
-Para a construção de aplicações orientadas a serviços usando SOA, também foi desenvolvido uma série de padrões de desenho de software \cite{Gamma1994}. Com o uso
- de padrões, que podem ser usados com qualquer metodologia, o SOA resultante  irá conter um maior nível de abstração, garantindo consistência e melhor desempenho. 
-Os padrões de desenho para construir uma arquitetura orientada a serviços podem ser divididos em cinco categorias \cite{Monday2003}: 
-
+\subsection{Padrões de Projeto}
+Para a construção de aplicações orientadas a serviços usando SOA, também foi desenvolvido uma série de padrões de projeto de software \cite{Gamma1994}. Com o uso
+ de padrões, que podem ser usados com qualquer metodologia, a SOA resultante irá conter um maior nível de abstração, garantindo consistência e melhor desempenho. 
+Os padrões de projeto para construir uma arquitetura orientada a serviços podem ser divididos em cinco categorias \cite{Monday2003}: 
 
 \begin{enumerate}
   \item
-  \textbf{Aprendizagem}: Utilizado para compreender o ambiente dos serviços Web. Dentro desta categoria encontramos:
+  \textbf{Aprendizagem}: Utilizado para compreender o ambiente dos serviços Web. Dentro desta categoria encontramos os padrões:
   \begin{itemize}
     \item Arquitetura Orientada a Serviços: O padrão que forma a arquitetura dos serviços Web.
-    \item \textit{Architecture Adapter}: Ele pode ser visto como um modelo genérico que facilita a comunicação entre arquiteturas.
-    \item \textit{Service Directoy}: Esse padrão facilita a transparência na localização de serviços, permitindo fazer interfaces robustas para encontrar o
-      serviço que eles realmente querem.                                                                                                                                                                               
-  \end{itemize}
+    \item \textit{Architecture Adapter}: Um modelo genérico que facilita a comunicação entre arquiteturas.
+    \item \textit{Service Directory}: facilita a transparência na localização de serviços, permitindo a criação de interfaces robustas para encontrar o serviço adequado.
+\end{itemize}
 
-
-  \item \textbf{Adaptação}: Estes padrões básicos são chamados de básicos  para conhecer o funcionamento do entorno dos serviços web. Nesta categoria encontramos:
-
+  \item \textbf{Adaptação}: Utilizados para possibilitar o conhecimento do ambiente dos serviços web. Nesta categoria encontramos os padrões:
     \begin{itemize}
-      \item \textit{Bussines Object}: Um business object engloba um conceito de negócio no mundo real, como um cliente, uma empresa ou produto, e o que pretende
-    este padrão é  transferir o conceito de objeto de negócios dentro do paradigma de Web Services.
+      \item \textit{Bussines Object}: Um \textit{business object} engloba um conceito de negócio no mundo real, como um cliente, uma empresa ou produto. Este padrão possibilita a transferência do conceito de objeto de negócios para o paradigma de Web Services.
       \item \textit{Business Process}: Este padrão é utilizado no tratamento de processos de negócio. Atualmente, existem duas especificações principais:
 	
       \begin{itemize}
-	\item Business Process Execution Language (BPEL), proposto pela BEA Systems, IBM e Microsoft.
-	\item Business Process Modeling Notation (BPMN), proposto por outras empresas que não estão no primeiro grupo, tais como WebMethods, SeeBeyond, etc.	                                   
+	\item BPEL, proposto pela BEA Systems, IBM e Microsoft.
+	\item BPMN, proposto por WebMethods, SeeBeyond, entre outras.	                                   
 	\end{itemize}
 
-      \item \textit{Bussines Object Collection:} Este padrão pode fazer composições de processos de negócios. 
+      \item \textit{Bussines Object Collection:} Este padrão habilita a realização de composições de processos de negócios. 
 
       \item \textit{Asynchronous Business Process}: Este padrão é a evolução do padrão Business Process. 
   \end{itemize}
 
-  \item \textbf{ Alterações}: Embora os serviços Web permitam chamadas assíncronas, a implementação do serviço pode ser baseada no passo de mensagens, também são
-  importantes serviços baseados em eventos, esses padrões são baseados em padrões tradicionais, como o Observer ou o padrão Publish / Subscribe. Nesta categoria encontramos:
+  \item \textbf{Alterações}: Utilizados para definições relacionadas com serviços baseados em eventos. Esses padrões são baseados em padrões tradicionais, como o Observer ou o padrão Publish / Subscribe. Nesta categoria encontramos:
     \begin{itemize}
       \item \textit{Event/Monitor}: Este é um padrão para criar formas eficazes de integrar aplicações sem a interferência de outros componentes. O cenário
-	mais comum de este padrão é utilizado para aplicações de EAI (Enterprise Application Integration) \cite{Gu2010}.
-      \item \textit{Observer Services}: Este padrão representa a forma mais natural para detectar mudanças e agir devidamente.
+	mais comum de use deste padrão é em aplicações de EAI (Enterprise Application Integration) \cite{Gu2010}.
+      \item \textit{Observer Services}: Este padrão representa a forma mais natural para detectar mudanças no ambiente e tomar ações.
       \item \textit{Publish / Subscribe Services}: A evolução do padrão Observer, enquanto o padrão Observer é baseado no registro, este padrão  é baseado
-	nas notificações, o que permite diferentes serviços  possam enviar a mesma notificação. 
+	nas notificações, o que permite que diferentes serviços possam enviar a mesma notificação. 
     \end{itemize}
 
-
   \item \textbf{Redefinição}: Esses padrões permitem acesso ao comportamento de um serviço que é implementado em uma linguagem. Eles ajudam a compreender o ambiente
-  do serviços Web e para moldar o ambiente para atender às nossas necessidades. Nesta categoria encontramos:
+  do serviços Web e a personalizar o ambiente para atender às necessidades da organização. Nesta categoria encontramos:
     \begin{itemize}
       \item \textit{Physical Tires}: Este padrão ajuda a estruturar melhor a lógica de negócio dos serviços Web, e pode até mesmo ser usado para controlar
-      o fluxo de negociações pode ser obtido com o padrão \textit{publish/subscribe}.
+      o fluxo de negociações que pode ser obtido com o padrão \textit{publish/subscribe}.
       \item \textit{Connector}: Este padrão é normalmente utilizado com o anterior para resolver quaisquer problemas que surjam na subscrição.
-      \item \textit{Faux Implementation}: É uma alternativa para resolver os problemas que surgem na utilização de eventos em serviços Web. É simplesmente uma socket
-      aberto, que recebe as conexões  e fornece as respostas para os diferentes eventos.                                                                                                                                                                                                                                       \end{itemize}
+      \item \textit{Faux Implementation}: É uma alternativa para resolver os problemas que surgem na utilização de eventos em serviços Web. É simplesmente um socket
+      aberto que recebe as conexões e fornece as respostas para os diferentes eventos.
+\end{itemize}
 
-  \item \textbf{Flexibilidade}: Para criar serviços mais flexíveis e otimizados. Nesta categoria estão:
+  \item \textbf{Flexibilidade}: Utilizados para criar serviços mais flexíveis e otimizados. Nesta categoria estão:
     \begin{itemize}
-      \item \textit{Service Factory}: Um dos principais padrões e permite a seleção de serviços e fornece flexibilidade na instanciação dos componentes que criam
+      \item \textit{Service Factory}: Permite a seleção de serviços e fornece flexibilidade na instanciação dos componentes que criam
 	os serviços Web. Esse padrão também é usado tipicamente com o padrão de Service Cache para proporcionar maior flexibilidade na manutenção de aplicações que
-	utilizam os serviços Web, oferecendo um maior ROI às aplicações. 
-      \item \textit{Data  Transfer  Object}: Esta norma fornece desempenho, permitindo coletar dados e enviar múltiplas em uma única chamada, reduzindo o número de conexões
-	que o cliente tem que fazer para o servidor.
-      \item \textit{Data  Transfer  Collection}:  Esta é uma extensão da primeira, dado que o padrão Data  Transfer  Object    pode ser aplicado a uma coleção de objetos
+	utilizam os serviços Web, oferecendo um maior retorno de investimento às aplicações. 
+      \item \textit{Data  Transfer  Object}: Este padrão fornece desempenho, permitindo coletar dados e enviar múltiplas informações em uma única chamada, reduzindo o número de conexões
+	que o cliente tem que criar para comunicação com o servidor.
+      \item \textit{Data  Transfer  Collection}:  Esta é uma extensão da primeira, dado que o padrão \textit{Data  Transfer  Object} pode ser aplicado a uma coleção de objetos
       de negócio. Este objeto pode retornar um conjunto de atributos comuns de uma coleção de objetos.
       \item \textit{Parcial Population}: Este padrão permite aos usuários selecionar somente os dados que são necessários para as suas necessidades e só recuperar
-      do servidor aquilo que é necessário. Este padrão além de desempenho também oferece mais largura de banda na rede.                                                                                                                                                                                                                                                                   \end{itemize}
+      do servidor aquilo que é necessário. Este padrão além de desempenho também oferece uma melhor utilização da largura de banda disponível na rede.
+\end{itemize}
 
 \end{enumerate}
 
-Alguns padrões usam outros padrões, por exemplo, o padrão \textit{Business Process} utiliza o \textit{Business Object} e o \textit{Business Object Collection}. E a
- \textit{Service-Oriented Architecture} faz uso \textit{Service Directory} e \textit{Architecture Adapter}. 
+Alguns padrões usam outros padrões, por exemplo, o padrão \textit{Business Process} utiliza o \textit{Business Object} e o \textit{Business Object Collection}. De forma similar, o \textit{Service-Oriented Architecture} faz uso do \textit{Service Directory} e do \textit{Architecture Adapter}. 
 
 %\end{comment}
-
-
 
 %-------------------------------------------------------------------%
 %--------------- Composição de Serviços ----------------------------%
@@ -582,8 +559,8 @@ propostos como padrão por diferentes grupos de pesquisa e indústria.
  %serviços disponíveis.
 
 A maioria das ferramentas que apoiam o projeto e definição da composição de serviços fazem uma distinção entre linguagens de especificação de serviços
-internas e externas. As linguagens externas (também chamadas de linguagens de design) permitem representar, geralmente em forma gráfica, a composição de
-serviços para que ela possa ser facilmente compreendida pelos interessados. Por outro lado, as linguagens internas (linguagens de composição de serviços) são
+internas e externas. As linguagens externas, também chamadas de linguagens de design, permitem representar, geralmente em forma gráfica, a composição de
+serviços para que ela possa ser facilmente compreendida pelos interessados. Por outro lado, as linguagens internas, ou linguagens de composição de serviços, são
 linguagens geralmente mais precisas e formais, que são usados para gerar o processo de composição. %Algumas ferramentas podem apoiar a tradução de um desenho
 %de serviço composto em uma linguagem de descrição.
 
@@ -606,10 +583,10 @@ colaboração  entre
 
   \item \textbf{BPML\footnote{BPML: Atualmente é BPMN}}: O BPMi (\emph{Business Process Management Initiative}) é um consórcio que tem como objetivo
  contribuir no desenvolvimento de padrões de descrição
- de processos. Esse consórcio tem publicado uma especificação para uma linguagem de descrição de processos chamada de BPML (\emph{Business Process Modeling Language}), que
+ de processos. Esse consórcio publicou uma especificação para uma linguagem de descrição de processos chamada de BPML (\emph{Business Process Modeling Language}), que
  é similar em algumas formas a WS-BPEL, e está voltada para a descrição de orquestrações de serviços Web. BPML se beneficia de um padrão prévio chamado de WSCI desenvolvido
- pelos interessados em BPMi. Embora descontinuada, a WSCI integra alguns dos modelos encontrados no BPML e BPEL (por exemplo, a sequência, a execução paralela e as
- primitivas para enviar/receber) e é usada também para descrever  coreografias de serviços Web.
+ pelos interessados em BPMi. Embora descontinuada, a WSCI integra alguns dos modelos encontrados no BPML e BPEL, por exemplo, a sequência, a execução paralela e as
+ primitivas para enviar/receber, e é usada também para descrever  coreografias de serviços Web.
 \end{itemize}
 
 %\subsubsection{Linguagens Formais de Composição de Serviços Web}
@@ -622,7 +599,7 @@ externas possuem  limitações para o projeto e análise de uma composição de servi
 
 \begin{itemize}
   \item \textbf{OWL-S\footnote{OWLS foi anteriormente conhecido como DAML-S}}: É uma ontologia de serviços que permite a descoberta, invocação,
-composição, inter-operação e monitoramento da execução de maneira  automática. OWL-S modela os serviços utilizando uma ontologia, que consiste em três
+composição, interoperação e monitoramento da execução de maneira  automática. OWL-S modela os serviços utilizando uma ontologia, que consiste em três
  partes: (1) \textit{service profile}: descreve aquilo que o serviço requer dos usuários, (2) \textit{service model}: especifica como funciona o serviço, e
 (3) \textit{service  grounding}: oferece informações sobre como usar o serviço.
 
@@ -655,7 +632,7 @@ composição de serviços Web, verificando a corretude da especificação dos serviço
  dos dados e a satisfação de restrições de negócio.
 
   \item \textbf{\textit{Roman Model} (Ações com modelo de processos baseado em autômatos)}: Com esta proposta, os serviços são modelados de uma forma mais 
- abstrata, baseada na noção de atividades. Basicamente, há um alfabeto (finito) de nomes de atividades, mas não é modelada a estrutura interna (entradas, saídas
+ abstrata, baseada na noção de atividades. Basicamente, há um alfabeto finito de nomes de atividades, mas não é modelada a estrutura interna (entradas, saídas
 ou interação com o mundo). 
 %Em [20] se especifica o fluxo do processos internos de um serviço Web através de sistemas de transição. No caso mais geral, %são potencialmente árvores infinitos, onde cada ramo corresponde a uma sequência de execução de atividades permitidas.
 
@@ -670,8 +647,9 @@ envio de mensagens  assíncronas, onde cada serviço tem uma fila. Um ``observador
 \begin{comment}
 \subsubsection{Modelo de Compatibilidade}
 Uma questão fundamental na definição de um serviço composto é saber se os seus serviços componentes podem formar parte uma composição \cite{Dustdar2005a}. Por exemplo,
- pode ser difícil invocar uma operação, se não há uma correspondência entre os parâmetros necessários para a operação (por exemplo, tipos de dados, o número de
- parâmetros) e os dados transmitidos pelo serviço do cliente. A seguir, identifica-se que pelo menos é possível verificar a compatibilidade  dos serviços em dois níveis \cite{Dustdar2005a}: %revisar esta ultima referencia
+ pode ser difícil invocar uma operação, se não há uma correspondência
+entre os parâmetros necessários para a operação, por exemplo tipos de dados, o número de
+ parâmetros, e os dados transmitidos pelo serviço do cliente. A seguir, identifica-se que pelo menos é possível verificar a compatibilidade  dos serviços em dois níveis \cite{Dustdar2005a}: %revisar esta ultima referencia
 
   \begin{itemize}
   \item \textbf{Sintaxe}: Em um nível sintático, a comparação é bem simples e podem ser feitas em:
@@ -739,79 +717,71 @@ execução do serviço.
 %%Ubiquitous Web Services
 
 \section{Internet do Futuro: A Internet das Coisas}
-Atualmente, a  maioria de conexões à Internet no mundo  são realizadas por dispositivos utilizados directamente por pessoas, tais como o
-computadores e telefones celulares. A principal forma de comunicação  é de humano a humano. Em um futuro não muito distante, todos os objetos
-estarão conectados. As ``coisas'' poderão trocar informações por si mesmas e o número de ``coisas'' conectadas à Internet será muito maior 
-do que o número de ``pessoas'',  e os humanos podem tornar-se a minoria como  geradores e receptores de tráfego. 
-O mundo físico  e o mundo da informação se juntarão e misturarão~\cite{Tan2010}. 
 
-O futuro não será de pessoas falando com pessoas,e nem de pessoas acessando à informação. O futuro será usar máquinas
-para se comunicarem com outras máquinas em nome de pessoas. Nós estamos entrando em uma nova era de computação ubiqua, estamos entrando na era
- da ``Internet das Coisas'' (IoT) em que serão realizadas novas formas de comunicação entre pessoas e coisas, e entre coisas entre si. Assim, 
-uma nova dimensão é adicionada ao mundo das tecnologias de informação e comunicação: a qualquer momento,  qualquer lugar de conexão para
- qualquer um,  e conectividade para qualquer coisa~\cite{Tan2010}. A Figura~\ref{fig:IoT_newDimension} mostra essa nova dimensão.
+Atualmente, a  maioria das conexões à Internet são realizadas por dispositivos utilizados diretamente por pessoas, tais como
+computadores e telefones celulares. A principal forma de comunicação  é de humano a humano. Em um futuro não muito distante, os objetos
+estarão conectados. As ``coisas'' poderão trocar informações por si mesmas e o número de coisas conectadas à Internet será muito maior 
+do que o número de pessoas,  e os humanos podem tornar-se a minoria como  geradores e receptores de tráfego. 
+O mundo físico e o mundo da informação parecerão um só~\cite{Tan2010}. Nessa ``Internet das Coisas'' (IoT) serão realizadas novas formas de comunicação entre pessoas e coisas, e entre coisas entre si. %Assim, 
+%uma nova dimensão é adicionada ao mundo das tecnologias de informação e comunicação: a qualquer momento,  qualquer lugar de conexão para
+% qualquer um,  e conectividade para qualquer coisa~\cite{Tan2010}. A Figura~\ref{fig:IoT_newDimension} mostra essa nova dimensão.
 
-   \begin{figure}[!h]
-      \centering
-      \includegraphics[width=0.6\textwidth]{figures/IoT-newDimension.png}
-      \caption{Uma nova dimensão nas tecnologias de Informação~\cite{PapazoglouSOC2007a} }
-      \label{fig:IoT_newDimension}
-    \end{figure}
+%    \begin{figure}[!h]
+%       \centering
+%       \includegraphics[width=0.8\textwidth]{figures/IoT-newDimension.png}
+%       \caption{Uma nova dimensão nas tecnologias de Informação~\cite{PapazoglouSOC2007a} }
+%       \label{fig:IoT_newDimension}
+%     \end{figure}
 
-
-Não há nenhum padrão para definir a ``Internet das Coisas''. Considerando a funcionalidade e a identidade como  central,
-a IoT pode ser definida como ``Coisas que possuim identidades e personalidades virtuais desempenhando-se  em espaços inteligentes utilizando
-interfaces inteligentes para se conectarem e  comunicarem dentro de contextos de tipo social, de entorno e de usuário". Uma diferente
-definição com  foco na integração poderia ser formulada como ''Objetos interconectados com um papel ativo no que pode ser
- chamado de ``Internet do Futuro'' ''~\cite{Tan2010}.
-Do ponto de vista conceitual, a ``Internet das coisas'' baseia-se em três pilares que estão relacionados com a  capacidade dos objetos
- inteligentes para: (i) ser identificáveis (toda coisa se identifica por si mesma), (ii) para se comunicar (toda coisa se comunica) e
- (iii) para interagir (toda coisa interage), construindo redes de objetos interconectados, ou com  usuários finais ou outras entidades na
+Não há nenhum padrão para definir a IoT. Considerando a funcionalidade e a identidade como  central,
+a IoT pode ser definida como ``Coisas que possuem identidades e personalidades virtuais movimentando-se em espaços inteligentes utilizando
+interfaces inteligentes para se conectarem e se comunicarem dentro de contextos de tipo social, de ambiente e de usuário". Uma 
+definição diferente com  foco na integração poderia ser formulada como ``Objetos interconectados com um papel ativo no que pode ser
+ chamado de `Internet do Futuro' ''~\cite{Tan2010}.
+Do ponto de vista conceitual, a IoT baseia-se em três pilares que estão relacionados com a  capacidade dos objetos
+ inteligentes de: (i) serem identificáveis, (ii) se comunicarem e
+ (iii) interagirem, construindo redes de objetos interconectados, ou com usuários finais ou com outras entidades na
 rede~\cite{Miorandi2012}. 
 
+De uma perspectiva de nível de serviço, a questão principal tem a ver com como integrar ou compor as funcionalidades e/ou 
+recursos fornecidos por objetos inteligentes dentro de serviços.
+Isto requer a definição de: (i) arquiteturas e métodos para virtualizar objetos criando um padrão para representar
+  objetos inteligentes no domínio digital, capaz de ocultar a heterogeneidade dos dispositivos e (ii)
+métodos para a integração e composição contínua de serviços de objetos inteligentes em serviços de valor agregado
+para usuários finais~\cite{Miorandi2012}. As coreografias de serviços Web surgem como tecnologia facilitadora para permitir a integração das diversas coisas na IoT. Além disso, mecanismos como o proposto nesta dissertação são necessários para que as composições de serviço entre as diversas coisas atendam aos requisitos de QoS.
 
-De uma perspectiva de nível de serviço, a questão principal tem a ver o como integrar (ou compor) as funcionalidades e/ou 
-recursos fornecidos por objetos inteligentes (em muitos casos em formas de fluxos de dados gerados) dentro de serviços.
-Isto requer a definição de: (i) arquitecturas e métodos para ``para virtualizar'' objetos  criando um padrão para representar
-  objetos inteligentes no domínio digital, capaz de ocultar a heterogeneidade dos dispositivos/recursos e (ii)
-métodos para a integração e composição contínua de recursos/serviços de objetos inteligentes em serviços de valor agregado
-para usuários finais~\cite{Miorandi2012}.
-
-\subsection{Tecnologias e Tendências}
+% \subsection{Tecnologias e Tendências}
 %Dentro desta perspectiva, o termo ``Internet das Coisas'' (IoT) é amplamente utilizado para se referir a: (1) o resultado de interconectar
-A ``Internet das Coisas'' é amplamente utilizado para se referir a: (1) o resultado de interconectar
-objetos inteligentes em uma rede global  por meio de tecnologias de Internet estendidas, (2) o conjunto de tecnologias de
-suporte necessárias para concretizar essa visão (incluindo, por exemplo, RFID~\footnote{RFID: Identificação por radiofrequência do
- inglês ``Radio-Frequency IDentification''}, sensores/atuadores, dispositivos de comunicação máquina a máquina, etc) e 
-(3) de conjuntos de aplicações e serviços, aproveitando essas tecnologias para abrir novos negócios e 
+O termo IoT é amplamente utilizado para se referir a: (1) o resultado de interconectar
+objetos inteligentes em uma rede global por meio de tecnologias da Internet, (2) o conjunto de tecnologias de
+suporte necessárias para concretizar essa visão, incluindo, por exemplo, RFID~\footnote{RFID: Identificação por radiofrequência do
+ inglês ``Radio-Frequency IDentification''}, sensores/atuadores, dispositivos de comunicação máquina a máquina, etc e 
+(3) os conjuntos de aplicações e serviços, aproveitando essas tecnologias para criar novos negócios e 
 oportunidades de mercado~\cite{Miorandi2012}.
-  
 
-A partir de uma perspectiva de comprimento, a tendência de desenvolvimento da ``Internet das Coisas'' inclui três etapas:  inteligência
-embarcada, conectividade e interação. Atualmente, existe inteligência embarcada em diversos dispositivos e domínios (sistemas de vôo,
-domésticos para casa, sistemas de misseis, entre outros ) que podem atuar  automáticamente. Porém, apesar de esses dispositivos sejam
- inteligentes, eles só trabalham sozinhos e localmente, e não há nada relacionado com a ``rede''.
+A tendência de desenvolvimento da IoT inclui três etapas de evolução dos
+dispositivos: inteligência embarcada, conectividade e interação. Atualmente,
+existe inteligência embarcada em diversos dispositivos e domínios como sistemas
+de voo e eletrodomésticos para casa. Porém, esses dispositivos inteligentes apenas trabalham sozinhos e localmente, sem haver comunicação
+via rede.
 
-Dessa maneira, o próximo passo seria conectar ou comunicar esses dispositivos inteligentes. No entanto, do ponto de vista de dispositivos
+Dessa maneira, o próximo passo seria conectar esses dispositivos inteligentes. No entanto, do ponto de vista de dispositivos
 inteligentes conectados, esses dispositivos não são inteligentes porque são apenas dotados com recursos de agentes e todas as ações
- são pré-concebidas por humanos, eles são inteligentes porque eles estão conectados.
-As ``coisas'' podem ser conectadas com fio ou sem fio. Na Internet das Coisas, a conexão sem fio será a principal maneira. Com base 
-na infra-estrutura existente, há muitas maneiras de conectar uma ``coisa'': RFID, ZigBee, WPAN, WSN, DSL, UMTS, GPRS,
-WiFi, WiMax, LAN, WAN, 3G, etc. Conectar  coisas inteligentes torna possível a interação.
+ são preconcebidas por humanos.
+As coisas podem ser conectadas com fio ou sem fio. Na Internet das Coisas, a conexão sem fio será a principal. Com base 
+na infraestrutura existente, há muitas maneiras de conectar uma coisa: RFID, ZigBee, WPAN, WSN, 3G, etc. Conectar coisas inteligentes torna possível a interação.
 
+Mesmo que seja possível conectar qualquer coisa, não significa que as coisas possam se comunicar por decisões próprias. Assim, novas coisas
+ inteligentes devem ser criadas com a capacidade de processar informação, se autoconfigurar, se auto-manter, se auto-reparar,
+ tomar decisões de forma independente e, eventualmente, desempenhar um papel ativo na sua própria remoção.
 
-Mesmo que possa se conectar qualquer ``coisa'', não significa que as coisas possam se comunicar por si mesmas. Assim, novas ``coisas''
- inteligentes devem ser criadas, as quais  podem processar informação, se auto-configurar, se auto-manter, se auto-reparar,
- fazer decisões independentes e, eventualmente, desempenhar um papel ativo na sua própria remoção. As coisas podem interagir, trocar
- informações por elas mesmas. Assim, a forma de comunicação irá mudar de humano-humano para a coisa-humana e  coisa-coisa.  Novos
- aplicativos de negócios deveriam ser criados e podem melhorar a inovação e desenvolvimento da Internet das Coisas. A
- Figura~\ref{fig:IoT_trends}  mostra uma tendência de desenvolvimento aproximada da Internet de Coisas.
-
-   \begin{figure}[!h]
-      \centering
-      \includegraphics[width=1.0\textwidth]{figures/IoT-trends.png}
-      \caption{Tendências no Internet do Futuro~\cite{Tan2010} }
-      \label{fig:IoT_trends}
-    \end{figure}
-
+%Novos aplicativos de negócios deveriam ser criados com o objetivo de acelerar o desenvolvimento da Internet das Coisas. A
+% Figura~\ref{fig:IoT_trends}  mostra uma tendência de desenvolvimento aproximada da Internet de Coisas.
+% 
+%    \begin{figure}[!h]
+%       \centering
+%       \includegraphics[width=1.0\textwidth]{figures/IoT-trends.png}
+%       \caption{Tendências no Internet do Futuro~\cite{Tan2010} }
+%       \label{fig:IoT_trends}
+%     \end{figure}
 

@@ -59,7 +59,9 @@ para a medição de atributos de QoS. A lista a seguir apresenta uma classificação
  medições de QoS, essa entidade pode se
   tornar um gargalo no sistema. Além disso, podem ser necessárias informações adicionais nas mensagens SOAP para calcular atributos de QoS \cite{Riegen2009}.
 
-  \item \textbf{\textit{Probing}}: Consiste em enviar requisições de teste ao fornecedor do serviço em tempos regulares. Não precisa interceptar mensagens,
+  \item \textbf{\textit{Probing}}: Consiste em enviar requisições de
+teste ao fornecedor do serviço em tempos regulares. Não há necessidade
+de interceptação de mensagens,
    e o monitor pode estar no cliente, no provedor ou entre os dois. O fator chave é o intervalo de tempo entre cada requisição de teste ao fornecedor, já que isso
   afeta a precisão da medição. Esta abordagem é utilizada principalmente para medir a disponibilidade de um serviço e o tempo que ele está ativo.
 
@@ -94,7 +96,7 @@ Assim é possível compensar algumas desvantagens da abordagem de monitoramento do
 
 
 %\begin{comment}
-\section{Trabalhos Relacionados}
+\section{Trabalhos Relacionados: Monitoramento  em Coreografias de Serviços Web}
 
 \begin{comment}
 \subsection{Trabalhos relacionados com Monitoramento de Coreografias}
@@ -110,25 +112,25 @@ Existem poucos trabalhos acerca  de monitoramento de coreografias e menos ainda 
 
 Em \cite{Michlmayr2009} propõe um monitoramento de atributos QoS usando SLA no nível de serviços Web, utiliza também uma abordagem misturada, já que
  está baseada  na ferramenta \textit{Quatsch}, como continuação do trabalho em \cite{Rosenberg2006} que está focada em monitorar somente informação
- QoS. O foco está na deteção de violações dos SLA utilizando uma
+ QoS. O foco está na detecção de violações dos SLA utilizando uma
  infraestrutura de gerenciamento de eventos e enlace dinâmico de serviços a través  da plataforma VReSCO \cite{Hummer2010}.
 
 Em \cite{Buccafurri2008a} apresenta uma abordagem de  monitoramento de coreografias com a possibilidade de reagir com adaptação dinâmica,
  mas está focado nas funcionalidades, em lugar de atributos QoS (não funcionais). Tal monitoramento verifica o caso de acontecer uma
 desviação do comportamento especificado, que possa representar uma anomalia no comportamento dos serviços envolvidos na coreografia. Também propõe
 dois diferentes modelos de QoS, um para a qualidade dos serviços e o outro para a qualidade no nível de provisionamento de conteúdo multimídia  em tempo real
-(RTSP \footnote{RSTP: \textit{Real Time Service Provisioning}}). Fornece de deteção de falhas entre acordos de QoS sem utilizar SLA.
+(RTSP \footnote{RSTP: \textit{Real Time Service Provisioning}}). Fornece de detecção de falhas entre acordos de QoS sem utilizar SLA.
 
 
 Em \cite{Ardissono2009} se propõe a construção de um \textit{framework} para  o monitoramento do progresso da execução de uma coreografia de serviços Web,
-a deteção ceda de falhas e a notificação dos serviços web afetados por essas falhas. Nesse \textit{framework}, o monitor acompanha a execução dos serviços Web
+a detecção ceda de falhas e a notificação dos serviços web afetados por essas falhas. Nesse \textit{framework}, o monitor acompanha a execução dos serviços Web
 analisando o seu comportamento conversacional, ou seja, durante a execução o monitor tem conhecimento das mensagens que são enviadas e recebidas pelos serviços junto
 com o estado da sua execução. O monitor usa essa informação para verificar se o serviço global, realmente está progressando ou avançando,
 isto é, se o fluxo de mensagens entre os serviços é consistente com a coreografia. Caso acontecer uma falha, o monitor avalia se ainda é possível completar
 o serviço coreografado, e informa aos outros serviços Web para reagir ante o problema ocorrido. A sua abordagem assume que o monitor não conhece
  a implementação dos serviços Web e  o \textit{framework} confia na análise  das mensagens.
 
-Finalmente, em \cite{Rosenberg2009} é, até agora, o unico trabalho achado que propõe um modelo multicamada para integrar QoS  e  SLA  no nível de Serviços (QoS),
+Finalmente, em \cite{Rosenberg2009} é, até agora, o único trabalho achado que propõe um modelo multicamada para integrar QoS  e  SLA  no nível de Serviços (QoS),
 de orquestração (politicas de QoS) e de coreografias (SLA), utiliza o monitor \textit{Quatsch} para coletar informação QoS, este monitor  foi desenvolvido em um
  trabalho anterior do mesmo autor em \cite{Rosenberg2006}. 
 %Esta pesquisa vai utilizar esse modelo multicamada de QoS e SLA para realizar o monitoramento de coreografias,
@@ -156,7 +158,7 @@ de orquestração (politicas de QoS) e de coreografias (SLA), utiliza o monitor \t
 
 
 %%QoS e SLA em coreografias
-A pesquisa apresentada neste documento propõe uma técnica para realizar monitoramento de coreografias de serviços Web utilizando SLAs probabilísticos, cujas restrições 
+Esta dissertação propõe uma técnica para realizar monitoramento de coreografias de serviços Web utilizando SLAs probabilísticos, cujas restrições 
 são especificadas por meio de quantis das distribuições de probabilidades dos parâmetros de QoS dos serviços Web. Além disso, o monitoramento 
 que se pretende desenvolver é não intrusivo. %, já que no escopo de coreografias, os participantes possuem infraestruturas de rede e de aplicação heterogênea e de
 % diferentes domínios. 
@@ -171,15 +173,14 @@ que se pretende desenvolver é não intrusivo. %, já que no escopo de coreografias
 \subsection{Monitoramento de Coreografias de Serviços Web Baseado em QoS}
 
 Existem várias abordagens para integrar modelos de QoS em composição de serviços, mas poucos focados em coreografias de serviços. Atualmente, as linguagens de 
-coreografia não possuem um modelo de QoS na sua especificação, embora WS-CDL tenha demandado uma especificação de QoS nos seus requisitos \cite{Austin2004}. 
-~\cite{Xiangpeng2007a},~\cite{Pandey2008} e \cite{Pandey2010}  propõem modelos formais de coreografia de serviços Web para incorporar informação de QoS.
+coreografia não possuem um modelo de QoS na sua especificação. \cite{Xiangpeng2007a},~\cite{Pandey2008} e \cite{Pandey2010}  propõem modelos formais de coreografia de serviços Web para incorporar informação de QoS.
  %como o tempo e custo da coreografia. 
   Estas abordagens estão focadas no escopo da especificação de coreografias e
- levam em consideração apenas o tempo de resposta. Diferente das propostas em \cite{Xiangpeng2007a},~\cite{Pandey2008} e \cite{Pandey2010}, a proposta de pesquisa
- apresentada neste documento, pretende realizar monitoramento de coreografias além do escopo de especificação e serão levados em consideração outros atributos
+ levam em consideração apenas o tempo de resposta. Diferente das
+propostas em \cite{Xiangpeng2007a},~\cite{Pandey2008} e
+\cite{Pandey2010}, o trabalho apresentado nesta dissertação pretende realizar monitoramento de coreografias além do escopo de especificação e serão levados em consideração outros atributos
  de QoS como o atraso e a largura de banda, além do tempo de resposta.
  
-
 Em \cite{Wetzstein2010}, apresenta-se uma abordagem baseada em eventos para  monitoramento de processos inter-organizacionais que compõem coreografias de serviços
  Web. Esse trabalho 
 está focado em realizar acordos entre os monitores dos participantes da coreografia e realizar trocas de dados de monitoramento para realizar um monitoramento global.
@@ -187,13 +188,13 @@ está focado em realizar acordos entre os monitores dos participantes da coreogra
 A abordagem proposta habilita o rastreamento e avaliação de métricas de processos, que neste contexto são chamados de KPI
  (Indicadores Chave de Desempenho). Em síntese, desenvolve-se uma infraestrutura de monitoramento de coreografias baseada em eventos e o foco não são os atributos de QoS, 
 apesar de que trata KPIs que são de mais alto nível do que QoS. Em \cite{Matheis2008}, é proposta uma abordagem similar. Os autores propõem uma abordagem de monitoramento
- de processos de negócio entre múltiplas organizações. Diferentemente dessas abordagens, esta proposta de dissertação foca na detecção de violações de 
+ de processos de negócio entre múltiplas organizações. Diferentemente dessas abordagens, esta dissertação foca na detecção de violações de 
 restrições de QoS por meio de SLAs, e o monitoramento das coreografias não abrange restrições de mais alto nível como o uso de KPIs, os quais estão mais
  associados no contexto de processos de negócio. 
 %talvez faltou especificar que os SLAs são probabilisticos
 \vspace{4mm}
 
-Em \cite{UlHaq2010} é proposta uma abordagem baseada em agregação de SLAs para garantir o cumprimento dos requisitos de QoS em coreografias de serviços Web
+Em \cite{UlHaq2010} é proposta uma abordagem baseada em agregação de SLAs para garantir o cumprimento dos requisitos de QoS em coreografias de serviços Web.
 %, para suportar vários níveis de hierarquia de coreografias.
  A proposta está focada na arquitetura de um arcabouço de validação baseado em regras. %para suportar agregação
 % de SLA em interações complexas em coreografias.
@@ -210,28 +211,28 @@ Em \cite{Xia2009}, propõe-se uma abordagem para predizer a QoS de uma coreografi
  analíticas da árvore de métricas QoS são realizadas. São definidas regras de transformação para mapear atividades, padrões de encaminhamento (\textit{sequence}, 
 \textit{all}, \textit{choice}, \textit{switch}, \textit{while} ) e outras construções para fragmentos ou partes do GSPN. A partir da matriz de transições
 probabilísticas derivada do GSPN, métodos analíticos são utilizados para avaliar a árvore de métricas de QoS, as quais estão relacionadas com o tempo de resposta. Os
- autores \cite{Xia2009} utilizam o método de Monte-Carlo %e a análise de intervalos de confiança 
+ autores utilizam o método de Monte-Carlo %e a análise de intervalos de confiança 
  para validar os resultados teóricos.
-  Um trabalho do \cite{Xia2009} é a utilização da linguagem WSCI, que foi oficialmente descontinuada.  Além disso o foco está no escopo da especificação da coreografia e
- apenas a métrica de tempo de resposta é utilizada. Na pesquisa proposta neste documento, utiliza-se 
+  Um problema da proposta apresentada em \cite{Xia2009} é a utilização da linguagem WSCI, que foi oficialmente descontinuada.  Além disso o foco está no escopo da especificação da coreografia e
+ apenas a métrica de tempo de resposta é utilizada. Na pesquisa proposta nesta dissertação, utiliza-se 
 %utilizar o método de Monte-Carlo para estimar as restrições probabilísticas que compõem um SLA,   %a configuração do monitoramento, %mas não para realizar uma avaliação da coreografia. Além disso, 
- o GSPN com suporte de QoS para avaliar o desempenho de coreografias de modo a definir de requisitos de QoS. Além disso,
+ o GSPN com suporte de QoS para avaliar o desempenho de coreografias de modo a definir requisitos de QoS. Além disso,
   leva-se em conta outros atributos de QoS além do tempo de resposta.
 %medio vago
 \vspace{4mm}
 
-Em \cite{Rosenberg2009}, propõe-se um  modelo multi-camada  para integrar QoS e SLA no nível de coreografia, de orquestração e de serviços. No nível de coreografias
-integra WSLA na linguagem WS-CDL para especificar SLAs entre os participantes. Para realizar seu cumprimento internamente em cada participante
+Em \cite{Rosenberg2009}, propõe-se um  modelo multicamada  para integrar QoS e SLA no nível de coreografia, de orquestração e de serviços. No nível de coreografias
+integra-se WSLA na linguagem WS-CDL para especificar SLAs entre os participantes. Para realizar seu cumprimento internamente em cada participante
 realiza-se o mapeamento de SLA para políticas de QoS na camada de orquestração, que por sua vez utiliza os atributos de QoS no nível de serviços. Este trabalho  
 oferece uma abordagem de monitoramento de coreografias integrada nas três camadas, no entanto, as restrições de QoS definidas no SLA são rígidas. %, isto é, com valores
 %absolutos. 
- Na pesquisa proposta neste documento, as restrições de QoS  são definidas de maneira probabilística, e por conta disso o monitoramento também. 
+ Na pesquisa apresentada nesta dissertação, as restrições de QoS  são definidas de maneira probabilística, e por conta disso o monitoramento também. 
 %%Esta pesquisa leva em conta vários parâmetros de QoS
 
 \vspace{4mm}
 
 Linguagens de coreografia de serviços, tais como BPMN, Let's Dance e BPEL4Chor não aparecem em trabalhos relacionados com QoS na literatura. 
-As buscas realizadas durante a escrita deste documento não retornaram nenhuma proposta de integrar  
+As buscas realizadas durante a escrita desta dissertação não retornaram nenhuma proposta de integrar  
 %Até hoje, nenhum  propõe 
  um modelo de QoS no BPMN, que é um padrão  para modelar processos de negócios colaborativos, incluindo coreografias. %, lembrando que WS-CDL
  %não é padrão, e que o Let's Dance e BPEL4Chor são propostas acadêmicas. 
@@ -240,9 +241,7 @@ e ainda menos nas três camadas e de maneira integrada. Além disso, as poucas abo
 a dinamicidade dos atributos de QoS dos serviços Web, e focam principalmente no monitoramento do tempo de resposta. 
 %, e que nesta pesquisa será levado em conta por meio dos SLAs probabilísticos. 
 
-
-
-\subsection{Monitoramento de Serviços Usando SLAs Probabilísticos}
+\subsection{Monitoramento de Serviços Web usando SLAs Probabilísticos}
 
 %Existem poucos trabalhos acerca  de monitoramento de coreografias e menos ainda baseados em características não funcionais como os atributos ou restrições de QoS.
 %trabalhos em monitoramento baseado em QoS de serviços web \cite{Zeng2007},
@@ -261,15 +260,15 @@ o serviço, e informa aos outros serviços Web para reagir ante o problema ocorrid
 \vspace{6mm}
 \end{comment}
 
-Em \cite{Rosario2009}, é proposta uma técnica estatística para especificar contratos de QoS de maneira probabilística por meio de SLAs não rígidos (\emph{soft SLA}). 
+Em \cite{Rosario2009}, é proposta uma técnica estatística para especificar contratos de QoS de maneira probabilística por meio de SLAs não rígidos.
  Os autores em \cite{Rosario2009} também propõem uma forma de realizar um monitoramento contínuo de orquestrações de serviços Web. Sua proposta pretende
  diminuir os alarmes falsos, e aumentar o número de detecções corretas. Tanto na especificação de SLAs probabilísticos quanto no monitoramento, são utilizados 
  quantis das distribuições de probabilidade, e por conta disso, é utilizado o método de Monte-Carlo para obter  parâmetros e valores para a  configuração
   do monitoramento antes da sua execução. Assim como nas outras  abordagens, o trabalho em \cite{Rosario2009} está focado no tempo de resposta, e dado que
  trata até orquestrações, atributos de rede como a latência e largura de banda não são tão importantes \cite{Tse-Au2000}.
- Esta proposta de pesquisa, com relação a contratos probabilísticos,  baseia-se fortemente no trabalho apresentado em \cite{Rosario2009}, porque ele é dos
+ Esta dissertação, com relação a contratos probabilísticos,  baseia-se no trabalho apresentado em \cite{Rosario2009}, porque ele é dos
  poucos trabalhos que leva em 
-consideração SLAs probabilísticos  no  monitoramento de serviços Web. Porém, na proposta desta pesquisa, a definição de SLAs e o monitoramento probabilístico
+consideração SLAs probabilísticos  no  monitoramento de serviços Web. Porém, na pesquisa desta dissertação, a definição de SLAs e o monitoramento probabilístico
  serão realizados para coreografias de serviços Web. Outra diferença é que serão levados em conta outros atributos de QoS além do tempo de resposta. Esta
  pesquisa e o trabalho apresentado em \cite{Rosario2009} também são similares pela utilização de métodos de testes estatísticos  para detectar a violação de SLAs.
 %método de Monte Carlo. % na configuração do monitor da coreografia de serviços. Além do mais, levará-se em
@@ -283,7 +282,7 @@ QoS de um serviço Web,
 dos atributos de QoS  em serviços Web, e mostram por meio 
 de simulações que sua abordagem é mais precisa do que outras, tais como distribuições Normais e distribuições \textit{T Location-Scale}.  Além disso, são 
 fornecidas fórmulas para estimar a distribuição de QoS de uma composição de serviços a partir das PDFs dos serviços componentes. Diferentemente 
- desta proposta de pesquisa, o trabalho em \cite{Zheng2010} não cita a maneira de 
+ desta dissertação, o trabalho em \cite{Zheng2010} não cita a maneira de 
 especificar restrições de QoS em SLAs, e nem como realizar monitoramento. 
 %%%
   %Além disso, esta proposta de pesquisa descreverá as restrições  de QoS através de quantis de probabilidade. 
@@ -308,21 +307,20 @@ especificar restrições de QoS em SLAs, e nem como realizar monitoramento.
 
 
 %\begin{comment}
-\section{Considerações Finais}
-Neste capítulor foram descritos os trabalhos que possuem alguma relação com o monitoramento de atributos de QoS em coreografias de serviços Web. Pode-se 
-notar que há poucos trabalhos sobre modelos de QoS em coreografias, e ainda menos, aqueles que agem
- de maneira integrada com orquestrações e serviços Web. Existem poucos trabalhos relacionados com monitoramento de coreografias de 
+\section{Considerações}
+Neste capítulo foi apresentado o Estado da Arte em QoS e Monitoramento para Coreografias de Serviços Web. Há poucos trabalhos sobre
+ modelos de QoS em coreografias, e  menos ainda trabalhos acerca de como as coreografias  agem
+ de maneira integrada com orquestrações e serviços Web. Também existem poucos trabalhos relacionados com monitoramento de coreografias de 
 serviços Web baseado em atributos de QoS. %, como em \cite{Rosenberg2009}.  
  Também são poucas as abordagens que propõem um monitoramento baseado em contratos SLA de atributos de QoS de maneira probabilística.
 %, chamados de  contratos não rígidos (\textit{soft contracts}) como em \cite{Rosario2009}.
 
-A maioria dos trabalhos relacionados focam no atributo de tempo de resposta só, entretanto, no contexto de coreografias de serviços, tornam-se importantes 
- os atributos de rede tais como o atraso e a largura de banda, já que uma coreografia envolve vários participantes que podem possuir arquiteturas e infraestruturas de rede heterogêneas e pertencentes a domínios diferentes, fazendo
-da rede um item fundamental para que a comunicação entre os serviços seja possível.
+A maioria dos trabalhos relacionados focam no atributo de tempo de resposta. Entretanto, no contexto de coreografias de serviços, são também importantes 
+ os atributos de rede tais como o atraso e a largura de banda, já que uma coreografia envolve vários participantes que podem possuir arquiteturas e infraestruturas de rede heterogêneas e pertencentes a domínios diferentes, tornando
+a rede um item fundamental para que a comunicação entre os serviços seja possível.
 
-No entanto, no presente trabalho se desenvolveu  um monitor centralizado de coreografias de maneira não intrusiva levando em consideração o modelo
- de multi-camada que inclui a QoS e SLA. Porém, já que não existem infraestruturas maduras o suficiente para habilitar a pesquisa em definição de
- restrições e monitoramento de coreografias de serviços Web, desenvolveu-se um simulador de coreografias com suporte de QoS. 
+Nesta dissertação foi desenvolvido um monitor de coreografias que age de maneira não intrusiva levando em consideração o modelo
+ de multicamadas que inclui QoS e SLA. Porém, já que não existem infraestruturas maduras o suficiente para a implementação de coreografias de serviços Web, desenvolveu-se um simulador de coreografias com suporte a QoS. 
 O próximo capítulo descreve a construção do simulador e a metodologia utilizada para cumprir com os objetivos desta pesquisa.
 
 %Em consequência, é necessária  a garantia de QoS fim a fim (\emph{end-to-end}). Assim,  para conseguir um 

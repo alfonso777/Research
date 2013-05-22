@@ -1,66 +1,28 @@
 %\chapter{Experimentos e Resultados}
-\chapter{Resultados e Discussões}
+\chapter{Experimentos}
 \label{cap:results}
 
 %%---------------------------------------%%
 %%       Cenário de Coreografia          %%    
 %%---------------------------------------%%
-\section{Cenários de Coreografia}
-
-  Para atestar a eficácia da proposta, a coreografia apresentada em \cite{Buccafurri2008a} é utilizada. Essa coreografia representa uma aplicação de
-  CDN (\textit{Content Delivery Network}) para fornecimento de conteúdo multimídia como audio, vídeo e imagens. 
-A Figura~\ref{figure:scenario} mostra o cenário de referência: um usuário requere, e eventualmente recebe, 
-um serviço complexo gerido por meio de uma coreografia de diferentes serviços Web, um dos quais ($WS_3$ na figura) controla o provisionamento
- de conteúdo de  \textit{streaming}. $WS_1$ e $WS_2$ mostram que vários serviços Web são internamente orquestrados. 
-%A Figura ~\ref{figure:scenario} ilustra  a coreografia.  % a simular mostrando os serviços e suas respectivas interações.
-A coreografia é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e $WS_5$ ). Cada serviço pertence a um participante
-  diferente e há sete canais de comunicação definindo a topologia  $G_{chor}$, onde:
-
-  $G_{chor} = (V_{WS}, E)$ é um grafo não orientado, $WS_{i} \in V_{WS}$ é um serviço Web da coreografia e $e \in E$  é a comunicação
-  entre dois serviços. $V_{WS}= \cup_{i=1}^5 \{WS_i\}$ e
-   $E = \{(WS_1,WS_2), (WS_1,WS_3),$
-   $(WS_1,WS_4), (WS_2,WS_4), (WS_2,WS_5), (WS_3,WS_5) \} $.
-
-  Porém, nem sempre todos os serviços  de uma coreografia são utilizados em uma instância de coreografia, isto é, há interações entre serviços
-  que não acontecem porque a especificação de uma coreografia abrange várias possibilidades e todas as possíveis interações. Assim,
-  os serviços utilizados em uma instância de coreografia dependem do ponto de entrada, ou seja, a primeira requisição para algum serviço da coreografia.
-  Neste caso as instâncias de coreografias a simular, conforme a Figura~\ref{figure:scenario}, se iniciam com requisições do cliente para uma operação
-  do serviço composto $WS_1$, que resulta em interações com os serviços $WS_3$ e $WS_5$.
-
-
-  %\{ (ws_1,ws_2), (ws_1,ws_3), (ws_1,ws_4), (ws_2,ws_4), (ws_2,ws_5), (ws_3,ws_5), (ws_4,ws_5) \} $
-  %Onde $ws_i$ é um serviço que participa na coreografia.
-  %subcoreografia
-
-  \begin{figure}[h]
-      \centering
-      %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
-      %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
-      \includegraphics[width=.8\linewidth]{figures/CDN_choreography-scenario.png}
-      \caption{Coreografia de serviços da aplicação de CDN ~\cite{Buccafurri2008a}}
-      \label{figure:scenario}
-  \end{figure}
-
-
+%\section{Cenários de Coreografia}
 
 %%-----------------------------------------------%%
 %%           Simulador de Coreografias           %%    
 %%-----------------------------------------------%%
-\section{Definição de Requisitos de QoS Analiticamente }
+\section{Primeiro conjunto de experimentos -- Definição de Requisitos de QoS Analiticamente }
 
-  Nesta seção todos os pasos da metodologia proposta para definir requsitos de QoS de maneira analítica são realizados. A coreografia
-  apresentada na Figura~\ref{fig:Example-InteractionChor} é utilizada. É um cenário simples para entendê-lo e o suficiente para
-  mostrar a eficacia da  metodologia proposta, já que inclui pelo menos um tipo dos três elemntos de BPMN de coreografias
-  considerados (atividades, \textit{gateways} e eventos). As próximas subseções desenvolvem cada um dos pasos da metodologia.
+  Nesta seção todos os passos da metodologia proposta para definir requisitos de QoS de maneira analítica são realizados. A coreografia
+  apresentada na Figura~\ref{fig:Example-InteractionChor} é utilizada. Este cenário foi escolhido porque  inclui os três tipos elementos de BPMN de coreografias
+  considerados (atividades, \textit{gateways} e eventos). As próximas subseções desenvolvem cada um dos passos da metodologia.
  % defined in the Section~\ref{sec:proposta}.
 
-  \subsection{ Mapeamento } \label{subsec:mapping_performance}
-
+\subsection{ Mapeamento } \label{subsec:mapping_performance}
 
   A Figura~\ref{fig:ExampleChoreographyGSPNQoS} apresenta a GSPN obtida como resultado de realizar o mapeamento
   sobre a  coreografia da Figura~\ref{fig:Example-InteractionChor}. As Tabelas~\ref{table:place_description} e \ref{table:transition_description}
-   mostram a interpretação de todas as Posições e transições da GSPN resultante.As Posições representam o inicio e final da coreografia, os participantes, 
- o inicio e fim do canal de comunicação nas interações,  pontos de decisão e os diversos erros de acordo ao modelo de QoS.
+   mostram a interpretação de todas as posições e transições da GSPN resultante. As posições representam o início e fim da coreografia, os participantes, 
+ o início e fim do canal de comunicação nas interações,  pontos de decisão e os diversos erros de acordo com o modelo de QoS.
 
 
     \begin{figure}[!h]
@@ -83,7 +45,7 @@ A coreografia é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e
 	\hline
 	Posição     &       Descrição \\
 	\hline
-	$Start$, $End$            &  Incio e fim da coreografia. \\
+	$Start$, $End$            &  Início e fim da coreografia. \\
 	$A_1$, $A_2$, $A_3$   &  Representa ao participante ''Cliente''. \\
 	$B_1$, $B_2$, $B_3$   &  Representa ao participante ''Consultor Financeiro''. \\
 	$C_{i1}$, $C_{i2}$, $C_{i3}$   &  Inicio da comunicação. \\
@@ -109,7 +71,7 @@ A coreografia é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e
 	Transição     &       Descrição \\
 	\hline
 	$T_{arrival1}$  &  Chegada de instâncias de coreografia.\\
-	$T_{arrival2}$, $_3$   & Chegada de instâncias de coreografia e decições de fluxo.\\
+	$T_{arrival2}$, $_3$   & Chegada de instâncias de coreografia e decisões de fluxo.\\
 	$T_{send1}$, $T_{send2}$ e $T_{send3}$   &  Atividade e envio de mensagens. \\
 	$T_{latency1}$, $_2$, $_3$   &     Latência de rede.\\
 	$T_{receive}$, $_2$, $_3$   &     Recebimento de mensagem e execução do serviço.\\	
@@ -130,8 +92,8 @@ A coreografia é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e
   %\subsection{ Simulations } \label{subsec:simulations}
   \subsection{ Definição de pesos} \label{subsec:simulations}
 
-  O próximo passo é definir de pesos (\textit{rates}) das transições de tempo a as prioridades nas transições immediatas. Esse valores
- dependem do conhecimento acerda do entorno onde as coreografias serão executadas e a confiabilidade dos serviços. 
+  O próximo passo é definir pesos das transições de tempo e as prioridades nas transições imediatas. Esses valores
+ dependem do conhecimento acerca do ambiente onde as coreografias serão executadas e da confiabilidade dos serviços. 
   %In this paper we don't consider uncertainties in these values. 
  A Tabela~\ref{table:transitionsConfigurations} apresenta a definição dos pesos e prioridades em dois cenários, os quais serão simulados no próximo passo. 
   O  cenário 1 está configurado para ter menor chance de falhas do que o cenário 2.
@@ -157,21 +119,18 @@ A coreografia é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e
       \end{tabular}
   \end{table}
 
-
-
-
   \subsection{Simulações} \label{subsec:analysis}
 
-  Na simulação dos cenários, 100 \textit{tokens} foram considerados para cada cenário na Posição de Inicio. Cada \textit{token}
-  representa uma instância de coreografia na simulação. Assim, para cada simulação, 100 instância  concorrentes dos
-  cenários foram  executados (\textit{multiple-server semantic}). 
+  Na simulação, 100 \textit{tokens} foram considerados para cada cenário na Posição de Início. Cada \textit{token}
+  representa uma instância de coreografia na simulação. Assim, para cada simulação, 100 instâncias concorrentes dos
+  cenários foram  executados.
   %Since  there are probabilities  involved in the experiments
-  As simulações dos dois cenários foram executados várias vezes de acordo com as configurações estabelecidas na
+  As simulações dos dois cenários foram executadas várias vezes de acordo com as configurações estabelecidas na
    Tabela~\ref{table:transitionsConfigurations}. Foram realizados 1500 disparos com 10 replicações. A ferramenta Pipe2~\cite{Bonet2007}
   foi utilizada para modelar as GSPNs e simular os cenários.
 
   A Tabela~\ref{table:simulationsAll} mostra os resultados das simulações  com um intervalo de  confiabilidade de $95\%$. Os números apresentados
-  na tabela mostram a média do número de \textit{tokens} que cehgaram em cada uma das Posições da GSPN.
+  na tabela mostram a média do número de \textit{tokens} que chegaram em cada uma das Posições da GSPN.
 
   %A tabela \ref{table:simulationsAll} mostra os principais resultados das simulações dos cenários 1 e 2 respectivamente nas quais se especificaram
   % 1500 disparos e 10 replicações. Estes resultados mostram a média do número
@@ -220,19 +179,19 @@ A coreografia é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e
   %não terminaram o processo por causa de erros no formato de mensagem recebida.
 
   Pelos resultados apresentados na Tabela~\ref{table:simulationsAll} é  possível notar que no Cenário 1, uma média de $1.52\%$ ($C_{err1} + C_{err2} + C_{err3}$)
-  das instâncias não finalizaram o processo devido a erros de redes no momento da troca de mensagens. Além disso, uma média de  $0.39\%$ ($M_{err1} + M_{err2} + M_{err3}$)
-  das instâncias não finalizaram o processo devido a formatos de menssagens inválidos, que foram detectados quando as mensagens foram recebidas.
+  das instâncias não finalizaram o processo devido a erros de rede no momento da troca de mensagens. Além disso, uma média de  $0.39\%$ ($M_{err1} + M_{err2} + M_{err3}$)
+  das instâncias não finalizaram o processo devido a formatos de mensagens inválidos, que foram detectados quando as mensagens foram recebidas.
 
   %Da mesma forma, no cenário $2$  houve uma perda de   $4,52167\%$ ($Cerr1 + Cerr2 + Cerr3$) e   $2,49416\%$ ($Merr1 + Merr2 + Merr3$)  de instâncias que não terminaram o processo por causa de erros de comunicação e de formato de mensagem respectivamente. Resultando que efetivamente houve uma maior perda de instâncias de coreografias do que no cenário $1$. No entanto, o que se manteve foi  o gargalo achado no começo da comunicação na primeira interação ($C_{i1}$), retendo  em média $8,32316\%$ e $8,90167\%$ das instâncias antes de serem enviadas pela rede o que pode contribuir em um atraso do tempo de execução total do processo.
-  Similar ao cenário 1, no cenario 2, uma média de $3.10\%$ e $2.50\%$ das  instâncias não finalizaram o processo devido a erros na rede 
-  formatos de mensagens inválidos  respectivamente. Como esperado, os resultados estão de acordo com os parâmetros definidos
+  No cenário 2, uma média de $3.10\%$ e $2.50\%$ das instâncias não finalizaram o processo devido a erros na rede 
+  e a formatos de mensagens inválidos, respectivamente. Como esperado, os resultados estão de acordo com os parâmetros definidos
   para cada cenário (Tabela~\ref{table:transitionsConfigurations}).
 
   %One important finding
-  Um importante  finding com as simulações desses cenários, e que  pode ser útil para desenvolvedores e admnistradores de rede 
-  está relacioanda com a existência de  gargalos na primeira interação ($C_{i1}$), a qual evitou que $8.32\%$ e $8.90\%$ das
-  instâncias sejam enviadas pela rede. Essa  informação pode afetar a modelagem e implementação coreografia definitiva, bem como
-  definir novas políticas de  QoS para serem configuradas na rede para reducir o atraso na execução.
+  Um importante resultado com as simulações desses cenários, e que  pode ser útil para desenvolvedores e administradores de rede 
+  está relacionado com a existência de gargalos na primeira interação ($C_{i1}$), a qual evitou que $8.32\%$ e $8.90\%$ das
+  instâncias fossem enviadas pela rede. Essa  informação pode afetar a modelagem e a implementação da coreografia definitiva, bem como
+  definir novas políticas de QoS para serem configuradas na rede com o objetivo de reduzir o atraso na execução.
   
   %Então, como pode se apreciar dá para reconhecer requerimentos de QoS a partir da análise da GSPN obtida. Por exemplo, a resposta
   %de aceitação de uma oferta de 
@@ -242,45 +201,79 @@ A coreografia é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e
 %%-----------------------------------------------%%
 %%           Simulador de Coreografias           %%    
 %%-----------------------------------------------%%
-\section{Simulador de Coreografias}
-
-%Nós temos desenvolvido um simulador inicial  para realizar o ``enactment'' de coreografias, mas 
-%para nossos objetivos adicionamos suporte de composição de QoS e infraestrutura de comunicação.
-Como não havia nenhum sistema de simulador para coreografias de serviços, temos desenvolvido um simulador inicial para comparar o desempenho
-  de um orquestrações e uma coreografia~\cite{Guimaraes2012}. Nesse trabalho, as coreografias revelaram ser uma melhor escolha 
-respeito ao desempenho do que orquestrações. Porém, para os objetivos desta pesquisa se desenvolveu um simulador de coreografias
-com suporte de QoS, como especificado no capítulo anterior.
-%Atualmente, estamos avaliando a desempenho com base em simulações, particularmente interassados em estudar os efeitos da
-% composição de QoS na taxa de transferência de coreografias e aspectos redes como latência e largura de banda.
- A Figura~\ref{fig:preliminarResults1} mostra o tempo de resposta
-médio, máximo e mínimo de um número de requisições simultâneas. Assim, as instâncias de coreografia envolveram requisições iniciais
- para $WS_1$, que pertence à cadeia de $WS_1$,  $WS_3$ e $WS_5$ dependências de serviço do cenário descrito na Figura~\ref{figure:scenario}.
-
-
-\begin{figure}[h]
-    \centering
-    %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
-    %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
-    \includegraphics[width=.8\linewidth]{figures/preliminar_results_1.png}
-    %\caption{ Average, maximum and minimum response times from  number of concurrent requests. }
-    \caption{  Tempos de reposta médio, máximo e minimo de acordo ao número de requisições concorrentes. }
-    \label{fig:preliminarResults1}
-\end{figure}
+% \section{Simulador de Coreografias}
+% 
+% %Nós temos desenvolvido um simulador inicial  para realizar o ``enactment'' de coreografias, mas 
+% %para nossos objetivos adicionamos suporte de composição de QoS e infraestrutura de comunicação.
+% Como não havia nenhum sistema de simulador para coreografias de serviços, temos desenvolvido um simulador inicial para comparar o desempenho
+%   de um orquestrações e uma coreografia~\cite{Guimaraes2012}. Nesse trabalho, as coreografias revelaram ser uma melhor escolha 
+% respeito ao desempenho do que orquestrações. Porém, para os objetivos desta pesquisa se desenvolveu um simulador de coreografias
+% com suporte de QoS, como especificado no capítulo anterior.
+% %Atualmente, estamos avaliando a desempenho com base em simulações, particularmente interassados em estudar os efeitos da
+% % composição de QoS na taxa de transferência de coreografias e aspectos redes como latência e largura de banda.
+%  A Figura~\ref{fig:preliminarResults1} mostra o tempo de resposta
+% médio, máximo e mínimo de um número de requisições simultâneas. Assim, as instâncias de coreografia envolveram requisições iniciais
+%  para $WS_1$, que pertence à cadeia de $WS_1$,  $WS_3$ e $WS_5$ dependências de serviço do cenário descrito na Figura~\ref{figure:scenario}.
+% 
+% 
+% \begin{figure}[h]
+%     \centering
+%     %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
+%     %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
+%     \includegraphics[width=.8\linewidth]{figures/preliminar_results_1.png}
+%     %\caption{ Average, maximum and minimum response times from  number of concurrent requests. }
+%     \caption{  Tempos de reposta médio, máximo e minimo de acordo ao número de requisições concorrentes. }
+%     \label{fig:preliminarResults1}
+% \end{figure}
 
 
 
 %%-----------------------------------------------%%
 %%        Definição de Requisitos de QoS         %%    
 %%-----------------------------------------------%%
-\section{Definição de Requisitos de QoS em Coreografias}%%Simulator
+\section{Segundo conjunto de experimentos -- Definição de Requisitos de QoS em Coreografias}%%Simulator
 
   %\section{Simulações e Análise de Desempenho} \label{sec:simulations}
   %Simulações baseada em dados reais são frequentemente inadequadas, já que os dados podem não estar disponíveis e sua coleta pode requerer
   %longos periodos de tempo.
-  \subsection{Metodologia dos Experimentos}
 
     %já que a coreografia é CDN ....
-    O objetivo dos experimentos é analisar o comportamento do tempo de resposta total do serviço composto $WS_1$ em função
+
+  Neste conjunto de experimentos, a coreografia apresentada em \cite{Buccafurri2008a} é utilizada. Essa coreografia representa uma aplicação de
+  CDN (\textit{Content Delivery Network}) para fornecimento de conteúdo multimídia como áudio, vídeo e imagens. 
+A Figura~\ref{figure:scenario} mostra o cenário de referência: um usuário requere, e eventualmente recebe, 
+um serviço complexo gerido por meio de uma coreografia de diferentes serviços Web, um dos quais ($WS_3$ na figura) controla o provisionamento
+ de conteúdo de  \textit{streaming}. $WS_1$ e $WS_2$ mostram que vários serviços Web são internamente orquestrados. 
+%A Figura ~\ref{figure:scenario} ilustra  a coreografia.  % a simular mostrando os serviços e suas respectivas interações.
+A coreografia é composta de cinco serviços  Web ($WS_1$,$WS_2$, $WS_3$, $WS_4$ e $WS_5$ ). Cada serviço pertence a um participante
+  diferente e há sete canais de comunicação definindo a topologia  $G_{chor}$, onde:
+
+  $G_{chor} = (V_{WS}, E)$ é um grafo não orientado, $WS_{i} \in V_{WS}$ é um serviço Web da coreografia e $e \in E$  é a comunicação
+  entre dois serviços. $V_{WS}= \cup_{i=1}^5 \{WS_i\}$ e
+   $E = \{(WS_1,WS_2), (WS_1,WS_3),$
+   $(WS_1,WS_4), (WS_2,WS_4), (WS_2,WS_5), (WS_3,WS_5) \} $.
+
+  Porém, nem sempre todos os serviços  de uma coreografia são utilizados em uma instância de coreografia, isto é, há interações entre serviços
+  que não acontecem porque a especificação de uma coreografia abrange várias possibilidades e todas as possíveis interações. Assim,
+  os serviços utilizados em uma instância de coreografia dependem do ponto de entrada, ou seja, a primeira requisição para algum serviço da coreografia.
+  Neste caso as instâncias de coreografias a simular, conforme a Figura~\ref{figure:scenario}, se iniciam com requisições do cliente para uma operação
+  do serviço composto $WS_1$, que resulta em interações com os serviços $WS_3$ e $WS_5$.
+
+
+  %\{ (ws_1,ws_2), (ws_1,ws_3), (ws_1,ws_4), (ws_2,ws_4), (ws_2,ws_5), (ws_3,ws_5), (ws_4,ws_5) \} $
+  %Onde $ws_i$ é um serviço que participa na coreografia.
+  %subcoreografia
+
+  \begin{figure}[h]
+      \centering
+      %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
+      %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
+      \includegraphics[width=.8\linewidth]{figures/CDN_choreography-scenario.png}
+      \caption{Coreografia de serviços da aplicação de CDN ~\cite{Buccafurri2008a}}
+      \label{figure:scenario}
+  \end{figure}
+
+    O objetivo dos experimentos apresentados nesta seção é analisar o comportamento do tempo de resposta total do serviço composto $WS_1$ em função
     do tamanho da resposta de $WS_1$ e diferentes valores de largura de banda. Para tanto, utilizam-se dois cenários
     definidos pelo comportamento da largura de banda da rede. O primeiro cenário possui valores de largura de banda que são
     fixos ao longo do tempo. O segundo cenário consiste em usar valores de largura de banda que são variáveis no decorrer do tempo %da largura de banda referencial,
@@ -291,21 +284,19 @@ médio, máximo e mínimo de um número de requisições simultâneas. Assim, as instân
       %e desse jeito vai mudando de valores até atingir os $100$ segundos e começar de novo o período de variabilidade.
     Essas variações foram geradas aleatoriamente.
 
-
     % de acordo como o modelo de agregação de QoS descrito na seção anterior
     A variável independente nos experimentos é o tamanho da resposta do serviço composto $WS_1$ que varia de $1KB$ até $100MB$. A variável
     dependente é o tempo médio da resposta total do serviço composto $WS_1$ de várias requisições simultâneas (que variam de $1$ para $10$ requisições)
-    e de acordo à largura de banda da rede. Essa largura de banda  está definida entre o canal de comunicação do Cliente e o serviço composto $WS_1$,
-      e  varia de 1Mbps até 16Mbps. %,  abrangendo uma alta capacidade (H),  de média capacidade (M) e de
+    e de acordo à largura de banda da rede. %,  abrangendo uma alta capacidade (H),  de média capacidade (M) e de
     %baixa capacidade (L) (inspirado em \cite{Xia2011}).
 
     As Tabelas~\ref{table:simulation_configuration_responses} e \ref{table:simulation_configuration_requests} apresentam os
-    valores dos atributos de QoS das requisições e das respostas que são usados para as simulações.
+    valores dos atributos de QoS das requisições e das respostas que são usados para as simulações. Diferente do primeiro conjunto de experimentos, estes experimento foram simulador no ChorSim, e não utilizando o Pipe2.
     %%TODO descrever o ambiente de simulação e nro de simulações e explicar as tabelas resumidamente
     Cada simulação consistiu na execução de instâncias de coreografia iniciadas por requisições de um cliente. Desse modo, foram
     realizadas 960  simulações ( $1$ a $5$ requisições, 120 valores de tamanhos resposta e 16 valores de largura de banda )
     para cada cenário (modelo normal e variável da largura de banda). As simulações foram executadas em um computador equipado com
-    processador Intel Core $i7-2700$K $3.5$Ghz, $16$GB de memória RAM e $1$TB de espaço em disco rodando o sistema operacional
+    processador Intel Core $i7-2700$K $3.5$Ghz, $16$GB de memória RAM rodando o sistema operacional
     Debian GNU/Linux versão $6.0$.
 
 	\begin{figure}[!h]
@@ -313,7 +304,7 @@ médio, máximo e mínimo de um número de requisições simultâneas. Assim, as instân
 	    %\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
 	    %\subfloat[choreographed version\label{fig:commDiaChor}]{\includegraphics[width=.5\linewidth]{figures/choreography}}
 	    \includegraphics[width=.8\linewidth]{figures/failure_model.png}
-	    \caption{Modelo de falhas que mostra a largura de banda efetiva devido à degradação da largura de banda referencial em um período de $100$ segundos.}
+	    \caption{Modelo de falhas que mostra a largura de banda efetiva devido à degradação da largura de banda em um período de $100$ segundos.}
     %       \caption{Capacidade variável da Largura de Banda  referencial em um período de tempo de $100$ segundos}
 	    \label{figure:failure_model}
 	\end{figure}
@@ -391,18 +382,17 @@ médio, máximo e mínimo de um número de requisições simultâneas. Assim, as instân
     Os gráficos das Figuras~\ref{figure:results} e \ref{figure:results_failure} mostram os resultados dos dois cenários de simulação, isto é,
     para o modelo normal e para o modelo variável com falhas. No modelo normal  (Figura~\ref{figure:results}) percebe-se que o comportamento do tempo de
     resposta é menor quanto  maior é a largura de banda, e estabiliza-se a partir de $5Mbps$ com um tempo de resposta
-      de $150ms$. Além disso, com valores pequenos  nos tamanhos de resposta de até $30MB$ os tempos de resposta são
+      de cerca de $150ms$. Além disso, com valores pequenos  nos tamanhos de resposta de até $30MB$ os tempos de resposta são
     similares com larguras de banda a partir de $2Mbps$. Com base nisso já pode-se definir restrições de QoS tais como, poder
-    oferecer tempos de resposta menores que $450ms$  desde que se tenha uma infraestrutura para suportar uma largura de banda de mais de $5Mbps$. %%
+    oferecer tempos de resposta menores que $200ms$  desde que se tenha uma infraestrutura para suportar uma largura de banda de mais de $5Mbps$. %%
 
-    Já no modelo variável com falhas, os tempos de resposta diminuem quanto maior é a largura de banda, mas diferente do modelo normal,
-    neste cenário começa a se estabilizar a partir de $14Mbps$ de largura de banda, apesar de a partir dos $8Mbps$ os tempos de resposta
+    Já no modelo variável com falhas, os tempos de resposta continuam diminuindo quanto maior é a largura de banda, mas diferente do modelo normal,
+    neste cenário o tempo começa a se estabilizar a partir de $14Mbps$ de largura de banda, apesar de a partir dos $8Mbps$ os tempos de resposta
     serem bem próximos. Além disso, o tempo de resposta tem quase o mesmo comportamento para todos os tamanhos de resposta, diferente do
     modelo normal, onde para tamanhos de resposta menores que $30MB$ podia se obter algumas vantagens. Neste cenário, houveram estouros de temporização (\textit{timeouts})
     com as larguras de banda de $1Mbps$ e $2Mbps$ com mais de 2 requisições simultâneas e por conta disso essas curvas não aparecem no gráfico. Dessa
     maneira, as restrições de QoS estariam  focadas em garantir larguras de banda mínimas maiores que $2Mbps$ e para
     garantir tempos de resposta mínimos são necessários valores de largura de banda maiores que $14Mbps$.
-
 
     \begin{figure}[H]
 	\centering
@@ -414,8 +404,6 @@ médio, máximo e mínimo de um número de requisições simultâneas. Assim, as instân
 	\label{figure:results}
     \end{figure}
 
-
-
     \begin{figure}[H]
 	\centering
 	%\subfloat[orchestrated version\label{fig:commDiaOrch}]{\includegraphics[width=.5\linewidth]{figures/orchestration}}
@@ -425,46 +413,43 @@ médio, máximo e mínimo de um número de requisições simultâneas. Assim, as instân
 	\label{figure:results_failure}
     \end{figure}
 
-
-
 %%-------------------------------------------------%%
 %%        Estabelecimento de contratos de QoS      %%    
 %%-------------------------------------------------%%
-\section{Estabelecimento de contratos de QoS}%%Simulator
+\section{Terceiro conjunto de experimentos -- Estabelecimento de contratos de QoS}%%Simulator
 
-Nesta etapa, vamos supor que a degradação do tempo de procesamento ou execução dos serviços individuais $WS_1$ e $WS_3$ e $WS_5$ se comportam de acordo com
- distribuições exponenciais. A escolha foi feita porque uma distribuição exponencial descreve o tempo para que um processo mude de estado,
-por isso é usado para modelar o comportamento de sistemas que tenham uma taxa de falha ou degradação no tempo. A Tabela~\ref{table:contract_configurations}
-apresenta o tipo de distribuição de probabilidade usado e a taxa de degradação para os tempos de execução dos serviços $WS_1$ e $WS_3$ e $WS_5$.
- O resto da configuração é  igual como é descrevido nas tabelas \ref{table:simulation_configuration_requests} e
- \ref{table:simulation_configuration_responses}, exceto que a largura de banda nas repostas do $WS_1$ para cliente foi definida para ser  de $10 Mbps$ 
- de acordo com a análise de resultados na definição de requerimentos de QoS.
+Nesta etapa, um cenário similar ao do segundo conjunto de experimentos é utilizado. A diferença está na largura de banda nas respostas de $WS_1$ para o cliente, que foi definida como $10Mbps$. Vamos considerar que a degradação do tempo de processamento ou execução dos serviços individuais $WS_1$ e $WS_3$ e $WS_5$ se comporta de acordo com
+ distribuições exponenciais. A escolha foi feita porque não queremos considerar que há memória em relação à falhas que aconteceram no passado, o que é possível de ser simulado com uma distribuição exponencial.  Para todos os serviços a taxa de degradação, que será a média da distribuição exponencial, foi considerada como 1/10000.
 
+%A Tabela~\ref{table:contract_configurations}
+%apresenta o tipo de distribuição de probabilidade usado e a taxa de degradação para os tempos de execução dos serviços $WS_1$ e $WS_3$ e $WS_5$.
+% O resto da configuração é  igual como é descrevido nas tabelas \ref{table:simulation_configuration_requests} e
+% \ref{table:simulation_configuration_responses}, exceto que a largura de banda nas repostas do $WS_1$ para cliente foi definida para ser  de $10 Mbps$ 
+% de acordo com a análise de resultados na definição de requerimentos de QoS.
 
 %$$ Fex_{WS}() $$
 
-    \begin{table}[!h]
-	  \centering
-    {\footnotesize
-	  \caption{Configuração das taxas de degradação dos serviços  para obter o contrato do tempo de resposta para o serviço composto $WS_1$ }
-	  \label{table:contract_configurations}
-	\begin{tabular}{|c|c|c|}
-	      %%\hline
-			  %%& \multicolumn{2}{c|}{ Average number of tokens } & \multicolumn{2}{c|}{ 95\% Confidence interval  (+/-) }\\
-	      \hline
-	      Serviço    &   Distribuição      &     Taxa de degradação ($\lambda$)      \\
-	      \hline
-	      $WS_1$     &    Exponencial      &      1/10000      \\
-	      $WS_3$     &    Exponencial      &      1/10000      \\
-	      $WS_5$     &    Exponencial      &      1/10000      \\
-	      \hline
-	      \end{tabular}
-    }
-    \end{table}
+%     \begin{table}[!h]
+% 	  \centering
+%     {\footnotesize
+% 	  \caption{Configuração das taxas de degradação dos serviços  para obter o contrato do tempo de resposta para o serviço composto $WS_1$ }
+% 	  \label{table:contract_configurations}
+% 	\begin{tabular}{|c|c|c|}
+% 	      %%\hline
+% 			  %%& \multicolumn{2}{c|}{ Average number of tokens } & \multicolumn{2}{c|}{ 95\% Confidence interval  (+/-) }\\
+% 	      \hline
+% 	      Serviço    &   Distribuição      &     Taxa de degradação ($\lambda$)      \\
+% 	      \hline
+% 	      $WS_1$     &    Exponencial      &      1/10000      \\
+% 	      $WS_3$     &    Exponencial      &      1/10000      \\
+% 	      $WS_5$     &    Exponencial      &      1/10000      \\
+% 	      \hline
+% 	      \end{tabular}
+%     }
+%     \end{table}
 
-
-Desse modo, após obter por meio do ChorSim um conjunto de  $5000$ amostras dos tempos de reposta  do serviço composto $WS_1$, já é possível
-obter a distribuição de probabilidade empírica (ECDF) $F_{ws1}$ que represente o contrato. A Figura~\ref{figure:contract} mostra a ECDF obtido
+Após obter por meio do ChorSim um conjunto de  $5000$ amostras dos tempos de resposta  do serviço composto $WS_1$, já é possível
+obter a distribuição de probabilidade empírica (ECDF) $F_{ws1}$ que represente o contrato. A Figura~\ref{figure:contract} mostra a ECDF obtida
 que representa o contrato probabilístico. Os quantis de  $F_{ws1}$ são mostrados também na Tabela \ref{table:contract_quantiles}. 
 %Portanto, esse contrato fica 
 
@@ -505,7 +490,7 @@ que representa o contrato probabilístico. Os quantis de  $F_{ws1}$ são mostrados
 %%---------------------------------------------------%%
 %%        Monitoramento de QoS em Coreografias       %%    
 %%---------------------------------------------------%%
-\section{Monitoramento de QoS em Coreografias}%%Simulator
+\section{Quarto conjunto de experimentos -- Monitoramento de QoS em Coreografias}%%Simulator
   \subsection*{Configuração }
   Além de ter estabelecido o contrato probabilístico e antes de começar o processo de monitoramento precisa-se configurar alguns outros parâmetros, 
   tais como o tamanho  da janela de amostras $N$, o desvio da janela de amostras $p$,  e os parâmetros relacionados à regra
@@ -524,15 +509,15 @@ A regra específica para o cumprimento de garantia de QoS precisa  definir os par
   \end{equation}
  
 Onde $X_{monitoring}$ é o conjunto de amostras dos tempos de resposta do serviço composto $WS_1$. Para habilitar um monitoramento sequencial e
- \textit{on-line} precisa-se computar um conjunto amostras sequenciais de tamanho $N$ que que se sobrepõem. 
+ \textit{on-line} precisa-se computar um conjunto de amostras sequenciais de tamanho $N$ que se sobrepõem. 
 Assim, o conjunto de janelas de  amostras a monitorar seria:  $\{1, \dots , N\}$, $\{p, \dots , p + N\}$, $\dots$ , $\{mp, \dots ,mp + N\}$,
-e assim por diante, onede $p <=N $ e $m=1, 2,\dots \quad$ . O tamanho de amostras ($N$) para realizar a detecção  é de 100, e o desvio $p$ é 1.
+e assim por diante, onde $p <=N $ e $m=1, 2,\dots \quad$ . O tamanho de amostras ($N$) para realizar a detecção  é de 100, e o desvio $p$ é 1.
  
 
   \begin{center}
     \begin{table}[h]
 	\centering
-      \caption{Definição de valores no configuração para o monitoramento. }
+      \caption{Definição de valores na configuração para o monitoramento. }
       \begin{center}
 	\begin{tabular}{|c|c|}
 	  \hline
@@ -557,11 +542,11 @@ e assim por diante, onede $p <=N $ e $m=1, 2,\dots \quad$ . O tamanho de amostra
   
 %Após a configuração dos parâmetros para o monitoramento,
 Para mostrar a eficácia da abordagem  de detecção de violações de SLA na etapa de monitoramento, desenvolveu-se diversos cenários de modo a 
-apresentar diversos comportamentos nos tempos de reposta e na detecção de violações do contrato estabelecido. Tais cenários são caracterizados
+apresentar diversos comportamentos nos tempos de resposta e na detecção de violações do contrato estabelecido. Tais cenários são caracterizados
 pela configuração de valores das taxas de degradação do tempo de execução dos serviços $WS_1$, $WS_3$ e $WS_5$. A Tabela~\ref{table:scenarios_rates} 
-mostras os valores das taxas de degradação dos serviços Web para quatro cenários, onde do primeiro até o terceiro cenário  possuem taxas de degradação
- maiores  do que as degradações que foram usadas para o estebelecimento do contrato, mas que vão se aproximando como no terceiro cenário. O quarto
- cenário possui taxas de degradação de desempenho que são um pouco menores do que as usadas  no estabelecimento contrato.
+mostras os valores das taxas de degradação dos serviços Web para quatro cenários, onde do primeiro até o terceiro cenário  há taxas de degradação
+ maiores  do que as degradações que foram usadas para o estabelecimento do contrato, mas que vão se aproximando como no terceiro cenário. O quarto
+ cenário possui taxas de degradação de desempenho que são um pouco menores do que as usadas  no estabelecimento do contrato.
 
 
   \begin{center}
@@ -593,14 +578,18 @@ mostras os valores das taxas de degradação dos serviços Web para quatro cenários
   \end{center}
 
 
-Para cada um dos quatro cenários, o monitoramento se executou com  simulações de $1000$ requisições para o serviço composto $WS_1$. Além disso, a topologia e configuração
-da implantação (largura de banda, latência, capacidade de procesamento, etc) é a mesma como definida no estabelecimento de contrato probabilístico. Os
- apêndices~\ref{ape:chor_specification},~\ref{ape:platform} e ~\ref{ape:deployment} 
- mostram com mais detalhes a especificação da coreografia, da plataforma e da implantação que o ChorSim precisa para rodar as simulações. 
+Para cada um dos quatro cenários, foram executadas simulações de $1000$ requisições para o serviço composto $WS_1$. Além disso, a topologia e configuração
+da implantação (largura de banda, latência, capacidade de processamento, etc) é a mesma como definida no estabelecimento de contrato probabilístico. %Os
+% apêndices~\ref{ape:chor_specification},~\ref{ape:platform} e ~\ref{ape:deployment} 
+% mostram com mais detalhes a especificação da coreografia, da plataforma e da implantação que o ChorSim precisa para rodar as simulações. 
   Os gráficos~\ref{figure:detection1-13_125_115}, \ref{figure:detection2-12_11_12},~\ref{figure:detection4-105_10_105} 
 e \ref{figure:detection5-9_10_9} mostram as distâncias ($D$) e os \textit{$p^{+}$-values} do teste de \textit{Kolmogorov-Smirnov} utilizado na detecção de violações do
-contrato e ressalta-se os valores de $\lambda$ e $\alpha$ com uma linha horizontal vermelha para cada um. Esses gráficos mostram a distância do teste de Kolmogorov, o qual mostra o quanto flutua a distribuição  dos tempos de reposta respeito do contrato e de acordo com 
-a regra  \eqref{eqn:rule_detection} debe ser menor que $0.15$  para ser cumprida. Os gráficos também mostram os \textit{$p^{+}$-values} para cada uma das
+contrato e ressalta-se os valores de $\lambda$ e $\alpha$ com uma
+linha horizontal vermelha para cada um. Esses gráficos mostram a
+distância do teste de Kolmogorov, o qual mostra o quanto flutua a
+distribuição  dos tempos de resposta em relação ao contrato e de acordo com 
+a regra  \eqref{eqn:rule_detection} deve ser menor que $0.15$  para
+ser cumprida. Os gráficos também mostram os \textit{$p^{+}$-values} para cada uma das
  requisições realizadas, e de acordo com a regra em \eqref{eqn:rule_detection} devem ser maiores ou iguais que $0.05$ para cumprir o contrato.
  %%isto é, a condição para não rejeitar a hipótese nula  %%Análise, No cenário  $1$ possui um
 
@@ -643,47 +632,46 @@ a regra  \eqref{eqn:rule_detection} debe ser menor que $0.15$  para ser cumprida
 
 
 %%Análise
-No cenário $1$ houve violações do contrato no $92.33\%$ dos casos, o que se evidencia pelos vários \textit{p-values} menores do que $0.05$ e flutuações
-maiores do que a zona de tolerância $\lambda$ definida. Apenas o contrato foi garantido  no intervalo entre as requisições  $839$ e $926$,
+No cenário $1$ houve violações do contrato em $92.33\%$ dos casos, o que se evidencia pelos vários \textit{p-values} menores do que $0.05$ e flutuações
+maiores do que a zona de tolerância $\lambda$ definida. O contrato foi
+garantido apenas no intervalo entre as requisições  $839$ e $926$,
  onde as flutuações tem maior queda  e os \textit{p-values} atingem valores altos.  
-No cenário $2$ houve violações no $85.33\%$ dos casos, onde a o contrato foi garantido poucas vezes e principalmente nos intervalos
- nas requisições de $103$ a $163$, de $601$ a $618$ e de $947$ a $1000$. Como no primeiro cenário, as requisições que cumpriram
- com o contrato  coincidem em lugares onde há flutuações com picos baixos  e  \textit{p-values} com  picos altos.
+No cenário $2$ houve violações em $85.33\%$ dos casos, onde o contrato foi garantido poucas vezes e principalmente nos intervalos
+ das requisições de $103$ a $163$, de $601$ a $618$ e de $947$ a $1000$. Como no primeiro cenário, as requisições que cumpriram
+ com o contrato  coincidem em lugares onde há flutuações com picos baixos  e \textit{p-values} com  picos altos.
 %%estes dois cenários se detectaram muitas violações de contrato por conta das taxas de degradação altas dos serviços 
 
-A diferencia dos anteriores cenários, o cenário $3$ apresenta violações de contrato no $28.22\%$ dos casos. Neste caso as violações de contrato
-se correspondem nos intervalos onde há  picos altos nas flutuações. Apesar que dessa vez os \textit{p-values} que quebram o contrato estão 
- próximos do $0.05$, o que dá entender que as flutuações foram mais importantes para detectar as violações. Há menos contratos não cumpridos
- como se esperava já que as taxas de degradação dos serviços individuais são um pouco maiores das que foram utilizadas para obter o contrato.
- 
-
-No cenário $4$ se detectaram violações de contrato no $1\%$ das $1000$ requisições. Dessa vez não houve \textit{p-values} menores que $0.05$, mas 
-  as flutuações foram determinates para detectar as poucas violações. No entanto, dado que neste cenário as taxas de degradação do
- tempo de processamento dos serviços é menor do que no contrato, não deviu-se detectar falhas mesmo sendo $1\%$. Então, para evitar 
+Diferente dos cenários anteriores, o cenário $3$ apresenta violações
+de contrato em menos casos ($28.22\%$ dos casos). 
+No cenário $4$ as violações de contrato ocorreram em $1\%$ das $1000$ requisições. Dessa vez não houve \textit{p-values} menores que $0.05$, mas 
+  as flutuações foram determinantes para detectar as poucas violações. No entanto, dado que neste cenário as taxas de degradação do
+ tempo de processamento dos serviços é menor do que no contrato, não
+devia-se detectar falhas mesmo sendo $1\%$. Então, para evitar 
 esses falsos alarmes poderia se usar um valor $\lambda$ ( zona de tolerância) maior do que definido na regra atual.   Por exemplo,
-poderiamos estabelecer $\lambda= 0.158$ porque é a maior distância achada das que quebraram o contrato.
+poderíamos estabelecer $\lambda= 0.158$ porque é a maior distância
+achada nos casos que quebraram o contrato.
+
+% \section{Considerações Finais}
+% 
+% Neste Capítulo apresentaram-se os experimentos e resultados das etapas que abrangem da definição de requisitos de QoS, estabelecimento do contrato de SLA e até
+%  o monitoramento com a detecção de violações de contrato em coreografias de serviços Web. 
+% Na definição de requisitos de Qos em coreografias apresentou-se os resultados dos experimentos por meio de simulações em uma GSPN com suporte de QoS. Desse modo,
+%  conseguiu-se achar falhas na comunicação, na integridade das mensagens e gargalhos em diversos pontos das interações entre serviços.  
+% 
+% Na definição de requisitos também se realizaram experimentos por meio de simulações, que a diferencia de ferramentas analíticas como a GSPN se
+% utilizou  o simulador de coreografias \textit{ChorSim}. O objetivo foi descobrir o comportamento do tempo de respota com diferentes tamanhos de mensagem
+% e diferentes larguras de banda.  Para tanto, definiram-se dois cenários baseados no comportamento da largura de banda, o primeiro com largura de
+%  banda uniforme e o segundo  com comportamento váriável. A  principal limitação no segundo cenário foi o impedimento de não poder especificar
+%  o comportamento da largura de banda por meio de distribuições de probabilidade, já que o \textit{Simgrid}  não suporta a definição 
+% de váriaveis aleatórias. Adicionar tal funcionalidade requereria mexer na implementação do \textit{Simgrid}.
+% 
+% No entanto, o estabelecimento do contrato probabilístico foi possível porque se conseguiu  definir o tempo de processamento por meio de distribuições de
+%  probabilidade, que já é suportado no \textit{ChorSim}. Desse modo, no estabelecimento e no monitoramento usou-se taxas de degradação do desempenho por meio de
+% distribuições exponenciais para definir o contrato e os diversos cenários a monitorar. A técnica para detectar violações de SLA está 
+% baseada no uso do teste de \textit{Kolmogorov-Smirnov} de apenas um lado. Esse teste  permite calcular quão próxima uma distruibuição 
+% está de outra e já que é de tipos não paramétrico podem ser testados diversos tipo de distribuições.  
 
 
+%%% nao sei onde colocar isso:
 
-
-
-\section{Considerações Finais}
-
-Neste Capítulo apresentaram-se os experimentos e resultados das etapas que abrangem da definição de requisitos de QoS, estabelecimento do contrato de SLA e até
- o monitoramento com a detecção de violações de contrato em coreografias de serviços Web. 
-Na definição de requisitos de Qos em coreografias apresentou-se os resultados dos experimentos por meio de simulações em uma GSPN com suporte de QoS. Desse modo,
- conseguiu-se achar falhas na comunicação, na integridade das mensagens e gargalhos em diversos pontos das interações entre serviços.  
-
-Na definição de requisitos também se realizaram experimentos por meio de simulações, que a diferencia de ferramentas analíticas como a GSPN se
-utilizou  o simulador de coreografias \textit{ChorSim}. O objetivo foi descobrir o comportamento do tempo de respota com diferentes tamanhos de mensagem
-e diferentes larguras de banda.  Para tanto, definiram-se dois cenários baseados no comportamento da largura de banda, o primeiro com largura de
- banda uniforme e o segundo  com comportamento váriável. A  principal limitação no segundo cenário foi o impedimento de não poder especificar
- o comportamento da largura de banda por meio de distribuições de probabilidade, já que o \textit{Simgrid}  não suporta a definição 
-de váriaveis aleatórias. Adicionar tal funcionalidade requereria mexer na implementação do \textit{Simgrid}.
-
-No entanto, o estabelecimento do contrato probabilístico foi possível porque se conseguiu  definir o tempo de processamento por meio de distribuições de
- probabilidade, que já é suportado no \textit{ChorSim}. Desse modo, no estabelecimento e no monitoramento usou-se taxas de degradação do desempenho por meio de
-distribuições exponenciais para definir o contrato e os diversos cenários a monitorar. A técnica para detectar violações de SLA está 
-baseada no uso do teste de \textit{Kolmogorov-Smirnov} de apenas um lado. Esse teste  permite calcular quão próxima uma distruibuição 
-está de outra e já que é de tipos não paramétrico podem ser testados diversos tipo de distribuições.  
 

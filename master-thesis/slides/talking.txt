@@ -131,7 +131,10 @@ característica de ULS (Ultra Large Scale).
 Aqui estão envolvidos vários conceitos avanzados para entender melhor a pesquisa, tais como: QoS, SLA, SLAs probabilísticos,
 e o Monitoramento
 
-17: Qualidade de Serviço
+
+Antes de apresentar os mecanismos implementados é importante falar um pouco sobre QoS e SLA
+= Qualidade de Serviço
+
 Por um lado , Um serviço, se refere âs operações que o sistema executa, por exemplo, compra ou reserva de passagens. 
 Enquanto que a qualidade de serviço se refere aos atributos não funcionais associados a um serviço,
 por exemplo quao rápida é a resposta de um serviço, o custo, quao confiável, etc.
@@ -269,7 +272,7 @@ Após apresentar os conceitos e contextualizar o problema, vamos a presentar as 
 - Além do mais, desenvolveu-se um simulador para rodar coreografias com caracteristicas de QoS e suportar as etapás já mencionadas, já que no existem infraestruturas ou tecnologias maduras o suficiente para rodar coreografias o que era um impedimento para atingir os objetivos.
 % O monitoramento foi desenvolvido acima deste simulador.
 
-- Por fim, os  atributos de QoS levados em consideração são:
+- Além disso, os  atributos de QoS levados em consideração são:
 
 
 = Elementos BPMN 2 suportados
@@ -370,6 +373,7 @@ Então, para uma violação do contrato se dá quando existe um x real de tal ma
 
 Que é equivalente a equação 3, onde se leva em consideração o parâmetro lambda que representa a zona de tolerancia por conta das flutuações
 que podem acontecer pelos fda's.
+
 
 
 = Detecção de violações I
